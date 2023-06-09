@@ -52,7 +52,7 @@ export default {
 
 <style lang="scss">
   $match-info-wrapper-width: 30%;
-  $match-score-line-height: clamp($font-size-h3, 2.5vw, $font-size-h2);
+  $match-score-line-height: clamp($fs-h3, 2.5vw, $fs-h2);
 
   .match-card {
     padding: .75rem 0;
@@ -85,12 +85,12 @@ export default {
     color: $primary-ds-800;
     
     .match-date {
-      font-size: $font-size-xs;
-      font-size: clamp($font-size-xxs, 1vw, $font-size-xs);
+      font-size: $fs-xs;
+      font-size: clamp($fs-xxs, 1vw, $fs-xs);
     }
 
     .match-type {
-      font-size: clamp(.625rem, .8vw, $font-size-xxs);
+      font-size: clamp(.625rem, .8vw, $fs-xxs);
     }
 
     span {
@@ -114,10 +114,10 @@ export default {
 
   .match-score {
     font-size: $match-score-line-height;
-    font-weight: 500;
+    font-weight: $fw-medium;
     color: $primary-ds-300;
     line-height: $match-score-line-height;
-    font-family: $font-primary;
+    font-family: $ff-primary;
 
     display: flex;
     align-items: flex-end;
@@ -129,15 +129,15 @@ export default {
     flex: 1;
     justify-content: flex-end;
 
-    font-size: $font-size-medium;
-    font-size: clamp($font-size-xxs, 1.5vw, $font-size-medium);
+    font-size: $fs-medium;
+    font-size: clamp($fs-xxs, 1.5vw, $fs-medium);
     min-width: 0;
     gap: .25em;
 
     &__name {
-      font-family: $font-display;
+      font-family: $ff-display;
       line-height: $lh-medium;
-      font-weight: 600;
+      font-weight: $fw-semi-bold;
       text-align: left;
       color: $primary-ds-700;
 
@@ -153,11 +153,11 @@ export default {
       border-width: 1px;
       background: $black-10;
 
-      font-family: $font-primary;
-      font-size: $font-size-large;
-      font-size: clamp($font-size-medium, 1.3vw, $font-size-large);
+      font-family: $ff-primary;
+      font-size: $fs-large;
+      font-size: clamp($fs-medium, 1.3vw, $fs-large);
       line-height: $match-score-line-height;
-      font-weight: 500;
+      font-weight: $fw-medium;
       color: $primary-ds-800;
 
       display: flex;
@@ -173,7 +173,7 @@ export default {
     }
 
     &__extra {
-      font-size: $font-size-medium;
+      font-size: $fs-medium;
       padding: .25em;
       gap: .25em;
 

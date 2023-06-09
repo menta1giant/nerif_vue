@@ -47,8 +47,8 @@ export default {
 
   &__item {
     color: $black-10;
-    font-weight: 600;
-    font-family: $font-display;
+    font-weight: $fw-semi-bold;
+    font-family: $ff-display;
     transition: background-color 200ms ease-out;
 
     cursor: pointer;
@@ -83,7 +83,7 @@ export default {
 
   .navigation-pages__item {
     justify-content: center;
-    flex-basis: 33%;
+    flex-basis: 100%;
 
     &.active {
       color: $accent-500;

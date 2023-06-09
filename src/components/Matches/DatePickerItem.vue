@@ -29,9 +29,9 @@ export default {
 <style lang="scss" scoped>
   .date-picker__item {
     width: 3em;
-    font-size: $font-size-medium;
+    font-size: $fs-medium;
     background: $black-10;
-    font-weight: 400;
+    font-weight: $fw-regular;
     border: 1px solid $primary-ds-100;
     border-radius: $border-radius-small;
     
@@ -46,7 +46,7 @@ export default {
 
     &__weekday {
         margin-top: -4px;
-        font-size: $font-size-xxxs;
+        font-size: $fs-xxxs;
         line-height: $lh-small; 
         color: $black-500;
     }

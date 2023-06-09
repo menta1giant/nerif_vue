@@ -23,9 +23,9 @@ export default {
     overflow-y: visible;
     text-overflow: ellipsis;
 
-    font-weight: 400;
+    font-weight: $fw-regular;
     color: $primary-ds-900;
-    font-size: $font-size-xs;
+    font-size: $fs-xs;
     line-height: $lh-small;
 
     flex: 1;

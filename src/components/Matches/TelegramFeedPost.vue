@@ -23,7 +23,7 @@ export default {
 <style lang="scss" scoped>
 .tf-post {
   background: $primary-ds-50;
-  font-size: $font-size-xxs;
+  font-size: $fs-xxs;
   padding: 1em;
   gap: 8px;
 
@@ -34,14 +34,14 @@ export default {
     display: flex;
     justify-content: space-between;
 
-    font-weight: 600;
+    font-weight: $fw-semi-bold;
     color: $primary-ds-600;
-    font-family: $font-display;
+    font-family: $ff-display;
   }
 
   &__icons {
     height: 100%;
-    font-size: $font-size-xs;
+    font-size: $fs-xs;
 
     display: flex;
     gap: .5rem;

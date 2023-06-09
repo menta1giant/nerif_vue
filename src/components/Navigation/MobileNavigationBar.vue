@@ -46,8 +46,8 @@ export default {
 }
 
 .logo-wrapper {
-    font-family: $font-logo;
-    font-size: $font-size-h4;
+    font-family: $ff-logo;
+    font-size: $fs-h4;
     color: $primary-ds-100;
     cursor: pointer;
 
@@ -66,8 +66,8 @@ export default {
     border-radius: $border-radius-small;
 
     color: $primary-ds-800;
-    font-weight: 600;
-    font-size: $font-size-medium;
+    font-weight: $fw-semi-bold;
+    font-size: $fs-medium;
     line-height: $lh-medium;
 }
 

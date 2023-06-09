@@ -102,8 +102,8 @@ export default {
       padding: 0 $container-horizontal-padding-tablet;
 
       color: $black-10;
-      font-weight: 600;
-      font-family: $font-display;
+      font-weight: $fw-semi-bold;
+      font-family: $ff-display;
       transition: background-color 200ms ease-out;
 
       cursor: pointer;
@@ -132,7 +132,7 @@ export default {
     align-items: center;
 
     color: $accent-500;
-    font-size: $font-size-medium;
+    font-size: $fs-medium;
     line-height: $lh-medium;
 
     gap: 16px;
@@ -149,8 +149,8 @@ export default {
 }
 
 .logo-wrapper {
-  font-family: $font-logo;
-  font-size: $font-size-h4;
+  font-family: $ff-logo;
+  font-size: $fs-h4;
   color: $primary-ds-100;
   cursor: pointer;
 
@@ -169,7 +169,7 @@ export default {
   border-radius: $border-radius-small;
 
   color: $primary-ds-800;
-  font-weight: 600;
+  font-weight: $fw-semi-bold;
 }
 
 @media (max-width: $tablet-breakpoint) {
@@ -192,15 +192,15 @@ export default {
   align-items: flex-end;
   gap: .25rem;
 
-  font-family: $font-display;
+  font-family: $ff-display;
   color: $black-10;
-  font-weight: 600;
-  font-size: $font-size-xs;
+  font-weight: $fw-semi-bold;
+  font-size: $fs-xs;
   line-height: $lh-small;
 
   &__days-left {
-    font-weight: 400;
-    font-size: $font-size-xxs;
+    font-weight: $fw-regular;
+    font-size: $fs-xxs;
   }
 }
 
@@ -215,13 +215,13 @@ export default {
 
   &.notifications-button {
     position: relative;
-    font-size: $font-size-h4;
+    font-size: $fs-h4;
 
     .notifications-count {
       color: $primary-ds-800;
       font-size: .625rem;
       line-height: 1rem;
-      font-weight: 500;
+      font-weight: $fw-medium;
       text-align: center;
 
       width: 1.5rem;

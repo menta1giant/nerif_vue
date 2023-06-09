@@ -1,7 +1,7 @@
 @import 'variables';
 
 body {
-    font-family: $font-primary;
+    font-family: $ff-primary;
     background-color: $black-10;
     height: 100vh;
     overflow-x: hidden;
@@ -9,7 +9,7 @@ body {
 }
 
 b {
-  font-weight: 600;
+  font-weight: $fw-semi-bold;
 }
 
 .container {

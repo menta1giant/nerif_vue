@@ -37,7 +37,7 @@ export default {
       align-items: center;
 
       color: $primary-ds-600;
-      font-size: $font-size-h4;
+      font-size: $fs-h4;
       padding: 0 .5rem;
     }
   }

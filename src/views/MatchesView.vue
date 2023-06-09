@@ -1,7 +1,7 @@
 <template>
-  <div class="content-wrapper-left desktop">
+  <div class="content-wrapper-left" :class="{ desktop: isMatchesTabOpened }">
     <date-picker />
-    <div class="filters">
+    <div class="filters desktop">
       <div class="filters__toggle-button">Filters ></div>
       <div class="filters__list">
         <nrf-switcher-field v-for="(a, b) in Array(12)" v-bind:key="a" :label="prikol[b]" />
@@ -14,6 +14,8 @@
       </div>
       <div class="feed__cappers-select">
         <nrf-label><b>Select cappers.</b> Or else..</nrf-label>
+      </div>
+      <div class="feed__cappers-select">
         <div class="multiselect"></div>
       </div>
       <div class="feed__posts-list">
@@ -21,9 +23,9 @@
       </div>
     </div>
   </div>
-  <div class="content-wrapper-right">
+  <div class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }">
     <div class="matches">
-      <match-card v-for="(a,b) in Array(20)" v-bind:key="a" :msg="prikol[b].toUpperCase()"/>
+      <match-card v-for="(a, b) in Array(20)" v-bind:key="a" :msg="prikol[b].toUpperCase()" />
     </div>
   </div>
   <div class="toolbar mobile">
@@ -35,10 +37,10 @@
         </div>
       </div>
       <div class="toolbar__navigation">
-        <div class="toolbar__icon">
+        <div class="toolbar__icon" :class="{ active: isMatchesTabOpened }" @click="toggleOpenedTab">
           <nrf-icon type="solid" name="gamepad" />
         </div>
-        <div class="toolbar__icon">
+        <div class="toolbar__icon" :class="{ active: !isMatchesTabOpened }" @click="toggleOpenedTab">
           <nrf-icon type="solid" name="square-rss" />
         </div>
       </div>
@@ -51,7 +53,7 @@ import MatchCard from '@/components/Matches/MatchCard.vue';
 import DatePicker from '@/components/Matches/DatePicker.vue';
 import TelegramFeedPost from '@/components/Matches/TelegramFeedPost.vue';
 
-const prikol =["Lyngby Vikings", "Caught off Guard", "SAW Youngsters", "Malvinas", "DETONA", "BIGODES", "coluant", "Tranquillum", "Team GeT_RiGhT", "Insanium", "KINGZZZ", "From The Grave", "Halal Gang", "Verum", "Fiend", "The Big Dogs", "Lese", "Alke", "Goomba Stomp", "Russian Street Party", "WORTEX", "GORILLAZ", "Izako Boars", "Levitate", "YeniCherry", "Coldest Riders", "LSC", "ex-Cear\u0413\u040e", "AURA", "DBL PONEY", "Keyd", "Volted", "Peekers", "Big City Blues", "Triumph", "Meinser", "Hazard", "Extra Salt", "voLante", "ViCi", "Dr. Pepper", "GAIJIN", "eXploit", "okura", "Doge Soldiers", "Sestri", "ex-Feenix", "ex-Coalesce", "LPSP", "Villainous"];
+const prikol = ["Lyngby Vikings", "Caught off Guard", "SAW Youngsters", "Malvinas", "DETONA", "BIGODES", "coluant", "Tranquillum", "Team GeT_RiGhT", "Insanium", "KINGZZZ", "From The Grave", "Halal Gang", "Verum", "Fiend", "The Big Dogs", "Lese", "Alke", "Goomba Stomp", "Russian Street Party", "WORTEX", "GORILLAZ", "Izako Boars", "Levitate", "YeniCherry", "Coldest Riders", "LSC", "ex-Cear\u0413\u040e", "AURA", "DBL PONEY", "Keyd", "Volted", "Peekers", "Big City Blues", "Triumph", "Meinser", "Hazard", "Extra Salt", "voLante", "ViCi", "Dr. Pepper", "GAIJIN", "eXploit", "okura", "Doge Soldiers", "Sestri", "ex-Feenix", "ex-Coalesce", "LPSP", "Villainous"];
 
 export default {
   name: 'MatchesView',
@@ -63,116 +65,123 @@ export default {
   data() {
     return {
       prikol: prikol,
+      isMatchesTabOpened: true,
+    }
+  },
+  methods: {
+    toggleOpenedTab() {
+      this.isMatchesTabOpened = !this.isMatchesTabOpened;
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.filters {
+  width: 100%;
 
-  .filters {
+  &__toggle-button {
+    display: none;
+  }
+
+  &__list {
     width: 100%;
 
-    &__toggle-button {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr));
+    grid-column-gap: .75rem;
+  }
+
+  @media screen and (max-width: $tablet-breakpoint) {
+    .filters-toggle-button {
+      display: block;
+    }
+
+    .filters {
       display: none;
     }
-
-    &__list {
-      width: 100%;
-
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr));
-      grid-column-gap: .75rem;
-    }
-
-    @media screen and (max-width: $tablet-breakpoint) {
-      .filters-toggle-button {
-        display: block;
-      }
-
-      .filters {
-        display: none;
-      }
-    }
   }
+}
 
-  .feed {
-    width: 100%;
-    max-height: 100%;
-    overflow: auto;
-    padding-top: 1rem;
+.feed {
+  width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  padding-top: 1rem;
 
-    background: white;
-    border: 1px solid $primary-s-50;
-    border-radius: $border-radius-small;
+  background: white;
+  border: 1px solid $primary-s-50;
+  border-radius: $border-radius-small;
+
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    padding: 0 1rem;
+    margin-bottom: 1.25rem;
+
+    font-weight: $fw-bold;
+    font-size: $fs-h4;
 
     display: flex;
+    justify-content: center;
+  }
+
+  &__cappers-select {
+    padding: 0 1rem 1rem;
+
+    font-size: $fs-xs;
+    line-height: $lh-small;
+    font-weight: $fw-regular;
+
+    display: flex;
+    align-items: flex-start;
     flex-direction: column;
+    gap: .25rem;
 
-    &__header {
-      padding: 0 1rem;
-      margin-bottom: 1.25rem;
+    .multiselect {
+      display: block;
+      height: 2.5rem; ///////
+      width: 100%;
 
-      font-weight: 700;
-      font-size: $font-size-h4;
-
-      display: flex;
-      justify-content: center;
-    }
-
-    &__cappers-select {
-      padding: 0 1rem 1rem;
-
-      font-size: $font-size-xs;
-      line-height: $lh-small;
-      font-weight: 400;
-
-      display: flex;
-      align-items: flex-start;
-      flex-direction: column;
-      gap: .25rem;
-
-      .multiselect {
-        display: block;
-        height: 2.5rem;///////
-        width: 100%;
-
-        background: $black-10;
-        border: 1px solid rgba($primary-ds-100, .5);
-        border-radius: $border-radius-small;
-      }
-    }
-
-    &__posts-list {
-      font-size: $font-size-xxs;
-
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
-      
-      gap: 1rem;
-      padding: 0 .8rem 1rem 1rem;
-      margin-right: .2rem;
-      overflow-y: scroll;
+      background: $black-10;
+      border: 1px solid rgba($primary-ds-100, .5);
+      border-radius: $border-radius-small;
     }
   }
 
-  .content-wrapper {
-    &-left, &-right {
-      min-width: 0;
-      flex: 1;
-    }
+  &__posts-list {
+    font-size: $fs-xxs;
 
-    &-left {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
 
-      position: sticky;
-      top: 0;
-      margin-right: 2rem;
-    }
+    gap: 1rem;
+    padding: 0 .8rem 1rem 1rem;
+    margin-right: .2rem;
+    overflow-y: scroll;
   }
+}
+
+.content-wrapper {
+
+  &-left,
+  &-right {
+    min-width: 0;
+    flex: 1;
+  }
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    position: sticky;
+    top: 0;
+    margin-right: 2rem;
+  }
+}
 
 .matches {
   padding-bottom: 2rem;
@@ -215,8 +224,12 @@ export default {
     align-items: center;
 
     color: $primary-ds-600;
-    font-size: $font-size-h4;
+    font-size: $fs-h4;
     padding: 0 .5rem;
+
+    &.active {
+      color: $accent-900;
+    }
   }
 }
 
