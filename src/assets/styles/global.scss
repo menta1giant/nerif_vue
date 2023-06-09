@@ -17,7 +17,7 @@ b {
   overflow: hidden auto;
 
   width: 100%;
-  max-width: 1440px;
+  max-width: $desktop-breakpoint;
   margin: 0 auto;
   padding: $container-horizontal-padding-tablet $container-horizontal-padding-desktop;
 
@@ -34,6 +34,7 @@ b {
 }
 
 @media (max-width: $tablet-breakpoint) {
+  
     .container {
         padding: $container-horizontal-padding-tablet;
         padding-bottom: 0px;
@@ -51,7 +52,7 @@ b {
   }
 
   .mobile {
-    display: block !important;
+    display: flex !important;
   }
 }
 

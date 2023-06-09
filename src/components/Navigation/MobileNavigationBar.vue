@@ -1,17 +1,18 @@
 <template>
   <div class="navigation-bar">
-    <div class="navigation-bar-items">
-      <div class="navigation-bar-item" v-for="link in links" v-bind:key="link.route" :class="{ active: $route.fullPath === link.route }" @click="clickLink(link.route)">
-        <a :href="link[0]" @click.prevent="">{{ link.name }}</a>
-      </div>
-    </div>
+    <navigation-pages is-mobile/>
   </div>
 </template>
 
 <script>
 
+import NavigationPages from '@/components/Navigation/NavigationPages.vue';
+
 export default {
   name: 'MobileNavigationBar',
+  components: {
+    NavigationPages
+  },
   data() {
      return {
       links: this.$router.getRoutes(),
@@ -37,44 +38,6 @@ export default {
   top: 0px;
   background: $primary-ds-800;
   height: $navbar-height;
-
-  &-items {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex: 1;
-    align-items: stretch;
-    justify-content: space-between;
-  }
-
-  &-item {
-
-    color: $black-10;
-    font-weight: 600;
-    font-family: $font-display;
-    transition: background-color 200ms ease-out;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-basis: 33%;
-
-    &.active {
-      color: $accent-500;
-    }
-
-    a {
-      text-decoration: none;
-    }
-  }
-
-  &-item:hover {
-    background: $overlay-white-40;
-  }
-
 
   &-right {
     display: flex;

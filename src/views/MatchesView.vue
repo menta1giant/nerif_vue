@@ -194,6 +194,11 @@ export default {
     display: flex;
   }
 
+  &__navigation {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
   &__items {
     height: 100%;
     padding: 0 $container-horizontal-padding-mobile;
@@ -202,6 +207,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    flex: 1;
   }
 
   &__icon {

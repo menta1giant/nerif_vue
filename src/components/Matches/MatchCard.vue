@@ -59,7 +59,7 @@ export default {
     gap: .75rem;
 
     background-color: $match-card-bg;
-    border-radius: $border-radius-meduim;
+    border-radius: $border-radius-medium;
     box-shadow: 0 4px 9px 0 rgba($primary-ds-800, 0.1);
 
     display: flex;
@@ -147,7 +147,7 @@ export default {
     }
 
     &__coeff {
-      border-radius: $border-radius-meduim;
+      border-radius: $border-radius-medium;
       border-color: $primary-ds-100;
       border-style: solid;
       border-width: 1px;

@@ -1,6 +1,7 @@
 @import "typography";
 @import "colors";
 
+$desktop-breakpoint: 90em;
 $tablet-breakpoint: 55em;
 $mobile-breakpoint: 39em;
 
@@ -13,5 +14,5 @@ $navbar-height: 80px;
 $match-card-coeff-width: clamp(5rem, 4vw, 6rem);
 
 $border-radius-small: 3px;
-$border-radius-meduim: 6px;
+$border-radius-medium: 6px;
   
