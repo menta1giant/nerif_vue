@@ -2,7 +2,7 @@
   <div class="navigation-bar">
     <div class="container">
       <div class="navigation-bar__items">
-        <div class="logo-wrapper" @click="clickLink('/')">
+        <div class="logo-wrapper" @click="$router.push('/')">
           <img src="@/assets/logo.png" height="80"/>
           <span>Nerif</span>
         </div>
@@ -56,11 +56,6 @@ export default {
       return this.$store.getters.getUserInfo;
     },
   },
-  methods: {
-    clickLink(link) {
-      this.$router.push(link);
-    }
-  }
 }
 </script>
 
@@ -102,7 +97,7 @@ export default {
       padding: 0 $container-horizontal-padding-tablet;
 
       color: $black-10;
-      font-weight: $fw-semi-bold;
+      font-weight: 600;
       font-family: $ff-display;
       transition: background-color 200ms ease-out;
 
@@ -169,7 +164,7 @@ export default {
   border-radius: $border-radius-small;
 
   color: $primary-ds-800;
-  font-weight: $fw-semi-bold;
+  font-weight: 600;
 }
 
 @media (max-width: $tablet-breakpoint) {
@@ -194,12 +189,12 @@ export default {
 
   font-family: $ff-display;
   color: $black-10;
-  font-weight: $fw-semi-bold;
+  font-weight: 600;
   font-size: $fs-xs;
   line-height: $lh-small;
 
   &__days-left {
-    font-weight: $fw-regular;
+    font-weight: 400;
     font-size: $fs-xxs;
   }
 }
@@ -221,7 +216,7 @@ export default {
       color: $primary-ds-800;
       font-size: .625rem;
       line-height: 1rem;
-      font-weight: $fw-medium;
+      font-weight: 500;
       text-align: center;
 
       width: 1.5rem;

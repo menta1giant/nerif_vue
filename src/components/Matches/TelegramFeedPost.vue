@@ -7,9 +7,9 @@
             <nrf-icon type="solid" name="ellipsis"/>
         </div>
     </div>
-    <div class="tf-post__body">
+    <p class="tf-post__body">
         {{ "Don't know how he possessed me, but I'm happy that he did. Oh mi padre there's a ghost in my body. Oh mi padre there's a ghost in my body. Oh mi padre there's a ghost in my body. Oh mi padre there's a ghost in my body. Oh mi padre there's a ghost in my body.".slice(0, Math.floor(Math.random()*300)) }}
-    </div>
+    </p>
   </div>
 </template>
   
@@ -23,7 +23,7 @@ export default {
 <style lang="scss" scoped>
 .tf-post {
   background: $primary-ds-50;
-  font-size: $fs-xxs;
+  font-size: $fs-xs;
   padding: 1em;
   gap: 8px;
 
@@ -41,17 +41,25 @@ export default {
 
   &__icons {
     height: 100%;
-    font-size: $fs-xs;
+    font-size: 1.16em;
 
     display: flex;
     gap: .5rem;
   }
 
   &__body {
+    font-size: .85em;
+
     display: -webkit-box;
    -webkit-line-clamp: 4;
    -webkit-box-orient: vertical;  
    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  .tf-post {
+    font-size: $fs-medium;
   }
 }
 

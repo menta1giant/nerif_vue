@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
   .date-picker {
-    max-width: 100%;
+    max-width: inherit;
     gap: .5rem;
 
     display: flex;

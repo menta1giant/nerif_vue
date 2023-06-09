@@ -1,15 +1,15 @@
 <template>
   <div class="match-card">
     <div class="match-card__upper-wrapper">
-        <div class="team-block tb-left">
+        <div class="team-block team-block--left">
             <div class="team-block__name">{{ msg }}</div>
             <div class="team-block__properties">
                 <div class="team-block__coeff">
                     <div>1.5</div>
                 </div>
-                <div class="team-block__extra">
-                    <div class="team-block__extra-item"></div>
-                    <div class="team-block__extra-item"></div>
+                <div class="team-block__meta">
+                    <div class="team-block__meta__item"></div>
+                    <div class="team-block__meta__item"></div>
                 </div>
             </div>
         </div>
@@ -23,15 +23,15 @@
                 <div class="match-score">16</div>
             </div>
         </div>
-        <div class="team-block tb-right">
+        <div class="team-block team-block--right">
             <div class="team-block__name">{{ msg }}</div>
             <div class="team-block__properties">
                 <div class="team-block__coeff">
                     <div>1.5</div>
                 </div>
-                <div class="team-block__extra">
-                    <div class="team-block__extra-item"></div>
-                    <div class="team-block__extra-item"></div>
+                <div class="team-block__meta">
+                    <div class="team-block__meta__item"></div>
+                    <div class="team-block__meta__item"></div>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@ export default {
   $match-score-line-height: clamp($fs-h3, 2.5vw, $fs-h2);
 
   .match-card {
-    padding: .75rem 0;
+    padding-block: .75rem;
     gap: .75rem;
 
     background-color: $match-card-bg;
@@ -172,14 +172,14 @@ export default {
       flex-direction: row;
     }
 
-    &__extra {
+    &__meta {
       font-size: $fs-medium;
       padding: .25em;
       gap: .25em;
 
       display: flex;
 
-      &-item {
+      &__item {
         width: 1em;
         height: 1em;
         background: rgba(255, 0, 0, 0.01);
@@ -189,7 +189,7 @@ export default {
     }
   }
 
-  .tb-left {
+  .team-block--left {
     .team-block__name {
       text-align: right;
     }
@@ -201,7 +201,8 @@ export default {
 
   .match-card__scale {
     height: .5rem;
-    background-color: $primary-s-100;
+    background: linear-gradient(90deg,$primary-s-100 0%, $primary-s-100 60%, $accent-300 60%);
+    //background: linear-gradient(to bottom, hsl(0, 0%, 100%) 0%, hsla(0, 0%, 100%, 0) 50%, hsla(0, 0%, 0%, 0) 50%, hsl(0, 0%, 0%) 100%), linear-gradient(to right, hsl(0, 0%, 50%) 0%, hsla(0, 0%, 50%, 0) 100%);
 
     display: flex;
     width: 60%;

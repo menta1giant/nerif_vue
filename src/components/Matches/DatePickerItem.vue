@@ -1,5 +1,5 @@
 <template>
-  <div class="date-picker__item" :class="{ active: day==5 }">
+  <div class="date-picker__item" :class="{ 'date-picker__item--active': day==5 }">
     <span class="date-picker__item__day">{{ day }}</span>
     <span class="date-picker__item__weekday">{{ displayedWeekday }}</span>
   </div>
@@ -51,8 +51,13 @@ export default {
         color: $black-500;
     }
 
+    &--active {
+      background: $primary-s-50;
+      border-color: $primary-s-400;
+    }
+
     @media screen and (max-width: $mobile-breakpoint) {
-      &:not(.active) {
+      &:not(.date-picker__item--active) {
         display: none;
       }
     }

@@ -2,12 +2,12 @@
   <div class="navigation-pages" :class="{ desktop: !isMobile }">
     <div
       class="navigation-pages__item"
-      :class="{ active: $route.fullPath === link.path }"
+      :class="{ 'navigation-pages__item--active': $route.fullPath === link.path }"
       v-for="link in links"
       v-bind:key="link.path"
       @click="clickLink(link.path)"
     >
-      <a :href="link[0]" @click.prevent="">{{ link.name }}</a>
+      <a :href="link.path" @click.prevent="">{{ link.name }}</a>
     </div>
   </div>
 </template>
@@ -67,7 +67,7 @@ export default {
   .navigation-pages__item {
     padding: 0 $container-horizontal-padding-tablet;
 
-    &.active {
+    &--active {
       box-shadow: inset 0 -4px 0 $accent-500;
       background: $overlay-white-40;
     } 
@@ -85,7 +85,7 @@ export default {
     justify-content: center;
     flex-basis: 100%;
 
-    &.active {
+    &--active {
       color: $accent-500;
     } 
   }

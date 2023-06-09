@@ -1,6 +1,6 @@
 <template>
   <div class="content-wrapper-left" :class="{ desktop: isMatchesTabOpened }">
-    <date-picker />
+    <div class="date-picker-wrapper desktop"><date-picker /></div>
     <div class="filters desktop">
       <div class="filters__toggle-button">Filters ></div>
       <div class="filters__list">
@@ -8,16 +8,16 @@
       </div>
     </div>
     <div class="feed">
-      <div class="feed__header">
-        <span>Telegram Feed</span>
-        <div class="help-icon"></div>
-      </div>
-      <div class="feed__cappers-select">
-        <nrf-label><b>Select cappers.</b> Or else..</nrf-label>
-      </div>
-      <div class="feed__cappers-select">
-        <div class="multiselect"></div>
-      </div>
+
+        <div class="feed__title">
+          <h1>Telegram Feed</h1>
+          <div class="help-icon"></div>
+        </div>
+        <div class="feed__cappers-select__label"><nrf-label><b>Select cappers.</b> Or else..</nrf-label></div>
+        <div class="feed__cappers-select__wrapper">
+          <div class="multiselect"></div>
+        </div>
+
       <div class="feed__posts-list">
         <telegram-feed-post v-for="(a) in Array(32)" v-bind:key="a"></telegram-feed-post>
       </div>
@@ -37,10 +37,10 @@
         </div>
       </div>
       <div class="toolbar__navigation">
-        <div class="toolbar__icon" :class="{ active: isMatchesTabOpened }" @click="toggleOpenedTab">
+        <div class="toolbar__icon" :class="{ active: isMatchesTabOpened }" @click="toggleOpenedTab(true)">
           <nrf-icon type="solid" name="gamepad" />
         </div>
-        <div class="toolbar__icon" :class="{ active: !isMatchesTabOpened }" @click="toggleOpenedTab">
+        <div class="toolbar__icon" :class="{ active: !isMatchesTabOpened }" @click="toggleOpenedTab(false)">
           <nrf-icon type="solid" name="square-rss" />
         </div>
       </div>
@@ -69,14 +69,22 @@ export default {
     }
   },
   methods: {
-    toggleOpenedTab() {
-      this.isMatchesTabOpened = !this.isMatchesTabOpened;
+    scrollContainerToYZero() {
+      const container = document.getElementById("container");
+      container.scrollTop = 0;
+    },
+    toggleOpenedTab(newValue) {
+      this.scrollContainerToYZero();
+      this.isMatchesTabOpened = newValue;
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.date-picker-wrapper {
+  max-width: 100%;
+}
 .filters {
   width: 100%;
 
@@ -93,7 +101,7 @@ export default {
   }
 
   @media screen and (max-width: $tablet-breakpoint) {
-    .filters-toggle-button {
+    .filters__toggle-button {
       display: block;
     }
 
@@ -109,14 +117,14 @@ export default {
   overflow: auto;
   padding-top: 1rem;
 
-  background: white;
-  border: 1px solid $primary-s-50;
-  border-radius: $border-radius-small;
+  background: rgba(255, 255, 255, .4);
+  border: 2px solid $primary-s-50;
+  border-radius: 12px;
 
   display: flex;
   flex-direction: column;
 
-  &__header {
+  &__title {
     padding: 0 1rem;
     margin-bottom: 1.25rem;
 
@@ -127,8 +135,13 @@ export default {
     justify-content: center;
   }
 
-  &__cappers-select {
-    padding: 0 1rem 1rem;
+  &__cappers-select__label {
+    padding: 0 1rem;
+  }
+
+  &__cappers-select__wrapper {
+    margin-top: .25rem;
+    padding: 0 1rem 1rem 1rem;
 
     font-size: $fs-xs;
     line-height: $lh-small;
@@ -222,6 +235,7 @@ export default {
 
   &__icon {
     align-items: center;
+    cursor: pointer;
 
     color: $primary-ds-600;
     font-size: $fs-h4;
@@ -239,5 +253,28 @@ export default {
     padding-top: 1rem;
     width: unset;
   }
+
+  .content-wrapper-left {
+    margin: 0;
+    position: static;
+  }
+
+  .feed {
+    background: $black-10;
+    border: none;
+    overflow: initial;
+    max-height: unset;
+
+    &__posts-list {
+      overflow: initial;
+    }
+
+    &__cappers-select__wrapper {
+      //background: $black-10;
+      position: sticky;
+      top: .5rem;
+    }
+  }
+
 }
 </style>
