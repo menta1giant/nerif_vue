@@ -1,0 +1,223 @@
+<template>
+  <div class="content-wrapper-left desktop">
+    <date-picker />
+    <div class="filters">
+      <div class="filters__toggle-button">Filters ></div>
+      <div class="filters__list">
+        <nrf-switcher-field v-for="(a, b) in Array(12)" v-bind:key="a" :label="prikol[b]" />
+      </div>
+    </div>
+    <div class="feed">
+      <div class="feed__header">
+        <span>Telegram Feed</span>
+        <div class="help-icon"></div>
+      </div>
+      <div class="feed__cappers-select">
+        <nrf-label><b>Select cappers.</b> Or else..</nrf-label>
+        <div class="multiselect"></div>
+      </div>
+      <div class="feed__posts-list">
+        <telegram-feed-post v-for="(a) in Array(32)" v-bind:key="a"></telegram-feed-post>
+      </div>
+    </div>
+  </div>
+  <div class="content-wrapper-right">
+    <div class="matches">
+      <match-card v-for="(a,b) in Array(20)" v-bind:key="a" :msg="prikol[b].toUpperCase()"/>
+    </div>
+  </div>
+  <div class="toolbar mobile">
+    <div class="toolbar__items">
+      <div class="toolbar__controls">
+        <date-picker />
+        <div class="toolbar__icon">
+          <nrf-icon type="solid" name="filter" />
+        </div>
+      </div>
+      <div class="toolbar__navigation">
+        <div class="toolbar__icon">
+          <nrf-icon type="solid" name="gamepad" />
+        </div>
+        <div class="toolbar__icon">
+          <nrf-icon type="solid" name="square-rss" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import MatchCard from '@/components/Matches/MatchCard.vue';
+import DatePicker from '@/components/Matches/DatePicker.vue';
+import TelegramFeedPost from '@/components/Matches/TelegramFeedPost.vue';
+
+const prikol =["Lyngby Vikings", "Caught off Guard", "SAW Youngsters", "Malvinas", "DETONA", "BIGODES", "coluant", "Tranquillum", "Team GeT_RiGhT", "Insanium", "KINGZZZ", "From The Grave", "Halal Gang", "Verum", "Fiend", "The Big Dogs", "Lese", "Alke", "Goomba Stomp", "Russian Street Party", "WORTEX", "GORILLAZ", "Izako Boars", "Levitate", "YeniCherry", "Coldest Riders", "LSC", "ex-Cear\u0413\u040e", "AURA", "DBL PONEY", "Keyd", "Volted", "Peekers", "Big City Blues", "Triumph", "Meinser", "Hazard", "Extra Salt", "voLante", "ViCi", "Dr. Pepper", "GAIJIN", "eXploit", "okura", "Doge Soldiers", "Sestri", "ex-Feenix", "ex-Coalesce", "LPSP", "Villainous"];
+
+export default {
+  name: 'MatchesView',
+  components: {
+    MatchCard,
+    DatePicker,
+    TelegramFeedPost
+  },
+  data() {
+    return {
+      prikol: prikol,
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
+  .filters {
+    width: 100%;
+
+    &__toggle-button {
+      display: none;
+    }
+
+    &__list {
+      width: 100%;
+
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr));
+      grid-column-gap: .75rem;
+    }
+
+    @media screen and (max-width: $tablet-breakpoint) {
+      .filters-toggle-button {
+        display: block;
+      }
+
+      .filters {
+        display: none;
+      }
+    }
+  }
+
+  .feed {
+    width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    padding-top: 1rem;
+
+    background: white;
+    border: 1px solid $primary-s-50;
+    border-radius: $border-radius-small;
+
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+      padding: 0 1rem;
+      margin-bottom: 1.25rem;
+
+      font-weight: 700;
+      font-size: $font-size-h4;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    &__cappers-select {
+      padding: 0 1rem 1rem;
+
+      font-size: $font-size-xs;
+      line-height: $lh-small;
+      font-weight: 400;
+
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: .25rem;
+
+      .multiselect {
+        display: block;
+        height: 2.5rem;///////
+        width: 100%;
+
+        background: $black-10;
+        border: 1px solid rgba($primary-ds-100, .5);
+        border-radius: $border-radius-small;
+      }
+    }
+
+    &__posts-list {
+      font-size: $font-size-xxs;
+
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+      
+      gap: 1rem;
+      padding: 0 .8rem 1rem 1rem;
+      margin-right: .2rem;
+      overflow-y: scroll;
+    }
+  }
+
+  .content-wrapper {
+    &-left, &-right {
+      min-width: 0;
+      flex: 1;
+    }
+
+    &-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+
+      position: sticky;
+      top: 0;
+      margin-right: 2rem;
+    }
+  }
+
+.matches {
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+
+.toolbar {
+  position: fixed;
+  bottom: $navbar-height;
+  height: 52px;
+  background-color: $black-40;
+  box-shadow: inset 0 2px 0 0 $primary-s-50;
+  width: 100%;
+
+  div {
+    display: flex;
+  }
+
+  &__items {
+    height: 100%;
+    padding: 0 $container-horizontal-padding-mobile;
+    bottom: 80;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__icon {
+    align-items: center;
+
+    color: $primary-ds-600;
+    font-size: $font-size-h4;
+    padding: 0 .5rem;
+  }
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  .content-wrapper-right {
+    margin: 0;
+    padding-top: 1rem;
+    width: unset;
+  }
+}
+</style>

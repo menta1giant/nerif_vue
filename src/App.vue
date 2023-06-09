@@ -1,30 +1,51 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <navigation-bar/>
+  <div class="container">
+    <router-view/>
+  </div>
+  <div class="mobile-navbar-container">
+    <mobile-navigation-bar/>
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import NavigationBar from '@/components/Navigation/NavigationBar.vue';
+import MobileNavigationBar from '@/components/Navigation/MobileNavigationBar.vue';
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default {
+  name: 'app',
+  components: {
+    NavigationBar,
+    MobileNavigationBar
   }
 }
+</script>
+
+<style lang="scss">
+@import '@/assets/styles/global.scss';
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mobile-navbar-container {
+  display: none;
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+
+  //#app {
+  //  height: unset;
+  //}
+
+  .mobile-navbar-container {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
 </style>

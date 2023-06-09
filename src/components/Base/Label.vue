@@ -1,0 +1,33 @@
+<template>
+  <div class="label">
+    <slot>{{ msg }}</slot>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Label',
+  props: {
+    msg: {
+      type: String,
+      default: '123',
+    },
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.label {
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-y: visible;
+    text-overflow: ellipsis;
+
+    font-weight: 400;
+    color: $primary-ds-900;
+    font-size: $font-size-xs;
+    line-height: $lh-small;
+
+    flex: 1;
+}
+</style>
