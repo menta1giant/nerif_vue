@@ -80,6 +80,8 @@ export default {
   height: $navbar-height;
   z-index: 99999;
 
+  box-shadow: 0 4px 3px 0 rgba($primary-ds-900, .15);
+
   //@media screen and (max-width: $mobile-breakpoint) {
   //  display: none;
   //}
