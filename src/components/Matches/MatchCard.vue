@@ -2,10 +2,10 @@
   <div class="match-card">
     <div class="match-card__upper-wrapper">
         <div class="team-block team-block--left">
-            <div class="team-block__name">{{ msg }}</div>
+            <div class="team-block__name">{{ matchInfo.team1.name }}</div>
             <div class="team-block__properties">
                 <div class="team-block__coeff">
-                    <div>1.5</div>
+                    <div>{{ matchInfo.team1.coeff }}</div>
                 </div>
                 <div class="team-block__meta">
                     <div class="team-block__meta__item"></div>
@@ -15,19 +15,21 @@
         </div>
         <div class="match-info-wrapper">
             <div class="match-info">
-                <span class="match-date">2022-12-20 0:44</span>
-                <span class="match-type">Map 1</span>
+                <span class="match-date">{{ matchInfo.date }}</span>
+                <span class="match-type">{{ matchInfo.type }}</span>
             </div>
             <div class="match-scores-wrapper">
-                <div class="match-score">16</div>
-                <div class="match-score">16</div>
+              <template v-if="hasScores">
+                <div class="match-score">{{ matchInfo.team1.score }}</div>
+                <div class="match-score">{{ matchInfo.team2.score }}</div>
+              </template>
             </div>
         </div>
         <div class="team-block team-block--right">
-            <div class="team-block__name">{{ msg }}</div>
+            <div class="team-block__name">{{ matchInfo.team2.name }}</div>
             <div class="team-block__properties">
                 <div class="team-block__coeff">
-                    <div>1.5</div>
+                    <div>{{ matchInfo.team2.coeff }}</div>
                 </div>
                 <div class="team-block__meta">
                     <div class="team-block__meta__item"></div>
@@ -46,7 +48,30 @@ export default {
   name: 'MatchCard',
   props: {
     msg: String
-  }
+  },
+  data() {
+    return {
+      matchInfo: {
+        team1: {
+          name: this.msg,
+          coeff: 1.25,
+          score: 16,
+        },
+        team2: {
+          name: this.msg,
+          coeff: 4,
+          score: 16,
+        },
+        date: '10 Jun 2023 10:05',
+        type: 'Map 1',
+      }
+    }
+  },
+  computed: {
+    hasScores() {
+      return this.matchInfo.team1.score !== null && this.matchInfo.team2.score !== null;
+    },
+  },
 }
 </script>
 
@@ -124,13 +149,13 @@ export default {
   }
 
   .team-block {
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     flex: 1;
     justify-content: flex-end;
 
     font-size: $fs-medium;
-    font-size: clamp($fs-xxs, 1.5vw, $fs-medium);
+    font-size: clamp($fs-xxs, 2vw, $fs-medium);
     min-width: 0;
     gap: .25em;
 
@@ -202,7 +227,6 @@ export default {
   .match-card__scale {
     height: .5rem;
     background: linear-gradient(90deg,$primary-s-100 0%, $primary-s-100 60%, $accent-300 60%);
-    //background: linear-gradient(to bottom, hsl(0, 0%, 100%) 0%, hsla(0, 0%, 100%, 0) 50%, hsla(0, 0%, 0%, 0) 50%, hsl(0, 0%, 0%) 100%), linear-gradient(to right, hsl(0, 0%, 50%) 0%, hsla(0, 0%, 50%, 0) 100%);
 
     display: flex;
     width: 60%;

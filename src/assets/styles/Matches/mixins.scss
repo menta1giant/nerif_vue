@@ -1,0 +1,5 @@
+@mixin thick-rounded-block {
+  background: rgba(255, 255, 255, .7);
+  border: 2px solid $primary-s-50;
+  border-radius: 12px;
+}

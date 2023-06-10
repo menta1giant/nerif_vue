@@ -1,14 +1,14 @@
 <template>
   <div class="tf-post">
     <div class="tf-post__header">
-        <span>Гагарин</span>
-        <div class="tf-post__icons">
-            <nrf-icon type="brands" name="telegram"/>
-            <nrf-icon type="solid" name="ellipsis"/>
-        </div>
+      <span class="tf-post__capper-name">{{ capperName }}</span>
+      <div class="tf-post__icons">
+          <nrf-icon type="brands" name="telegram"/>
+          <nrf-icon type="solid" name="ellipsis"/>
+      </div>
     </div>
     <p class="tf-post__body">
-        {{ "Don't know how he possessed me, but I'm happy that he did. Oh mi padre there's a ghost in my body. Oh mi padre there's a ghost in my body. Oh mi padre there's a ghost in my body. Oh mi padre there's a ghost in my body. Oh mi padre there's a ghost in my body.".slice(0, Math.floor(Math.random()*300)) }}
+        {{ "Don't know how he possessed me, but I'm happy that he did. Oh mio padre there's a ghost in my body. Oh mio padre there's a ghost in my body. Oh mio padre there's a ghost in my body. Oh mio padre there's a ghost in my body. Oh mio padre there's a ghost in my body.".slice(0, Math.floor(Math.random()*300)) }}
     </p>
   </div>
 </template>
@@ -17,6 +17,11 @@
 
 export default {
   name: 'TelegramFeedPost',
+  data() {
+    return {
+      capperName: 'Гагарин | Прогнозы и ставки',
+    };
+  },
 }
 </script>
 
@@ -39,9 +44,15 @@ export default {
     font-family: $ff-display;
   }
 
+  &__capper-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &__icons {
     height: 100%;
-    font-size: 1.16em;
+    font-size: 1.25em;
 
     display: flex;
     gap: .5rem;

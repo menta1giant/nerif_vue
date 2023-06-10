@@ -1,5 +1,9 @@
 @import 'variables';
 
+:root {
+  --container-padding-block: 2rem;
+}
+
 body {
     font-family: $ff-primary;
     background-color: $black-10;
@@ -14,12 +18,12 @@ b {
 
 .container {
   flex: 1;
-  overflow: hidden auto;
 
   width: 100%;
+  min-height: 0;
   max-width: $desktop-breakpoint;
   margin: 0 auto;
-  padding: $container-horizontal-padding-tablet $container-horizontal-padding-desktop;
+  padding: 0 $container-horizontal-padding-desktop;
 
   position: relative;
 
@@ -36,13 +40,13 @@ b {
 @media (max-width: $tablet-breakpoint) {
   
     .container {
-        padding: $container-horizontal-padding-tablet;
+        padding: 0 $container-horizontal-padding-tablet;
     }
 }
 
 @media (max-width: $mobile-breakpoint) {
   .container {
-      padding: 0 $container-horizontal-padding-mobile;
+      padding: 0;
       margin-bottom: 132px;
   }
 

@@ -1,34 +1,40 @@
 <template>
   <div class="content-wrapper-left" :class="{ desktop: isMatchesTabOpened }">
-    <div class="date-picker-wrapper desktop"><date-picker /></div>
+
+    <div class="date-picker-wrapper desktop">
+      <date-picker />
+    </div>
+    <!-- FILTERS COMPONENT -->
     <div class="filters desktop">
       <div class="filters__toggle-button">Filters ></div>
       <div class="filters__list">
         <nrf-switcher-field v-for="(a, b) in Array(12)" v-bind:key="a" :label="prikol[b]" />
       </div>
     </div>
+    <!-- FEED COMPONENT -->
     <div class="feed">
-
-        <div class="feed__title">
-          <h1>Telegram Feed</h1>
-          <div class="help-icon"></div>
-        </div>
-        <div class="feed__cappers-select__label"><nrf-label><b>Select cappers.</b> Or else..</nrf-label></div>
-        <div class="feed__cappers-select__wrapper">
-          <div class="multiselect"></div>
-        </div>
-
+      <div class="feed__title">
+        <h1>Telegram Feed</h1>
+        <div class="help-icon"></div>
+      </div>
+      <div class="feed__cappers-select__label"><nrf-label><b>Select cappers.</b> Or else..</nrf-label></div>
+      <div class="feed__cappers-select__wrapper">
+        <div class="multiselect"></div>
+      </div>
       <div class="feed__posts-list">
         <telegram-feed-post v-for="(a) in Array(32)" v-bind:key="a"></telegram-feed-post>
       </div>
     </div>
+
   </div>
   <div class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }">
-    <div class="matches">
-      <match-card v-for="(a, b) in Array(20)" v-bind:key="a" :msg="prikol[b].toUpperCase()" />
-    </div>
+
+    <matches-list />
+
   </div>
+  <!-- TOOLBAR MOBILE COMPONENT -->
   <div class="toolbar mobile">
+
     <div class="toolbar__items">
       <div class="toolbar__controls">
         <date-picker />
@@ -45,11 +51,12 @@
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 
 <script>
-import MatchCard from '@/components/Matches/MatchCard.vue';
+import MatchesList from '@/components/Matches/MatchesList.vue';
 import DatePicker from '@/components/Matches/DatePicker.vue';
 import TelegramFeedPost from '@/components/Matches/TelegramFeedPost.vue';
 
@@ -58,7 +65,7 @@ const prikol = ["Lyngby Vikings", "Caught off Guard", "SAW Youngsters", "Malvina
 export default {
   name: 'MatchesView',
   components: {
-    MatchCard,
+    MatchesList,
     DatePicker,
     TelegramFeedPost
   },
@@ -82,6 +89,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/Matches/mixins.scss';
 .date-picker-wrapper {
   max-width: 100%;
 }
@@ -112,14 +120,12 @@ export default {
 }
 
 .feed {
+  @include thick-rounded-block;
+
   width: 100%;
   max-height: 100%;
   overflow: auto;
   padding-top: 1rem;
-
-  background: rgba(255, 255, 255, .4);
-  border: 2px solid $primary-s-50;
-  border-radius: 12px;
 
   display: flex;
   flex-direction: column;
@@ -181,7 +187,11 @@ export default {
   &-left,
   &-right {
     min-width: 0;
+    overflow: hidden auto;
     flex: 1;
+    padding-block: var(--container-padding-block);
+    padding-left: .5rem;
+    padding-right: .5rem;
   }
 
   &-left {
@@ -197,7 +207,6 @@ export default {
 }
 
 .matches {
-  padding-bottom: 2rem;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -264,13 +273,13 @@ export default {
     border: none;
     overflow: initial;
     max-height: unset;
+    padding-top: 0;
 
     &__posts-list {
       overflow: initial;
     }
 
     &__cappers-select__wrapper {
-      //background: $black-10;
       position: sticky;
       top: .5rem;
     }
