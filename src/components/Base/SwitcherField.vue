@@ -1,6 +1,6 @@
 <template>
   <div class="switcher-field">
-    <nrf-switcher :id="label" :value="true" />
+    <nrf-switcher :id="label" :value="value" />
     <nrf-label>{{ label }}</nrf-label>
   </div>
 </template>
@@ -10,10 +10,14 @@
 export default {
   name: 'SwitcherField',
   props: {
+    value: {
+      type: Boolean,
+      required: false,
+    },
     label: {
       type: String,
       required: true,
-    }
+    },
   }
 }
 </script>

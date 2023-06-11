@@ -48,7 +48,7 @@
         <date-picker />
         <nrf-positioner v-model="isFiltersDropdownVisible">
           <template v-slot:body>
-            <div class="toolbar__icon">
+            <div class="toolbar__icon" :class="{ active: isFiltersDropdownVisible }">
               <nrf-icon type="solid" name="filter" />
             </div>
           </template>
@@ -171,6 +171,10 @@ export default {
 .filters {
   display: flex;
 
+  &__wrapper {
+    width: 100%;
+  }
+
   &__toggle-button {
     display: none;
   }
@@ -178,6 +182,10 @@ export default {
 
 @media screen and (max-width: $tablet-breakpoint) {
   .filters {
+    &__wrapper {
+      display: none;
+    }
+
     &__toggle-button {
       display: inline-block;
     }

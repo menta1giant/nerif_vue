@@ -1,12 +1,19 @@
 <template>
   <div class="filters-list">
-    <nrf-switcher-field v-for="(a) in Array(12)" v-bind:key="a" label="Ча ча чаачачачач" />
+    <nrf-switcher-field v-for="(filter) in FILTERS" v-bind:key="filter.id" :label="filter.title" :value="filter.default" />
   </div>
 </template>
 
 <script>
+import { filters } from './Filters/const';
+
 export default {
   name: "MatchesFilters",
+  data() {
+    return {
+      FILTERS: filters,
+    };
+  },
 }
 </script>
 

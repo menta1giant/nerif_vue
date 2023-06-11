@@ -3,23 +3,38 @@
     <div class="date-picker__date-increase"><nrf-icon type="solid" name="arrow-left" /></div>
     <date-picker-item v-for="(a, _$) in Array(7)" v-bind:key="a" :day="_$+1" :weekday="_$"></date-picker-item>
     <div class="date-picker__date-increase"><nrf-icon type="solid" name="arrow-right" /></div>
-    <div class="date-picker__calendar-toggle">
-        <nrf-icon type="solid" name="calendar-days" />
-    </div>
+    <nrf-positioner v-model="isDropdownVisible" position="right">
+      <template v-slot:body>
+        <div class="date-picker__calendar-toggle" :class="{ active: isDropdownVisible }">
+          <nrf-icon type="solid" name="calendar-days" />
+        </div>
+      </template>
+      <template v-slot:dropdown>
+        <date-picker-popup />
+      </template>
+      
+    </nrf-positioner>
   </div>
 </template>
 
 <script>
-import DatePickerItem from './DatePickerItem.vue'
+import DatePickerItem from './DatePickerItem.vue';
+import DatePickerPopup from './DatePickerPopup.vue';
 
 export default {
   name: 'DatePicker',
   components: {
-    DatePickerItem
+    DatePickerItem,
+    DatePickerPopup,
   },
   props: {
     msg: String,
-  }
+  },
+  data() {
+    return {
+      isDropdownVisible: false,
+    };
+  },
 }
 </script>
 
@@ -31,6 +46,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 
     &__calendar-toggle {
       display: flex;
@@ -39,6 +55,10 @@ export default {
       color: $primary-ds-600;
       font-size: $fs-h4;
       padding: 0 .5rem;
+
+      &.active {
+        color: $accent-900;
+      }
     }
   }
 
