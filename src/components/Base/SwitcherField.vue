@@ -25,6 +25,6 @@ export default {
 
   min-width: 0;
   gap: .5rem;
-  padding: .25em 0;
+  padding: .5rem;
 }
 </style>

@@ -1,11 +1,16 @@
 <template>
   <div class="matches">
-    <match-card v-for="(match, b) in matches" v-bind:key="b" :msg="prikol[b].toUpperCase()" />
+    <template v-if="isMatchCardInfoOpened">
+      <match-card :msg="openedMatchCard.toUpperCase()" @click="toggleMatchCard()" />
+    </template>
+    <template v-else>
+      <match-card v-for="(match, b) in matches" v-bind:key="b" :msg="match.toUpperCase()" @click="toggleMatchCard(b)" />
+    </template>
   </div>
-  <div class="match-stats">
+  <div class="match-stats" v-if="isMatchCardInfoOpened">
     <div class="match-stats__tabs">
       <div class="button-group">
-        <div class="groupped-button">Stats</div>
+        <div class="groupped-button groupped-button--active">Stats</div>
         <div class="groupped-button">Odds</div>
       </div>
     </div>
@@ -36,28 +41,44 @@ export default {
     matches: {
       type: Array,
       default() {
-        return [1,];
+        return prikol;
       },
     },
   },
   data() {
     return {
       prikol: prikol,
+      openedMatchCard: null,
+      isMatchCardInfoOpened: false,
     };
   },
+  methods: {
+    toggleMatchCard(cardId) {
+      this.isMatchCardInfoOpened = !this.isMatchCardInfoOpened;
+      this.openedMatchCard = this.isMatchCardInfoOpened ? this.matches[cardId] : null;
+    }
+  }
 }
 
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/Matches/mixins.scss';
+.matches {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+
 .match-stats {
   @include thick-rounded-block;
 
   margin-top: 2rem;
-  padding: 1.5em 2em;
+  padding: 2em;
   font-size: $fs-medium;
   width: 100%;
+  overflow: auto;
 
   display: flex;
   flex-direction: column;
@@ -84,13 +105,13 @@ export default {
     }
 
     p:last-child {
-      color: $primary-s-700;
+      color: $primary-s-500;
     }
   }
 
   &__bars {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: .75rem;
     column-gap: 2rem;
   }
@@ -99,16 +120,27 @@ export default {
 .button-group {
   color: $primary-s-500;
   font-family: $ff-display;
-  font-weight: 500;
+  font-weight: $fw-medium;
 
   display: flex;
   gap: .5rem;
 }
 
 .groupped-button {
-  background: $primary-s-50;
   padding: .5rem 1.5rem;
   border-radius: $border-radius-medium;
+  color: $primary-ds-300;
+
+  &--active {
+    background: $primary-s-50;
+    color: $primary-s-500;
+  }
+}
+
+@media screen and (max-width: 64em) {
+  .match-stats__bars {
+    grid-template-columns: 1fr;
+  }
 }
 
 </style>

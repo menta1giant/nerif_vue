@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div class="match-card__scale"></div>
+    <div class="match-card__scale" :style="scaleStyles"></div>
   </div>
 </template>
 
@@ -64,10 +64,21 @@ export default {
         },
         date: '10 Jun 2023 10:05',
         type: 'Map 1',
+        score: {
+          displayedValue: 120,
+          scaledValue: Math.floor(Math.random() * 40 + 40),
+          favThreshold: 10,
+          oppThreshold: 20,
+        }
       }
     }
   },
   computed: {
+    scaleStyles() {
+      return {
+        background: `linear-gradient(90deg, #B3BAE5 0%, #B3BAE5 ${ this.matchInfo.score.scaledValue }%, #FADE82 ${ this.matchInfo.score.scaledValue }%)`,
+      };
+    },
     hasScores() {
       return this.matchInfo.team1.score !== null && this.matchInfo.team2.score !== null;
     },
@@ -226,7 +237,6 @@ export default {
 
   .match-card__scale {
     height: .5rem;
-    background: linear-gradient(90deg,$primary-s-100 0%, $primary-s-100 60%, $accent-300 60%);
 
     display: flex;
     width: 60%;

@@ -4,11 +4,19 @@
     <div class="date-picker-wrapper desktop">
       <date-picker />
     </div>
-    <!-- FILTERS COMPONENT -->
     <div class="filters desktop">
-      <div class="filters__toggle-button">Filters ></div>
-      <div class="filters__list">
-        <nrf-switcher-field v-for="(a, b) in Array(12)" v-bind:key="a" :label="prikol[b]" />
+      <nrf-positioner v-model="isFiltersDropdownVisible">
+        <template v-slot:body>
+          <div class="filters__toggle-button">Filters ></div>
+        </template>
+        <template v-slot:dropdown>
+          <nrf-popup>
+            <matches-filters />
+          </nrf-popup>
+        </template>
+      </nrf-positioner>
+      <div class="filters__wrapper">
+        <matches-filters />
       </div>
     </div>
     <!-- FEED COMPONENT -->
@@ -19,7 +27,7 @@
       </div>
       <div class="feed__cappers-select__label"><nrf-label><b>Select cappers.</b> Or else..</nrf-label></div>
       <div class="feed__cappers-select__wrapper">
-        <div class="multiselect"></div>
+        <nrf-multiselect>Я мультиселект, меня можно кликать, но тут должно быть не это</nrf-multiselect>
       </div>
       <div class="feed__posts-list">
         <telegram-feed-post v-for="(a) in Array(32)" v-bind:key="a"></telegram-feed-post>
@@ -38,9 +46,18 @@
     <div class="toolbar__items">
       <div class="toolbar__controls">
         <date-picker />
-        <div class="toolbar__icon">
-          <nrf-icon type="solid" name="filter" />
-        </div>
+        <nrf-positioner v-model="isFiltersDropdownVisible">
+          <template v-slot:body>
+            <div class="toolbar__icon">
+              <nrf-icon type="solid" name="filter" />
+            </div>
+          </template>
+          <template v-slot:dropdown>
+            <nrf-popup>
+              <matches-filters />
+            </nrf-popup>
+          </template>
+        </nrf-positioner>
       </div>
       <div class="toolbar__navigation">
         <div class="toolbar__icon" :class="{ active: isMatchesTabOpened }" @click="toggleOpenedTab(true)">
@@ -56,9 +73,11 @@
 </template>
 
 <script>
+
 import MatchesList from '@/components/Matches/MatchesList.vue';
 import DatePicker from '@/components/Matches/DatePicker.vue';
 import TelegramFeedPost from '@/components/Matches/TelegramFeedPost.vue';
+import MatchesFilters from '@/components/Matches/MatchesFilters.vue';
 
 const prikol = ["Lyngby Vikings", "Caught off Guard", "SAW Youngsters", "Malvinas", "DETONA", "BIGODES", "coluant", "Tranquillum", "Team GeT_RiGhT", "Insanium", "KINGZZZ", "From The Grave", "Halal Gang", "Verum", "Fiend", "The Big Dogs", "Lese", "Alke", "Goomba Stomp", "Russian Street Party", "WORTEX", "GORILLAZ", "Izako Boars", "Levitate", "YeniCherry", "Coldest Riders", "LSC", "ex-Cear\u0413\u040e", "AURA", "DBL PONEY", "Keyd", "Volted", "Peekers", "Big City Blues", "Triumph", "Meinser", "Hazard", "Extra Salt", "voLante", "ViCi", "Dr. Pepper", "GAIJIN", "eXploit", "okura", "Doge Soldiers", "Sestri", "ex-Feenix", "ex-Coalesce", "LPSP", "Villainous"];
 
@@ -67,12 +86,14 @@ export default {
   components: {
     MatchesList,
     DatePicker,
-    TelegramFeedPost
+    TelegramFeedPost,
+    MatchesFilters
   },
   data() {
     return {
       prikol: prikol,
       isMatchesTabOpened: true,
+      isFiltersDropdownVisible: false,
     }
   },
   methods: {
@@ -92,31 +113,6 @@ export default {
 @import '@/assets/styles/Matches/mixins.scss';
 .date-picker-wrapper {
   max-width: 100%;
-}
-.filters {
-  width: 100%;
-
-  &__toggle-button {
-    display: none;
-  }
-
-  &__list {
-    width: 100%;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr));
-    grid-column-gap: .75rem;
-  }
-
-  @media screen and (max-width: $tablet-breakpoint) {
-    .filters__toggle-button {
-      display: block;
-    }
-
-    .filters {
-      display: none;
-    }
-  }
 }
 
 .feed {
@@ -157,16 +153,6 @@ export default {
     align-items: flex-start;
     flex-direction: column;
     gap: .25rem;
-
-    .multiselect {
-      display: block;
-      height: 2.5rem; ///////
-      width: 100%;
-
-      background: $black-10;
-      border: 1px solid rgba($primary-ds-100, .5);
-      border-radius: $border-radius-small;
-    }
   }
 
   &__posts-list {
@@ -182,35 +168,51 @@ export default {
   }
 }
 
+.filters {
+  display: flex;
+
+  &__toggle-button {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $tablet-breakpoint) {
+  .filters {
+    &__toggle-button {
+      display: inline-block;
+    }
+  }
+}
+
 .content-wrapper {
 
   &-left,
   &-right {
     min-width: 0;
-    overflow: hidden auto;
     flex: 1;
     padding-block: var(--container-padding-block);
     padding-left: .5rem;
     padding-right: .5rem;
+
+    display: flex;
+    flex-direction: column;
   }
 
   &-left {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 2rem;
+
+    overflow: hidden auto;
 
     position: sticky;
     top: 0;
     margin-right: 2rem;
   }
-}
 
-.matches {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 2rem;
+  &-right {
+    overflow: hidden scroll;
+  }
 }
 
 .toolbar {
@@ -221,12 +223,17 @@ export default {
   box-shadow: inset 0 2px 0 0 $primary-s-50;
   width: 100%;
 
-  div {
+  align-items: center;
+
+  &__controls {
     display: flex;
+    align-items: inherit;
   }
 
   &__navigation {
     flex: 1;
+
+    display: flex;
     justify-content: flex-end;
   }
 
@@ -243,12 +250,14 @@ export default {
   }
 
   &__icon {
-    align-items: center;
     cursor: pointer;
 
     color: $primary-ds-600;
     font-size: $fs-h4;
     padding: 0 .5rem;
+
+    display: flex;
+    align-items: center;
 
     &.active {
       color: $accent-900;

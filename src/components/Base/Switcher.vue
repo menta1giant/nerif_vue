@@ -56,7 +56,6 @@ export default {
   cursor: pointer;
 
   display: flex;
-  flex: 1;
 
   &:before {
     content: "";
