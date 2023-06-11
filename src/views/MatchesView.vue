@@ -211,7 +211,7 @@ export default {
     flex-direction: column;
     gap: 2rem;
 
-    overflow: hidden auto;
+    //overflow: hidden auto;
 
     position: sticky;
     top: 0;
@@ -283,14 +283,16 @@ export default {
   .content-wrapper-left {
     margin: 0;
     position: static;
+    padding-bottom: 0;
   }
 
   .feed {
     background: $black-10;
     border: none;
-    overflow: initial;
+    //overflow: initial;
     max-height: unset;
     padding-top: 0;
+    padding-bottom: var(--container-padding-block);
 
     &__posts-list {
       overflow: initial;
@@ -298,7 +300,8 @@ export default {
 
     &__cappers-select__wrapper {
       position: sticky;
-      top: .5rem;
+      top: .0;
+      background: $black-10;
     }
   }
 
