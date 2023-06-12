@@ -1,7 +1,14 @@
 <template>
   <div class="date-picker">
     <div class="date-picker__date-increase"><nrf-icon type="solid" name="arrow-left" /></div>
-    <date-picker-item v-for="date in selectableDates" v-bind:key="date.getDay()" :day="date.getDate()" :weekday="date.getDay()" :isActive="currentDate.getDay() === date.getDay()"></date-picker-item>
+    <date-picker-item 
+      v-for="date in selectableDates" 
+      v-bind:key="date.getDay()" 
+      :day="date.getDate()" 
+      :weekday="date.getDay()" 
+      :isActive="currentDate.getDay() === date.getDay()" 
+      @click="changeDate(date)"
+    />
     <div class="date-picker__date-increase"><nrf-icon type="solid" name="arrow-right" /></div>
     <nrf-positioner v-model="isDropdownVisible" position="right">
       <template v-slot:body>
@@ -52,10 +59,10 @@ export default {
       return days;
     }
   },
-  watch: {
-    isDropdownVisible(val) {
-      console.log(new Date() - val);
-    }
+  methods: {
+    changeDate(date) {
+      this.currentDate = date;
+    },
   }
 }
 </script>

@@ -28,6 +28,8 @@ export default {
 
 <style lang="scss" scoped>
   .date-picker__item {
+    @include noselect;
+
     width: 3em;
     font-size: $fs-medium;
     background: $black-10;
@@ -38,6 +40,8 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    cursor: pointer;
 
     &__day {
         line-height: $lh-medium; 
