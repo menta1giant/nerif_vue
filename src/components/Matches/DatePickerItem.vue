@@ -1,5 +1,5 @@
 <template>
-  <div class="date-picker__item" :class="{ 'date-picker__item--active': day==5 }">
+  <div class="date-picker__item" :class="{ 'date-picker__item--active': isActive }">
     <span class="date-picker__item__day">{{ day }}</span>
     <span class="date-picker__item__weekday">{{ displayedWeekday }}</span>
   </div>

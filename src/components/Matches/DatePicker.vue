@@ -1,7 +1,7 @@
 <template>
   <div class="date-picker">
     <div class="date-picker__date-increase"><nrf-icon type="solid" name="arrow-left" /></div>
-    <date-picker-item v-for="(a, _$) in Array(7)" v-bind:key="a" :day="_$+1" :weekday="_$"></date-picker-item>
+    <date-picker-item v-for="date in selectableDates" v-bind:key="date.getDay()" :day="date.getDate()" :weekday="date.getDay()" :isActive="currentDate.getDay() === date.getDay()"></date-picker-item>
     <div class="date-picker__date-increase"><nrf-icon type="solid" name="arrow-right" /></div>
     <nrf-positioner v-model="isDropdownVisible" position="right">
       <template v-slot:body>
@@ -10,7 +10,7 @@
         </div>
       </template>
       <template v-slot:dropdown>
-        <date-picker-popup />
+        <date-picker-popup v-model="isDropdownVisible" @change-date="(date) => currentDate = date"/>
       </template>
       
     </nrf-positioner>
@@ -20,6 +20,7 @@
 <script>
 import DatePickerItem from './DatePickerItem.vue';
 import DatePickerPopup from './DatePickerPopup.vue';
+import DatePickerMixin from './DatePickerMixin.js';
 
 export default {
   name: 'DatePicker',
@@ -27,14 +28,35 @@ export default {
     DatePickerItem,
     DatePickerPopup,
   },
+  mixins: [
+    DatePickerMixin,
+  ],
   props: {
     msg: String,
   },
   data() {
     return {
       isDropdownVisible: false,
+      currentDate: new Date(),
     };
   },
+  computed: {
+    selectableDates() {
+      const daysAfterSelectedCount = Math.min(Math.floor(((new Date()) - this.currentDate) / (3600000 * 24)), 3);
+      console.log(daysAfterSelectedCount);
+      const days = [];
+      for (let i=(daysAfterSelectedCount-6); i<=daysAfterSelectedCount; i++) {
+        days.push(new Date(this.year, this.month, this.date + i));
+      }
+
+      return days;
+    }
+  },
+  watch: {
+    isDropdownVisible(val) {
+      console.log(new Date() - val);
+    }
+  }
 }
 </script>
 
@@ -49,12 +71,12 @@ export default {
     align-items: center;
 
     &__calendar-toggle {
+      @include clickable-icon;
       display: flex;
       align-items: center;
 
       color: $primary-ds-600;
       font-size: $fs-h4;
-      padding: 0 .5rem;
 
       &.active {
         color: $accent-900;

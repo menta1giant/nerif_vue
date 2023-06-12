@@ -258,11 +258,10 @@ export default {
   }
 
   &__icon {
-    cursor: pointer;
+    @include clickable-icon;
 
     color: $primary-ds-600;
     font-size: $fs-h4;
-    padding: 0 .5rem;
 
     display: flex;
     align-items: center;

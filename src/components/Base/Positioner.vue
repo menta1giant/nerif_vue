@@ -70,12 +70,8 @@ export default {
     },
     calculateSideCoordinate() {
       const bodyCoordinates = this.$refs.body.getBoundingClientRect();
-
       const spaceBesideBody = this.position === 'left' ? (window.innerWidth || document.documentElement.clientWidth) - bodyCoordinates[this.position] : bodyCoordinates[this.position];
-      console.log(spaceBesideBody);
-      console.log(this.$refs.dropdown.scrollWidth);
       const sideCoordinate = Math.min((spaceBesideBody - 8) - this.$refs.dropdown.scrollWidth, 0);
-      console.log(sideCoordinate);
 
       return sideCoordinate;
     },
