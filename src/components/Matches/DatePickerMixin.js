@@ -9,5 +9,8 @@ export default {
     date() {
       return this.currentDate.getDate();
     },
+    day() {
+      return this.currentDate.getDay();
+    },
   }
 }

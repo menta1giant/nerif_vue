@@ -12,3 +12,12 @@
   padding: .5rem;
   cursor: pointer;
 }
+
+@mixin no-tap-highlight {
+  -webkit-tap-highlight-color: transparent; /* For WebKit-based browsers */
+  tap-highlight-color: transparent;
+}
+
+@mixin dividerBottom {
+  border-bottom: 1px solid $primary-s-50;
+}

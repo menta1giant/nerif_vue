@@ -6,7 +6,7 @@
 </template>
   
 <script>
-const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+import { weekDays } from './DatePicker/const';
 
 export default {
   name: 'DatePickerItem',
@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     displayedWeekday() {
-        return WEEKDAYS[this.weekday];
+        return weekDays[this.weekday];
     }
   }
 }
@@ -44,18 +44,19 @@ export default {
     cursor: pointer;
 
     &__day {
-        line-height: $lh-medium; 
-        color: $primary-ds-900;
+      line-height: $lh-medium; 
+      color: $primary-ds-900;
     }
 
     &__weekday {
-        margin-top: -4px;
-        font-size: $fs-xxxs;
-        line-height: $lh-small; 
-        color: $black-500;
+      margin-top: -4px;
+      font-size: $fs-xxxs;
+      line-height: $lh-small; 
+      color: $black-500;
     }
 
     &--active {
+      cursor: default;
       background: $primary-s-50;
       border-color: $primary-s-400;
     }

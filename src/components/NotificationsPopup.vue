@@ -1,0 +1,57 @@
+<template>
+  <nrf-popup>
+    <div class="notifications-popup">
+      <div class="notifications-popup__header"><span>Notifications</span><nrf-icon name="xmark" /></div>
+      <div class="notifications-popup__messages-container">
+        <notification-message v-for="(notification, idx) in notifications" v-bind:key="idx" :notificabtion="notification"/>
+      </div>
+      <div class="notifications-popup__buttons">
+        <nrf-button type="transparent" size="small"><nrf-icon name="eye" />View all notifications</nrf-button>
+        <nrf-button type="transparent" size="small"><nrf-icon name="check-double" />Mark all as read</nrf-button>
+      </div>
+    </div>
+  </nrf-popup>
+</template>
+
+<script>
+import NotificationMessage from './NotificationMessage.vue';
+
+export default {
+  name: 'NotificationPopup',
+  components: {
+    NotificationMessage,
+  },
+  data() {
+    return {
+      notifications: new Array(3),
+    };
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+.notifications-popup {
+  padding: .5rem;
+  color: $primary-ds-800;
+
+  &__header {
+    @include dividerBottom;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-weight: $fw-semi-bold;
+    font-size: $fs-large;
+    line-height: $lh-large;
+    padding-bottom: 1rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    margin-top: 1rem;
+  }
+}
+</style>

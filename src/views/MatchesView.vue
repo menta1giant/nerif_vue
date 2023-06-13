@@ -7,7 +7,11 @@
     <div class="filters desktop">
       <nrf-positioner v-model="isFiltersDropdownVisible">
         <template v-slot:body>
-          <div class="filters__toggle-button">Filters ></div>
+          <div class="filters__toggle-button">
+            <nrf-icon type="solid" name="filter"/>
+            <span>Filters</span>
+            <nrf-chevron :isOpen="isFiltersDropdownVisible" />
+          </div>
         </template>
         <template v-slot:dropdown>
           <nrf-popup>
@@ -30,14 +34,14 @@
         <nrf-multiselect>Я мультиселект, меня можно кликать, но тут должно быть не это</nrf-multiselect>
       </div>
       <div class="feed__posts-list">
-        <telegram-feed-post v-for="(a) in Array(32)" v-bind:key="a"></telegram-feed-post>
+        <telegram-feed-post v-for="(a) in Array(32)" v-bind:key="a" @show-modal="isModalShown = true"></telegram-feed-post>
       </div>
     </div>
 
   </div>
-  <div class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }">
+  <div class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }" ref="container-right">
 
-    <matches-list />
+    <matches-list @change-scroll="changeScroll"/>
 
   </div>
   <!-- TOOLBAR MOBILE COMPONENT -->
@@ -70,6 +74,8 @@
     </div>
     
   </div>
+
+  <nrf-modal v-if="isModalShown"/>
 </template>
 
 <script>
@@ -92,14 +98,32 @@ export default {
   data() {
     return {
       prikol: prikol,
+      matchesScroll: 0,
       isMatchesTabOpened: true,
       isFiltersDropdownVisible: false,
+      isModalShown: false,
     }
   },
   methods: {
     scrollContainerToYZero() {
       const container = document.getElementById("container");
       container.scrollTop = 0;
+    },
+    scrollMatches(behavior) {
+      this.$refs['container-right'].scrollTo({
+        top: this.matchesScroll, 
+        left: 0, 
+        behavior: behavior,
+      })
+    },
+    changeScroll(openedCardId, behavior) {
+      if (openedCardId === undefined) return;
+      const containerRight = this.$refs['container-right'];
+      const firstMatchTop = containerRight.firstElementChild.firstElementChild.getBoundingClientRect().top
+      const nthMatchTop = containerRight.firstElementChild.children[openedCardId].getBoundingClientRect().top;
+      
+      this.matchesScroll = nthMatchTop - firstMatchTop;
+      this.scrollMatches(behavior);
     },
     toggleOpenedTab(newValue) {
       this.scrollContainerToYZero();
@@ -110,7 +134,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/Matches/mixins.scss';
+@import '@/assets/styles/Matches/variables.scss';
 .date-picker-wrapper {
   max-width: 100%;
 }
@@ -177,6 +201,17 @@ export default {
 
   &__toggle-button {
     display: none;
+    align-items: center;
+    gap: .25rem;
+    padding: .25rem .75rem;
+
+    cursor: pointer;
+    color: $primary-ds-600;
+    font-weight: 600;
+
+    background: $primary-ds-50;
+    border: 1px solid $primary-ds-100;
+    border-radius: $border-radius-small;
   }
 }
 
@@ -187,7 +222,7 @@ export default {
     }
 
     &__toggle-button {
-      display: inline-block;
+      display: flex;
     }
   }
 }
@@ -220,6 +255,7 @@ export default {
 
   &-right {
     overflow: hidden scroll;
+    scroll-behavior: smooth;
   }
 }
 

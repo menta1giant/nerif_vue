@@ -13,16 +13,31 @@
               <span class="user-plan-info__title">{{ `${ userInfo.subscription.plan } plan` }}</span>
               <span class="user-plan-info__days-left">{{ `${ userInfo.subscription.daysLeft || 0 } days left` }}</span>
             </div>
-            <div class="navbar-square-button notifications-button">
-              <div class="notifications-count">
-                2
-              </div>
-              <nrf-icon type="solid" name="bell" />
-            </div>
-            <div class="navbar-square-button profile-button">
-              <img src="@/assets/maria.png" />
+            <nrf-positioner v-model="isNotificationsTabOpened" position="right">
+              <template v-slot:body>
+                <div class="navbar-square-button notifications-button" :class="{ 'notifications-button--active': hasNotifications }">
+                  <div v-if="hasNotifications" class="notifications-count">
+                    {{ notificationsCount }}
+                  </div>
+                  <nrf-icon type="solid" name="bell" />
+                </div>
+              </template>
+              <template v-slot:dropdown>
+                <notifications-popup />
+              </template>
+            </nrf-positioner>
 
-            </div>
+            <nrf-positioner v-model="isProfilePopupOpened" position="right">
+              <template v-slot:body>
+                <div class="navbar-square-button profile-button">
+                  <img src="@/assets/maria.png" />
+                </div>
+              </template>
+              <template v-slot:dropdown>
+                <profile-popup />
+              </template>
+            </nrf-positioner>
+
           </template>
           <template v-else>
             <span><b>Sign in.</b></span>
@@ -39,22 +54,32 @@
 
 <script>
 import NavigationPages from '@/components/Navigation/NavigationPages.vue';
+import NotificationsPopup from '@/components/NotificationsPopup.vue';
+import ProfilePopup from '@/components/ProfilePopup.vue';
 
 export default {
   name: 'NavigationBar',
   components: {
-    NavigationPages
+    NavigationPages,
+    NotificationsPopup,
+    ProfilePopup,
   },
   data() {
     return {
       links: this.$router.getRoutes(),
       isUserSignedIn: true,
+      isNotificationsTabOpened: false,
+      isProfilePopupOpened: false,
+      notificationsCount: 234,
     }
   },
   computed: {
     userInfo() {
       return this.$store.getters.getUserInfo;
     },
+    hasNotifications() {
+      return this.isUserSignedIn && this.notificationsCount > 0;
+    }
   },
 }
 </script>
@@ -65,7 +90,6 @@ export default {
     padding-top: 0px;
     padding-bottom: 0px;
     height: 100% !important;
-    overflow: hidden;
 }
 
 .navigation-bar {
@@ -76,10 +100,6 @@ export default {
   z-index: 99999;
 
   box-shadow: 0 4px 3px 0 rgba($primary-ds-900, .15);
-
-  //@media screen and (max-width: $mobile-breakpoint) {
-  //  display: none;
-  //}
 
   &__items {
     width: 100%;
@@ -214,9 +234,14 @@ export default {
   justify-content: center;
   align-items: center;
 
+  cursor: pointer;
+
   &.notifications-button {
     position: relative;
     font-size: $fs-h4;
+    color: $black-500;
+
+    cursor: default;
 
     .notifications-count {
       color: $primary-ds-800;
@@ -233,6 +258,11 @@ export default {
       top: calc(-1rem + 8px);
 
       border-radius: $border-radius-medium;
+    }
+
+    &--active {
+      color: $accent-500;
+      cursor: pointer;
     }
   }
 

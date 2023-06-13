@@ -1,17 +1,16 @@
 <template>
-  <div class="matches">
+  <div class="matches" ref="matches">
     <template v-if="isMatchCardInfoOpened">
-      <match-card :msg="openedMatchCard.toUpperCase()" @click="toggleMatchCard()" />
+      <match-card :msg="openedMatchCard.toUpperCase()" isSelected @click="toggleMatchCard()" />
     </template>
     <template v-else>
-      <match-card v-for="(match, b) in matches" v-bind:key="b" :msg="match.toUpperCase()" @click="toggleMatchCard(b)" />
+      <match-card v-for="(match, b) in matches" v-bind:key="b" :msg="match.toUpperCase()" :isSelected="isScrollingInProcess && b == lastOpenedMatchCardId" @click="!isScrollingInProcess && toggleMatchCard(b)" />
     </template>
   </div>
   <div class="match-stats" v-if="isMatchCardInfoOpened">
     <div class="match-stats__tabs">
       <div class="button-group">
-        <div class="groupped-button groupped-button--active">Stats</div>
-        <div class="groupped-button">Odds</div>
+        <div v-for="(tab, idx) in tabs" v-bind:key="idx" class="groupped-button" :class="{ 'groupped-button--active': activeTab == idx }" @click="changeActiveTab(idx)">{{ tab }}</div>
       </div>
     </div>
     <div class="match-stats__header">
@@ -33,6 +32,7 @@ const prikol = ["Lyngby Vikings", "Caught off Guard", "SAW Youngsters", "Malvina
 
 export default {
   name: 'MatchesList',
+  emits: ['change-scroll'],
   components: {
     MatchCard,
     StatsBar,
@@ -49,13 +49,50 @@ export default {
     return {
       prikol: prikol,
       openedMatchCard: null,
+      lastOpenedMatchCardId: null,
+
+      tabs: ['Stats', 'Odds'],
+      activeTab: 0,
+
       isMatchCardInfoOpened: false,
+      isScrollingInProcess: false,
     };
   },
   methods: {
-    toggleMatchCard(cardId) {
+    propagateChangeScroll() {
+
+    },
+    changeStatsVisibility() {
       this.isMatchCardInfoOpened = !this.isMatchCardInfoOpened;
-      this.openedMatchCard = this.isMatchCardInfoOpened ? this.matches[cardId] : null;
+    },
+    toggleMatchCard(cardId) {
+      this.openedMatchCard = this.isMatchCardInfoOpened ? null : this.matches[cardId];
+
+      if (cardId !== undefined) {
+        this.lastOpenedMatchCardId = cardId;
+        this.$emit('change-scroll', cardId, 'smooth');
+        this.isScrollingInProcess = true;
+        let previousScrolling = this.$refs.matches.children[cardId].getBoundingClientRect().top;
+
+        let checkInterval = setInterval(()=> {
+          const newScrolling = this.$refs.matches.children[cardId].getBoundingClientRect().top;
+          if (previousScrolling === newScrolling) {
+            this.changeStatsVisibility(cardId);
+            this.isScrollingInProcess = false;
+            clearInterval(checkInterval);
+          }
+          previousScrolling = newScrolling;
+        }, 100);
+
+        return;
+      }
+
+      this.changeStatsVisibility();
+      setTimeout(()=> this.$emit('change-scroll', this.lastOpenedMatchCardId, 'auto'), 0);
+      //this.$emit('change-scroll', this.lastOpenedMatchCardId, 'auto');
+    },
+    changeActiveTab(value) {
+      this.activeTab = value;
     }
   }
 }
@@ -131,7 +168,11 @@ export default {
   border-radius: $border-radius-medium;
   color: $primary-ds-300;
 
+  cursor: pointer;
+
   &--active {
+    cursor: default;
+
     background: $primary-s-50;
     color: $primary-s-500;
   }

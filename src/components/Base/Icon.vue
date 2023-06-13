@@ -1,5 +1,5 @@
 <template>
-    <i :class="iconClasses"></i>
+    <div class="nrf-icon"><i :class="iconClasses"></i></div>
 </template>
 
 <script>
@@ -23,3 +23,14 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.nrf-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 1.2em;
+  aspect-ratio: 1 / 1;
+}
+</style>

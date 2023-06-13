@@ -4,6 +4,15 @@
   --container-padding-block: 2rem;
 }
 
+* {
+  -webkit-tap-highlight-color: rgba($primary-s-300, .1); /* For WebKit-based browsers */
+  tap-highlight-color: rgba($primary-s-300, .1); /* For other browsers */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     font-family: $ff-primary;
     background-color: $black-10;

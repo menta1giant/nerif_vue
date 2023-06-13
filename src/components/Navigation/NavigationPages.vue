@@ -7,7 +7,10 @@
       v-bind:key="link.path"
       @click="clickLink(link.path)"
     >
-      <a :href="link.path" @click.prevent="">{{ link.name }}</a>
+      <a :href="link.path" @click.prevent="">
+        <div class="navigation-pages__item__icon"><nrf-icon :name="link.meta.icon" /></div>
+        {{ link.name }}
+      </a>
     </div>
   </div>
 </template>
@@ -71,6 +74,10 @@ export default {
       box-shadow: inset 0 -4px 0 $accent-500;
       background: $overlay-white-40;
     } 
+
+    &__icon {
+      display: none;
+    }
   }
 
   .navigation-pages__item:hover {
@@ -84,10 +91,19 @@ export default {
   .navigation-pages__item {
     justify-content: center;
     flex-basis: 100%;
+    font-size: .8em;
 
     &--active {
       color: $accent-500;
     } 
+
+    &__icon {
+      display: flex;
+      justify-content: center;
+
+      font-size: $fs-h4;
+      margin-bottom: .25rem;
+    }
   }
 }
 

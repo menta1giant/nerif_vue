@@ -3,17 +3,15 @@
     <nrf-positioner v-model="isDropdownVisible">
       <template v-slot:body>
         <div class="multiselect__body">
-          <slot></slot>
+          <div class="multiselect__option multiselect__option--selected">Гагарин</div><div class="multiselect__option multiselect__option--selected">STORY</div>
         </div>
       </template>
       <template v-slot:dropdown>
         <div class="multiselect__dropdown">
-          <ul>
-            <li>1</li>
-            <li>1</li>
-            <li>1</li>
-            <li>1</li>
-          </ul>
+          <div class="multiselect__option multiselect__option--selected">Гагарин</div>
+          <div class="multiselect__option multiselect__option--selected">STORY</div>
+          <div class="multiselect__option">Рыжик</div>
+          <div class="multiselect__option">Малыш</div>
         </div>
       </template>
     </nrf-positioner>
@@ -52,6 +50,9 @@ export default {
 
     display: flex;
     align-items: center;
+    gap: .25rem;
+
+    cursor: pointer;
   }
 
   &__dropdown {
@@ -59,6 +60,25 @@ export default {
     border-radius: $border-radius-small;
     background: $black-10;
     padding: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
+
+  &__option {
+    font-weight: $fw-medium;
+
+    padding: .5rem;
+    cursor: pointer;
+
+    &:hover {
+      background: $primary-ds-50;
+    }
+
+    &--selected {
+      background: $primary-ds-100 !important;
+    }
   }
 }
 </style>

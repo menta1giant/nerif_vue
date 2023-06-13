@@ -3,7 +3,7 @@
     <div class="tf-post__header">
       <span class="tf-post__capper-name">{{ capperName }}</span>
       <div class="tf-post__icons">
-          <nrf-icon type="brands" name="telegram"/>
+          <nrf-icon type="brands" name="telegram" @click="$emit('show-modal')"/>
           <nrf-icon type="solid" name="ellipsis"/>
       </div>
     </div>
@@ -20,7 +20,13 @@ export default {
   data() {
     return {
       capperName: 'Гагарин | Прогнозы и ставки',
+      isModalShown: false,
     };
+  },
+  methods: {
+    showModal() {
+      this.isModalShown = true;
+    },
   },
 }
 </script>
@@ -55,7 +61,7 @@ export default {
     font-size: 1.25em;
 
     display: flex;
-    gap: .5rem;
+    gap: .25rem;
   }
 
   &__body {

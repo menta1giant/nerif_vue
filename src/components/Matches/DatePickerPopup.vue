@@ -6,7 +6,11 @@
           <nrf-icon type="solid" name="arrow-left"/>
         </div>
         <span>{{ `${ monthName } ${ year }` }}</span>
-        <div class="date-picker-popup__change-month" :class="{ 'date-picker-popup__change-month--disabled': isThisMonthCurrentMonth }" @click="!isThisMonthCurrentMonth && nextMonth()">
+        <div 
+          class="date-picker-popup__change-month" 
+          :class="{ 'date-picker-popup__change-month--disabled': isThisMonthCurrentMonth }" 
+          @click="!isThisMonthCurrentMonth && nextMonth()"
+        >
           <nrf-icon type="solid" name="arrow-right"/>
         </div>
       </div>
@@ -46,6 +50,7 @@
 
 <script>
 import DatePickerMixin from './DatePickerMixin.js';
+import { weekDays, monthNames } from './DatePicker/const';
 
 export default {
   name: 'DatePickerPopup',
@@ -55,21 +60,8 @@ export default {
   data() {
     return {
       showCalendar: false,
-      monthNames: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-      ],
-      weekDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      monthNames: monthNames,
+      weekDays: weekDays,
       currentDate: new Date(),
       selectedDate: new Date(),
       today: new Date(),
@@ -86,14 +78,21 @@ export default {
       return new Date(this.year, this.month, 1).getDay();
     },
     isThisMonthCurrentMonth() {
-      return this.currentDate.getMonth() === this.today.getMonth();
+      return (this.month === this.today.getMonth()) && (this.year === this.today.getFullYear());
     },
     isCurrentMonthSelectedMonth() {
-      return this.selectedDate.getMonth() === this.currentDate.getMonth();
+      return (this.month === this.selectedDate.getMonth()) && (this.year === this.selectedDate.getFullYear());
     },
     days() {
-      console.log(this.selectedDate.getDate());
       const days = [];
+
+      for (let i = 0; i < this.firstDayOfMonth; i++) {
+        days.push({
+          day: "",
+          inMonth: false,
+        });
+      }
+
       for (let i = 1; i <= this.daysInMonth; i++) {
         days.push({
           day: i,
@@ -103,12 +102,7 @@ export default {
           disabled: this.currentDate > this.today || (this.isThisMonthCurrentMonth && i > this.today.getDate()),
         });
       }
-      for (let i = 0; i < this.firstDayOfMonth; i++) {
-        days.unshift({
-          day: "",
-          inMonth: false,
-        });
-      }
+      
       return days;
     },
     weeks() {
@@ -228,6 +222,8 @@ export default {
         justify-content: center;
         align-items: center;
         border-radius: 50%;
+        text-align: center;
+        margin: 0 .25rem;
 
         &--other-month {
           color: $primary-s-200;

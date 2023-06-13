@@ -1,15 +1,15 @@
 <template>
   <div class="date-picker">
-    <div class="date-picker__date-increase"><nrf-icon type="solid" name="arrow-left" /></div>
+    <div class="date-picker__date-increase" @click="changeToAdjacentDate(-1)"><nrf-icon type="solid" name="arrow-left" /></div>
     <date-picker-item 
       v-for="date in selectableDates" 
       v-bind:key="date.getDay()" 
       :day="date.getDate()" 
       :weekday="date.getDay()" 
-      :isActive="currentDate.getDay() === date.getDay()" 
-      @click="changeDate(date)"
+      :isActive="day === date.getDay()" 
+      @click="day !== date.getDay() && changeDate(date)"
     />
-    <div class="date-picker__date-increase"><nrf-icon type="solid" name="arrow-right" /></div>
+    <div class="date-picker__date-increase" :class="{ disabled: isCurrentDateToday }" @click="!isCurrentDateToday && changeToAdjacentDate(1)"><nrf-icon type="solid" name="arrow-right" /></div>
     <nrf-positioner v-model="isDropdownVisible" position="right">
       <template v-slot:body>
         <div class="date-picker__calendar-toggle" :class="{ active: isDropdownVisible }">
@@ -17,7 +17,7 @@
         </div>
       </template>
       <template v-slot:dropdown>
-        <date-picker-popup v-model="isDropdownVisible" @change-date="(date) => currentDate = date"/>
+        <date-picker-popup v-model="isDropdownVisible" @change-date="changeDate"/>
       </template>
       
     </nrf-positioner>
@@ -28,6 +28,8 @@
 import DatePickerItem from './DatePickerItem.vue';
 import DatePickerPopup from './DatePickerPopup.vue';
 import DatePickerMixin from './DatePickerMixin.js';
+
+import { millisecondsInADay } from '@/lib/date';
 
 export default {
   name: 'DatePicker',
@@ -48,22 +50,34 @@ export default {
     };
   },
   computed: {
+    daysAfterSelectedCount() {
+      return Math.min(Math.floor(((new Date()) - this.currentDate) / millisecondsInADay), 3);
+    },
     selectableDates() {
-      const daysAfterSelectedCount = Math.min(Math.floor(((new Date()) - this.currentDate) / (3600000 * 24)), 3);
-      console.log(daysAfterSelectedCount);
       const days = [];
-      for (let i=(daysAfterSelectedCount-6); i<=daysAfterSelectedCount; i++) {
-        days.push(new Date(this.year, this.month, this.date + i));
+
+      for (let i=(this.daysAfterSelectedCount-6); i<=this.daysAfterSelectedCount; i++) {
+        const newDate = new Date(this.year, this.month, this.date + i);
+
+        days.push(newDate);
       }
 
       return days;
-    }
+    },
+    isCurrentDateToday() {
+      return this.daysAfterSelectedCount === 0;
+    },
   },
   methods: {
     changeDate(date) {
       this.currentDate = date;
     },
-  }
+    changeToAdjacentDate(delta) {
+      const newDate = new Date(this.year, this.month, this.date + delta);
+
+      this.changeDate(newDate);
+    },
+  },
 }
 </script>
 
@@ -79,11 +93,12 @@ export default {
 
     &__calendar-toggle {
       @include clickable-icon;
-      display: flex;
-      align-items: center;
-
+      
       color: $primary-ds-600;
       font-size: $fs-h4;
+
+      display: flex;
+      align-items: center;
 
       &.active {
         color: $accent-900;
@@ -92,8 +107,15 @@ export default {
   }
 
   .date-picker__date-increase {
-      display: none;
+    display: none;
+
+    cursor: pointer;
+
+    &.disabled {
+      cursor: default;
+      color: $primary-ds-100;
     }
+  }
 
   @media screen and (max-width: $mobile-breakpoint) {
     .date-picker__date-increase {
