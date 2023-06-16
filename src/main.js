@@ -14,6 +14,7 @@ import Label from '@/components/Base/Label';
 import Icon from '@/components/Base/Icon';
 import Button from '@/components/Base/Button';
 import Modal from '@/components/Base/Modal';
+import Tooltip from '@/components/Base/Tooltip';
 
 createApp(App).use(store).use(router)
 .component("nrf-switcher-field", SwitcherField)
@@ -26,4 +27,5 @@ createApp(App).use(store).use(router)
 .component("nrf-chevron", Chevron)
 .component("nrf-button", Button)
 .component("nrf-modal", Modal)
+.component("nrf-tooltip", Tooltip)
 .mount('#app')

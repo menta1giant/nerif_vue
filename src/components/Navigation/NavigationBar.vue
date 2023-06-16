@@ -13,7 +13,7 @@
               <span class="user-plan-info__title">{{ `${ userInfo.subscription.plan } plan` }}</span>
               <span class="user-plan-info__days-left">{{ `${ userInfo.subscription.daysLeft || 0 } days left` }}</span>
             </div>
-            <nrf-positioner v-model="isNotificationsTabOpened" position="right">
+            <nrf-positioner v-model="isNotificationsTabOpened" position="center">
               <template v-slot:body>
                 <div class="navbar-square-button notifications-button" :class="{ 'notifications-button--active': hasNotifications }">
                   <div v-if="hasNotifications" class="notifications-count">
@@ -27,7 +27,7 @@
               </template>
             </nrf-positioner>
 
-            <nrf-positioner v-model="isProfilePopupOpened" position="right">
+            <nrf-positioner v-model="isProfilePopupOpened" position="center">
               <template v-slot:body>
                 <div class="navbar-square-button profile-button">
                   <img src="@/assets/maria.png" />

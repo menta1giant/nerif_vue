@@ -27,7 +27,7 @@
     <div class="feed">
       <div class="feed__title">
         <h1>Telegram Feed</h1>
-        <div class="help-icon"></div>
+        <help-icon>Telegram feed features the opinions of the most respected cappers regarding the upcoming CS:GO matchups. <br/><br/>You may view the full contents by following the links to respective Telegram channels. <br/><br/> <b>Read more in the documentation</b></help-icon>
       </div>
       <div class="feed__cappers-select__label"><nrf-label><b>Select cappers.</b> Or else..</nrf-label></div>
       <div class="feed__cappers-select__wrapper">
@@ -84,6 +84,8 @@ import MatchesList from '@/components/Matches/MatchesList.vue';
 import DatePicker from '@/components/Matches/DatePicker.vue';
 import TelegramFeedPost from '@/components/Matches/TelegramFeedPost.vue';
 import MatchesFilters from '@/components/Matches/MatchesFilters.vue';
+import HelpIcon from '@/components/HelpIcon.vue';
+
 
 const prikol = ["Lyngby Vikings", "Caught off Guard", "SAW Youngsters", "Malvinas", "DETONA", "BIGODES", "coluant", "Tranquillum", "Team GeT_RiGhT", "Insanium", "KINGZZZ", "From The Grave", "Halal Gang", "Verum", "Fiend", "The Big Dogs", "Lese", "Alke", "Goomba Stomp", "Russian Street Party", "WORTEX", "GORILLAZ", "Izako Boars", "Levitate", "YeniCherry", "Coldest Riders", "LSC", "ex-Cear\u0413\u040e", "AURA", "DBL PONEY", "Keyd", "Volted", "Peekers", "Big City Blues", "Triumph", "Meinser", "Hazard", "Extra Salt", "voLante", "ViCi", "Dr. Pepper", "GAIJIN", "eXploit", "okura", "Doge Soldiers", "Sestri", "ex-Feenix", "ex-Coalesce", "LPSP", "Villainous"];
 
@@ -93,7 +95,8 @@ export default {
     MatchesList,
     DatePicker,
     TelegramFeedPost,
-    MatchesFilters
+    MatchesFilters,
+    HelpIcon,
   },
   data() {
     return {
@@ -121,6 +124,9 @@ export default {
       const containerRight = this.$refs['container-right'];
       const firstMatchTop = containerRight.firstElementChild.firstElementChild.getBoundingClientRect().top
       const nthMatchTop = containerRight.firstElementChild.children[openedCardId].getBoundingClientRect().top;
+
+      //containerRight.firstElementChild.scrollTop ???????????
+      //containerRight.firstElementChild.children[openedCardId].offsetTop ?????????
       
       this.matchesScroll = nthMatchTop - firstMatchTop;
       this.scrollMatches(behavior);
@@ -159,6 +165,7 @@ export default {
 
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   &__cappers-select__label {
