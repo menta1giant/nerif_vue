@@ -9,6 +9,8 @@
   </div>
 </template>
 <script>
+import { isElementInViewport } from '@/lib/DOM';
+
 export default {
   name: 'Positioner',
   props: {
@@ -37,11 +39,16 @@ export default {
   mounted() {
     window.addEventListener('click',this.handleOutsideClick);
     this.$refs.dropdown.addEventListener('click',this.stopClickPropagation);
-
+    this.bindScrollEvent();
+    document.querySelector('body').appendChild(this.$refs.dropdown);
     this.setDropdownStyles();
+  },
+  beforeUnmount() {
+    this.$refs.dropdown.remove();
   },
   data() {
     return {
+      bodyCoordinates: {},
       dropdownStyles: {
         top: '-9999px',
         left: '-9999px',
@@ -66,7 +73,7 @@ export default {
       return this.isPositionCenter ? 'left' : this.position;
     },
     offsetX() {
-      return this.isPositionCenter && this.hasRefs() ? this.$refs.dropdown.scrollWidth / -2 + this.$refs.body.scrollWidth / 2 : 0;
+      return this.isPositionCenter && this.hasRefs() ? this.$refs.dropdown.scrollWidth / 2 - this.$refs.body.scrollWidth / 2 : 0;
     },
   },
   methods: {
@@ -79,36 +86,47 @@ export default {
     hasRefs() {
       return ('body' in this.$refs) && ('dropdown' in this.$refs);
     },
+    updateBodyCoordinates() {
+      this.bodyCoordinates = this.$refs.body.getBoundingClientRect();
+    },
     canDropdownFitBelow() {
-      const bodyCoordinates = this.$refs.body.getBoundingClientRect();
-      const spaceBelowBody = document.documentElement.clientHeight - bodyCoordinates.bottom;
+      const spaceBelowBody = document.documentElement.clientHeight - this.bodyCoordinates.bottom;
 
       return (spaceBelowBody - 8) >= this.$refs.dropdown.scrollHeight;
     },
     calculateSideCoordinate() {
-      const bodyCoordinates = this.$refs.body.getBoundingClientRect();
-      const spaceBesideBody = this.dropdownXProperty === 'left' ? document.documentElement.clientWidth - bodyCoordinates[this.dropdownXProperty] : bodyCoordinates[this.dropdownXProperty];
-      const sideCoordinate = Math.min((spaceBesideBody - 8) - this.$refs.dropdown.scrollWidth, this.offsetX);
+      const spaceBesideBody = this.position !== 'right' ? this.bodyCoordinates.left : document.documentElement.clientWidth - this.bodyCoordinates.right;
+      let sideCoordinate = Math.max(16, spaceBesideBody - this.$refs.dropdown.scrollWidth + this.$refs.body.scrollWidth + this.offsetX);
+      if (this.isPositionCenter) {
+        sideCoordinate = Math.min(sideCoordinate, document.documentElement.clientWidth - this.$refs.dropdown.scrollWidth - 16);
+      }
 
       return sideCoordinate;
     },
     getDropdownStyles() {
+      this.updateBodyCoordinates();
+      if (!isElementInViewport(this.$refs.body)) {
+        console.log(this.$refs.body);
+        return;
+      }
       const isDisplayedBelow = !this.forceTop && this.canDropdownFitBelow();
       const sideCoordinate = this.calculateSideCoordinate();
   
       const dropdownHeight = 'dropdown' in this.$refs ? this.$refs.dropdown.scrollHeight : 0;
       if (isDisplayedBelow) {
-        const top = 'body' in this.$refs ? this.$refs.body.scrollHeight : 0;
+        const top = this.hasRefs() ? this.$refs.body.scrollHeight : 0;
 
         return {
-          top: `${top + 8}px`,
+          top: `${top + 8 + this.bodyCoordinates.top}px`,
           [this.dropdownXProperty]: `${sideCoordinate}px`,
+          //minWidth: `${this.$refs.body.clientWidth}px`,
         };
       }
 
       return {
-        top: `-${dropdownHeight + 8}px`,
+        top: `${-dropdownHeight - 8 + this.bodyCoordinates.top}px`,
         [this.dropdownXProperty]: `${sideCoordinate}px`,
+        //minWidth: `${this.$refs.body.clientWidth}px`,
       };
     },
     setDropdownStyles() {
@@ -125,7 +143,18 @@ export default {
     },
     handleOutsideClick() {
       this.changeDropdownVisibilty(false);
-    }
+    },
+    bindScrollEvent() {
+      window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('resize', this.handleScroll);
+    },
+    removeScrollEvent() {
+      document.removeEventListener('scroll', this.handleScroll);
+    },
+
+    handleScroll() {
+      this.setDropdownStyles();
+    },
   }
 }
 </script>
@@ -141,9 +170,8 @@ export default {
   }
 
   &__dropdown {
-    position: absolute;
-    z-index: 9999;
-    min-width: 100%;
+    position: fixed;
+    z-index: 10000;
     box-shadow: 0 4px 8px 0 rgba($primary-ds-900, .15);
     visibility: hidden;
 

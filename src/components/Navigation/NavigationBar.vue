@@ -27,7 +27,7 @@
               </template>
             </nrf-positioner>
 
-            <nrf-positioner v-model="isProfilePopupOpened" position="center">
+            <nrf-positioner v-model="isProfilePopupOpened" position="right">
               <template v-slot:body>
                 <div class="navbar-square-button profile-button">
                   <img src="@/assets/maria.png" />
@@ -97,7 +97,7 @@ export default {
   top: 0px;
   background: $primary-ds-800;
   height: $navbar-height;
-  z-index: 99999;
+  z-index: 9000;
 
   box-shadow: 0 4px 3px 0 rgba($primary-ds-900, .15);
 

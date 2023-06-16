@@ -5,7 +5,7 @@
         <slot name="trigger"></slot>
       </template>
       <template v-slot:dropdown>
-        <div class="nrf-tooltip__content" :style="{ minWidth: `${ width }px` }"><slot name="content"></slot></div>
+        <div class="nrf-tooltip__content" :style="{ maxWidth: `${ width }px` }"><slot name="content"></slot></div>
       </template>
     </nrf-positioner>
   </div>

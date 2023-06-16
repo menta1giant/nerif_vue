@@ -27,7 +27,7 @@
     <div class="feed">
       <div class="feed__title">
         <h1>Telegram Feed</h1>
-        <help-icon>Telegram feed features the opinions of the most respected cappers regarding the upcoming CS:GO matchups. <br/><br/>You may view the full contents by following the links to respective Telegram channels. <br/><br/> <b>Read more in the documentation</b></help-icon>
+        <help-icon>Ten</help-icon>
       </div>
       <div class="feed__cappers-select__label"><nrf-label><b>Select cappers.</b> Or else..</nrf-label></div>
       <div class="feed__cappers-select__wrapper">

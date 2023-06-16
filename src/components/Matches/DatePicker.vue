@@ -10,7 +10,7 @@
       @click="day !== date.getDay() && changeDate(date)"
     />
     <div class="date-picker__date-increase" :class="{ disabled: isCurrentDateToday }" @click="!isCurrentDateToday && changeToAdjacentDate(1)"><nrf-icon type="solid" name="arrow-right" /></div>
-    <nrf-positioner v-model="isDropdownVisible" position="right">
+    <nrf-positioner v-model="isDropdownVisible" position="left">
       <template v-slot:body>
         <div class="date-picker__calendar-toggle" :class="{ active: isDropdownVisible }">
           <nrf-icon type="solid" name="calendar-days" />
