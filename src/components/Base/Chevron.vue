@@ -1,6 +1,6 @@
 <template>
-  <div class="nrf-chevron">
-    <nrf-icon type="solid" :name="isOpen ? 'chevron-down' : 'chevron-up'"/>
+  <div class="v-chevron">
+    <v-icon type="solid" :name="isOpen ? 'chevron-down' : 'chevron-up'"/>
   </div>
 </template>
 
@@ -20,14 +20,14 @@ export default {
 </script>
 
 <style>
-.nrf-chevron {
+.v-chevron {
   display: flex;
   align-items: center;
   font-size: .8em;
   margin-left: .25rem;
 }
 
-.nrf-chevron > * {
+.v-chevron > * {
   transform: translateY(3px);
 }
 </style>

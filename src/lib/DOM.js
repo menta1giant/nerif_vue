@@ -1,5 +1,4 @@
 export function isElementInViewport(el) {
-  console.dir(el);
   const rect = el.getBoundingClientRect();
 
   return (

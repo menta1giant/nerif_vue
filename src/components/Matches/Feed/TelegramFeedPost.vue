@@ -3,8 +3,8 @@
     <div class="tf-post__header">
       <span class="tf-post__capper-name">{{ capperName }}</span>
       <div class="tf-post__icons">
-          <nrf-icon type="brands" name="telegram" @click="$emit('show-modal')"/>
-          <nrf-icon type="solid" name="ellipsis"/>
+          <v-icon type="brands" name="telegram" @click="$emit('show-modal')"/>
+          <v-icon type="solid" name="ellipsis"/>
       </div>
     </div>
     <p class="tf-post__body">

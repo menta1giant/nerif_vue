@@ -1,6 +1,6 @@
 <template>
   <div class="date-picker">
-    <div class="date-picker__date-increase" @click="changeToAdjacentDate(-1)"><nrf-icon type="solid" name="arrow-left" /></div>
+    <div class="date-picker__date-increase" @click="changeToAdjacentDate(-1)"><v-icon type="solid" name="arrow-left" /></div>
     <date-picker-item 
       v-for="date in selectableDates" 
       v-bind:key="date.getDay()" 
@@ -9,18 +9,18 @@
       :isActive="day === date.getDay()" 
       @click="day !== date.getDay() && changeDate(date)"
     />
-    <div class="date-picker__date-increase" :class="{ disabled: isCurrentDateToday }" @click="!isCurrentDateToday && changeToAdjacentDate(1)"><nrf-icon type="solid" name="arrow-right" /></div>
-    <nrf-positioner v-model="isDropdownVisible" position="left">
+    <div class="date-picker__date-increase" :class="{ disabled: isCurrentDateToday }" @click="!isCurrentDateToday && changeToAdjacentDate(1)"><v-icon type="solid" name="arrow-right" /></div>
+    <v-positioner v-model="isDropdownVisible" position="left">
       <template v-slot:body>
         <div class="date-picker__calendar-toggle" :class="{ active: isDropdownVisible }">
-          <nrf-icon type="solid" name="calendar-days" />
+          <v-icon type="solid" name="calendar-days" />
         </div>
       </template>
       <template v-slot:dropdown>
         <date-picker-popup v-model="isDropdownVisible" @change-date="changeDate"/>
       </template>
       
-    </nrf-positioner>
+    </v-positioner>
   </div>
 </template>
 

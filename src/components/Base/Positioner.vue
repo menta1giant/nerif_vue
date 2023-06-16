@@ -29,6 +29,12 @@ export default {
         return 'left';
       },
     },
+    horizontalMargin: {
+      type: Number,
+      default() {
+        return 8;
+      },
+    },
     forceTop: {
       type: Boolean,
       default() {
@@ -41,7 +47,7 @@ export default {
     this.$refs.dropdown.addEventListener('click',this.stopClickPropagation);
     this.bindScrollEvent();
     document.querySelector('body').appendChild(this.$refs.dropdown);
-    this.setDropdownStyles();
+    this.setDropdownCoordinates();
   },
   beforeUnmount() {
     this.$refs.dropdown.remove();
@@ -49,7 +55,7 @@ export default {
   data() {
     return {
       bodyCoordinates: {},
-      dropdownStyles: {
+      dropdownCoordinates: {
         top: '-9999px',
         left: '-9999px',
       },
@@ -60,7 +66,7 @@ export default {
     modelValue: {
       immediate: true,
       handler(val) {
-        this.setDropdownStyles();
+        this.setDropdownCoordinates();
         this.hasDropdownBeenVisibleAtLeastOnce = this.hasDropdownBeenVisibleAtLeastOnce || val;
       },
     },
@@ -75,6 +81,11 @@ export default {
     offsetX() {
       return this.isPositionCenter && this.hasRefs() ? this.$refs.dropdown.scrollWidth / 2 - this.$refs.body.scrollWidth / 2 : 0;
     },
+    dropdownStyles() {
+      return Object.assign({}, this.dropdownCoordinates, {
+        minWidth: this.hasRefs() ? `${ this.$refs.body.clientWidth }px` : 0,
+      });
+    },
   },
   methods: {
     stopClickPropagation(event) {
@@ -84,9 +95,10 @@ export default {
       this.$emit('update:modelValue', newValue);
     },
     hasRefs() {
-      return ('body' in this.$refs) && ('dropdown' in this.$refs);
+      return (this.$refs.body) && (this.$refs.dropdown);
     },
     updateBodyCoordinates() {
+      if (!this.hasRefs()) return;
       this.bodyCoordinates = this.$refs.body.getBoundingClientRect();
     },
     canDropdownFitBelow() {
@@ -95,18 +107,18 @@ export default {
       return (spaceBelowBody - 8) >= this.$refs.dropdown.scrollHeight;
     },
     calculateSideCoordinate() {
+      const dropdownWidth = Math.max(this.$refs.body.clientWidth, this.$refs.dropdown.scrollWidth);
       const spaceBesideBody = this.position !== 'right' ? this.bodyCoordinates.left : document.documentElement.clientWidth - this.bodyCoordinates.right;
-      let sideCoordinate = Math.max(16, spaceBesideBody - this.$refs.dropdown.scrollWidth + this.$refs.body.scrollWidth + this.offsetX);
+      let sideCoordinate = Math.max(16, spaceBesideBody - dropdownWidth + this.$refs.body.scrollWidth + this.offsetX);
       if (this.isPositionCenter) {
-        sideCoordinate = Math.min(sideCoordinate, document.documentElement.clientWidth - this.$refs.dropdown.scrollWidth - 16);
+        sideCoordinate = Math.min(sideCoordinate, document.documentElement.clientWidth - dropdownWidth - 16);
       }
 
       return sideCoordinate;
     },
-    getDropdownStyles() {
+    getDropdownCoordinates() {
       this.updateBodyCoordinates();
       if (!isElementInViewport(this.$refs.body)) {
-        console.log(this.$refs.body);
         return;
       }
       const isDisplayedBelow = !this.forceTop && this.canDropdownFitBelow();
@@ -117,25 +129,23 @@ export default {
         const top = this.hasRefs() ? this.$refs.body.scrollHeight : 0;
 
         return {
-          top: `${top + 8 + this.bodyCoordinates.top}px`,
+          top: `${top + this.horizontalMargin + this.bodyCoordinates.top}px`,
           [this.dropdownXProperty]: `${sideCoordinate}px`,
-          //minWidth: `${this.$refs.body.clientWidth}px`,
         };
       }
 
       return {
-        top: `${-dropdownHeight - 8 + this.bodyCoordinates.top}px`,
+        top: `${-dropdownHeight - this.horizontalMargin + this.bodyCoordinates.top}px`,
         [this.dropdownXProperty]: `${sideCoordinate}px`,
-        //minWidth: `${this.$refs.body.clientWidth}px`,
       };
     },
-    setDropdownStyles() {
+    setDropdownCoordinates() {
       if (!this.hasRefs()) {
         return;
       }
 
-      const dropdownStyles = this.getDropdownStyles();
-      this.dropdownStyles = dropdownStyles;
+      const dropdownCoordinates = this.getDropdownCoordinates();
+      this.dropdownCoordinates = dropdownCoordinates;
     },
     handleClick(event) {
       this.changeDropdownVisibilty(!this.modelValue);
@@ -153,7 +163,7 @@ export default {
     },
 
     handleScroll() {
-      this.setDropdownStyles();
+      this.setDropdownCoordinates();
     },
   }
 }

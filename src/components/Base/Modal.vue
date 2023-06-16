@@ -1,9 +1,9 @@
 <template>
-  <div class="nrf-modal-overlay">
-    <div class="nrf-modal">
-      <div class="nrf-modal__header"></div>
-      <div class="nrf-modal__body"></div>
-      <div class="nrf-modal__footer"></div>
+  <div class="v-modal-overlay">
+    <div class="v-modal">
+      <div class="v-modal__header"></div>
+      <div class="v-modal__body"></div>
+      <div class="v-modal__footer"></div>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nrf-modal-overlay {
+.v-modal-overlay {
   position: fixed;
   background: rgba($primary-ds-900, .6);
   width: 100%;
@@ -30,12 +30,12 @@ export default {
 }
 
 @media screen and (max-width: $mobile-breakpoint) {
-  .nrf-modal-overlay {
+  .v-modal-overlay {
     height: calc(100% - (2 * $navbar-height));
   }
 }
 
-.nrf-modal {
+.v-modal {
   background: $black-10;
   box-shadow: 0 4px 8px 0 rgba($primary-ds-900, .15);
   width: 200px;

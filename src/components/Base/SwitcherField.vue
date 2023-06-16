@@ -1,7 +1,7 @@
 <template>
   <div class="switcher-field">
-    <nrf-switcher :id="label" :value="value" />
-    <nrf-label>{{ label }}</nrf-label>
+    <v-switcher :id="label" :value="value" />
+    <v-label>{{ label }}</v-label>
   </div>
 </template>
 

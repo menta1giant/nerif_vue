@@ -1,5 +1,5 @@
 <template>
-  <nrf-multiselect>Здравствуйте, выберите меня</nrf-multiselect>
+  <v-multiselect>Здравствуйте, выберите меня</v-multiselect>
 </template>
 
 <script>

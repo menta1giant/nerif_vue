@@ -1,6 +1,6 @@
 <template>
   <div class="filters-list">
-    <nrf-switcher-field v-for="(filter) in FILTERS" v-bind:key="filter.id" :label="filter.title" :value="filter.default" />
+    <v-switcher-field v-for="(filter) in FILTERS" v-bind:key="filter.id" :label="filter.title" :value="filter.default" />
   </div>
 </template>
 

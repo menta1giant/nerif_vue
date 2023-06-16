@@ -1,16 +1,16 @@
 <template>
-  <nrf-popup>
+  <v-popup>
     <div class="notifications-popup">
-      <div class="notifications-popup__header"><span>Notifications</span><nrf-icon name="xmark" /></div>
+      <div class="notifications-popup__header"><span>Notifications</span><v-icon name="xmark" /></div>
       <div class="notifications-popup__messages-container">
         <notification-message v-for="(notification, idx) in notifications" v-bind:key="idx" :notificabtion="notification"/>
       </div>
       <div class="notifications-popup__buttons">
-        <nrf-button type="transparent" size="small"><nrf-icon name="eye" />View all notifications</nrf-button>
-        <nrf-button type="transparent" size="small"><nrf-icon name="check-double" />Mark all as read</nrf-button>
+        <v-button type="transparent" size="small"><v-icon name="eye" />View all notifications</v-button>
+        <v-button type="transparent" size="small"><v-icon name="check-double" />Mark all as read</v-button>
       </div>
     </div>
-  </nrf-popup>
+  </v-popup>
 </template>
 
 <script>

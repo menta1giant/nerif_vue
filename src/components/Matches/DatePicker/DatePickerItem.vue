@@ -6,7 +6,7 @@
 </template>
   
 <script>
-import { weekDays } from './DatePicker/const';
+import { weekDays } from './const';
 
 export default {
   name: 'DatePickerItem',

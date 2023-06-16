@@ -7,7 +7,7 @@
       </div>
       <div class="team-block__meta">
         <div v-if="isOddsChangeSignificant" class="team-block__meta__item team-block__meta__item--odds" :class="{ 'team-block__meta__item--odds-fall': isLeft ? oddsChange > 0 : oddsChange < 0 }">
-          <nrf-icon name="angles-up" />
+          <v-icon name="angles-up" />
         </div>
         <div v-if="endorsementsCount" class="team-block__meta__item team-block__meta__item--endorsements">{{ endorsementsCount }}</div>
       </div>

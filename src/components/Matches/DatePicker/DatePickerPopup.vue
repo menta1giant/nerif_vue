@@ -1,9 +1,9 @@
 <template>
-  <nrf-popup>
+  <v-popup>
     <div class="date-picker-popup">
       <div class="date-picker-popup__header">
         <div class="date-picker-popup__change-month" @click="previousMonth">
-          <nrf-icon type="solid" name="arrow-left"/>
+          <v-icon type="solid" name="arrow-left"/>
         </div>
         <span>{{ `${ monthName } ${ year }` }}</span>
         <div 
@@ -11,7 +11,7 @@
           :class="{ 'date-picker-popup__change-month--disabled': isThisMonthCurrentMonth }" 
           @click="!isThisMonthCurrentMonth && nextMonth()"
         >
-          <nrf-icon type="solid" name="arrow-right"/>
+          <v-icon type="solid" name="arrow-right"/>
         </div>
       </div>
       <div class="date-picker-popup__body">
@@ -45,12 +45,12 @@
         </table>
       </div>
     </div>
-  </nrf-popup>
+  </v-popup>
 </template>
 
 <script>
 import DatePickerMixin from './DatePickerMixin.js';
-import { weekDays, monthNames } from './DatePicker/const';
+import { weekDays, monthNames } from './const';
 
 export default {
   name: 'DatePickerPopup',

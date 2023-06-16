@@ -13,21 +13,21 @@
               <span class="user-plan-info__title">{{ `${ userInfo.subscription.plan } plan` }}</span>
               <span class="user-plan-info__days-left">{{ `${ userInfo.subscription.daysLeft || 0 } days left` }}</span>
             </div>
-            <nrf-positioner v-model="isNotificationsTabOpened" position="center">
+            <v-positioner v-model="isNotificationsTabOpened" position="center" :horizontal-margin="28">
               <template v-slot:body>
                 <div class="navbar-square-button notifications-button" :class="{ 'notifications-button--active': hasNotifications }">
                   <div v-if="hasNotifications" class="notifications-count">
                     {{ notificationsCount }}
                   </div>
-                  <nrf-icon type="solid" name="bell" />
+                  <v-icon type="solid" name="bell" />
                 </div>
               </template>
               <template v-slot:dropdown>
                 <notifications-popup />
               </template>
-            </nrf-positioner>
+            </v-positioner>
 
-            <nrf-positioner v-model="isProfilePopupOpened" position="right">
+            <v-positioner v-model="isProfilePopupOpened" position="center" :horizontal-margin="28">
               <template v-slot:body>
                 <div class="navbar-square-button profile-button">
                   <img src="@/assets/maria.png" />
@@ -36,7 +36,7 @@
               <template v-slot:dropdown>
                 <profile-popup />
               </template>
-            </nrf-positioner>
+            </v-positioner>
 
           </template>
           <template v-else>
@@ -44,7 +44,7 @@
             <div class="test-button">Subscribe</div>
           </template>
           <div class="navbar-square-button hamburger-menu-button mobile">
-            <nrf-icon type="solid" name="bars" />
+            <v-icon type="solid" name="bars" />
           </div>
         </div>
       </div>
@@ -54,8 +54,8 @@
 
 <script>
 import NavigationPages from '@/components/Navigation/NavigationPages.vue';
-import NotificationsPopup from '@/components/NotificationsPopup.vue';
-import ProfilePopup from '@/components/ProfilePopup.vue';
+import NotificationsPopup from '@/components/Notifications/NotificationsPopup.vue';
+import ProfilePopup from '@/components/Profile/ProfilePopup.vue';
 
 export default {
   name: 'NavigationBar',

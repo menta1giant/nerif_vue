@@ -8,7 +8,7 @@
       @click="clickLink(link.path)"
     >
       <a :href="link.path" @click.prevent="">
-        <div class="navigation-pages__item__icon"><nrf-icon :name="link.meta.icon" /></div>
+        <div class="navigation-pages__item__icon"><v-icon :name="link.meta.icon" /></div>
         {{ link.name }}
       </a>
     </div>

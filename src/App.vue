@@ -1,8 +1,6 @@
 <template>
   <navigation-bar/>
-  <div id="container" class="container">
-    <router-view/>
-  </div>
+  <router-view/>
   <div class="mobile-navbar-container">
     <mobile-navigation-bar/>
   </div>

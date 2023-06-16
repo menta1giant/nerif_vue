@@ -1,5 +1,5 @@
 <template>
-  <div class="nrf-button" :class="[`nrf-button--${type}`, `nrf-button--${size}`]">
+  <div class="v-button" :class="[`v-button--${type}`, `v-button--${size}`]">
     <slot></slot>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nrf-button {
+.v-button {
   cursor: pointer;
 
   display: flex;

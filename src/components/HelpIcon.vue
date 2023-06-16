@@ -1,13 +1,13 @@
 <template>
   <div class="help-icon">
-    <nrf-tooltip>
+    <v-tooltip>
       <template v-slot:trigger>
-        <nrf-icon name="circle-question" />
+        <v-icon name="circle-question" />
       </template>
       <template v-slot:content>
         <slot></slot>
       </template>
-    </nrf-tooltip>
+    </v-tooltip>
   </div>
 </template>
 

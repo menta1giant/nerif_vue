@@ -1,13 +1,13 @@
 <template>
-  <div class="nrf-tooltip">
-    <nrf-positioner v-model="isShown" position="center">
+  <div class="v-tooltip">
+    <v-positioner v-model="isShown" position="center">
       <template v-slot:body>
         <slot name="trigger"></slot>
       </template>
       <template v-slot:dropdown>
-        <div class="nrf-tooltip__content" :style="{ maxWidth: `${ width }px` }"><slot name="content"></slot></div>
+        <div class="v-tooltip__content" :style="{ maxWidth: `${ width }px` }"><slot name="content"></slot></div>
       </template>
-    </nrf-positioner>
+    </v-positioner>
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nrf-tooltip__content {
+.v-tooltip__content {
   position: relative;
   background: $primary-ds-800;
   border-radius: $border-radius-small;
@@ -41,7 +41,7 @@ export default {
   line-height: $lh-small;
 }
 
-.nrf-tooltip__content::after {
+.v-tooltip__content::after {
   content: '';
   position: absolute;
   left: calc(50% - 2px);

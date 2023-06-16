@@ -1,6 +1,6 @@
 <template>
   <div class="multiselect">
-    <nrf-positioner v-model="isDropdownVisible">
+    <v-positioner v-model="isDropdownVisible">
       <template v-slot:body>
         <div class="multiselect__body">
           <div v-for="(option, idx) in selectedOptions" v-bind:key="idx" class="multiselect__option multiselect__option--selected">{{ option.value }}</div>
@@ -11,7 +11,7 @@
           <div v-for="(option, idx) in options" v-bind:key="idx" class="multiselect__option" :class="{ 'multiselect__option--selected': option.selected }" @click="toggleOption(idx)">{{ option.value }}</div>
         </div>
       </template>
-    </nrf-positioner>
+    </v-positioner>
   </div>
 </template>
 

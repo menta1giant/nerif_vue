@@ -15,17 +15,19 @@ import Icon from '@/components/Base/Icon';
 import Button from '@/components/Base/Button';
 import Modal from '@/components/Base/Modal';
 import Tooltip from '@/components/Base/Tooltip';
+import Section from '@/components/Base/Section';
 
 createApp(App).use(store).use(router)
-.component("nrf-switcher-field", SwitcherField)
-.component("nrf-switcher", Switcher)
-.component("nrf-label", Label)
-.component("nrf-icon", Icon)
-.component("nrf-multiselect", Multiselect)
-.component("nrf-positioner", Positioner)
-.component("nrf-popup", Popup)
-.component("nrf-chevron", Chevron)
-.component("nrf-button", Button)
-.component("nrf-modal", Modal)
-.component("nrf-tooltip", Tooltip)
+.component("v-switcher-field", SwitcherField)
+.component("v-switcher", Switcher)
+.component("v-label", Label)
+.component("v-icon", Icon)
+.component("v-multiselect", Multiselect)
+.component("v-positioner", Positioner)
+.component("v-popup", Popup)
+.component("v-chevron", Chevron)
+.component("v-button", Button)
+.component("v-modal", Modal)
+.component("v-tooltip", Tooltip)
+.component("v-section", Section)
 .mount('#app')
