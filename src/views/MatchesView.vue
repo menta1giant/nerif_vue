@@ -73,7 +73,7 @@
     </div>
   </v-section>
 
-  <v-modal v-if="isModalShown"/>
+  <v-modal v-model="isModalShown"/>
 </template>
 
 <script>

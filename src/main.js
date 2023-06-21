@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import "the-new-css-reset/css/reset.css";
+import 'the-new-css-reset/css/reset.css';
 
 import Multiselect from '@/components/Base/Multiselect';
 import Positioner from '@/components/Base/Positioner';
