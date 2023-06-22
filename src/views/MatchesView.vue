@@ -25,7 +25,7 @@
       </div>
       <div class="feed">
         <div class="feed__title">
-          <h1>Telegram Feed</h1>
+          <h3>Telegram Feed</h3>
           <help-icon>Ten</help-icon>
         </div>
         <div class="feed__cappers-select__label"><v-label><b>Select cappers.</b> Or else..</v-label></div>
@@ -136,6 +136,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/styles/Matches/variables.scss';
+
 .date-picker-wrapper {
   max-width: 100%;
 }

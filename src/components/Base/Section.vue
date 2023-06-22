@@ -1,5 +1,5 @@
 <template>
-  <div class="v-section">
+  <div class="v-section" :class="{ 'v-section--dark': dark }">
     <div class="container">
       <slot></slot>
     </div>
@@ -9,13 +9,25 @@
 <script>
 export default {
   name: 'Section',
+  props: {
+    dark: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .v-section {
   display: flex;
-  height: 100%;
   min-height: 0;
+
+  &--dark {
+    background: $primary-ds-800;
+    color: $black-10;
+  }
 }
 </style>

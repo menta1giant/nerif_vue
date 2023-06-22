@@ -59,7 +59,6 @@ export default {
     border: 1px solid $black-100;
     border-radius: $border-radius-small;
     background: $black-10;
-    height: 2.5rem;
     width: 100%;
     padding: .25rem;
 

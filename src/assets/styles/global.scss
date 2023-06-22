@@ -21,8 +21,45 @@ body {
     color: $primary-ds-800;
 }
 
+h1 {
+  font-size: $fs-h1;
+  line-height: $lh-h1;
+  font-weight: $fw-bold;
+
+  color: $primary-ds-700;
+}
+
+h2 {
+  font-size: $fs-h2;
+  line-height: $lh-h2;
+  font-weight: $fw-bold;
+}
+
+h4 {
+  font-size: $fs-h4;
+  line-height: $lh-h4;
+  font-weight: $fw-bold;
+
+  color: $primary-ds-700;
+}
+
+p {
+  font-size: $fs-large;
+  font-weight: $fw-regular;
+
+  line-height: $lh-large;
+
+  &.body-text {
+    line-height: $lh-body;
+  }
+}
+
 b {
   font-weight: $fw-semi-bold;
+}
+
+img {
+  display: block;
 }
 
 .container {
@@ -66,6 +103,10 @@ b {
   .mobile {
     display: flex !important;
   }
+}
+
+.text-highlight {
+  color: $accent-500;
 }
 
 // scroll bar ------

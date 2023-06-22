@@ -1,7 +1,7 @@
 <template>
-  <div class="v-button" :class="[`v-button--${type}`, `v-button--${size}`]">
+  <button class="v-button" :class="[`v-button--${type}`, `v-button--${size}`]">
     <slot></slot>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -41,13 +41,51 @@ export default {
 
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: .5em;
+
+  border-radius: $border-radius-small;
 
   color: $primary-s-500;
+  font-family: $ff-display;
   font-weight: $fw-medium;
-  
-  &__icon {
-    color: $primary-ds-500;
+
+  white-space: nowrap;
+
+  transition-duration: 200ms;
+
+  &--primary {
+    background: $primary-s-500;
+    color: $black-10;
+    border: 2px solid transparent;
+
+    &::v-deep i {
+      color: $accent-500;
+    }
+
+    &:hover {
+      background-color: $primary-s-600;
+    }
+
+    &:focus {
+      border: 2px solid $black-10;
+      box-shadow: 0 0 0 2px $primary-s-500;
+    }
+  }
+
+  &--secondary {
+    background: $black-10;
+    color: $primary-ds-600;
+
+    border: 2px solid $primary-ds-100;
+
+    &:hover {
+      color: $primary-s-500;
+      background-color: $primary-ds-50;
+    }
+
+    &:focus {
+      border-color: $primary-s-200;
+    }
   }
 
   &--small {
@@ -61,6 +99,8 @@ export default {
   }
 
   &--large {
+    padding: .75rem 3rem;
+
     font-size: $fs-h4;
     line-height: $fs-h4;
   }

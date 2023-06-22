@@ -139,6 +139,7 @@ export default {
 
     p {
       font-size: $fs-xs;
+      line-height: $lh-small;
     }
 
     p:last-child {

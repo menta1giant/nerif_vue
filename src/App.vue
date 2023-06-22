@@ -26,6 +26,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow-x: hidden;
 }
 
 .mobile-navbar-container {

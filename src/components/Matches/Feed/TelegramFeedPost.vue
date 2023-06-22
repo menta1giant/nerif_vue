@@ -66,6 +66,7 @@ export default {
 
   &__body {
     font-size: .85em;
+    line-height: $lh-small;
 
     display: -webkit-box;
    -webkit-line-clamp: 4;
