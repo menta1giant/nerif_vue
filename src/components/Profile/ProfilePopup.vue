@@ -36,7 +36,7 @@ export default {
   max-width: 24rem;
 
   &__header {
-    @include dividerBottom;
+    @include divider-bottom-bleak;
 
     display: flex;
     flex-direction: column;
@@ -64,7 +64,7 @@ export default {
   }
 
   &__common-buttons:not(:last-child) {
-    @include dividerBottom;
+    @include divider-bottom-bleak;
 
     padding-bottom: 1rem;
   }

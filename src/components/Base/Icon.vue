@@ -30,6 +30,8 @@ export default {
   align-items: center;
   justify-content: center;
 
+  position: relative;
+
   height: 1.2em;
   aspect-ratio: 1 / 1;
 }

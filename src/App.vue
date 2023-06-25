@@ -35,10 +35,6 @@ export default {
 
 @media screen and (max-width: $mobile-breakpoint) {
 
-  //#app {
-  //  height: unset;
-  //}
-
   .mobile-navbar-container {
     display: block;
     position: fixed;

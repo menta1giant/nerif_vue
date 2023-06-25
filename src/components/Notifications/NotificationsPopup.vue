@@ -35,7 +35,7 @@ export default {
   color: $primary-ds-800;
 
   &__header {
-    @include dividerBottom;
+    @include divider-bottom-bleak;
 
     display: flex;
     justify-content: space-between;

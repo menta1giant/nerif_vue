@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .notification-message {
-  @include dividerBottom;
+  @include divider-bottom-bleak;
 
   display: flex;
   gap: .25rem;

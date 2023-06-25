@@ -1,5 +1,5 @@
 <template>
-  <button class="v-button" :class="[`v-button--${type}`, `v-button--${size}`]">
+  <button class="v-button" :class="{'fluid': fluid, [`v-button--${type}`]: true, [`v-button--${size}`]: true}">
     <slot></slot>
   </button>
 </template>
@@ -29,7 +29,10 @@ export default {
         return 'medium';
       },
     },
-
+    fluid: {
+      type: Boolean,
+      default: false,
+    }
   },
 
 }
@@ -41,6 +44,7 @@ export default {
 
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: .5em;
 
   border-radius: $border-radius-small;
@@ -52,6 +56,27 @@ export default {
   white-space: nowrap;
 
   transition-duration: 200ms;
+
+  &--small {
+    padding: .5rem 2rem;
+
+    font-size: $fs-medium;
+    line-height: $lh-medium;
+  }
+
+  &--medium {
+    padding: .75rem 2rem;
+
+    font-size: $fs-large;
+    line-height: $lh-large;
+  }
+
+  &--large {
+    padding: .75rem 3rem;
+
+    font-size: $fs-h4;
+    line-height: $fs-h4;
+  }
 
   &--primary {
     background: $primary-s-500;
@@ -72,6 +97,26 @@ export default {
     }
   }
 
+  &--primary-accent {
+    background: $accent-500;
+    color: $primary-ds-800;
+    border: 2px solid transparent;
+    font-weight: $fw-semi-bold;
+
+    &::v-deep i {
+      color: $primary-s-500;
+    }
+
+    &:hover {
+      background-color: $accent-700;
+    }
+
+    &:focus {
+      border: 2px solid $primary-ds-800;
+      box-shadow: 0 0 0 2px $accent-500;
+    }
+  }
+
   &--secondary {
     background: $black-10;
     color: $primary-ds-600;
@@ -88,21 +133,9 @@ export default {
     }
   }
 
-  &--small {
-    font-size: $fs-medium;
-    line-height: $lh-medium;
-  }
-
-  &--medium {
-    font-size: $fs-large;
-    line-height: $lh-large;
-  }
-
-  &--large {
-    padding: .75rem 3rem;
-
-    font-size: $fs-h4;
-    line-height: $fs-h4;
+  &--transparent {
+    padding: 0;
+    justify-content: left;
   }
 }
 </style>

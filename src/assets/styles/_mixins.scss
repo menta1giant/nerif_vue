@@ -18,6 +18,14 @@
   tap-highlight-color: transparent;
 }
 
-@mixin dividerBottom {
+@mixin divider-bottom {
+  border-bottom: 1px solid $primary-ds-100;
+}
+
+@mixin divider-bottom-bleak {
   border-bottom: 1px solid $primary-s-50;
+}
+
+@mixin divider-bottom-dark {
+  border-bottom: 1px solid $primary-ds-600;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="v-section" :class="{ 'v-section--dark': dark }">
+  <div class="v-section" :class="{ 'dark': dark }">
     <div class="container">
       <slot></slot>
     </div>
@@ -25,7 +25,7 @@ export default {
   display: flex;
   min-height: 0;
 
-  &--dark {
+  &.dark {
     background: $primary-ds-800;
     color: $black-10;
   }
