@@ -83,7 +83,7 @@ export default {
     color: $black-10;
     border: 2px solid transparent;
 
-    &::v-deep i {
+    &:deep(i) {
       color: $accent-500;
     }
 
@@ -103,7 +103,7 @@ export default {
     border: 2px solid transparent;
     font-weight: $fw-semi-bold;
 
-    &::v-deep i {
+    &:deep(i) {
       color: $primary-s-500;
     }
 

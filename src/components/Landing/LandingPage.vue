@@ -6,21 +6,24 @@
           <div class="landing-page-section__content hero-section__left">
             <h1>Become a champion with the most reliable betting assistant</h1>
             <p class="body-text">In this new era of safe CS:GO betting, our advanced algorithm delivers the most accurate predictions in the Universe. Join a community unlike anything that has existed before: With Nerif, all your most cherished dreams will come true.</p>
-            <div class="landing-page-section__cta">
-              <v-button size="large"><v-icon name="clock" type="regular" />Start free trial</v-button>
-              <v-button size="large" type="secondary">See all plans</v-button>
+            <div class="cta-wrapper">
+              <div class="landing-page-section__cta">
+                <v-button size="large"><v-icon name="clock" type="regular" />Start free trial</v-button>
+                <v-button size="large" type="secondary">See all plans</v-button>
+              </div>
+              <span>No credit card information required</span>
             </div>
             <div class="hero-section__features">
               <div class="hero-section-feature">
-                <div class="hero-section-feature__header"><v-icon name="book" /><h4>UNLIMITED GROWTH</h4></div>
+                <div class="hero-section-feature__header"><v-icon name="arrow-trend-up" /><h4>UNLIMITED GROWTH</h4></div>
                 <p>Get an estimated 150% return on your investment within first three months</p>
               </div>
               <div class="hero-section-feature">
-                <div class="hero-section-feature__header"><v-icon name="book" /><h4>TELEGRAM FEED</h4></div>
+                <div class="hero-section-feature__header"><v-icon name="rss" /><h4>TELEGRAM FEED</h4></div>
                 <p>View a compilation of opinions from 30+ of the most respected cappers of CS:GO scene</p>
               </div>
               <div class="hero-section-feature">
-                <div class="hero-section-feature__header"><v-icon name="book" /><h4>24/7 SUPPORT</h4></div>
+                <div class="hero-section-feature__header"><v-icon name="headset" /><h4>24/7 SUPPORT</h4></div>
                 <p>In the world of CS:GO betting, you aren’t alone. Our staff of 400 operators is ready to assist</p>
               </div>
             </div>
@@ -76,11 +79,29 @@
         <div class="landing-page-section__content">
           <h1>Embrace a permanent stream of income</h1>
           <p class="body-text">Follow Nerif’s predictions precisely to ensure multifold increase of your bank. Trusted by industry leaders, we'll guide you through a sea of uncertainty to the harbor of prosperity.</p>
-          <div class="landing-page-section__cta">
-            <v-button size="medium">Get on board with Nerif!</v-button>
+          <div class="landing-page-section__meta">
+            <div class="meta1-content-wrapper">
+              <div class="meta1-block">
+                <div class="meta1-block__header">97%</div>
+                <div class="meta1-block__body">satisfied users*</div>
+              </div>
+              <div class="meta1-block">
+                <div class="meta1-block__header">100+</div>
+                <div class="meta1-block__body">predictions each month</div>
+              </div>
+              <div class="meta1-block">
+                <div class="meta1-block__header">ALL</div>
+                <div class="meta1-block__body">major events covered</div>
+              </div>
+            </div>
+            <span class="meta1-block__body">*according to the rate of renewed subscriptions</span>
+          </div>
+          <div class="cta-wrapper">
+            <div class="landing-page-section__cta">
+              <v-button size="medium">Get on board with Nerif!</v-button>
+            </div>
           </div>
         </div>
-        
       </div>
     </v-section>
     <v-section>
@@ -88,8 +109,23 @@
         <div class="landing-page-section__content">
           <h1>Track your success with our personalized dashboards</h1>
           <p class="body-text">Gain insights, track your success, and make data-driven decisions. Tailor the dashboard to your preferences and elevate your betting experience to new heights.</p>
-          <div class="landing-page-section__cta">
-            <v-button size="medium">Try out dashboards for free</v-button>
+          <div class="landing-page-section__meta">
+            <div class="meta2-content-wrapper">
+              <svg class="meta2-benefits-path" width="20">
+                <line height="100%" width="4" x1="10" x2="10" y1="0" y2="100%" />
+              </svg>
+              <ul class="meta2-benefits">
+                <li><svg width="20" height="20"><circle r="8" cy="10" cx="10" /></svg>Discover your betting perspectives</li>
+                <li><svg width="20" height="20"><circle r="8" cy="10" cx="10" /></svg>Make the most informed betting decisions</li>
+                <li><svg width="20" height="20"><circle r="8" cy="10" cx="10" /></svg>Become a CS:GO betting champion</li>
+              </ul>
+              <img class="meta2-watermark-path" src="@/assets/meta2-watermark.svg" />
+            </div>
+          </div>
+          <div class="cta-wrapper">
+            <div class="landing-page-section__cta">
+              <v-button size="medium">Try out dashboards for free</v-button>
+            </div>
           </div>
         </div>
         <div class="landing-page-section__image">
@@ -105,9 +141,19 @@
         <div class="landing-page-section__content">
           <h1>We offer 24/7 customer support</h1>
           <p class="body-text">Our dedicated team is available around the clock to assist you. Every step of the way, we’re alongside you to make your betting experience both pleasant and safe.</p>
-          <div class="landing-page-section__cta">
-            <v-button size="medium">Get started in caring hands</v-button>
-            <v-button size="medium" type="secondary">Go to help center</v-button>
+          <div class="landing-page-section__meta">
+            <ul class="meta3-content-wrapper">
+              <li><v-icon type="regular" name="message"/><span><b>Chat with our operators - </b>the first free operator will rush to help.</span></li>
+              <li><v-icon name="at"/><span><b>Write a detailed email - </b>all the important and sensitive matters are always reviewed by senior members of our team.</span></li>
+              <li><v-icon name="headset"/><span><b>Call us - </b>we’re available in 12 languages.</span></li>
+            </ul>
+          </div>
+          <div class="cta-wrapper">
+            <span>To see the list of languages and phone numbers for each country, follow the link ⬇️</span>
+            <div class="landing-page-section__cta">
+              <v-button size="medium">Get started in caring hands</v-button>
+              <v-button size="medium" type="secondary">Go to help center</v-button>
+            </div>
           </div>
         </div>
         
@@ -215,14 +261,20 @@
             </p>
           </div>
         </div>
-        <div class="landing-page-section__cta">
-          <v-button size="medium">Start own journey to success</v-button>
-          <v-button size="medium" type="secondary">Check out more user reviews</v-button>
+        <div class="cta-wrapper">
+          <div class="landing-page-section__cta">
+            <v-button size="medium">Start own journey to success</v-button>
+            <v-button size="medium" type="secondary">Check out more user reviews</v-button>
+          </div>
         </div>
       </div>
     </v-section>
     <v-section dark>
       <div class="landing-page-section subscription-plans-section">
+        <div class="subscription-plans-section__header">
+          <h1>Our pricing</h1>
+          <div class="billing-type-switcher"><span class="billing-type-switcher__item--active">monthly</span>/<span>yearly</span></div>
+        </div>
         <div class="subscription-plan-cards-wrapper">
           <div class="subscription-plan-card">
             <div class="subscription-plan-card__header">
@@ -300,9 +352,11 @@
         </div>
         <div class="faq-section__footer">
           <h4>Got more questions?</h4>
-          <div class="landing-page-section__cta">
-            <v-button size="medium">View documentation</v-button>
-            <v-button size="medium" type="secondary">Contact support</v-button>
+          <div class="cta-wrapper">
+            <div class="landing-page-section__cta">
+              <v-button size="medium">View documentation</v-button>
+              <v-button size="medium" type="secondary">Contact support</v-button>
+            </div>
           </div>
         </div>
       </div>
@@ -394,6 +448,7 @@
   }
 
   &__content {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -405,7 +460,7 @@
     display: flex;
     gap: 1rem;
 
-    margin-top: 1.5rem;
+    margin-top: .25rem;
   }
 
   h2 {
@@ -413,6 +468,105 @@
     font-weight: $fw-semi-bold;
 
     text-align: center;
+  }
+
+  .meta1-content-wrapper {
+    display: flex;
+    .meta1-block {
+      max-width: 9rem;
+      padding-right: 1rem;
+      margin-right: 1rem;
+
+      font-family: $ff-display;
+      font-weight: $fw-medium;
+
+      &:not(:last-child) {
+        border-right: 1px solid $primary-ds-100;
+      }
+
+      div {
+        text-align: center;
+      }
+
+      &__header {
+        color: $primary-s-600;
+        font-size: $fs-h1;
+        line-height: $lh-h1;
+      }
+
+      &__body {
+        color: $primary-ds-600;
+        font-size: $fs-medium;
+        line-height: $lh-medium;
+      }
+    }
+  }
+
+  .meta2-content-wrapper {
+    display: flex;
+    .meta2-benefits *, .meta2-benefits-path * {
+      stroke: $primary-s-200;
+      stroke-width: 4px;
+    }
+
+    &>svg {
+      height: 9rem;
+      position: absolute;
+    }
+
+    .meta2-benefits {
+      font-family: $ff-display;
+      font-size: $fs-h4;
+      font-weight: $fw-medium;
+      color: $primary-s-500;
+      line-height: 3rem;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+
+        svg {
+          fill: $black-10;
+          z-index: 3;
+        }
+      }
+    }
+
+    .meta2-watermark-path {
+      position: absolute;
+      right: 200px;
+    }
+  }
+
+  .meta3-content-wrapper {
+    color: $primary-s-400;
+    font-size: $fs-large;
+    line-height: $lh-large;
+    font-family: $ff-display;
+
+    &:deep(i) {
+      line-height: $lh-large;
+      color: $primary-s-600;
+    }
+
+    b {
+      font-weight: $fw-medium;
+      color: $primary-s-500;
+    }
+
+    li {
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+
+      margin-bottom: .5rem;
+    }
+  }
+
+  span.meta1-block__body {
+    color: $primary-ds-600;
+    font-size: $fs-xxs;
   }
 }
 
@@ -430,7 +584,6 @@
 
     margin-top: 4rem;
   }
-
 }
 
 .hero-section-feature {
@@ -453,13 +606,26 @@
     font-family: $ff-display;
   }
 
-  &__header::v-deep i {
+  &__header:deep(i) {
     color: $primary-s-300;
   }
 
   p {
     font-size: $fs-medium;
     line-height: $lh-medium;
+  }
+}
+
+.cta-wrapper {
+  position: relative;
+  margin-top: 1.5rem;
+  
+  span {
+    color: $primary-s-300;
+    font-size: $fs-xxs;
+    line-height: $lh-small;
+    font-weight: $fw-semi-bold;
+    font-family: $ff-display;
   }
 }
 
@@ -636,7 +802,7 @@
     line-height: $lh-h4;
   }
 
-  &__header::v-deep i {
+  &__header:deep(i) {
     color: $primary-ds-600;
   }
 
@@ -703,6 +869,33 @@
 }
 
 .subscription-plans-section {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+    gap: .25rem;
+
+    h1 {
+      color: $black-10;
+      line-height: $lh-h1;
+    }
+
+    .billing-type-switcher {
+      display: flex;
+      gap: .25rem;
+
+      font-size: $fs-large;
+      line-height: $lh-large;
+      color: $black-100;
+      font-weight: $fw-semi-bold;
+
+      &__item--active {
+        color: $accent-700;
+      }
+    }
+  }
+
   .subscription-plan-cards-wrapper {
     display: flex;
     flex-direction: row;
@@ -747,14 +940,14 @@
 
       font-weight: $fw-medium;
 
-      &::v-deep i {
+      &:deep(i) {
         color: $primary-ds-100;
       }
 
       &--active {
         position: relative;
 
-        &::v-deep i {
+        &:deep(i) {
           color: $accent-500;
         }
 
@@ -764,8 +957,8 @@
           width: 8px;
           height: 8px;
           background: $primary-ds-800;
-          left: 6px;
-          top: 4px;
+          left: 4px;
+          top: 8px;
         }
       }
     }
@@ -894,7 +1087,7 @@
       line-height: $lh-body;
     }
 
-    li::v-deep i {
+    li:deep(i){
       color: $primary-s-300 !important;
     }
   }
@@ -916,7 +1109,8 @@
     padding: .5rem 1.5rem;
 
     display: flex;
-    gap: .5rem;
+    align-items: center;
+    gap: 1rem;
 
     font-size: $fs-h4;
 
@@ -924,7 +1118,7 @@
     border-radius: 20px;
   }
 
-  &__socials::v-deep i {
+  &__socials:deep(i) {
     color: $primary-s-500;
   }
 }

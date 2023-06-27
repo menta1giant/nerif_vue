@@ -79,6 +79,10 @@ button.fluid, input.fluid {
   flex: 1;
 }
 
+.fa, .fa-brands, .fa-classic, .fa-regular, .fa-sharp, .fa-solid, .fab, .far, .fas {
+  line-height: inherit
+}
+
 .container {
   flex: 1;
 

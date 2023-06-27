@@ -32,7 +32,7 @@ export default {
 
   position: relative;
 
-  height: 1.2em;
-  aspect-ratio: 1 / 1;
+  height: min-content;
+  width: 1em;
 }
 </style>
