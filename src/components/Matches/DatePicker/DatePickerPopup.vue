@@ -57,13 +57,21 @@ export default {
   mixins: [
     DatePickerMixin,
   ],
+  props: {
+    selectedDate: {
+      type: Object,
+      default() {
+        return new Date();
+      },
+    },
+  },
   data() {
     return {
       showCalendar: false,
       monthNames: monthNames,
       weekDays: weekDays,
       currentDate: new Date(),
-      selectedDate: new Date(),
+      internalSelectedDate: new Date(),
       today: new Date(),
     };
   },
@@ -81,7 +89,7 @@ export default {
       return (this.month === this.today.getMonth()) && (this.year === this.today.getFullYear());
     },
     isCurrentMonthSelectedMonth() {
-      return (this.month === this.selectedDate.getMonth()) && (this.year === this.selectedDate.getFullYear());
+      return (this.month === this.internalSelectedDate.getMonth()) && (this.year === this.internalSelectedDate.getFullYear());
     },
     days() {
       const days = [];
@@ -97,7 +105,7 @@ export default {
         days.push({
           day: i,
           inMonth: true,
-          selected: this.isCurrentMonthSelectedMonth && i === this.selectedDate.getDate(),
+          selected: this.isCurrentMonthSelectedMonth && i === this.internalSelectedDate.getDate(),
           today: this.isThisMonthCurrentMonth && i === this.today.getDate(),
           disabled: this.currentDate > this.today || (this.isThisMonthCurrentMonth && i > this.today.getDate()),
         });
@@ -127,10 +135,19 @@ export default {
       return weeks;
     },
     formattedDate() {
-      return this.selectedDate
-        ? this.selectedDate.toLocaleDateString()
+      return this.internalSelectedDate
+        ? this.internalSelectedDate.toLocaleDateString()
         : "";
     }
+  },
+  watch: {
+    selectedDate: {
+      immediate: true,
+      handler(date) {
+        this.internalSelectedDate = date;
+        this.changeCurrentDate(new Date(date.getTime()));
+      },
+    },
   },
   methods: {
     previousMonth() {
@@ -147,10 +164,13 @@ export default {
         this.currentDate.getDate()
       );
     },
+    changeCurrentDate(date) {
+      this.currentDate = date;
+    },
     selectDate(day) {
-      this.selectedDate = new Date(this.year, this.month, day);
+      this.internalSelectedDate = new Date(this.year, this.month, day);
       setTimeout(()=>{
-        this.$emit('change-date', this.selectedDate);
+        this.$emit('change-date', this.internalSelectedDate);
         this.$emit('update:modelValue', false);
       },150);
     }

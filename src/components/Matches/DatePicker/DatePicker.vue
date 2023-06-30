@@ -17,7 +17,7 @@
         </div>
       </template>
       <template v-slot:dropdown>
-        <date-picker-popup v-model="isDropdownVisible" @change-date="changeDate"/>
+        <date-picker-popup v-model="isDropdownVisible" :selected-date="currentDate" @change-date="changeDate"/>
       </template>
       
     </v-positioner>
