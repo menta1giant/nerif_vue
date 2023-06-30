@@ -10,7 +10,7 @@
             <div class="filters__toggle-button">
               <v-icon type="solid" name="filter"/>
               <span>Filters</span>
-              <v-chevron :isOpen="isFiltersDropdownVisible" />
+              <v-chevron :model-value="isFiltersDropdownVisible" />
             </div>
           </template>
           <template v-slot:dropdown>
@@ -30,7 +30,7 @@
         </div>
         <div class="feed__cappers-select__label"><v-label><b>Select cappers.</b> Or else..</v-label></div>
         <div class="feed__cappers-select__wrapper">
-          <v-multiselect>Я мультиселект, меня можно кликать, но тут должно быть не это</v-multiselect>
+          <v-multiselect>Я мультиселект, меня можно кликать</v-multiselect>
         </div>
         <div class="feed__posts-list">
           <telegram-feed-post v-for="(a) in Array(32)" v-bind:key="a" @show-modal="isModalShown = true"></telegram-feed-post>

@@ -185,26 +185,26 @@
       <div class="landing-page-section faq-section">
         <div class="landing-page-section__tag">FAQ</div>
         <h1>Frequently asked questions</h1>
-        <div class="faq-question">
-          <div class="faq-question__header"><h4>How accurate are your CS:GO predictions compared to other betting services in the market?</h4><v-chevron/></div>
-          <div class="faq-question__body">Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart.</div>
-        </div>
-        <div class="faq-question">
-          <div class="faq-question__header"><h4>How accurate are your CS:GO predictions compared to other betting services in the market?</h4><v-chevron/></div>
-          <div class="faq-question__body">Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart.</div>
-        </div>
-        <div class="faq-question">
-          <div class="faq-question__header"><h4>How accurate are your CS:GO predictions compared to other betting services in the market?</h4><v-chevron/></div>
-          <div class="faq-question__body">Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart.</div>
-        </div>
-        <div class="faq-question">
-          <div class="faq-question__header"><h4>How accurate are your CS:GO predictions compared to other betting services in the market?</h4><v-chevron/></div>
-          <div class="faq-question__body">Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart.</div>
-        </div>
-        <div class="faq-question">
-          <div class="faq-question__header"><h4>How accurate are your CS:GO predictions compared to other betting services in the market?</h4><v-chevron/></div>
-          <div class="faq-question__body">Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart.</div>
-        </div>
+        <faq-question 
+          question="How accurate are your CS:GO predictions compared to other betting services in the market?"
+          answer="Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart."
+        />
+        <faq-question 
+          question="How accurate are your CS:GO predictions compared to other betting services in the market?"
+          answer="Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart."
+        />
+        <faq-question 
+          question="How accurate are your CS:GO predictions compared to other betting services in the market?"
+          answer="Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart."
+        />
+        <faq-question 
+          question="How accurate are your CS:GO predictions compared to other betting services in the market?"
+          answer="Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart."
+        />
+        <faq-question 
+          question="How accurate are your CS:GO predictions compared to other betting services in the market?"
+          answer="Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart."
+        />
         <div class="faq-section__footer">
           <h4>Got more questions?</h4>
           <div class="cta-wrapper">
@@ -272,6 +272,7 @@ import HeroSectionFeature from './HeroSectionFeature.vue';
 import BettingProvider from './BettingProvider.vue';
 import UserTestimonial from './UserTestimonial.vue';
 import SubscriptionPlanCard from './SubscriptionPlanCard.vue';
+import FaqQuestion from './FaqQuestion.vue';
 
 import { plans } from './const.js'
 
@@ -282,6 +283,7 @@ export default {
     BettingProvider,
     UserTestimonial,
     SubscriptionPlanCard,
+    FaqQuestion,
   },
   data() {
     return {
