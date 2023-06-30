@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
@@ -8,7 +7,7 @@ const routes = [
     meta: {
       icon: "home"
     },
-    component: HomeView
+    component: () => import(/* webpackChunkName: "landing" */ '../views/HomeView.vue')
   },
   {
     path: '/matches',
@@ -19,7 +18,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/MatchesView.vue')
+    component: () => import(/* webpackChunkName: "matches" */ '../views/MatchesView.vue')
   },
   {
     path: '/dashboards',
@@ -30,8 +29,16 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/DashboardsView.vue')
-  }
+    component: () => import(/* webpackChunkName: "dashboards" */ '../views/DashboardsView.vue')
+  },
+  {
+    path: '/legal',
+    name: 'Legal',
+    meta: {
+      icon: "chart-simple"
+    },
+    component: () => import(/* webpackChunkName: "landing" */ '../views/LegalView.vue')
+  },
 ]
 
 const router = createRouter({

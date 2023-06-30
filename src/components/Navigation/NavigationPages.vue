@@ -4,15 +4,14 @@
       v-for="link in links"
       v-bind:key="link.path"
       class="navigation-pages__item"
-      :class="{ 'navigation-pages__item--active': $route.fullPath === link.path }"
       @click="clickLink(link.path)"
     >
-      <a :href="link.path" @click.prevent="">
+      <router-link :to="link.path">
         <div class="navigation-pages__item__icon">
           <v-icon :name="link.meta.icon" />
         </div>
         {{ link.name }}
-      </a>
+      </router-link>
     </div>
   </div>
 </template>

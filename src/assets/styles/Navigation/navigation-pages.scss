@@ -33,7 +33,7 @@
 }
 .navigation-pages.desktop {
   .navigation-pages__item {
-    &--active {
+    .router-link-active {
       box-shadow: inset 0 -4px 0 $accent-500;
       background: $overlay-white-40;
     } 
@@ -54,7 +54,7 @@
     flex-basis: 100%;
     font-size: .8em;
 
-    &--active {
+    .router-link-active {
       color: $accent-500;
     } 
 

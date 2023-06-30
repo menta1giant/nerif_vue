@@ -2,10 +2,12 @@
   <div class="navigation-bar">
     <div class="container">
       <div class="navigation-bar__items">
-        <div class="logo-wrapper" @click="$router.push('/')">
-          <img src="@/assets/images/logo.png" height="80"/>
-          <span>Nerif</span>
-        </div>
+        <router-link to="/">
+          <div class="logo-wrapper">
+            <img src="@/assets/images/logo.png" height="80"/>
+            <span>Nerif</span>
+          </div>
+        </router-link>
         <navigation-pages />
         <div class="navigation-bar__right">
           <template v-if="isUserSignedIn">

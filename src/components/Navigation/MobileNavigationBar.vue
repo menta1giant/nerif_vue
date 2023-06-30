@@ -17,11 +17,6 @@ export default {
       links: this.$router.getRoutes(),
     }
   },
-  methods: {
-    clickLink(link) {
-      this.$router.push(link);
-    }
-  }
 }
 </script>
 
