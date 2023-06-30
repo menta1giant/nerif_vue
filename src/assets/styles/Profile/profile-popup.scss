@@ -1,0 +1,48 @@
+.profile-popup {
+  padding: .5rem;
+  color: $primary-ds-800;
+  min-width: 16rem;
+  max-width: 18rem;
+
+  &__header {
+    @include divider-bottom-bleak;
+
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+
+    font-weight: $fw-semi-bold;
+    font-size: $fs-large;
+    line-height: $lh-large;
+    padding-bottom: 1rem;
+
+    &__email {
+      font-size: $fs-xs;
+      line-height: $lh-small;
+      font-weight: $fw-regular;
+      color: $primary-ds-500;
+    }
+  }
+
+  &__common-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+
+    padding-top: 1rem;
+  }
+
+  &__common-buttons:not(:last-child) {
+    @include divider-bottom-bleak;
+
+    padding-bottom: 1rem;
+  }
+}
+
+.icon-bleak {
+  color: $primary-ds-200;
+}
+
+.button-content-bleak {
+  color: $primary-ds-300 !important;
+}

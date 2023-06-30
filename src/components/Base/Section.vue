@@ -1,5 +1,5 @@
 <template>
-  <div class="v-section" :class="{ 'dark': dark }">
+  <div class="v-section" :class="{ 'dark': dark, 'span': span }">
     <div class="container">
       <slot></slot>
     </div>
@@ -15,7 +15,13 @@ export default {
       default() {
         return false;
       }
-    }
+    },
+    span: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    },
   }
 }
 </script>
@@ -28,6 +34,14 @@ export default {
   &.dark {
     background: $primary-ds-800;
     color: $black-10;
+  }
+
+  &.span {
+    height: 100%;
+
+    //.container {
+    //  height: 100%;
+    //}
   }
 }
 </style>

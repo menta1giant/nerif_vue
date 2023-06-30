@@ -41,7 +41,7 @@
           </template>
           <template v-else>
             <span><b>Sign in.</b></span>
-            <div class="test-button">Subscribe</div>
+            <v-button type="primary-accent" size="small" @click="isUserSignedIn = true">Subscribe</v-button>
           </template>
           <div class="navbar-square-button hamburger-menu-button mobile">
             <v-icon type="solid" name="bars" />
@@ -67,7 +67,7 @@ export default {
   data() {
     return {
       links: this.$router.getRoutes(),
-      isUserSignedIn: true,
+      isUserSignedIn: false,
       isNotificationsTabOpened: false,
       isProfilePopupOpened: false,
       notificationsCount: 234,
