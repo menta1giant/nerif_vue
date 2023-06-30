@@ -37,11 +37,15 @@ export default {
   }
 
   &.span {
-    height: 100%;
+    height: calc(100vh - $navbar-height);
+    height: calc(100svh - $navbar-height);
+    height: calc(100dvh - $navbar-height);
+  }
 
-    //.container {
-    //  height: 100%;
-    //}
+  @media screen and (max-width: $mobile-breakpoint) {
+    &.span {
+      height: calc(100dvh - $navbar-height - $navbar-height);
+    }
   }
 }
 </style>

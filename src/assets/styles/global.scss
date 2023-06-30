@@ -16,7 +16,7 @@ html {
 body {
     font-family: $ff-primary;
     background-color: $black-10;
-    height: 100vh;
+    //height: 100vh;
     overflow-x: hidden;
     color: $primary-ds-800;
 }
@@ -98,6 +98,10 @@ button.fluid, input.fluid {
   align-items: stretch;
   flex-direction: row;
   justify-content: center;
+}
+
+.content-wrapper {
+  padding-block: var(--container-padding-block);
 }
 
 .mobile {

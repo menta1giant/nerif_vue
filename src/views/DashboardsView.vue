@@ -1,22 +1,15 @@
 <template>
-  <div id="dashboards">
-    <v-section span>
-      <div class="dashboards-wrapper">
-        <div class="dashboard"></div>
-        <div class="dashboard"></div>
-        <div class="dashboard"></div>
-        <div class="dashboard"></div>
-      </div>
-    </v-section>
-  </div>
+  <v-section span>
+    <div class="dashboards-wrapper content-wrapper">
+      <div class="dashboard"></div>
+      <div class="dashboard"></div>
+      <div class="dashboard"></div>
+      <div class="dashboard"></div>
+    </div>
+  </v-section>
 </template>
 
 <style lang="scss" scoped>
-#dashboards {
-  padding-block: 2rem;
-  min-height: 0;
-}
-
 .dashboards-wrapper {
   width: 100%;
 
