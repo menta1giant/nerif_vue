@@ -32,6 +32,7 @@ export default {
   top: 0px;
   background: $primary-ds-800;
   height: $navbar-height;
+  border-top: 1px solid rgba($black-10, .25);
 }
 
 </style>

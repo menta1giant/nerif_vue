@@ -1,0 +1,111 @@
+.footer {
+  padding-top: 4em;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  max-width: 54rem;
+  color: $black-10;
+  gap: 2rem;
+
+  &__header {
+    h1 {
+      color: inherit;
+    }
+
+    span {
+      font-size: $fs-large;
+      font-weight: $fw-medium;
+    }
+  }
+
+  &__lead-input {
+    @include divider-bottom-dark;
+    display: flex;
+    gap: .5rem;
+    padding-bottom: 4rem;
+
+    input {
+      background: white;
+      color: $primary-ds-800;
+      padding: .5rem;
+      flex: 4;
+      border-radius: $border-radius-small;
+    }
+  }
+
+  &__navigation {
+    @include divider-bottom-dark;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding-bottom: 2rem;
+
+    &__column {
+      h5 {
+        color: $black-100;
+        margin-bottom: 2rem;
+      }
+
+      ul {
+        display: grid;
+        gap: .5rem;
+      }
+    }
+
+    &__item {
+      &--bleak {
+        color: $primary-ds-100;
+      }
+    }
+
+    li {
+      display: flex;
+      gap: .375rem;
+      font-weight: $fw-medium;
+      line-height: $lh-body;
+    }
+
+    li:deep(i){
+      color: $primary-s-300 !important;
+    }
+  }
+
+  &__footer {
+    padding-bottom: 2rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: $fs-xs;
+    line-height: $lh-small;
+    color: $black-100;
+    font-weight: $fw-regular;
+  }
+
+  &__socials {
+    padding: .5rem 1.5rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    font-size: $fs-h4;
+
+    background: $black-10;
+    border-radius: 20px;
+  }
+
+  &__socials:deep(i) {
+    color: $primary-s-500;
+  }
+}
+
+@media screen and (max-width: $tablet-breakpoint) {
+  .footer__lead-input {
+    flex-direction: column;
+  }
+
+  .footer__navigation {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 0;
+  }
+}

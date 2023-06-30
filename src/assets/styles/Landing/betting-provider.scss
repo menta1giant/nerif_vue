@@ -1,0 +1,59 @@
+.betting-provider {
+  display: flex;
+  font-family: $ff-display;
+  font-weight: $fw-semi-bold;
+
+  &__logo {
+    scale: 1.4;
+    margin-right: .25rem;
+    filter: contrast(.8) brightness(1) grayscale(0) ;
+  }
+
+  &:nth-child(2) img {
+    transform: translateX(-10%);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
+
+  &__title {
+    font-size: $fs-h4;
+    line-height: $lh-h4;
+  }
+
+  &__rating {
+    display: flex;
+    gap: .5rem;
+
+    color: $primary-s-50;
+  }
+
+  &__stars {
+    position: relative;
+    white-space: nowrap;
+
+    display: flex;
+    gap: .125rem;
+
+    svg {
+      width: 1.25rem;
+    }
+
+    &-cover {
+      background: $primary-ds-800;
+      height: 100%;
+      overflow: hidden;
+      mix-blend-mode: color;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    svg {
+      fill: $accent-500;
+    }
+  }
+}

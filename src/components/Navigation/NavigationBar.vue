@@ -3,7 +3,7 @@
     <div class="container">
       <div class="navigation-bar__items">
         <div class="logo-wrapper" @click="$router.push('/')">
-          <img src="@/assets/logo.png" height="80"/>
+          <img src="@/assets/images/logo.png" height="80"/>
           <span>Nerif</span>
         </div>
         <navigation-pages />
@@ -30,7 +30,7 @@
             <v-positioner v-model="isProfilePopupOpened" position="center" :horizontal-margin="28">
               <template v-slot:body>
                 <div class="navbar-square-button profile-button">
-                  <img src="@/assets/maria.png" />
+                  <img src="@/assets/images/maria.png" />
                 </div>
               </template>
               <template v-slot:dropdown>

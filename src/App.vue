@@ -35,11 +35,16 @@ export default {
 
 @media screen and (max-width: $mobile-breakpoint) {
 
+  #app {
+    padding-bottom: 5rem;
+  }
+
   .mobile-navbar-container {
     display: block;
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 9000;
   }
 }
 

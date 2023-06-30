@@ -113,8 +113,7 @@ button.fluid, input.fluid {
 
 @media (max-width: $mobile-breakpoint) {
   .container {
-      padding: 0;
-      margin-bottom: 132px;
+      padding: 0 1rem;
   }
 
   .desktop {

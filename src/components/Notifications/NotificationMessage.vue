@@ -1,7 +1,7 @@
 <template>
   <div class="notification-message">
     <div class="notification-message__photo">
-      <img src="@/assets/logo.png"/>
+      <img src="@/assets/images/logo.png"/>
     </div>
     <div class="notification-message__content">
       <div class="notification-message__header">{{ notification.headerText }}</div>

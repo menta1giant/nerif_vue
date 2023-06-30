@@ -1,0 +1,43 @@
+.subscription-plans-section {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+    gap: .25rem;
+
+    h1 {
+      color: $black-10;
+      line-height: $lh-h1;
+    }
+
+    .billing-type-switcher {
+      display: flex;
+      gap: .25rem;
+
+      font-size: $fs-large;
+      line-height: $lh-large;
+      color: $black-100;
+      font-weight: $fw-semi-bold;
+
+      &__item--active {
+        color: $accent-700;
+      }
+    }
+  }
+
+  .subscription-plan-cards-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: clamp(1rem, 4vw, 4rem)
+  }
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  .subscription-plans-section .subscription-plan-cards-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+}

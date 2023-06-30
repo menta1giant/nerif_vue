@@ -315,6 +315,7 @@ export default {
   .content-wrapper-right {
     margin: 0;
     padding-top: 1rem;
+    margin-bottom: 3.25rem;
     width: unset;
   }
 
@@ -322,6 +323,7 @@ export default {
     margin: 0;
     position: static;
     padding-bottom: 0;
+    //margin-bottom: 3.25rem;
   }
 
   .feed {
@@ -330,7 +332,7 @@ export default {
     //overflow: initial;
     max-height: unset;
     padding-top: 0;
-    padding-bottom: var(--container-padding-block);
+    padding-bottom: calc(var(--container-padding-block) + 3.25rem);
 
     &__posts-list {
       overflow: initial;

@@ -1,0 +1,20 @@
+.testimonials-wrapper {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+@media screen and (max-width: $laptop-breakpoint) {
+  .testimonial__meta--city {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  .testimonials-wrapper {
+    padding: 0 1rem;
+    align-items: center;
+  }
+}

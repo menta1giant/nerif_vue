@@ -1,0 +1,30 @@
+.hero-section-feature {
+  display: flex;
+  flex-direction: column;
+
+  width: 60%;
+  background: linear-gradient(0deg, rgba(177, 184, 225, 0.18) 0%, rgba(178, 185, 226, 0.06) 100%);
+  box-shadow: 0px 4px 4px 0px rgba(215, 218, 238, 0.50);
+
+  padding: 1rem;
+  gap: .5rem;
+
+  border-radius: 16px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    font-family: $ff-display;
+  }
+
+  &__header:deep(i) {
+    color: $primary-s-300;
+  }
+
+  p {
+    font-size: $fs-medium;
+    line-height: $lh-medium;
+  }
+}

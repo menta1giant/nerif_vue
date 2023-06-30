@@ -24,6 +24,7 @@ export default {
 .v-section {
   display: flex;
   min-height: 0;
+  //overflow: hidden;
 
   &.dark {
     background: $primary-ds-800;
