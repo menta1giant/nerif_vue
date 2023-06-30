@@ -180,6 +180,8 @@ export default {
     align-items: flex-start;
     flex-direction: column;
     gap: .25rem;
+
+    z-index: 1;
   }
 
   &__posts-list {
