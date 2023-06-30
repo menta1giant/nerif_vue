@@ -1,13 +1,13 @@
 <template>
-  <div class="switcher" :class="{ checked: internalValue }" @click="toggleSwitcher">
+  <div class="v-switcher" :class="{ checked: internalValue }" @click="toggleSwitcher">
     <input
-      class="switcher__input"
+      class="v-switcher__input"
       type="checkbox"
       :id="id"
       :checked="internalValue"
     />
-    <div class="switcher__track"></div>
-    <div class="switcher__thumb"></div>
+    <div class="v-switcher__track"></div>
+    <div class="v-switcher__thumb"></div>
   </div>
 </template>
 
@@ -45,8 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.switcher {
+.v-switcher {
   position: relative;
   width: 40px;
   max-width: 40px;

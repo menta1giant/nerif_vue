@@ -1,9 +1,9 @@
 <template>
-  <div class="positioner">
-    <div class="positioner__body" ref="body" @click="handleClick">
+  <div class="v-positioner">
+    <div class="v-positioner__body" ref="body" @click="handleClick">
       <slot name="body"></slot>
     </div>
-    <div class="positioner__dropdown" :class="{ 'positioner__dropdown--visible': modelValue, 'positioner__dropdown--fadeable': hasDropdownBeenVisibleAtLeastOnce }" ref="dropdown" :style="dropdownStyles">
+    <div class="v-positioner__dropdown" :class="{ 'v-positioner__dropdown--visible': modelValue, 'v-positioner__dropdown--fadeable': hasDropdownBeenVisibleAtLeastOnce }" ref="dropdown" :style="dropdownStyles">
       <slot name="dropdown"></slot>
     </div>
   </div>
@@ -170,7 +170,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.positioner {
+.v-positioner {
   position: relative;
   min-width: fit-content;
   height: fit-content;
@@ -190,7 +190,7 @@ export default {
       animation-fill-mode: forwards;
     }
 
-    &--fadeable:not(.positioner__dropdown--visible) {
+    &--fadeable:not(.v-positioner__dropdown--visible) {
       animation: .2s fadeOut;
       animation-fill-mode: forwards;
     }

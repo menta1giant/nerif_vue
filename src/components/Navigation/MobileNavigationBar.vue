@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import NavigationPages from '@/components/Navigation/NavigationPages.vue';
 
 export default {

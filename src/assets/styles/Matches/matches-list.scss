@@ -1,0 +1,85 @@
+@import './mixins.scss';
+
+.matches {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+
+.match-stats {
+  @include thick-rounded-block;
+
+  margin-top: 2rem;
+  padding: 2em;
+  font-size: $fs-medium;
+  width: 100%;
+  overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__tabs {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    h2 {
+      font-size: $fs-large;
+      line-height: $lh-large;
+      margin-bottom: .25rem;
+    }
+
+    p {
+      font-size: $fs-xs;
+      line-height: $lh-small;
+    }
+
+    p:last-child {
+      color: $primary-s-500;
+    }
+  }
+
+  &__bars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .75rem;
+    column-gap: 2rem;
+  }
+}
+
+.button-group {
+  color: $primary-s-500;
+  font-family: $ff-display;
+  font-weight: $fw-medium;
+
+  display: flex;
+  gap: .5rem;
+}
+
+.groupped-button {
+  padding: .5rem 1.5rem;
+  border-radius: $border-radius-medium;
+  color: $primary-ds-300;
+
+  cursor: pointer;
+
+  &--active {
+    cursor: default;
+
+    background: $primary-s-50;
+    color: $primary-s-500;
+  }
+}
+
+@media screen and (max-width: 64em) {
+  .match-stats__bars {
+    grid-template-columns: 1fr;
+  }
+}

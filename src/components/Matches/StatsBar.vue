@@ -72,55 +72,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.stats-bar {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  min-width: 0;
+@import '@/assets/styles/Matches/stats-bar.scss';
 
-  &__upper {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__title {
-    font-size: 1em;
-    font-weight: $fw-medium;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  &__values-wrapper {
-    //width: 30%;
-    text-align: end;
-    color: $primary-ds-200;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__value {
-    width: 4ch;
-    position: relative;
-    &.highlighted {
-      color: $primary-ds-600;
-    }
-  }
-
-  &__value:not(:last-child) {
-    text-align: left;
-  }
-
-  &__value:not(:first-child)::before {
-    content: '|';
-    position: absolute;
-    left: -1px;
-    color: $primary-ds-200;
-  }
-
-  &__scale {
-    width: 100%;
-    height: .375rem;
-  }
-}
 </style>

@@ -1,0 +1,87 @@
+.date-picker-popup {
+  height: auto;
+  gap: .5rem;
+  display: flex;
+  flex-direction: column;
+
+  >div {
+    background: $primary-ds-50;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1rem;
+    font-size: $fs-medium;
+    line-height: $lh-medium;
+  }
+
+  &__change-month {
+    cursor: pointer;
+    height: 2rem;
+    aspect-ratio: 1;
+
+    color: $primary-s-600;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--disabled {
+      cursor: default;
+      color: $primary-ds-100;
+    }
+  }
+
+  &__days {
+
+    font-size: $fs-medium;
+    line-height: $lh-small;
+    border-spacing: 30px;
+
+    th {
+      height: 2rem;
+      text-align: center;
+      vertical-align: middle;
+      color: $primary-ds-600;
+      font-size: .85em;
+    }
+    td {
+      height: 2rem;
+      margin: 0 .5rem;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+
+      .date-picker-popup__day {
+        height: 2rem;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        text-align: center;
+        margin: 0 .25rem;
+
+        &--other-month {
+          color: $primary-s-200;
+        }
+
+        &--selected {
+          background: $primary-s-400;
+          color: $black-10;
+        }
+
+        &--today {
+          border: 2px solid $accent-300;
+        }
+
+        &--disabled {
+          color: $primary-ds-100;
+          cursor: default;
+        }
+      }
+    }
+  }
+}

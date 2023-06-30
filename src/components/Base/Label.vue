@@ -1,5 +1,5 @@
 <template>
-  <div class="label">
+  <div class="v-label">
     <slot>{{ msg }}</slot>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.label {
+.v-label {
     white-space: nowrap;
     overflow-y: hidden;
     overflow-y: visible;

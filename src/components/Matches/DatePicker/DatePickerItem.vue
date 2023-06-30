@@ -1,7 +1,7 @@
 <template>
-  <div class="date-picker__item" :class="{ 'date-picker__item--active': isActive }">
-    <span class="date-picker__item__day">{{ day }}</span>
-    <span class="date-picker__item__weekday">{{ displayedWeekday }}</span>
+  <div class="date-picker-item" :class="{ 'date-picker-item--active': isActive }">
+    <span class="date-picker-item__day">{{ day }}</span>
+    <span class="date-picker-item__weekday">{{ displayedWeekday }}</span>
   </div>
 </template>
   
@@ -27,45 +27,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .date-picker__item {
-    @include noselect;
-
-    width: 3em;
-    font-size: $fs-medium;
-    background: $black-10;
-    font-weight: $fw-regular;
-    border: 1px solid $primary-ds-100;
-    border-radius: $border-radius-small;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    cursor: pointer;
-
-    &__day {
-      line-height: $lh-medium; 
-      color: $primary-ds-900;
-    }
-
-    &__weekday {
-      margin-top: -4px;
-      font-size: $fs-xxxs;
-      line-height: $lh-small; 
-      color: $black-500;
-    }
-
-    &--active {
-      cursor: default;
-      background: $primary-s-50;
-      border-color: $primary-s-400;
-    }
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      &:not(.date-picker__item--active) {
-        display: none;
-      }
-    }
-  }
+@import '@/assets/styles/Matches/DatePicker/date-picker-item.scss';
 
 </style>

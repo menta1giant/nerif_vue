@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { filters } from './Filters/const';
+import { filters } from './const';
 
 export default {
   name: "MatchesFilters",

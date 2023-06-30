@@ -1,5 +1,5 @@
 <template>
-  <div class="switcher-field">
+  <div class="v-switcher-field">
     <v-switcher :id="label" :value="value" />
     <v-label>{{ label }}</v-label>
   </div>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.switcher-field {
+.v-switcher-field {
   display: flex;
   align-items: center;
 

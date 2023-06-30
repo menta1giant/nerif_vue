@@ -82,45 +82,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .date-picker {
-    max-width: inherit;
-    gap: .5rem;
+@import '@/assets/styles/Matches/DatePicker/date-picker.scss';
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    &__calendar-toggle {
-      @include clickable-icon;
-      
-      color: $primary-ds-600;
-      font-size: $fs-h4;
-
-      display: flex;
-      align-items: center;
-
-      &.active {
-        color: $accent-900;
-      }
-    }
-  }
-
-  .date-picker__date-increase {
-    display: none;
-
-    cursor: pointer;
-
-    &.disabled {
-      cursor: default;
-      color: $primary-ds-100;
-    }
-  }
-
-  @media screen and (max-width: $mobile-breakpoint) {
-    .date-picker__date-increase {
-      display: flex;
-      align-items: center;
-    }
-  }
 </style>

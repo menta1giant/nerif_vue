@@ -1,0 +1,49 @@
+.tf-post {
+  background: $primary-ds-50;
+  font-size: $fs-xs;
+  padding: 1em;
+  gap: 8px;
+
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    gap: .5rem;
+
+    font-weight: $fw-semi-bold;
+    color: $primary-ds-600;
+    font-family: $ff-display;
+  }
+
+  &__capper-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__icons {
+    height: 100%;
+    font-size: 1.25em;
+
+    display: flex;
+    gap: .25rem;
+  }
+
+  &__body {
+    font-size: .85em;
+    line-height: $lh-small;
+
+    display: -webkit-box;
+   -webkit-line-clamp: 4;
+   -webkit-box-orient: vertical;  
+   overflow: hidden;
+  }
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  .tf-post {
+    font-size: $fs-medium;
+  }
+}

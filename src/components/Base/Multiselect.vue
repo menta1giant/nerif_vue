@@ -1,14 +1,14 @@
 <template>
-  <div class="multiselect">
+  <div class="v-multiselect">
     <v-positioner v-model="isDropdownVisible">
       <template v-slot:body>
-        <div class="multiselect__body">
-          <div v-for="(option, idx) in selectedOptions" v-bind:key="idx" class="multiselect__option multiselect__option--selected">{{ option.value }}</div>
+        <div class="v-multiselect__body">
+          <div v-for="(option, idx) in selectedOptions" v-bind:key="idx" class="v-multiselect__option v-multiselect__option--selected">{{ option.value }}</div>
         </div>
       </template>
       <template v-slot:dropdown>
-        <div class="multiselect__dropdown">
-          <div v-for="(option, idx) in options" v-bind:key="idx" class="multiselect__option" :class="{ 'multiselect__option--selected': option.selected }" @click="toggleOption(idx)">{{ option.value }}</div>
+        <div class="v-multiselect__dropdown">
+          <div v-for="(option, idx) in options" v-bind:key="idx" class="v-multiselect__option" :class="{ 'v-multiselect__option--selected': option.selected }" @click="toggleOption(idx)">{{ option.value }}</div>
         </div>
       </template>
     </v-positioner>
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.multiselect {
+.v-multiselect {
   width: 100%;
 
   &__body {
