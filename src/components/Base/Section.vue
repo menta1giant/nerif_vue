@@ -1,6 +1,6 @@
 <template>
-  <div class="v-section" :class="{ 'dark': dark, 'span': span }">
-    <div class="container">
+  <div class="v-section" :class="{ 'dark': dark, 'span': span, 'padded': padded }">
+    <div class="container" :class="{'responsive': responsive }">
       <slot></slot>
     </div>
   </div>
@@ -17,6 +17,18 @@ export default {
       }
     },
     span: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    },
+    padded: {
+      type: Boolean,
+      default() {
+        return false;
+      }
+    },
+    responsive: {
       type: Boolean,
       default() {
         return false;
@@ -40,6 +52,10 @@ export default {
     height: calc(100vh - $navbar-height);
     height: calc(100svh - $navbar-height);
     height: calc(100dvh - $navbar-height);
+  }
+
+  &.padded {
+    padding-block: var(--container-padding-block);
   }
 
   @media screen and (max-width: $mobile-breakpoint) {

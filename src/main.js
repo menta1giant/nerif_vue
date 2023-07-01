@@ -16,6 +16,7 @@ import Button from '@/components/Base/Button';
 import Modal from '@/components/Base/Modal';
 import Tooltip from '@/components/Base/Tooltip';
 import Section from '@/components/Base/Section';
+import Input from '@/components/Base/Input';
 
 createApp(App).use(store).use(router)
 .component("v-switcher-field", SwitcherField)
@@ -30,4 +31,5 @@ createApp(App).use(store).use(router)
 .component("v-modal", Modal)
 .component("v-tooltip", Tooltip)
 .component("v-section", Section)
+.component("v-input", Input)
 .mount('#app')

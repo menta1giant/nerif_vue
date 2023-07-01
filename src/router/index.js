@@ -1,10 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import SearchInput from '@/components/SearchInput';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     meta: {
+      isInMainNavigation: true,
       icon: "home"
     },
     component: () => import(/* webpackChunkName: "landing" */ '../views/HomeView.vue')
@@ -13,31 +15,37 @@ const routes = [
     path: '/matches',
     name: 'Matches',
     meta: {
+      isInMainNavigation: true,
       icon: "gamepad"
     },
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "matches" */ '../views/MatchesView.vue')
   },
   {
     path: '/dashboards',
     name: 'Dashboards',
     meta: {
+      isInMainNavigation: true,
       icon: "chart-simple"
     },
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "dashboards" */ '../views/DashboardsView.vue')
   },
   {
     path: '/legal',
     name: 'Legal',
     meta: {
-      icon: "chart-simple"
+      hasBreadcrumbs: true,
+      breadcrumbsSlot: SearchInput,
     },
     component: () => import(/* webpackChunkName: "landing" */ '../views/LegalView.vue')
+  },
+  {
+    path: '/documentation',
+    name: 'Documentation',
+    meta: {
+      hasBreadcrumbs: true,
+      breadcrumbsSlot: SearchInput,
+    },
+    component: () => import(/* webpackChunkName: "landing" */ '../views/DocumentationView.vue')
   },
 ]
 

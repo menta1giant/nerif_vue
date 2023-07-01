@@ -1,6 +1,6 @@
 <template>
-  <v-section span>
-    <div class="dashboards-wrapper content-wrapper">
+  <v-section span padded responsive>
+    <div class="dashboards-wrapper">
       <div class="dashboard"></div>
       <div class="dashboard"></div>
       <div class="dashboard"></div>

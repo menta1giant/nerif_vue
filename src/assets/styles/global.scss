@@ -11,6 +11,8 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: $fs-medium;
+  line-height: $lh-medium;
 }
 
 body {
@@ -100,10 +102,6 @@ button.fluid, input.fluid {
   justify-content: center;
 }
 
-.content-wrapper {
-  padding-block: var(--container-padding-block);
-}
-
 .mobile {
   display: none !important;
 }
@@ -117,8 +115,12 @@ button.fluid, input.fluid {
 
 @media (max-width: $mobile-breakpoint) {
   .container {
-      padding: 0 1rem;
+      padding: 0;
   }
+
+  .container.responsive {
+    padding: 0 1rem;
+}
 
   .desktop {
     display: none !important;
@@ -137,38 +139,38 @@ button.fluid, input.fluid {
 
 /* Firefox */
 * {
-    scrollbar-width: thin;
-    scrollbar-color: $primary-ds-100 transparent;
-  }
-  
-  /* Chrome, Edge and Safari */
-  *::-webkit-scrollbar {
-    width: .25rem;
-  }
+  scrollbar-width: thin;
+  scrollbar-color: $primary-ds-100 transparent;
+}
 
-  *::-webkit-scrollbar-track {
-    border-radius: 6px;
-    background-color: transparent;
-  }
-  
-  *::-webkit-scrollbar-track:hover {
-    background-color: transparent;
-  }
-  
-  *::-webkit-scrollbar-track:active {
-    background-color: transparent;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    background-color: $primary-ds-100;
-  }
-  
-  *::-webkit-scrollbar-thumb:hover {
-    background-color: $primary-s-100;
-  }
-  
-  *::-webkit-scrollbar-thumb:active {
-    background-color: $primary-s-100;
-  }
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  width: .25rem;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 6px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: $primary-ds-100;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: $primary-s-100;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: $primary-s-100;
+}
   

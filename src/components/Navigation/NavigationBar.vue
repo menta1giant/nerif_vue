@@ -1,6 +1,6 @@
 <template>
   <div class="navigation-bar">
-    <div class="container">
+    <v-section dark responsive>
       <div class="navigation-bar__items">
         <router-link to="/">
           <div class="logo-wrapper">
@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-      </div>
+    </v-section>
   </div>
 </template>
 

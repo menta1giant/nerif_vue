@@ -1,12 +1,11 @@
 .navigation-bar {
   position: fixed;
   top: 0px;
-  background: $primary-ds-800;
   height: $navbar-height;
   width: 100%;
   z-index: 9000;
 
-  box-shadow: 0 4px 3px 0 rgba($primary-ds-900, .15);
+  box-shadow: 0 4px 3px 0 rgba($primary-ds-900, .15), 0 0 0 1px rgba($black-10, .25);
 
   &__items {
     width: 100%;
@@ -107,12 +106,6 @@
     a {
       padding: 0 $container-horizontal-padding-mobile;
     }
-  }
-}
-
-@media (max-width: $mobile-breakpoint) {
-  .container {
-    padding: 0 1rem;
   }
 }
 

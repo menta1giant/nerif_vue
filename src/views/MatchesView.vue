@@ -1,5 +1,5 @@
 <template>
-  <v-section span>
+  <v-section span responsive>
     <div class="content-wrapper-left" :class="{ desktop: isMatchesTabOpened }">
       <div class="date-picker-wrapper desktop">
         <date-picker />

@@ -1,7 +1,7 @@
 <template>
   <div class="landing-page">
     <div class="hero-section">
-      <v-section>
+      <v-section responsive>
         <div class="landing-page-section landing-page-section--split">
           <div class="landing-page-section__content hero-section__left">
             <h1 style="width: 45rem">Become a champion with the <div class="underlined-text"><span>most reliable</span></div> betting assistant</h1>
@@ -39,7 +39,7 @@
           </div>
         </div>
       </v-section>
-      <v-section dark>
+      <v-section dark responsive>
         <div class="landing-page-section">
           <h2>We are trusted by esports bet providers across all dimensions</h2>
           <div class="betting-providers-wrapper">
@@ -50,7 +50,7 @@
         </div>
       </v-section>
     </div>
-    <v-section>
+    <v-section responsive>
       <div class="landing-page-section landing-page-section--split">
         <div class="landing-page-section__image">
           <img id="landing-page-image1" src="@/assets/images/landing-section1.png" />
@@ -84,7 +84,7 @@
         </div>
       </div>
     </v-section>
-    <v-section>
+    <v-section responsive>
       <div class="landing-page-section landing-page-section--split">
         <div class="landing-page-section__content">
           <div class="landing-page-section__tag">FEATURES</div>
@@ -114,7 +114,7 @@
         </div>
       </div>
     </v-section>
-    <v-section>
+    <v-section responsive>
       <div class="landing-page-section landing-page-section--split">
         <div class="landing-page-section__image">
           <img id="landing-page-image3" src="@/assets/images/landing-section3.png" />
@@ -141,7 +141,7 @@
         
       </div>
     </v-section>
-    <v-section dark>
+    <v-section dark responsive>
       <div class="landing-page-section ceo-testimonial">
         <div class="ceo-testimonial__personal">
           <img class="ceo-testimonial__photo" src="@/assets/images/ceo.png" width="128" />
@@ -151,7 +151,7 @@
         <p class="ceo-testimonial__quote">Nerif has <span class="text-highlight">revolutionized</span> the industry by providing subscribers with unmatched accuracy in predicting match outcomes. We're proud to be at the forefront of this new era in esports betting.<span class="ceo-testimonial__quote__closing">”</span></p>
       </div>
     </v-section>
-    <v-section>
+    <v-section responsive>
       <div class="testimonials-wrapper">
         <user-testimonial name="Anton Petrov" job="Marketing Manager" location="Moscow, Russia" image="testimonial1.png" img-position="0 40%">
           I've always loved gaming, but I never thought it could be a profitable venture until I discovered Nerif. With the extra money, I was able to <b>invest in stocks</b> and start building my portfolio. What's more, I was able to achieve my lifelong dream of buying <b>my own apartment</b> in the heart of Moscow and start building a life that I'm truly proud of.
@@ -170,7 +170,7 @@
         </div>
       </div>
     </v-section>
-    <v-section dark>
+    <v-section dark responsive>
       <div class="landing-page-section subscription-plans-section">
         <div class="subscription-plans-section__header">
           <h1>Our pricing</h1>
@@ -181,7 +181,7 @@
         </div>
       </div>
     </v-section>
-    <v-section>
+    <v-section responsive>
       <div class="landing-page-section faq-section">
         <div class="landing-page-section__tag">FAQ</div>
         <h1>Frequently asked questions</h1>
@@ -216,7 +216,7 @@
         </div>
       </div>
     </v-section>
-    <v-section dark>
+    <v-section dark responsive>
       <div class="landing-page-section footer">
         <div class="footer__header">
           <h1>Join more than 5000 monthly users!</h1>
@@ -229,9 +229,9 @@
           <div class="footer__navigation__column">
             <h5>RESOURCES</h5>
             <ul>
-              <li>Documentation</li>
+              <router-link to='/documentation'><li>Documentation</li></router-link>
               <li>Terms of use</li>
-              <li>Legal</li>
+              <router-link to='/legal'><li>Legal</li></router-link>
             </ul>
           </div>
           <div class="footer__navigation__column">

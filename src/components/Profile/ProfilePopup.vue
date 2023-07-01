@@ -7,7 +7,7 @@
       </div>
       <div class="profile-popup__common-buttons">
         <v-button type="transparent" size="small"><v-icon name="gear" />Profile settings</v-button>
-        <v-button type="transparent" size="small"><v-icon name="book" />Documentation</v-button>
+        <router-link to='/documentation'><v-button type="transparent" size="small"><v-icon name="book" />Documentation</v-button></router-link>
         <v-button type="transparent" size="small"><v-icon name="handshake-angle" />Help center</v-button>
       </div>
       <div class="profile-popup__common-buttons">

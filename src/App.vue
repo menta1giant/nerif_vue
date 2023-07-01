@@ -1,5 +1,6 @@
 <template>
   <navigation-bar/>
+  <breadcrumbs-bar v-if="$route.meta.hasBreadcrumbs" />
   <router-view/>
   <div class="mobile-navbar-container">
     <mobile-navigation-bar/>
@@ -9,12 +10,14 @@
 <script>
 import NavigationBar from '@/components/Navigation/NavigationBar.vue';
 import MobileNavigationBar from '@/components/Navigation/MobileNavigationBar.vue';
+import BreadcrumbsBar from '@/components/BreadcrumbsBar.vue';
 
 export default {
   name: 'app',
   components: {
     NavigationBar,
-    MobileNavigationBar
+    MobileNavigationBar,
+    BreadcrumbsBar,
   }
 }
 </script>

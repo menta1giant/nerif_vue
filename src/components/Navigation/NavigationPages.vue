@@ -1,18 +1,12 @@
 <template>
   <div class="navigation-pages" :class="{ desktop: !isMobile }">
-    <div
-      v-for="link in links"
+    <router-link 
+      v-for="link in linksToPages"
       v-bind:key="link.path"
-      class="navigation-pages__item"
-      @click="clickLink(link.path)"
-    >
-      <router-link :to="link.path">
-        <div class="navigation-pages__item__icon">
-          <v-icon :name="link.meta.icon" />
-        </div>
-        {{ link.name }}
-      </router-link>
-    </div>
+      :to="link.path">
+      <v-icon :name="link.meta.icon" />
+      {{ link.name }}
+    </router-link>
   </div>
 </template>
 
@@ -28,14 +22,14 @@ export default {
   },
   data() {
      return {
-      links: this.$router.getRoutes(),
+      routes: this.$router.getRoutes(),
     }
   },
-  methods: {
-    clickLink(link) {
-      this.$router.push(link);
-    }
-  }
+  computed: {
+    linksToPages() {
+      return this.routes.filter(route => route.meta.isInMainNavigation);
+    },
+  },
 }
 </script>
 
