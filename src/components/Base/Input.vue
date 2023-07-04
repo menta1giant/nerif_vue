@@ -54,6 +54,7 @@ export default {
 .v-input {
   display: flex;
   position: relative;
+  flex: 1;
 
   &__icon {
     position: absolute;
@@ -79,6 +80,7 @@ export default {
 
 input {
   padding: .5rem;
+  color: $primary-ds-800;
 
   background: $black-10;
   border: 1px solid $primary-ds-100;

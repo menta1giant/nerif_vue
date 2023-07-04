@@ -24,12 +24,8 @@
     gap: .5rem;
     padding-bottom: 4rem;
 
-    input {
-      background: white;
-      color: $primary-ds-800;
-      padding: .5rem;
-      flex: 4;
-      border-radius: $border-radius-small;
+    &:deep(input) {
+      height: 3.25rem;
     }
   }
 

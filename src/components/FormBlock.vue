@@ -50,6 +50,7 @@ export default {
   
   min-width: 23rem;
   width: max-content;
+  max-width: 100%;
 
   border: 1px solid $primary-ds-100;
   border-radius: $border-radius-large;

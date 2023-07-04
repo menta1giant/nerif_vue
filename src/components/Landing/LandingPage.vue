@@ -8,8 +8,8 @@
             <p class="body-text">In this new era of safe CS:GO betting, our advanced algorithm delivers the most accurate predictions in the Universe. Join a community unlike anything that has existed before: With Nerif, all your most cherished dreams will come true.</p>
             <div class="cta-wrapper">
               <div class="landing-page-section__cta">
-                <v-button size="large"><v-icon name="clock" type="regular" />Start free trial</v-button>
-                <v-button size="large" type="secondary">See all plans</v-button>
+                <router-link to="/sign-up"><v-button size="large"><v-icon name="clock" type="regular" />Start free trial</v-button></router-link>
+                <a href="#plans"><v-button size="large" type="secondary">See all plans</v-button></a>
               </div>
               <span>No credit card information required</span>
             </div>
@@ -78,7 +78,7 @@
           </div>
           <div class="cta-wrapper">
             <div class="landing-page-section__cta">
-              <v-button size="medium">Get on board with Nerif!</v-button>
+              <router-link to="/sign-up"><v-button size="medium">Get on board with Nerif!</v-button></router-link>
             </div>
           </div>
         </div>
@@ -105,7 +105,7 @@
           </div>
           <div class="cta-wrapper">
             <div class="landing-page-section__cta">
-              <v-button size="medium">Try out dashboards for free</v-button>
+              <router-link to="/dashboards"><v-button size="medium">Try out dashboards for free</v-button></router-link>
             </div>
           </div>
         </div>
@@ -133,8 +133,8 @@
           <div class="cta-wrapper">
             <span>To see the list of languages and phone numbers for each country, follow the link ⬇️</span>
             <div class="landing-page-section__cta">
-              <v-button size="medium">Get started in caring hands</v-button>
-              <v-button size="medium" type="secondary">Go to help center</v-button>
+              <router-link to="/sign-up"><v-button size="medium">Get started in caring hands</v-button></router-link>
+              <router-link to="/help-center"><v-button size="medium" type="secondary">Go to help center</v-button></router-link>
             </div>
           </div>
         </div>
@@ -164,14 +164,14 @@
         </user-testimonial>
         <div class="cta-wrapper">
           <div class="landing-page-section__cta">
-            <v-button size="small">Start own journey to success</v-button>
-            <v-button size="small" type="secondary">Check out more user reviews</v-button>
+            <router-link to="/sign-up"><v-button size="small">Start own journey to success</v-button></router-link>
+            <router-link to="/reviews"><v-button size="small" type="secondary">Check out more user reviews</v-button></router-link>
           </div>
         </div>
       </div>
     </v-section>
     <v-section dark responsive>
-      <div class="landing-page-section subscription-plans-section">
+      <div id="plans" class="landing-page-section subscription-plans-section">
         <div class="subscription-plans-section__header">
           <h1>Our pricing</h1>
           <div class="billing-type-switcher"><span class="billing-type-switcher__item--active">monthly</span>/<span>yearly</span></div>
@@ -209,8 +209,8 @@
           <h4>Got more questions?</h4>
           <div class="cta-wrapper">
             <div class="landing-page-section__cta">
-              <v-button size="medium">View documentation</v-button>
-              <v-button size="medium" type="secondary">Contact support</v-button>
+              <router-link to="/documentation"><v-button size="medium">View documentation</v-button></router-link>
+              <router-link to="/help-center"><v-button size="medium" type="secondary">Contact support</v-button></router-link>
             </div>
           </div>
         </div>
@@ -223,7 +223,7 @@
           <span>Get a personal -20% off deal by entering your email</span>
         </div>
         <div class="footer__lead-input">
-          <input /><v-button size="large" type="primary-accent" fluid>Get special deal</v-button>
+          <v-input placeholder="Enter your e-mail" fluid/><v-button size="large" type="primary-accent">Get special deal</v-button>
         </div>
         <div class="footer__navigation">
           <div class="footer__navigation__column">
@@ -237,15 +237,15 @@
           <div class="footer__navigation__column">
             <h5>PRODUCT</h5>
             <ul>
-              <li>About Nerif</li>
-              <li>Blog</li>
-              <li>User reviews</li>
+              <router-link to="/about-us"><li>About Nerif</li></router-link>
+              <router-link to="/blog"><li>Blog</li></router-link>
+              <router-link to="/reviews"><li>User reviews</li></router-link>
             </ul>
           </div>
           <div class="footer__navigation__column">
             <h5>COMPANY</h5>
             <ul>
-              <li><v-icon name="envelope" />Help center</li>
+              <router-link to="/help-center"><li><v-icon name="envelope" />Help center</li></router-link>
               <li class="footer__navigation__item--bleak"><v-icon name="phone" />+7 499 900 90 90</li>
               <li class="footer__navigation__item--bleak"><v-icon name="location-dot" />24 Tverskaya Street, Moscow 125009</li>
             </ul>
