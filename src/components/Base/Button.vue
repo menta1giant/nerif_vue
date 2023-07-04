@@ -5,11 +5,16 @@
 </template>
 
 <script>
+import ControlMixin from '@/components/ControlMixin';
+
 const TYPES = ['transparent', 'primary', 'secondary', 'danger', 'primary-accent'];
 const SIZES = ['small', 'medium', 'large'];
 
 export default {
   name: 'Button',
+  mixins: [
+    ControlMixin,
+  ],
   props: {
     type: {
       type: String,
@@ -29,10 +34,6 @@ export default {
         return 'medium';
       },
     },
-    fluid: {
-      type: Boolean,
-      default: false,
-    }
   },
 
 }

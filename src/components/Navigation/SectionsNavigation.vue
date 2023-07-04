@@ -6,7 +6,7 @@
           v-for="(section, idx) in sections"
           v-bind:key="`section_${ idx }`" 
           class="sections-navigation__item" 
-          :class="{ 'sections-navigation__item--active': idx === selectedSection }"
+          :class="{ 'sections-navigation__item--active': idx === modelValue }"
           @click="handleSelectSection(idx)"
         >
           {{ section }}
@@ -20,16 +20,15 @@
 export default {
   name: 'SectionsNavigation',
   props: {
+    modelValue: {
+      type: Number,
+      default: 0,
+    },
     sections: Array,
-  },
-  data() {
-    return {
-      selectedSection: 0,
-    }
   },
   methods: {
     handleSelectSection(idx) {
-      this.selectedSection = idx;
+      this.$emit('update:modelValue', idx);
     }
   }
 }
@@ -79,17 +78,6 @@ export default {
 
   @media screen and (max-width: $mobile-breakpoint) {
     padding: 0 1rem;
-
-    &::after {
-      position: fixed;
-      right: 0;
-      content: '';
-
-      height: 3.75rem;
-      transform: translateY(-1px);
-      width: 5rem;
-      background: linear-gradient(90deg, transparent 0%, $primary-s-50 90%);
-    }
   }
 }
 </style>

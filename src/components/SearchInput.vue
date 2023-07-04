@@ -1,3 +1,3 @@
 <template>
-  <v-input />
+  <v-input placeholder="Search" />
 </template>

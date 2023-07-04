@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: .5rem;
+    gap: .25rem;
 
     color: $black-10;
     font-weight: $fw-semi-bold;
@@ -56,5 +56,13 @@
     display: flex;
 
     font-size: $fs-h4;
+  }
+}
+
+@media (max-width: $tablet-breakpoint) {
+  .navigation-pages {
+    a {
+      padding: 0 $container-horizontal-padding-mobile;
+    }
   }
 }

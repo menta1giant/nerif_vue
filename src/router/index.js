@@ -34,7 +34,6 @@ const routes = [
     name: 'Legal',
     meta: {
       hasBreadcrumbs: true,
-      breadcrumbsSlot: SearchInput,
     },
     component: () => import(/* webpackChunkName: "landing" */ '../views/LegalView.vue')
   },
@@ -46,6 +45,20 @@ const routes = [
       breadcrumbsSlot: SearchInput,
     },
     component: () => import(/* webpackChunkName: "landing" */ '../views/DocumentationView.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    meta: {
+      hasBreadcrumbs: true,
+    },
+    component: () => import(/* webpackChunkName: "profile" */ '../views/ProfileView.vue')
+  },
+  {
+    path: '/sign-up',
+    name: 'Registration',
+    meta: {},
+    component: () => import(/* webpackChunkName: "profile" */ '../views/RegistrationView.vue')
   },
 ]
 

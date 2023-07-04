@@ -24,5 +24,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr));
   grid-column-gap: .75rem;
+  gap: .75rem;
 }
 </style>

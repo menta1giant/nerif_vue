@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import 'the-new-css-reset/css/reset.css';
 
-import Multiselect from '@/components/Base/Multiselect';
+import Multiselect from '@/components/Base/Select/Multiselect';
 import Positioner from '@/components/Base/Positioner';
 import Chevron from '@/components/Base/Chevron';
 import Popup from '@/components/Base/Popup';
@@ -17,6 +17,7 @@ import Modal from '@/components/Base/Modal';
 import Tooltip from '@/components/Base/Tooltip';
 import Section from '@/components/Base/Section';
 import Input from '@/components/Base/Input';
+import Select from '@/components/Base/Select/Select';
 
 createApp(App).use(store).use(router)
 .component("v-switcher-field", SwitcherField)
@@ -24,6 +25,7 @@ createApp(App).use(store).use(router)
 .component("v-label", Label)
 .component("v-icon", Icon)
 .component("v-multiselect", Multiselect)
+.component("v-select", Select)
 .component("v-positioner", Positioner)
 .component("v-popup", Popup)
 .component("v-chevron", Chevron)

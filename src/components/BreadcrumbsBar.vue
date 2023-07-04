@@ -17,6 +17,7 @@
 .breadcrumbs-bar {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
 
   width: 100%;
   

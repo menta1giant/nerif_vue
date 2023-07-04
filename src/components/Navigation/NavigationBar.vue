@@ -43,7 +43,7 @@
           </template>
           <template v-else>
             <span><b>Sign in.</b></span>
-            <v-button type="primary-accent" size="small" @click="isUserSignedIn = true">Subscribe</v-button>
+            <router-link to="/sign-up"><v-button type="primary-accent" size="small">Subscribe</v-button></router-link>
           </template>
           <div class="navbar-square-button hamburger-menu-button mobile">
             <v-icon type="solid" name="bars" />

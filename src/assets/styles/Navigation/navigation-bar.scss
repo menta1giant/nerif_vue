@@ -78,7 +78,7 @@
   display: flex;
   align-items: center;
 
-  margin-right: min(2.2vw, $desktop-breakpoint);
+  margin-right: clamp(2.2vw, $container-horizontal-padding-desktop, 4.4vw);
 
   img {
       max-inline-size: none;
@@ -97,14 +97,10 @@
 
 @media (max-width: $tablet-breakpoint) {
   .logo-wrapper {
+    margin-right: 0;
+
     span {
         display: none;
-    }
-  }
-
-  .navigation-bar {
-    a {
-      padding: 0 $container-horizontal-padding-mobile;
     }
   }
 }

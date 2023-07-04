@@ -29,6 +29,7 @@ export default {
 
   min-width: 0;
   gap: .5rem;
-  padding: .5rem;
+
+  font-size: $fs-xs;
 }
 </style>

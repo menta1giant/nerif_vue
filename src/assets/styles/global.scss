@@ -74,6 +74,7 @@ b {
 
 img {
   display: block;
+  align-self: center;
 }
 
 button.fluid, input.fluid {
@@ -99,7 +100,7 @@ button.fluid, input.fluid {
   display: flex;
   align-items: stretch;
   flex-direction: row;
-  justify-content: center;
+  //justify-content: center;
 }
 
 .mobile {
@@ -173,4 +174,3 @@ button.fluid, input.fluid {
 *::-webkit-scrollbar-thumb:active {
   background-color: $primary-s-100;
 }
-  

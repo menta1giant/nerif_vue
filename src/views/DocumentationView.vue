@@ -1,5 +1,5 @@
 <template>
-  <sections-navigation :sections="sections" />
+  <sections-navigation v-model="selectedSection" :sections="sections" />
   <v-section responsive>
   </v-section>
 </template>
@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       sections: ['General questions', 'Payment', 'Telegram feed', 'Personalized dashboards', 'Customer support', 'Special features'],
+      selectedSection: 0,
     };
   },
 }
