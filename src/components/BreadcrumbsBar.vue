@@ -31,7 +31,7 @@
     line-height: $lh-large;
     color: $primary-ds-700;
 
-    &:deep(i) {
+    .v-icon {
       color: $primary-ds-400;
     }
   }

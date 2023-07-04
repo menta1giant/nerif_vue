@@ -19,7 +19,7 @@
     font-family: $ff-display;
   }
 
-  &__header:deep(i) {
+  &__header .v-icon {
     color: $primary-s-300;
   }
 

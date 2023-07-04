@@ -27,6 +27,10 @@
     &:deep(input) {
       height: 3.25rem;
     }
+
+    .v-input {
+      flex: 1;
+    }
   }
 
   &__navigation {
@@ -60,7 +64,7 @@
       line-height: $lh-body;
     }
 
-    li:deep(i){
+    li .v-icon{
       color: $primary-s-300 !important;
     }
   }
@@ -91,7 +95,7 @@
     border-radius: 20px;
   }
 
-  &__socials:deep(i) {
+  &__socials .v-icon {
     color: $primary-s-500;
   }
 }

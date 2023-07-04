@@ -2,13 +2,18 @@
   <div class="image-upload">
     <v-label v-if="label">{{ label }}</v-label>
     <img src="@/assets/images/logo.png" width="100" height="100"/>
-    <v-button type="transparent" size="small">Upload photo</v-button>
+    <upload-button size="small">Upload photo</upload-button>
   </div>
 </template>
 
 <script>
+import UploadButton from './UploadButton';
+
 export default {
   name: 'ImageUpload',
+  components: {
+    UploadButton,
+  },
   props: {
     label: String,
   },
@@ -19,5 +24,7 @@ export default {
 .image-upload {
   display: flex;
   flex-direction: column;
+
+  width: min-content;
 }
 </style>

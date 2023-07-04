@@ -18,6 +18,7 @@ import Tooltip from '@/components/Base/Tooltip';
 import Section from '@/components/Base/Section';
 import Input from '@/components/Base/Input';
 import Select from '@/components/Base/Select/Select';
+import Textarea from '@/components/Base/Textarea';
 
 createApp(App).use(store).use(router)
 .component("v-switcher-field", SwitcherField)
@@ -34,4 +35,5 @@ createApp(App).use(store).use(router)
 .component("v-tooltip", Tooltip)
 .component("v-section", Section)
 .component("v-input", Input)
+.component("v-textarea", Textarea)
 .mount('#app')

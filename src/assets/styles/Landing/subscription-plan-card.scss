@@ -36,14 +36,14 @@
 
     font-weight: $fw-medium;
 
-    &:deep(i) {
+    .v-icon {
       color: $primary-ds-100;
     }
 
     &--active {
       position: relative;
 
-      &:deep(i) {
+      .v-icon {
         color: $accent-500;
       }
 

@@ -39,7 +39,7 @@
       <form-block header="Contact" cta-text="Send message">
         <form-field label="E-mail" placeholder="goracio.nelson@gmail.com"/>
         <form-field type="textarea" label="Message" placeholder="Enter your message"/>
-        <form-field type="file" label="Attach files"/>
+        <div><upload-button size="small">Upload files</upload-button></div>
       </form-block>
     </div>
   </v-section>
@@ -48,12 +48,14 @@
 <script>
 import FormBlock from '@/components/FormBlock.vue';
 import FormField from '@/components/FormField.vue';
+import UploadButton from '@/components/UploadButton.vue';
 
 export default {
   name: 'HelpCenterView',
   components: {
     FormBlock,
     FormField,
+    UploadButton,
   }
 }
 </script>

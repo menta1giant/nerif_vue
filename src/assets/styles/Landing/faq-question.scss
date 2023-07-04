@@ -22,7 +22,7 @@
     }
   }
 
-  &:deep(.v-chevron--active) {
+  .v-chevron--active {
     animation: 1s tap;
     animation-fill-mode: forwards;
 

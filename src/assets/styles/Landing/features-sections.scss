@@ -79,7 +79,7 @@
   line-height: $lh-large;
   font-family: $ff-display;
 
-  &:deep(i) {
+  .v-icon {
     line-height: $lh-large;
     color: $primary-s-600;
   }

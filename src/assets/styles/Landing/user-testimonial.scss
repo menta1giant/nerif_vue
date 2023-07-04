@@ -69,7 +69,7 @@
     white-space: nowrap;
   }
 
-  &__header:deep(i) {
+  &__header .v-icon {
     color: $primary-ds-600;
   }
 

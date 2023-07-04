@@ -32,7 +32,7 @@
     background: $overlay-white-40;
   } 
 
-  &:deep(.v-icon) {
+  .v-icon {
     display: none;
   }
 
@@ -52,7 +52,7 @@
     color: $accent-500;
   } 
 
-  &:deep(.v-icon) {
+  .v-icon {
     display: flex;
 
     font-size: $fs-h4;

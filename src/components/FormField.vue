@@ -3,6 +3,7 @@
     <v-label v-if="label">{{ label }}</v-label>
     <v-input v-if="isInputTypeText" :type="type" :placeholder="placeholder" fluid />
     <v-select v-else-if="isInputTypeSelect" :type="type" fluid />
+    <v-textarea v-else-if="isInputTypeTextarea" fluid></v-textarea>
   </div>
 </template>
 
@@ -25,6 +26,9 @@ export default {
     },
     isInputTypeSelect() {
       return this.type === 'select';
+    },
+    isInputTypeTextarea() {
+      return this.type === 'textarea';
     },
   }
 }

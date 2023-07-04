@@ -49,6 +49,7 @@ export default {
   position: relative;
   width: 40px;
   max-width: 40px;
+  min-width: 40px;
   height: 20px;
   border-radius: 10px;
   background-color: $primary-ds-200;

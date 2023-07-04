@@ -1,5 +1,5 @@
 <template>
-  <div class="form-block">
+  <div class="form-block" :class="{ fluid: fluid }">
     <div class="form-block__header">
       <h4>{{ header }}</h4>
       <span>{{ subheader }}</span>
@@ -48,8 +48,8 @@ export default {
 
   padding: 1.5rem;
   
-  min-width: 23rem;
-  width: max-content;
+  min-width: 18rem;
+  width: fit-content;
   max-width: 100%;
 
   border: 1px solid $primary-ds-100;
@@ -71,6 +71,10 @@ export default {
       display: grid;
       gap: 1rem;
       flex: 1;
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      flex-direction: column;
     }
   }
 

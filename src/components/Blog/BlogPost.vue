@@ -160,11 +160,11 @@
     }
   }
 
-  &:deep(.v-icon) {
+  .v-icon {
     color: $black-250;
   }
 
-  &--bookmark:deep(.v-icon) {
+  &--bookmark .v-icon {
     color: $accent-500;
   }
 }
