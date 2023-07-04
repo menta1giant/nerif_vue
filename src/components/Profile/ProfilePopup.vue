@@ -8,7 +8,7 @@
       <div class="profile-popup__common-buttons">
         <router-link to='/profile'><v-button type="transparent" size="small"><v-icon name="gear" />Profile settings</v-button></router-link>
         <router-link to='/documentation'><v-button type="transparent" size="small"><v-icon name="book" />Documentation</v-button></router-link>
-        <v-button type="transparent" size="small"><v-icon name="handshake-angle" />Help center</v-button>
+        <router-link to="/help-center"><v-button type="transparent" size="small"><v-icon name="handshake-angle" />Help center</v-button></router-link>
       </div>
       <div class="profile-popup__common-buttons">
         <v-button type="transparent" size="small"><div class="icon-bleak"><v-icon name="right-from-bracket" /></div><span class="button-content-bleak">Log out</span></v-button>

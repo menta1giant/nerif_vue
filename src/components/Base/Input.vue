@@ -1,5 +1,5 @@
 <template>
-  <div class="v-input" :class="{ 'v-input--has-icon': inputTypeIcon }">
+  <div class="v-input" :class="{ 'v-input--has-icon': inputTypeIcon, 'fluid': fluid }">
     <div v-if="inputTypeIcon" class="v-input__icon"><v-icon :name="inputTypeIcon" /></div>
     <input :type="inputType" :placeholder="placeholder" :class="{ 'fluid': fluid }" />
   </div>
@@ -54,7 +54,8 @@ export default {
 .v-input {
   display: flex;
   position: relative;
-  flex: 1;
+
+  min-width: 16rem;
 
   &__icon {
     position: absolute;
@@ -70,6 +71,10 @@ export default {
       color: $primary-s-200;
     }
   }
+  
+  &.fluid {
+    flex: 1;
+  }
 
   &--has-icon {
     input {
@@ -79,6 +84,8 @@ export default {
 }
 
 input {
+  width: 100%;
+
   padding: .5rem;
   color: $primary-ds-800;
 

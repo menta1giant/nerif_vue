@@ -60,6 +60,23 @@ const routes = [
     meta: {},
     component: () => import(/* webpackChunkName: "profile" */ '../views/RegistrationView.vue')
   },
+  {
+    path: '/help-center',
+    name: 'Help Center',
+    meta: {
+      hasBreadcrumbs: true,
+    },
+    component: () => import(/* webpackChunkName: "landing" */ '../views/HelpCenterView.vue')
+  },
+  {
+    path: '/blog',
+    name: 'Blog',
+    meta: {
+      hasBreadcrumbs: true,
+      breadcrumbsSlot: SearchInput,
+    },
+    component: () => import(/* webpackChunkName: "landing" */ '../views/BlogView.vue')
+  },
 ]
 
 const router = createRouter({

@@ -69,7 +69,7 @@ export default {
   data() {
     return {
       links: this.$router.getRoutes(),
-      isUserSignedIn: false,
+      isUserSignedIn: true,
       isNotificationsTabOpened: false,
       isProfilePopupOpened: false,
       notificationsCount: 234,
