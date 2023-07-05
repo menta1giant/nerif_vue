@@ -1,5 +1,5 @@
 <template>
-  <v-input placeholder="Search" fluid />
+  <v-input placeholder="Search..." type="search" fluid />
 </template>
 
 <style lang="scss" scoped>

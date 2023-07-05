@@ -105,8 +105,8 @@ img {
   flex-direction: row;
 }
 
-.mobile {
-  display: none !important;
+.mobile:not(.desktop) {
+  display: none;
 }
 
 @media (max-width: $tablet-breakpoint) {
@@ -124,7 +124,7 @@ img {
     padding: 0 1rem;
 }
 
-  .desktop {
+  .desktop:not(.mobile) {
     display: none !important;
   }
 

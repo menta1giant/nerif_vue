@@ -19,6 +19,7 @@ import Section from '@/components/Base/Section';
 import Input from '@/components/Base/Input';
 import Select from '@/components/Base/Select/Select';
 import Textarea from '@/components/Base/Textarea';
+import RadioButton from '@/components/Base/RadioButton';
 
 createApp(App).use(store).use(router)
 .component("v-switcher-field", SwitcherField)
@@ -36,4 +37,5 @@ createApp(App).use(store).use(router)
 .component("v-section", Section)
 .component("v-input", Input)
 .component("v-textarea", Textarea)
+.component("v-radio-button", RadioButton)
 .mount('#app')

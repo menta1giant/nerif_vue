@@ -22,8 +22,6 @@
 
   overflow: hidden;
 
-  --keks: 4;
-
   &:not(:nth-child(n+4)) {
     grid-column: span 2;
 

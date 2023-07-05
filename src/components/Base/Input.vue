@@ -1,7 +1,7 @@
 <template>
-  <div class="v-input" :class="{ 'v-input--has-icon': inputTypeIcon }">
+  <div class="v-input" :class="{ 'v-input--has-icon': inputTypeIcon, 'fluid': fluid }">
     <div v-if="inputTypeIcon" class="v-input__icon"><v-icon :name="inputTypeIcon" /></div>
-    <input :type="inputType" :placeholder="placeholder" :class="{ 'fluid': fluid }" />
+    <input :type="inputType" :placeholder="placeholder" />
   </div>
  
 </template>
@@ -17,6 +17,10 @@ const typesMap = {
   date: {
     type: 'text',
     icon: 'password',
+  },
+  search: {
+    type: 'text',
+    icon: 'search',
   },
   payment: {
     type: 'text',

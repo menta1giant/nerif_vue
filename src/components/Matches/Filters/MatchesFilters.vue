@@ -1,14 +1,18 @@
 <template>
   <div class="filters-list">
-    <v-switcher-field v-for="(filter) in FILTERS" v-bind:key="filter.id" :label="filter.title" :value="filter.default" />
+    <form-field v-for="(filter) in FILTERS" v-bind:key="filter.id" type="switcher" :label="filter.title" :value="filter.default" />
   </div>
 </template>
 
 <script>
 import { filters } from './const';
+import FormField from '@/components/FormField';
 
 export default {
   name: "MatchesFilters",
+  components: {
+    FormField
+  },
   data() {
     return {
       FILTERS: filters,

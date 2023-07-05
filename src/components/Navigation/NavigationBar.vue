@@ -58,6 +58,7 @@
 import NavigationPages from '@/components/Navigation/NavigationPages.vue';
 import NotificationsPopup from '@/components/Notifications/NotificationsPopup.vue';
 import ProfilePopup from '@/components/Profile/ProfilePopup.vue';
+import UserInfoMixin from '../UserInfoMixin';
 
 export default {
   name: 'NavigationBar',
@@ -66,6 +67,7 @@ export default {
     NotificationsPopup,
     ProfilePopup,
   },
+  mixins: [UserInfoMixin],
   data() {
     return {
       links: this.$router.getRoutes(),
@@ -76,9 +78,6 @@ export default {
     }
   },
   computed: {
-    userInfo() {
-      return this.$store.getters.getUserInfo;
-    },
     hasNotifications() {
       return this.isUserSignedIn && this.notificationsCount > 0;
     }

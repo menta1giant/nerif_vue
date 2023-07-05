@@ -30,10 +30,7 @@
         <form-field type="password" label="Password" placeholder="Minimum 6 characters" fluid/>
         <form-field type="password" label="Confirm password" placeholder="Minimum 6 characters" fluid/>
       </form-block>
-      <form-block v-if="activeStep === 1" header="Choose your subscription plan" cta-text="Activate your subscription" fluid @proceed="activeStep++">
-        <form-field type="select" label="Currency" fluid/>
-        <form-field type="payment" label="Credit or debit card info" placeholder="Add credit or debit card info" fluid/>
-      </form-block>
+      <payment-step v-if="activeStep === 1" @change-step="activeStep++"/>
       <form-block v-if="activeStep === 2" header="Tell us more about yourself" cta-text="Complete registration" fluid @proceed="$router.push('/profile')">
         <template #default>
           <form-field label="First name" placeholder="Maria"/>
@@ -52,6 +49,7 @@ import FormBlock from '@/components/FormBlock.vue';
 import FormField from '@/components/FormField.vue';
 import SocialSignUpButton from '@/components/SocialSignUpButton.vue';
 import ImageUpload from '@/components/ImageUpload.vue';
+import PaymentStep from '@/components/Registration/PaymentStep.vue';
 
 export default {
   name: 'RegistrationView',
@@ -60,10 +58,11 @@ export default {
     FormField,
     SocialSignUpButton,
     ImageUpload,
+    PaymentStep,
   },
   data() {
     return {
-      activeStep: 0,
+      activeStep: 1,
     };
   },
 }
@@ -171,6 +170,5 @@ h2 {
     background: $black-10;
     z-index: 100;
   }
-
 }
 </style>

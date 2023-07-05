@@ -11,7 +11,7 @@
       <div v-if="$slots['right']" class="form-block__body__right">
         <slot name="right"></slot>
       </div>
-    </div>
+  </div>
     <div v-if="!noCta" class="form-block__footer">
       <v-button size="small" :fluid="fluid" @click="handleClickProceed">{{ ctaText }}</v-button>
     </div>
