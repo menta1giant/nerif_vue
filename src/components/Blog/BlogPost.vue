@@ -1,169 +1,98 @@
 <template>
-  <div class="blog-post">
-    <div class="blog-post__image">
-      <img src="@/assets/images/blog-post1.png"/>
-      <div class="blog-post__tag">News</div>
+  <v-section responsive>
+    <div class="blog-post">
+      <div class="blog-post__header">
+        <div class="blog-post__tags">
+          <span>News</span>
+          <span>Updates</span>
+        </div>
+        <div class="blog-post__title">
+          <h2>{{ title }}</h2>
+          <v-tooltip>
+            <template #trigger>
+              <v-icon name="bookmark"/>
+            </template>
+            <template #content>
+              Save post
+            </template>
+          </v-tooltip>
+        </div>
+        <div class="blog-post__meta-info"><span>by <b>{{ author }}</b></span><span>2024-20-05</span></div>
+      </div>
+      <div class="blog-post__body">
+        <p><slot>Today we are celebrating the new era of Nerif technology with the ability to write not just one or two, but three and more lines of text to describe an article at our blog which nobody will ever see!</slot></p>
+      </div>
     </div>
-    <div class="blog-post__body">
-      <div class="blog-post__header"><h5>Three new features rolled out today</h5><v-icon name="bookmark"/></div>
-      <p>Today we are celebrating the new era of Nerif technology with the ability to write not just one or two, but three and more lines of text to describe an article at our blog which nobody will ever see!</p>
-      <div class="blog-post__footer"><span>by <b>Martin Scorcese</b></span><span>24-05-2023</span></div>
-    </div>
-  </div>
+  </v-section>
 </template>
+
+<script>
+export default {
+  name: 'BlogPost',
+  beforeRouteEnter(to, from, next) {
+    console.log(to);
+    next(vm => vm.$store.commit('setBreadcrumbsTitle', `Blog post #${ to.params.id }`));
+  },
+  props: {
+    title: {
+      type: String,
+      default: 'Default title',
+    },
+    author: {
+      type: String,
+      default: 'Selena Gomez',
+    },
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .blog-post {
-  background: white;
+  display: grid;
+  gap: 1rem;
 
-  min-height: 100px;
-  border: 1px solid $primary-ds-100;
-  border-radius: $border-radius-large;
-
-  overflow: hidden;
-
-  &:not(:nth-child(n+4)) {
-    grid-column: span 2;
-
-    @media screen and (max-width: $tablet-breakpoint) {
-      grid-column: span 3;
-    } 
-  }
-
-  &:nth-child(n+4) {
-    p {
-      display: none;
-    }
-
-    h5 {
-      font-size: .8em;
-    }
-
-    span:last-child:before {
-      display: none !important;
-    }
-  }
-
-  @media screen and (max-width: $tablet-breakpoint) {
-    &:not(:nth-child(n+3)) {
-      grid-column: span 3;
-    }
-
-    &:nth-child(n+3) {
-      grid-column: span 2;
-
-      p {
-        display: none;
-      }
-
-      h5 {
-        font-size: .8em;
-      }
-
-      span:last-child:before {
-        display: none !important;
-      }
-    }
-  } 
-
-  @media screen and (max-width: $mobile-breakpoint) {
-    &:not(:nth-child(n+2)) {
-      grid-column: span 6;
-    }
-
-    &:nth-child(n+2) {
-      grid-column: span 3;
-
-      p {
-        display: none;
-      }
-
-      h5 {
-        font-size: .8em;
-      }
-
-      span:last-child:before {
-        display: none !important;
-      }
-    }
-  } 
-
-  &__image {
-    position: relative;
-
-    img {
-      width: 100%;
-    }
-  }
-
-  &__tag {
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-
-    background: $green-100;
-    padding: 0 1rem;
-
-    border-radius: 20px;
-
-    font-family: $ff-display;
-    font-weight: $fw-semi-bold;
-    font-size: $fs-xxs;
-  }
-
-  &__body {
-    display: grid;
-    gap: .75rem;
-
-    padding: 1rem;
-
-    font-size: $fs-large;
-
-    h5 {
-      color: $primary-s-700;
-      font-weight: $fw-semi-bold;
-      line-height: 1.4;
-    }
-
-    p {
-      font-size: $fs-xs;
-      line-height: $lh-body;
-    }
-
-  }
+  max-width: 40rem;
 
   &__header {
+    @include divider-bottom;
+
+    display: grid;
+    gap: .5rem;
+
+    padding-bottom: 1rem;
+  }
+
+  &__title {
     display: flex;
     justify-content: space-between;
-    gap: .5rem;
+    align-items: center;
+
+    .v-icon {
+      font-size: $fs-h4;
+    }
   }
 
-  &__footer {
+  &__tags {
     display: flex;
-    flex-wrap: wrap;
+    gap: .75rem;
 
-    font-size: $fs-xxs;
-
-    span:first-child {
-      margin-right: .5rem;
-    }
-
-    span:last-child {
-      color: $primary-ds-500;
-    }
-
-    span:last-child:before {
-      content: '\2022';
-      margin-right: .5rem;
+    span {
+      background: green;
+      padding: .5rem 1.75rem;
+      color: white;
+      border-radius: $border-radius-large;
+      font-size: $fs-xxs;
+      line-height: 1.2;
     }
   }
 
-  .v-icon {
-    color: $black-250;
+  &__meta-info {
+    display: flex;
+    gap: 1.5rem;
   }
 
-  &--bookmark .v-icon {
-    color: $accent-500;
+  &__body p {
+    line-height: $lh-body;
   }
 }
 </style>

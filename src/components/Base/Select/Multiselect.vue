@@ -2,7 +2,7 @@
   <div class="v-multiselect">
     <v-positioner v-model="isDropdownVisible">
       <template v-slot:body>
-        <select-body :is-dropdown-visible="isDropdownVisible">
+        <select-body :is-dropdown-visible="isDropdownVisible" :has-error="hasError">
           <div class="v-multiselect__selected-options">
             <select-option v-for="(option, idx) in selectedOptions" v-bind:key="idx" :option="option">{{ option.value }}</select-option>
           </div>
@@ -19,6 +19,7 @@
 import SelectBody from './SelectBody';
 import SelectOption from './SelectOption';
 import SelectDropdown from './SelectDropdown';
+import ErrorMixin from '@/components/ErrorMixin';
 
 export default {
   name: 'Multiselect',
@@ -27,6 +28,7 @@ export default {
     SelectOption,
     SelectDropdown,
   },
+  mixins: [ErrorMixin],
   data() {
     return {
       isDropdownVisible: false,

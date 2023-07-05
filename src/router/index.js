@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SearchInput from '@/components/SearchInput';
+import DocumentationRoot from '@/components/Documentation/DocumentationRoot';
+import DocumentationArticle from '@/components/Documentation/DocumentationArticle';
+import BlogRoot from '@/components/Blog/BlogRoot';
+import BlogPost from '@/components/Blog/BlogPost';
 
 const routes = [
   {
@@ -40,10 +44,27 @@ const routes = [
   {
     path: '/documentation',
     name: 'Documentation',
-    meta: {
-      hasBreadcrumbs: true,
-      breadcrumbsSlot: SearchInput,
-    },
+    meta: {},
+    children: [
+      {
+        path: '',
+        name: 'Documentation',
+        meta: {
+          hasBreadcrumbs: true,
+          breadcrumbsSlot: SearchInput,
+        },
+        component: DocumentationRoot,
+      },
+      {
+        path: ':id',
+        name: 'Documentation article',
+        meta: {
+          hasBreadcrumbs: true,
+          isCustomBreadcrumbsTitle: true,
+        },
+        component: DocumentationArticle,
+      }
+    ],
     component: () => import(/* webpackChunkName: "landing" */ '../views/DocumentationView.vue')
   },
   {
@@ -71,17 +92,44 @@ const routes = [
   {
     path: '/blog',
     name: 'Blog',
-    meta: {
-      hasBreadcrumbs: true,
-      breadcrumbsSlot: SearchInput,
-    },
+    meta: {},
+    children: [
+      {
+        path: '',
+        name: 'Blog',
+        meta: {
+          hasBreadcrumbs: true,
+          breadcrumbsSlot: SearchInput,
+        },
+        component: BlogRoot,
+      },
+      {
+        path: ':id',
+        name: 'post',
+        meta: {
+          hasBreadcrumbs: true,
+          isCustomBreadcrumbsTitle: true,
+        },
+        component: BlogPost,
+      }
+    ],
     component: () => import(/* webpackChunkName: "landing" */ '../views/BlogView.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'Page not found',
+    meta: {},
+    component: () => import(/* webpackChunkName: "other" */ '../views/PageNotFoundView.vue')
   },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from) => {
+  console.log(from);
 })
 
 export default router

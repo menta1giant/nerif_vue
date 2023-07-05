@@ -1,10 +1,10 @@
 <template>
-  <div class="v-tooltip">
+  <div class="v-tooltip" @mouseenter="isShown=true" @mouseleave="isShown=false">
     <v-positioner v-model="isShown" position="center">
-      <template v-slot:body>
+      <template #body>
         <slot name="trigger"></slot>
       </template>
-      <template v-slot:dropdown>
+      <template #dropdown>
         <div class="v-tooltip__content" :style="{ maxWidth: `${ width }px` }"><slot name="content"></slot></div>
       </template>
     </v-positioner>

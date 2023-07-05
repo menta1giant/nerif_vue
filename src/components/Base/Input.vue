@@ -1,5 +1,5 @@
 <template>
-  <div class="v-input" :class="{ 'v-input--has-icon': inputTypeIcon, 'fluid': fluid }">
+  <div class="v-input" :class="{ 'v-input--has-icon': inputTypeIcon, 'v-input--error': hasError, 'fluid': fluid }">
     <div v-if="inputTypeIcon" class="v-input__icon"><v-icon :name="inputTypeIcon" /></div>
     <input :type="inputType" :placeholder="placeholder" />
   </div>
@@ -8,6 +8,7 @@
 
 <script>
 import ControlMixin from '@/components/ControlMixin';
+import ErrorMixin from '@/components/ErrorMixin';
 
 const typesMap = {
   password: {
@@ -32,6 +33,7 @@ export default {
   name: 'Input',
   mixins: [
     ControlMixin,
+    ErrorMixin,
   ],
   props: {
     placeholder: {
@@ -79,6 +81,12 @@ export default {
   &--has-icon {
     input {
       padding-left: 2em;
+    }
+  }
+
+  &--error {
+    input {
+      border-color: $red-600;
     }
   }
 }

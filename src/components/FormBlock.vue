@@ -66,6 +66,7 @@ export default {
     gap: 1.5rem;
 
     padding-top: 1rem;
+    max-width: 36rem;
 
     &__left {
       display: grid;

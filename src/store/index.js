@@ -7,14 +7,21 @@ export default createStore({
         plan: 'Standard',
         daysLeft: 12,
       }
-    }
+    },
+    breadcrumbsTitle: '',
   },
   getters: {
     getUserInfo (state) {
       return state.userInfo;
-    }
+    },
+    getBreadcrumbsTitle (state) {
+      return state.breadcrumbsTitle;
+    },
   },
   mutations: {
+    setBreadcrumbsTitle (state, newTitle) {
+      state.breadcrumbsTitle = newTitle;
+    },
   },
   actions: {
   },

@@ -1,13 +1,16 @@
 <template>
-  <button class="v-select__body">
+  <button class="v-select__body" :class="{ 'v-select__body--error': hasError }">
     <slot></slot>
     <v-chevron :model-value="isDropdownVisible" />
   </button>
 </template>
 
 <script>
+import ErrorMixin from '@/components/ErrorMixin';
+
 export default {
   name: 'SelectBody',
+  mixins: [ErrorMixin],
   props: {
     isDropdownVisible: Boolean,
   },
@@ -34,6 +37,10 @@ export default {
 
   &:focus {
     box-shadow: 0 0 0 1px $primary-s-100;
+  }
+
+  &--error {
+    border-color: $red-600;
   }
 }
 </style>

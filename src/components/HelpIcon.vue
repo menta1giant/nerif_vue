@@ -1,10 +1,10 @@
 <template>
   <div class="help-icon">
     <v-tooltip>
-      <template v-slot:trigger>
+      <template #trigger>
         <v-icon name="circle-question" />
       </template>
-      <template v-slot:content>
+      <template #content>
         <slot></slot>
       </template>
     </v-tooltip>

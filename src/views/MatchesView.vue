@@ -42,36 +42,35 @@
       <matches-list @change-scroll="changeScroll"/>
   
     </div>
-    <div class="toolbar mobile">
-  
-      <div class="toolbar__items">
-        <div class="toolbar__controls">
-          <date-picker />
-          <v-positioner v-model="isFiltersDropdownVisible">
-            <template v-slot:body>
-              <div class="toolbar__icon" :class="{ active: isFiltersDropdownVisible }">
-                <v-icon type="solid" name="filter" />
-              </div>
-            </template>
-            <template v-slot:dropdown>
-              <v-popup>
-                <matches-filters />
-              </v-popup>
-            </template>
-          </v-positioner>
+  </v-section>
+
+  <div class="toolbar mobile">
+    <div class="toolbar__items">
+      <div class="toolbar__controls">
+        <date-picker />
+        <v-positioner v-model="isFiltersDropdownVisible">
+          <template v-slot:body>
+            <div class="toolbar__icon" :class="{ active: isFiltersDropdownVisible }">
+              <v-icon type="solid" name="filter" />
+            </div>
+          </template>
+          <template v-slot:dropdown>
+            <v-popup>
+              <matches-filters />
+            </v-popup>
+          </template>
+        </v-positioner>
+      </div>
+      <div class="toolbar__navigation">
+        <div class="toolbar__icon" :class="{ active: isMatchesTabOpened }" @click="toggleOpenedTab(true)">
+          <v-icon type="solid" name="gamepad" />
         </div>
-        <div class="toolbar__navigation">
-          <div class="toolbar__icon" :class="{ active: isMatchesTabOpened }" @click="toggleOpenedTab(true)">
-            <v-icon type="solid" name="gamepad" />
-          </div>
-          <div class="toolbar__icon" :class="{ active: !isMatchesTabOpened }" @click="toggleOpenedTab(false)">
-            <v-icon type="solid" name="square-rss" />
-          </div>
+        <div class="toolbar__icon" :class="{ active: !isMatchesTabOpened }" @click="toggleOpenedTab(false)">
+          <v-icon type="solid" name="square-rss" />
         </div>
       </div>
-      
     </div>
-  </v-section>
+  </div>
 
   <v-modal v-model="isModalShown"/>
 </template>

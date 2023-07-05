@@ -7,9 +7,10 @@
     </div>
     <template v-else>
       <v-label v-if="label">{{ label }}</v-label>
-      <v-input v-if="isInputTypeText" :type="type" :placeholder="placeholder" fluid />
-      <v-select v-else-if="isInputTypeSelect" :type="type" fluid />
+      <v-input v-if="isInputTypeText" :type="type" :placeholder="placeholder" fluid/>
+      <v-select v-else-if="isInputTypeSelect" :type="type" fluid/>
       <v-textarea v-else-if="isInputTypeTextarea" fluid></v-textarea>
+      <span v-if="hasError" class="form-field__error-message">Your name may not contain any sausages and pancakes any sausages or pancakes</span>
     </template>
   </div>
 </template>
@@ -50,6 +51,9 @@ export default {
     isFormFieldInline() {
       return this.isInputTypeSwitcher || this.isInputTypeRadio;
     },
+    hasError() {
+      return false;
+    },
   }
 }
 </script>
@@ -67,6 +71,13 @@ export default {
     .v-label {
       font-size: .9em;
     }
+  }
+
+  &__error-message {
+    font-size: $fs-xxs;
+    line-height: $lh-small;
+    color: $red-600;
+    font-weight: $fw-medium;
   }
 }
 </style>
