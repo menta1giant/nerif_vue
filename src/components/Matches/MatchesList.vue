@@ -1,10 +1,10 @@
 <template>
   <div class="matches" ref="matches">
     <template v-if="isMatchCardInfoOpened">
-      <match-card :msg="openedMatchCard.toUpperCase()" isSelected @click="toggleMatchCard()" />
+      <match-card v-bind:key="`match_${ openedMatchCard.match.match_id }`" :match="openedMatchCard" is-selected @click="toggleMatchCard()" />
     </template>
     <template v-else>
-      <match-card v-for="(match, b) in matches" v-bind:key="b" :msg="match.toUpperCase()" :isSelected="isScrollingInProcess && b == lastOpenedMatchCardId" @click="!isScrollingInProcess && toggleMatchCard(b)" />
+      <match-card v-for="(match, idx) in matches" v-bind:key="`match_${ match.match.match_id }`" :match="match" :is-selected="isScrollingInProcess && idx == lastOpenedMatchCardId" @click="!isScrollingInProcess && toggleMatchCard(idx)" />
     </template>
   </div>
   <div class="match-stats" v-if="isMatchCardInfoOpened">
@@ -28,8 +28,6 @@
 import MatchCard from './MatchCard.vue';
 import StatsBar from './StatsBar.vue';
 
-const prikol = ["Lyngby Vikings", "Caught off Guard", "SAW Youngsters", "Malvinas", "DETONA", "BIGODES", "coluant", "Tranquillum", "Team GeT_RiGhT", "Insanium", "KINGZZZ", "From The Grave", "Halal Gang", "Verum", "Fiend", "The Big Dogs", "Lese", "Alke", "Goomba Stomp", "Russian Street Party", "WORTEX", "GORILLAZ", "Izako Boars", "Levitate", "YeniCherry", "Coldest Riders", "LSC", "ex-Cear\u0413\u040e", "AURA", "DBL PONEY", "Keyd", "Volted", "Peekers", "Big City Blues", "Triumph", "Meinser", "Hazard", "Extra Salt", "voLante", "ViCi", "Dr. Pepper", "GAIJIN", "eXploit", "okura", "Doge Soldiers", "Sestri", "ex-Feenix", "ex-Coalesce", "LPSP", "Villainous"];
-
 export default {
   name: 'MatchesList',
   emits: ['change-scroll'],
@@ -41,13 +39,12 @@ export default {
     matches: {
       type: Array,
       default() {
-        return prikol;
+        return [];
       },
     },
   },
   data() {
     return {
-      prikol: prikol,
       openedMatchCard: null,
       lastOpenedMatchCardId: null,
 

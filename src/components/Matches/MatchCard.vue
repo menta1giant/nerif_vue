@@ -2,31 +2,31 @@
   <div class="match-card" :class="{ 'match-card--selected': isSelected }">
     <div class="match-card__upper-wrapper">
         <match-team-block 
-          :team-info="matchInfo.team1" 
-          :endorsements-count="endorsements[0]" 
-          :oddsChange="oddsChange" 
-          :isOddsChangeSignificant="isOddsChangeSignificant"
-          :isPredicted="Math.floor(Math.random()*50) == 0"
-          isLeft
+          :team-info="match.match.team_favorite" 
+          :endorsements-count="match.endorsements.favorite" 
+          :odds-change="match.match.odds_change" 
+          :is-odds-change-significant="isOddsChangeSignificant"
+          :is-predicted="Math.floor(Math.random()*50) == 0"
+          is-left
         />
         <div class="match-info-wrapper">
             <div class="match-info">
-                <span class="match-date">{{ matchInfo.date }}</span>
-                <span class="match-type">{{ matchInfo.type }}</span>
+                <span class="match-date">{{ match.match.match_date }}</span>
+                <span class="match-type">Map {{ match.map_order }}</span>
             </div>
             <div class="match-scores-wrapper">
               <template v-if="hasScores">
-                <div class="match-score">{{ matchInfo.team1.score }}</div>
-                <div class="match-score">{{ matchInfo.team2.score }}</div>
+                <div class="match-score">{{ match.match.team_favorite.map_score }}</div>
+                <div class="match-score">{{ match.match.team_opponent.map_score }}</div>
               </template>
             </div>
         </div>
         <match-team-block 
-          :team-info="matchInfo.team2" 
-          :endorsements-count="endorsements[1]" 
-          :odds-change="oddsChange" 
+          :team-info="match.match.team_opponent" 
+          :endorsements-count="match.endorsements.opponent" 
+          :odds-change="match.match.odds_change" 
           :is-odds-change-significant="isOddsChangeSignificant"
-          :isPredicted="Math.floor(Math.random()*50) == 0"
+          :is-predicted="Math.floor(Math.random()*50) == 0"
         />
     </div>
     <div class="match-card__scale" :style="scaleStyles">
@@ -46,67 +46,41 @@ export default {
     MatchTeamBlock
   },
   props: {
-    msg: String,
-    oddsChange: {
-      type: Number,
-      default() {
-        return 0.2;
-      },
-    },
-    endorsements: {
-      type: Array,
-      default() {
-        return [1, 0];
-      },
-    },
+    match: Object,
     isSelected: Boolean,
   },
-  data() {
-    return {
-      matchInfo: {
-        team1: {
-          name: this.msg,
-          coeff: 1.25,
-          score: 16,
-        },
-        team2: {
-          name: this.msg,
-          coeff: 4,
-          score: 16,
-        },
-        date: '10 Jun 2023 10:05',
-        type: 'Map 1',
-        score: {
-          fav: {
-            displayedValue: 120,
-            threshold: 40,
-          },
-          opp: {
-            displayedValue: 120,
-            threshold: 80,
-          },
-          scaledValue: Math.floor(Math.random() * 40 + 40),
-        }
-      }
-    }
-  },
   computed: {
+    scaledValue() {
+      const favoriteRuleset = this.match.scores.favorite.ruleset;
+      const opponentRuleset = this.match.scores.opponent.ruleset;
+
+      return ((this.match.scores.favorite.score - favoriteRuleset.minimum) / (favoriteRuleset.maximum - favoriteRuleset.minimum) + 
+        (this.match.scores.opponent.score - opponentRuleset.minimum) / (opponentRuleset.maximum - opponentRuleset.minimum)) / 2 * 100;
+    },
+    leftThreshold() {
+      const favoriteRuleset = this.match.scores.favorite.ruleset;
+
+      return (favoriteRuleset.threshold - favoriteRuleset.minimum) / (favoriteRuleset.maximum - favoriteRuleset.minimum) * 100;
+    },
+    rightThreshold() {
+      const opponentRuleset = this.match.scores.opponent.ruleset;
+
+      return (opponentRuleset.threshold - opponentRuleset.minimum) / (opponentRuleset.maximum - opponentRuleset.minimum) * 100;
+    },
     scaleStyles() {
       return {
-        background: `linear-gradient(90deg, #B3BAE5 0%, #B3BAE5 ${ this.matchInfo.score.scaledValue }%, #FADE82 ${ this.matchInfo.score.scaledValue }%)`,
+        background: `linear-gradient(90deg, #B3BAE5 0%, #B3BAE5 ${ this.scaledValue }%, #FADE82 ${ this.scaledValue }%)`,
       };
     },
     scaleDividerStyles() {
-      const scores = this.matchInfo.score
-
-      const favStyles = scores.fav.displayedValue !== null ? {
-        'left': `${ scores.fav.threshold }%`,
+      const favStyles = this.match.match.team_favorite.score !== null ? {
+        'left': `${ this.leftThreshold }%`,
       } : {
         'display': 'none',
       };
 
-      const oppStyles = scores.opp.displayedValue !== null ? {
-        'left': `${ scores.opp.threshold }%`,
+      const oppStyles = this.match.match.team_opponent.score !== null ? {
+        'left': `${ this.rightThreshold }%`,
       } : {
         'display': 'none',
       };
@@ -114,10 +88,10 @@ export default {
       return [favStyles, oppStyles];
     },
     hasScores() {
-      return this.matchInfo.team1.score !== null && this.matchInfo.team2.score !== null;
+      return this.match.match.team_favorite.map_score !== null && this.match.match.team_opponent.map_score !== null;
     },
     isOddsChangeSignificant() {
-      return Math.abs(this.oddsChange) > ODDS_CHANGE_SIGNIFICANCE_FACTOR;
+      return Math.abs(this.match.match.odds_change) > ODDS_CHANGE_SIGNIFICANCE_FACTOR;
     },
   },
 }

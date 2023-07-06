@@ -39,7 +39,7 @@
     </div>
     <div class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }" ref="container-right">
   
-      <matches-list @change-scroll="changeScroll"/>
+      <matches-list :matches="matches" @change-scroll="changeScroll"/>
   
     </div>
   </v-section>
@@ -76,15 +76,13 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 import MatchesList from '@/components/Matches/MatchesList.vue';
 import DatePicker from '@/components/Matches/DatePicker/DatePicker.vue';
 import TelegramFeedPost from '@/components/Matches/Feed/TelegramFeedPost.vue';
 import MatchesFilters from '@/components/Matches/Filters/MatchesFilters.vue';
 import HelpIcon from '@/components/HelpIcon.vue';
-
-
-const prikol = ["Lyngby Vikings", "Caught off Guard", "SAW Youngsters", "Malvinas", "DETONA", "BIGODES", "coluant", "Tranquillum", "Team GeT_RiGhT", "Insanium", "KINGZZZ", "From The Grave", "Halal Gang", "Verum", "Fiend", "The Big Dogs", "Lese", "Alke", "Goomba Stomp", "Russian Street Party", "WORTEX", "GORILLAZ", "Izako Boars", "Levitate", "YeniCherry", "Coldest Riders", "LSC", "ex-Cear\u0413\u040e", "AURA", "DBL PONEY", "Keyd", "Volted", "Peekers", "Big City Blues", "Triumph", "Meinser", "Hazard", "Extra Salt", "voLante", "ViCi", "Dr. Pepper", "GAIJIN", "eXploit", "okura", "Doge Soldiers", "Sestri", "ex-Feenix", "ex-Coalesce", "LPSP", "Villainous"];
 
 export default {
   name: 'MatchesView',
@@ -95,9 +93,13 @@ export default {
     MatchesFilters,
     HelpIcon,
   },
+  async created() {
+    const matches = await axios.get('http://localhost:8002/api/matches/predicted_maps/');
+    this.matches = matches.data;
+  },
   data() {
     return {
-      prikol: prikol,
+      matches: [],
       matchesScroll: 0,
       isMatchesTabOpened: true,
       isFiltersDropdownVisible: false,
