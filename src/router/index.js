@@ -4,6 +4,11 @@ import DocumentationRoot from '@/components/Documentation/DocumentationRoot';
 import DocumentationArticle from '@/components/Documentation/DocumentationArticle';
 import BlogRoot from '@/components/Blog/BlogRoot';
 import BlogPost from '@/components/Blog/BlogPost';
+import PersonalInfoForm from '@/components/Profile/Forms/PersonalInfoForm';
+import PasswordForm from '@/components/Profile/Forms/PasswordForm';
+import PaymentInfoForm from '@/components/Profile/Forms/PaymentInfoForm';
+import LocalizationForm from '@/components/Profile/Forms/LocalizationForm';
+import NotificationsForm from '@/components/Profile/Forms/NotificationsForm';
 
 const routes = [
   {
@@ -69,10 +74,52 @@ const routes = [
   },
   {
     path: '/profile',
-    name: 'Profile',
+    name: 'Profile settings',
     meta: {
       hasBreadcrumbs: true,
     },
+    children: [
+      {
+        path: 'personal',
+        name: 'Personal info',
+        meta: {
+          hasBreadcrumbs: true,
+        },
+        component: PersonalInfoForm,
+      },
+      {
+        path: 'password',
+        name: 'Password and security',
+        meta: {
+          hasBreadcrumbs: true,
+        },
+        component: PasswordForm,
+      },
+      {
+        path: 'payment',
+        name: 'Payment info',
+        meta: {
+          hasBreadcrumbs: true,
+        },
+        component: PaymentInfoForm,
+      },
+      {
+        path: 'localization',
+        name: 'Localization',
+        meta: {
+          hasBreadcrumbs: true,
+        },
+        component: LocalizationForm,
+      },
+      {
+        path: 'notifications',
+        name: 'Notifications',
+        meta: {
+          hasBreadcrumbs: true,
+        },
+        component: NotificationsForm,
+      },
+    ],
     component: () => import(/* webpackChunkName: "profile" */ '../views/ProfileView.vue')
   },
   {

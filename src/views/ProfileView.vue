@@ -2,31 +2,18 @@
   <sections-navigation v-model="selectedSection" :sections="sections" />
   <v-section responsive padded>
     <div class="profile-wrapper">
-      <keep-alive>
-        <component :is="profileSections[selectedSection]" />
-      </keep-alive>
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </div>
   </v-section>
 </template>
 
 <script>
-import { markRaw } from 'vue';
-
 import SectionsNavigation from '@/components/Navigation/SectionsNavigation.vue';
 import FormBlock from '@/components/FormBlock.vue';
-import PersonalInfoForm from '@/components/Profile/Forms/PersonalInfoForm.vue';
-import PaymentInfoForm from '@/components/Profile/Forms/PaymentInfoForm.vue';
-import PasswordForm from '@/components/Profile/Forms/PasswordForm.vue';
-import LocalizationForm from '@/components/Profile/Forms/LocalizationForm.vue';
-import NotificationsForm from '@/components/Profile/Forms/NotificationsForm.vue';
-
-const profileSections = [
-  markRaw(PersonalInfoForm), 
-  markRaw(PaymentInfoForm), 
-  markRaw(PasswordForm),
-  markRaw(LocalizationForm),
-  markRaw(NotificationsForm),
-];
 
 export default {
   name: 'ProfileView',
@@ -38,9 +25,17 @@ export default {
     return {
       sections: ['Personal info', 'Payment info', 'Password and security', 'Localization', 'Notifications'],
       selectedSection: 0,
-      profileSections: profileSections,
+      profileSections: ['personal', 'payment', 'password', 'localization', 'notifications'],
     };
   },
+  watch: {
+    selectedSection: {
+      immediate: true,
+      handler(val) {
+        this.$router.push(`/profile/${ this.profileSections[val] }`);
+      }
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
