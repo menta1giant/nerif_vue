@@ -38,7 +38,8 @@
       </div>
     </div>
     <div class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }" ref="container-right">
-      <matches-list :matches="matches" @change-scroll="changeScroll"/>
+      <matches-list :matches="matches" :is-loading="areMatchesLoading" @change-scroll="changeScroll"/>
+      <div class="match-card-dummy"></div>
     </div>
   </v-section>
 
@@ -60,6 +61,8 @@ import MatchesFilters from './Filters/MatchesFilters.vue';
 import MobileToolbar from './MobileToolbar.vue';
 import HelpIcon from '@/components/HelpIcon.vue';
 
+const MATCHES_REQUEST_LIMIT = 10;
+
 export default {
   name: 'MatchesRoot',
   components: {
@@ -71,25 +74,81 @@ export default {
     MobileToolbar,
   },
   async created() {
-    const matches = await axios.get('http://5.228.130.64:8002/api/matches/predicted_maps/');
-    this.matches = matches.data;
+    this.setUpIntersectionObserver();
+    await this.loadMatches();
   },
   data() {
     return {
       matches: [],
       matchesScroll: 0,
+      observer: null,
+
+      matchesRequestParams: {
+        offset: 0,
+        limit: 20,
+      },
+
+      isLimitOfMatchesReached: false,
 
       isMatchesTabOpened: true,
       isFiltersDropdownVisible: false,
       isModalShown: false,
+      areMatchesLoading: false,
     }
   },
   computed: {
+    hasSelectedMatch() {
+      return this.$store.getters.getSelectedMatch !== null;
+    },
     currentDate() {
       return this.$store.getters.getMatchesSelectedDate;
     },
   },
   methods: {
+    async loadMatches() {
+      const requestParams = this.matchesRequestParams;
+
+      this.areMatchesLoading = true;
+
+      const queryParams = {
+        'limit': requestParams.limit,
+        'offset': requestParams.offset,
+      };
+
+      const searchParams = new URLSearchParams(queryParams);
+
+      const matches = await axios.get(`http://5.228.130.64:8002/api/matches/predicted_maps?${ searchParams }`);
+      this.matches = this.matches.concat(matches.data.data);
+
+      const target = document.querySelector(".match-card-dummy");
+      if (target instanceof HTMLElement) this.invokeObserver(target);
+
+      requestParams.offset = requestParams.limit + requestParams.offset;
+      requestParams.limit = MATCHES_REQUEST_LIMIT;
+      this.isLimitOfMatchesReached = matches.data.is_enough;
+
+      this.areMatchesLoading = false;
+    },
+    loadAnotherBatchOfMatches(entries) {
+      if (this.areMatchesLoading || this.isLimitOfMatchesReached || this.hasSelectedMatch) return;
+
+      if (entries[0].isIntersecting) {
+        this.loadMatches();
+      }
+    },
+    setUpIntersectionObserver() {
+      let options = {
+        root: document.querySelector(".content-wrapper-right"),
+        rootMargin: "0px",
+        threshold: 1.0,
+      };
+
+      this.observer = new IntersectionObserver(this.loadAnotherBatchOfMatches, options);
+    },
+    invokeObserver(target) {
+      this.observer.disconnect();
+      this.observer.observe(target);
+    },
     scrollContainerToYZero() {
       const container = this.$refs['container-right'].parentNode;
       container.scrollTop = 0;

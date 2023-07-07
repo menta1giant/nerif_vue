@@ -6,7 +6,7 @@
           :endorsements-count="match.endorsements.favorite" 
           :odds-change="match.match.odds_change" 
           :is-odds-change-significant="isOddsChangeSignificant"
-          :is-predicted="Math.floor(Math.random()*50) == 0"
+          :is-predicted="match.scores.favorite.is_predicted"
           is-left
         />
         <div class="match-info-wrapper">
@@ -26,7 +26,7 @@
           :endorsements-count="match.endorsements.opponent" 
           :odds-change="match.match.odds_change" 
           :is-odds-change-significant="isOddsChangeSignificant"
-          :is-predicted="Math.floor(Math.random()*50) == 0"
+          :is-predicted="match.scores.opponent.is_predicted"
         />
     </div>
     <div class="match-card__scale" :style="scaleStyles">

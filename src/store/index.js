@@ -8,7 +8,6 @@ export default createStore({
         daysLeft: 12,
       }
     },
-    matchesSelectedDate: new Date(),
     breadcrumbsTitle: '',
   },
   getters: {
@@ -18,20 +17,36 @@ export default createStore({
     getBreadcrumbsTitle (state) {
       return state.breadcrumbsTitle;
     },
-    getMatchesSelectedDate (state) {
-      return state.matchesSelectedDate;
-    },
   },
   mutations: {
     setBreadcrumbsTitle (state, newTitle) {
       state.breadcrumbsTitle = newTitle;
     },
-    setMatchesSelectedDate (state, newDate) {
-      state.matchesSelectedDate = newDate;
-    },
   },
   actions: {
   },
   modules: {
+    matches: {
+      state: {
+        matchesSelectedDate: new Date(),
+        selectedMatch: null,
+      },
+      getters: {
+        getMatchesSelectedDate (state) {
+          return state.matchesSelectedDate;
+        },
+        getSelectedMatch(state) {
+          return state.selectedMatch;
+        },
+      },
+      mutations: {
+        setMatchesSelectedDate (state, newDate) {
+          state.matchesSelectedDate = newDate;
+        },
+        setSelectedMatch(state, match) {
+          state.selectedMatch = match;
+        },
+      },
+    }
   }
 })

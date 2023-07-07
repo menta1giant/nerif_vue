@@ -1,14 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SearchInput from '@/components/SearchInput';
-import DocumentationRoot from '@/components/Documentation/DocumentationRoot';
-import DocumentationArticle from '@/components/Documentation/DocumentationArticle';
-import BlogRoot from '@/components/Blog/BlogRoot';
-import BlogPost from '@/components/Blog/BlogPost';
-import PersonalInfoForm from '@/components/Profile/Forms/PersonalInfoForm';
-import PasswordForm from '@/components/Profile/Forms/PasswordForm';
-import PaymentInfoForm from '@/components/Profile/Forms/PaymentInfoForm';
-import LocalizationForm from '@/components/Profile/Forms/LocalizationForm';
-import NotificationsForm from '@/components/Profile/Forms/NotificationsForm';
 
 const routes = [
   {
@@ -58,7 +49,7 @@ const routes = [
           hasBreadcrumbs: true,
           breadcrumbsSlot: SearchInput,
         },
-        component: DocumentationRoot,
+        component: () => import(/* webpackChunkName: "documentation" */ '@/components/Documentation/DocumentationRoot.vue'),
       },
       {
         path: ':id',
@@ -67,10 +58,10 @@ const routes = [
           hasBreadcrumbs: true,
           isCustomBreadcrumbsTitle: true,
         },
-        component: DocumentationArticle,
+        component: () => import(/* webpackChunkName: "documentation" */ '@/components/Documentation/DocumentationArticle.vue'),
       }
     ],
-    component: () => import(/* webpackChunkName: "landing" */ '../views/DocumentationView.vue')
+    component: () => import(/* webpackChunkName: "documentation" */ '../views/DocumentationView.vue')
   },
   {
     path: '/profile',
@@ -80,12 +71,13 @@ const routes = [
     },
     children: [
       {
-        path: 'personal',
+        path: '',
+        alias: 'personal',
         name: 'Personal info',
         meta: {
           hasBreadcrumbs: true,
         },
-        component: PersonalInfoForm,
+        component: () => import(/* webpackChunkName: "profile" */ '@/components/Profile/Forms/PersonalInfoForm.vue'),
       },
       {
         path: 'password',
@@ -93,7 +85,7 @@ const routes = [
         meta: {
           hasBreadcrumbs: true,
         },
-        component: PasswordForm,
+        component: () => import(/* webpackChunkName: "profile" */ '@/components/Profile/Forms/PasswordForm.vue'),
       },
       {
         path: 'payment',
@@ -101,7 +93,7 @@ const routes = [
         meta: {
           hasBreadcrumbs: true,
         },
-        component: PaymentInfoForm,
+        component: () => import(/* webpackChunkName: "profile" */ '@/components/Profile/Forms/PaymentInfoForm.vue'),
       },
       {
         path: 'localization',
@@ -109,7 +101,7 @@ const routes = [
         meta: {
           hasBreadcrumbs: true,
         },
-        component: LocalizationForm,
+        component: () => import(/* webpackChunkName: "profile" */ '@/components/Profile/Forms/LocalizationForm.vue'),
       },
       {
         path: 'notifications',
@@ -117,7 +109,7 @@ const routes = [
         meta: {
           hasBreadcrumbs: true,
         },
-        component: NotificationsForm,
+        component: () => import(/* webpackChunkName: "profile" */ '@/components/Profile/Forms/NotificationsForm.vue'),
       },
     ],
     component: () => import(/* webpackChunkName: "profile" */ '../views/ProfileView.vue')
@@ -126,7 +118,7 @@ const routes = [
     path: '/sign-up',
     name: 'Registration',
     meta: {},
-    component: () => import(/* webpackChunkName: "profile" */ '../views/RegistrationView.vue')
+    component: () => import(/* webpackChunkName: "registration" */ '../views/RegistrationView.vue')
   },
   {
     path: '/help-center',
@@ -148,7 +140,7 @@ const routes = [
           hasBreadcrumbs: true,
           breadcrumbsSlot: SearchInput,
         },
-        component: BlogRoot,
+        component: () => import(/* webpackChunkName: "blog" */ '@/components/Blog/BlogRoot.vue'),
       },
       {
         path: ':id',
@@ -157,10 +149,10 @@ const routes = [
           hasBreadcrumbs: true,
           isCustomBreadcrumbsTitle: true,
         },
-        component: BlogPost,
+        component: () => import(/* webpackChunkName: "blog" */ '@/components/Blog/BlogPost.vue'),
       }
     ],
-    component: () => import(/* webpackChunkName: "landing" */ '../views/BlogView.vue')
+    component: () => import(/* webpackChunkName: "blog" */ '../views/BlogView.vue')
   },
   {
     path: '/:pathMatch(.*)*',
@@ -172,7 +164,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior() {
+    return { top: 0 }
+  },
 })
 
 router.beforeEach((to, from) => {

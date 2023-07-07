@@ -4,7 +4,10 @@
       <match-card v-bind:key="`match_${ openedMatchCard.match.match_id }`" :match="openedMatchCard" is-selected @click="toggleMatchCard()" />
     </template>
     <template v-else>
-      <match-card v-for="(match, idx) in matches" v-bind:key="`match_${ match.match.match_id }`" :match="match" :is-selected="isScrollingInProcess && idx == lastOpenedMatchCardId" @click="!isScrollingInProcess && toggleMatchCard(idx)" />
+      <match-card v-for="(match, idx) in matches" v-bind:key="`match_${ idx }`" :match="match" :is-selected="isScrollingInProcess && idx == lastOpenedMatchCardId" @click="!isScrollingInProcess && toggleMatchCard(idx)" />
+      <template v-if="isLoading">
+        <match-card-skeleton v-for="(match, idx) in (new Array(hasMatches ? 1 : 8))" v-bind:key="`match-skeleton_${ idx }`" />
+      </template>
     </template>
   </div>
   <div class="match-stats" v-if="isMatchCardInfoOpened">
@@ -26,6 +29,7 @@
 
 <script>
 import MatchCard from './MatchCard.vue';
+import MatchCardSkeleton from './MatchCardSkeleton.vue';
 import StatsBar from './StatsBar.vue';
 
 export default {
@@ -34,6 +38,7 @@ export default {
   components: {
     MatchCard,
     StatsBar,
+    MatchCardSkeleton,
   },
   props: {
     matches: {
@@ -42,10 +47,10 @@ export default {
         return [];
       },
     },
+    isLoading: Boolean,
   },
   data() {
     return {
-      openedMatchCard: null,
       lastOpenedMatchCardId: null,
 
       tabs: ['Stats', 'Odds'],
@@ -55,15 +60,21 @@ export default {
       isScrollingInProcess: false,
     };
   },
-  methods: {
-    propagateChangeScroll() {
-
+  computed: {
+    hasMatches() {
+      return this.matches.length > 0;
     },
+    openedMatchCard() {
+      return this.$store.getters.getSelectedMatch;
+    },
+  },
+  methods: {
     changeStatsVisibility() {
       this.isMatchCardInfoOpened = !this.isMatchCardInfoOpened;
     },
     toggleMatchCard(cardId) {
-      this.openedMatchCard = this.isMatchCardInfoOpened ? null : this.matches[cardId];
+      const openedMatchCard = this.isMatchCardInfoOpened ? null : this.matches[cardId];
+      this.$store.commit('setSelectedMatch', openedMatchCard);
 
       if (cardId !== undefined) {
         this.lastOpenedMatchCardId = cardId;
@@ -73,6 +84,7 @@ export default {
 
         let checkInterval = setInterval(()=> {
           const newScrolling = this.$refs.matches.children[cardId].getBoundingClientRect().top;
+
           if (previousScrolling === newScrolling) {
             this.changeStatsVisibility(cardId);
             this.isScrollingInProcess = false;

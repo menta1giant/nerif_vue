@@ -23,7 +23,7 @@
     text-overflow: ellipsis;
 
     &--predicted {
-      background: linear-gradient(90deg, rgba($accent-500, 0) 0%, rgba($accent-500, .8) 30%, rgba($accent-500, .8) 70%, rgba($accent-500, 0) 100%);
+      background: linear-gradient(90deg, rgba($accent-300, 0) 0%, rgba($accent-300, .5) 30%, rgba($accent-300, .5) 70%, rgba($accent-300, 0) 100%);
     }
   }
 
