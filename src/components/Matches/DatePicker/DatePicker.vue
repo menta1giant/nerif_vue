@@ -40,16 +40,15 @@ export default {
   mixins: [
     DatePickerMixin,
   ],
-  props: {
-    msg: String,
-  },
   data() {
     return {
       isDropdownVisible: false,
-      currentDate: new Date(),
     };
   },
   computed: {
+    currentDate() {
+      return this.$store.getters.getMatchesSelectedDate;
+    },
     daysAfterSelectedCount() {
       return Math.min(Math.floor(((new Date()) - this.currentDate) / millisecondsInADay), 3);
     },
@@ -70,7 +69,7 @@ export default {
   },
   methods: {
     changeDate(date) {
-      this.currentDate = date;
+      this.$store.commit('setMatchesSelectedDate', date);
     },
     changeToAdjacentDate(delta) {
       const newDate = new Date(this.year, this.month, this.date + delta);

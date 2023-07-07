@@ -8,6 +8,7 @@ export default createStore({
         daysLeft: 12,
       }
     },
+    matchesSelectedDate: new Date(),
     breadcrumbsTitle: '',
   },
   getters: {
@@ -17,10 +18,16 @@ export default createStore({
     getBreadcrumbsTitle (state) {
       return state.breadcrumbsTitle;
     },
+    getMatchesSelectedDate (state) {
+      return state.matchesSelectedDate;
+    },
   },
   mutations: {
     setBreadcrumbsTitle (state, newTitle) {
       state.breadcrumbsTitle = newTitle;
+    },
+    setMatchesSelectedDate (state, newDate) {
+      state.matchesSelectedDate = newDate;
     },
   },
   actions: {

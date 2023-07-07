@@ -2,7 +2,9 @@
   <sections-navigation v-model="selectedSection" :sections="sections" />
   <v-section responsive padded>
     <div class="profile-wrapper">
-      <component :is="profileSections[selectedSection]" />
+      <keep-alive>
+        <component :is="profileSections[selectedSection]" />
+      </keep-alive>
     </div>
   </v-section>
 </template>
