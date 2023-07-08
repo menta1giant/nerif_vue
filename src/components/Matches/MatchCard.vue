@@ -50,22 +50,25 @@ export default {
     isSelected: Boolean,
   },
   computed: {
+    favoriteRuleset() {
+      return this.match.scores.favorite.ruleset;
+    },
+    opponentRuleset() {
+      return this.match.scores.opponent.ruleset;
+    },
     scaledValue() {
-      const favoriteRuleset = this.match.scores.favorite.ruleset;
-      const opponentRuleset = this.match.scores.opponent.ruleset;
+      const favoriteSuccess = this.favoriteRuleset ? (this.match.scores.favorite.score - this.favoriteRuleset.minimum) / (this.favoriteRuleset.maximum - this.favoriteRuleset.minimum) : 0;
+      const opponentSuccess = this.opponentRuleset ? (this.match.scores.opponent.score - this.opponentRuleset.minimum) / (this.opponentRuleset.maximum - this.opponentRuleset.minimum) : 0;
 
-      return ((this.match.scores.favorite.score - favoriteRuleset.minimum) / (favoriteRuleset.maximum - favoriteRuleset.minimum) + 
-        (this.match.scores.opponent.score - opponentRuleset.minimum) / (opponentRuleset.maximum - opponentRuleset.minimum)) / 2 * 100;
+      const average = (favoriteSuccess && opponentSuccess) ? (favoriteSuccess + opponentSuccess) / 2 : favoriteSuccess || opponentSuccess;
+
+      return average * 100;
     },
     leftThreshold() {
-      const favoriteRuleset = this.match.scores.favorite.ruleset;
-
-      return (favoriteRuleset.threshold - favoriteRuleset.minimum) / (favoriteRuleset.maximum - favoriteRuleset.minimum) * 100;
+      return (this.favoriteRuleset.threshold - this.favoriteRuleset.minimum) / (this.favoriteRuleset.maximum - this.favoriteRuleset.minimum) * 100;
     },
     rightThreshold() {
-      const opponentRuleset = this.match.scores.opponent.ruleset;
-
-      return (opponentRuleset.threshold - opponentRuleset.minimum) / (opponentRuleset.maximum - opponentRuleset.minimum) * 100;
+      return (this.opponentRuleset.threshold - this.opponentRuleset.minimum) / (this.opponentRuleset.maximum - this.opponentRuleset.minimum) * 100;
     },
     scaleStyles() {
       return {
@@ -73,13 +76,13 @@ export default {
       };
     },
     scaleDividerStyles() {
-      const favStyles = this.match.match.team_favorite.score !== null ? {
+      const favStyles = this.match.scores.favorite.score && this.favoriteRuleset ? {
         'left': `${ this.leftThreshold }%`,
       } : {
         'display': 'none',
       };
 
-      const oppStyles = this.match.match.team_opponent.score !== null ? {
+      const oppStyles = this.match.scores.opponent.score && this.opponentRuleset ? {
         'left': `${ this.rightThreshold }%`,
       } : {
         'display': 'none',

@@ -12,12 +12,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "landing" */ '../views/HomeView.vue')
   },
   {
-    path: '/matches',
+    path: '/matches/',
     name: 'Matches',
     meta: {
       isInMainNavigation: true,
       icon: "gamepad"
     },
+    children: [
+      {
+        path: ':date?',
+        name: '',
+        component: () => import(/* webpackChunkName: "matches" */ '../views/MatchesView.vue')
+      }
+    ],
     component: () => import(/* webpackChunkName: "matches" */ '../views/MatchesView.vue')
   },
   {

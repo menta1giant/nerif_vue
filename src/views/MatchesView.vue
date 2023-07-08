@@ -1,5 +1,5 @@
 <template>
-  <matches-root />
+  <matches-root :initial-date="Date.parse($route.params.date)" />
 </template>
 
 <script>

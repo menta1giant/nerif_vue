@@ -56,6 +56,7 @@ import axios from 'axios';
 
 import MatchesList from './MatchesList.vue';
 import DatePicker from './DatePicker/DatePicker.vue';
+import DatePickerMixin from './DatePicker/DatePickerMixin';
 import TelegramFeedPost from './Feed/TelegramFeedPost.vue';
 import MatchesFilters from './Filters/MatchesFilters.vue';
 import MobileToolbar from './MobileToolbar.vue';
@@ -73,7 +74,12 @@ export default {
     HelpIcon,
     MobileToolbar,
   },
+  mixins: [DatePickerMixin],
+  props: {
+    initialDate: [String, Number],
+  },
   async created() {
+    if (this.initialDate) this.$store.commit('setMatchesSelectedDate', new Date(this.initialDate));
     this.setUpIntersectionObserver();
     await this.loadMatches();
   },
@@ -85,7 +91,7 @@ export default {
 
       matchesRequestParams: {
         offset: 0,
-        limit: 20,
+        limit: MATCHES_REQUEST_LIMIT,
       },
 
       isLimitOfMatchesReached: false,
@@ -103,6 +109,26 @@ export default {
     currentDate() {
       return this.$store.getters.getMatchesSelectedDate;
     },
+    formattedDate() {
+      return `${this.year}-${this.month+1}-${this.date}`;
+    },
+    queryParams() {
+      return {
+        'limit': this.matchesRequestParams.limit,
+        'offset': this.matchesRequestParams.offset,
+        'date': this.formattedDate,
+      }
+    }
+  },
+  watch: {
+    currentDate: {
+      handler() {
+        this.$router.push(`${this.formattedDate}`);
+        this.matchesRequestParams.offset = 0;
+        this.matches = [];
+        this.loadMatches();
+      }
+    }
   },
   methods: {
     async loadMatches() {
@@ -110,15 +136,14 @@ export default {
 
       this.areMatchesLoading = true;
 
-      const queryParams = {
-        'limit': requestParams.limit,
-        'offset': requestParams.offset,
-      };
+      const searchParams = new URLSearchParams(this.queryParams);
 
-      const searchParams = new URLSearchParams(queryParams);
-
-      const matches = await axios.get(`http://5.228.130.64:8002/api/matches/predicted_maps?${ searchParams }`);
-      this.matches = this.matches.concat(matches.data.data);
+      const matches = await (() => {
+        return new Promise(function(res) {
+          const data = axios.get(`http://5.228.130.64:8002/api/matches/predicted_maps?${ searchParams }`).then(setTimeout(()=>res(data), 1000));
+        })
+       })()
+       this.matches = this.matches.concat(matches.data.data);
 
       const target = document.querySelector(".match-card-dummy");
       if (target instanceof HTMLElement) this.invokeObserver(target);

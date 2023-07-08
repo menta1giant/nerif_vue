@@ -3,7 +3,7 @@
     <div class="team-block__name"><span :class="{ 'team-block__name--predicted': isPredicted }">{{ teamInfo.name.toUpperCase() }}</span></div>
     <div class="team-block__properties">
       <div class="team-block__coeff">
-        <div>{{ teamInfo.odds }}</div>
+        <div>{{ teamInfo.odds.toFixed(2) }}</div>
       </div>
       <div class="team-block__meta">
         <div v-if="isOddsChangeSignificant" class="team-block__meta__item team-block__meta__item--odds" :class="{ 'team-block__meta__item--odds-fall': isLeft ? oddsChange < 0 : oddsChange > 0 }">
