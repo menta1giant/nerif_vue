@@ -46,7 +46,7 @@ export default {
     window.addEventListener('click',this.handleOutsideClick);
     this.$refs.dropdown.addEventListener('click',this.stopClickPropagation);
     this.bindScrollEvent();
-    document.querySelector('body').appendChild(this.$refs.dropdown);
+    document.querySelector('#positioners-container').appendChild(this.$refs.dropdown);
     this.setDropdownCoordinates();
   },
   beforeUnmount() {

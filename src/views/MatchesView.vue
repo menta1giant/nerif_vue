@@ -1,5 +1,5 @@
 <template>
-  <matches-root :initial-date="Date.parse($route.params.date)" />
+  <matches-root />
 </template>
 
 <script>
@@ -10,5 +10,15 @@ export default {
   components: {
     MatchesRoot,
   },
+  created() {
+    if (this.initialDate) {
+      this.$store.commit('setMatchesSelectedDate', new Date(this.initialDate));
+    }
+  },
+  computed: {
+    initialDate() {
+      return Date.parse(this.$route.params.date);
+    }
+  }
 }
 </script>

@@ -75,11 +75,8 @@ export default {
     MobileToolbar,
   },
   mixins: [DatePickerMixin],
-  props: {
-    initialDate: [String, Number],
-  },
   async created() {
-    if (this.initialDate) this.$store.commit('setMatchesSelectedDate', new Date(this.initialDate));
+    this.$router.replace(`/matches/${this.formattedDate}`);
     this.setUpIntersectionObserver();
     await this.loadMatches();
   },
@@ -94,12 +91,12 @@ export default {
         limit: MATCHES_REQUEST_LIMIT,
       },
 
-      isLimitOfMatchesReached: false,
-
       isMatchesTabOpened: true,
       isFiltersDropdownVisible: false,
       isModalShown: false,
+      isLimitOfMatchesReached: false,
       areMatchesLoading: false,
+      isThrottlingMatchesLoad: false,
     }
   },
   computed: {
@@ -123,43 +120,61 @@ export default {
   watch: {
     currentDate: {
       handler() {
-        this.$router.push(`${this.formattedDate}`);
-        this.matchesRequestParams.offset = 0;
-        this.matches = [];
-        this.loadMatches();
+        this.$router.replace(`/matches/${this.formattedDate}`);
+
+        if (this.areMatchesLoading) {
+          this.isThrottlingMatchesLoad = true;
+          return;
+        }
+
+        this.replaceMatches();
       }
     }
   },
   methods: {
+    resetObserver() {
+      const target = document.querySelector(".match-card-dummy");
+      if (target instanceof HTMLElement) this.invokeObserver(target);
+    },
     async loadMatches() {
-      const requestParams = this.matchesRequestParams;
-
       this.areMatchesLoading = true;
 
       const searchParams = new URLSearchParams(this.queryParams);
+      const formattedDate = this.formattedDate;
 
       const matches = await (() => {
         return new Promise(function(res) {
           const data = axios.get(`http://5.228.130.64:8002/api/matches/predicted_maps?${ searchParams }`).then(setTimeout(()=>res(data), 1000));
         })
-       })()
-       this.matches = this.matches.concat(matches.data.data);
+      })()
 
-      const target = document.querySelector(".match-card-dummy");
-      if (target instanceof HTMLElement) this.invokeObserver(target);
-
-      requestParams.offset = requestParams.limit + requestParams.offset;
-      requestParams.limit = MATCHES_REQUEST_LIMIT;
       this.isLimitOfMatchesReached = matches.data.is_enough;
+      this.matchesRequestParams.offset = this.matchesRequestParams.limit + this.matchesRequestParams.offset;
+
+      this.matches = formattedDate === this.$route.params.date ? this.matches.concat(matches.data.data) : matches.data.data;
+
+      this.resetObserver();
+
+      if (this.isThrottlingMatchesLoad) {
+        this.isThrottlingMatchesLoad = false;
+        this.replaceMatches();
+        return;
+      }
 
       this.areMatchesLoading = false;
+    },
+    async replaceMatches() {
+      this.matchesRequestParams.offset = 0;
+      this.matches = [];
+
+      await this.loadMatches();
     },
     loadAnotherBatchOfMatches(entries) {
       if (this.areMatchesLoading || this.isLimitOfMatchesReached || this.hasSelectedMatch) return;
 
-      if (entries[0].isIntersecting) {
-        this.loadMatches();
-      }
+      if (!entries[0].isIntersecting) return;
+
+      this.loadMatches();
     },
     setUpIntersectionObserver() {
       let options = {

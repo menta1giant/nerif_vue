@@ -1,11 +1,11 @@
 <template>
   <div class="v-tooltip" @mouseenter="isShown=true" @mouseleave="isShown=false">
-    <v-positioner v-model="isShown" position="center">
+    <v-positioner v-model="isShown" position="center" :force-top="top">
       <template #body>
         <slot name="trigger"></slot>
       </template>
       <template #dropdown>
-        <div class="v-tooltip__content" :style="{ maxWidth: `${ width }px` }"><slot name="content"></slot></div>
+        <div class="v-tooltip__content" :class="{ 'v-tooltip__content--top': top }" :style="{ maxWidth: `${ width }px` }"><slot name="content"></slot></div>
       </template>
     </v-positioner>
   </div>
@@ -19,6 +19,7 @@ export default {
       type: Number,
       default: 250,
     },
+    top: Boolean,
   },
   data() {
     return {
@@ -29,28 +30,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-tooltip__content {
-  position: relative;
-  background: $primary-ds-800;
-  border-radius: $border-radius-small;
-  padding: .5rem .75rem;
+.v-tooltip {
+  &__content {
+    position: relative;
+    background: $primary-ds-800;
+    border-radius: $border-radius-small;
+    padding: .5rem .75rem;
 
-  color: $black-10;
-  font-weight: $fw-regular;
-  font-size: $fs-xxs;
-  line-height: $lh-small;
+    color: $black-10;
+    font-weight: $fw-regular;
+    font-size: $fs-xxs;
+    line-height: $lh-small;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: calc(50% - 2px);
+      top: -2px;
+      transform: rotate(45deg);
+
+      width: 4px;
+      height: 4px;
+      background: $primary-ds-800;
+    }
+
+    &--top::after {
+      top: unset !important;
+      bottom: -2px;
+      transform: rotate(45deg);
+    }
+  }
 }
-
-.v-tooltip__content::after {
-  content: '';
-  position: absolute;
-  left: calc(50% - 2px);
-  top: -2px;
-  transform: rotate(45deg);
-
-  width: 4px;
-  height: 4px;
-  background: $primary-ds-800;
-}
-
 </style>

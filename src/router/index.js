@@ -3,12 +3,19 @@ import SearchInput from '@/components/SearchInput';
 
 const routes = [
   {
-    path: '/',
+    path: '/home/',
     name: 'Home',
     meta: {
       isInMainNavigation: true,
       icon: "home"
     },
+    children: [
+      {
+        path: '/',
+        name: '',
+        component: () => import(/* webpackChunkName: "landing" */ '../views/HomeView.vue')
+      }
+    ],
     component: () => import(/* webpackChunkName: "landing" */ '../views/HomeView.vue')
   },
   {
@@ -78,8 +85,7 @@ const routes = [
     },
     children: [
       {
-        path: '',
-        alias: 'personal',
+        path: 'personal',
         name: 'Personal info',
         meta: {
           hasBreadcrumbs: true,
@@ -119,6 +125,9 @@ const routes = [
         component: () => import(/* webpackChunkName: "profile" */ '@/components/Profile/Forms/NotificationsForm.vue'),
       },
     ],
+    redirect: () => {
+      return '/profile/personal'
+    },
     component: () => import(/* webpackChunkName: "profile" */ '../views/ProfileView.vue')
   },
   {

@@ -103,5 +103,12 @@
     &--opp {
       background: $accent-900;
     }
+
+    &__tooltip-trigger {
+      margin-left: -5px;
+      width: 10px;
+      height: 10px;
+      opacity: 0;
+    }
   }
 }

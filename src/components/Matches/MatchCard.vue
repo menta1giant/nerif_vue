@@ -30,8 +30,18 @@
         />
     </div>
     <div class="match-card__scale" :style="scaleStyles">
-      <div class="match-card__scale-divider match-card__scale-divider--fav" :style="scaleDividerStyles[0]"></div>
-      <div class="match-card__scale-divider match-card__scale-divider--opp" :style="scaleDividerStyles[1]"></div>
+      <div class="match-card__scale-divider match-card__scale-divider--fav" :style="scaleDividerStyles[0]">
+        <v-tooltip top>
+          <template #trigger><div class="match-card__scale-divider__tooltip-trigger">&nbsp;</div></template>
+          <template #content>{{ match.scores.favorite.score.toFixed(2) }}</template>
+        </v-tooltip>
+      </div>
+      <div class="match-card__scale-divider match-card__scale-divider--opp" :style="scaleDividerStyles[1]">
+        <v-tooltip top>
+          <template #trigger><div class="match-card__scale-divider__tooltip-trigger">&nbsp;</div></template>
+          <template #content>{{ match.scores.opponent.score.toFixed(2) }}</template>
+        </v-tooltip>
+      </div>
     </div>
   </div>
 </template>

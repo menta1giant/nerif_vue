@@ -21,6 +21,9 @@ export default {
     SectionsNavigation,
     FormBlock,
   },
+  beforeRouteUpdate(to) {
+    this.selectedSection = this.profileSections.findIndex(section => to.path.includes(section));
+  },
   data() {
     return {
       sections: ['Personal info', 'Payment info', 'Password and security', 'Localization', 'Notifications'],
