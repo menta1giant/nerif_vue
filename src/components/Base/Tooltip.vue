@@ -1,6 +1,6 @@
 <template>
   <div class="v-tooltip" @mouseenter="isHovered=true" @mouseleave="isHovered=false">
-    <v-positioner :model-value="isHovered || isTriggerFocused" position="center" :horizontal-margin="4" :force-top="top">
+    <v-positioner :model-value="isHovered || isTriggerFocused" position="center" :force-top="top">
       <template #body>
         <slot name="trigger"></slot>
       </template>
