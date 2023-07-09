@@ -6,7 +6,7 @@
         <v-popup v-model="isFiltersDropdownVisible" :horizontal-margin="8">
           <template #trigger>
             <div class="toolbar__icon" :class="{ active: isFiltersDropdownVisible }">
-              <v-icon-button name="filter" tooltip-content="Filters" :active="isFiltersDropdownVisible" />
+              <v-icon-button name="filter" tooltip-content="Filters" :disable-focus="isFiltersDropdownVisible" />
             </div>
           </template>
           <template #content>
