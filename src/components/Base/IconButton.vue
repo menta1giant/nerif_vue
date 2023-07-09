@@ -1,7 +1,7 @@
 <template>
-  <v-tooltip :is-trigger-focused="isTriggerFocused && !disable-focus">
+  <v-tooltip :is-trigger-focused="isTriggerFocused && !disableFocus">
     <template #trigger>
-      <button class="icon-button" :class="{ 'icon-button--active': active }" @focus="isTriggerFocused=true" @blur="isTriggerFocused=false"><v-icon :type="iconType" :name="name" /></button>
+      <button class="icon-button" :class="{ 'icon-button--active': disableFocus }" @focus="isTriggerFocused=true" @blur="isTriggerFocused=false"><v-icon :type="iconType" :name="name" /></button>
     </template>
     <template #content>
       <span v-html="tooltipContent"></span>
