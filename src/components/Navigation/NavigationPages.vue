@@ -27,7 +27,6 @@ export default {
   },
   computed: {
     linksToPages() {
-      console.log(this.$router.getRoutes());
       return this.routes.filter(route => route.meta.isInMainNavigation);
     },
   },

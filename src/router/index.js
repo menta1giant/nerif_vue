@@ -187,7 +187,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-  console.log(from);
+  console.log({ from, to });
 })
 
 export default router

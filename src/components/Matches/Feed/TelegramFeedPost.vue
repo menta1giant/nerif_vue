@@ -3,8 +3,8 @@
     <div class="tf-post__header">
       <span class="tf-post__capper-name">{{ capperName }}</span>
       <div class="tf-post__icons">
-          <v-icon type="brands" name="telegram" @click="$emit('show-modal')"/>
-          <v-icon type="solid" name="ellipsis"/>
+          <v-icon-button name="telegram" tooltip-content="View source" brands disable-focus @click="$emit('show-modal')"/>
+          <v-icon-button name="ellipsis" tooltip-content="Details" />
       </div>
     </div>
     <p class="tf-post__body">

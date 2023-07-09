@@ -20,6 +20,7 @@ import Input from '@/components/Base/Input';
 import Select from '@/components/Base/Select/Select';
 import Textarea from '@/components/Base/Textarea';
 import RadioButton from '@/components/Base/RadioButton';
+import IconButton from '@/components/Base/IconButton';
 
 createApp(App).use(store).use(router)
 .component("v-switcher-field", SwitcherField)
@@ -38,4 +39,5 @@ createApp(App).use(store).use(router)
 .component("v-input", Input)
 .component("v-textarea", Textarea)
 .component("v-radio-button", RadioButton)
+.component("v-icon-button", IconButton)
 .mount('#app')

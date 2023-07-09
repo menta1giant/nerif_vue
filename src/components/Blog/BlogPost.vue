@@ -8,14 +8,7 @@
         </div>
         <div class="blog-post__title">
           <h2>{{ title }}</h2>
-          <v-tooltip>
-            <template #trigger>
-              <v-icon name="bookmark"/>
-            </template>
-            <template #content>
-              Save post
-            </template>
-          </v-tooltip>
+          <v-icon-button name="bookmark" tooltip-content="Save post" />
         </div>
         <div class="blog-post__meta-info"><span>by <b>{{ author }}</b></span><span>2024-20-05</span></div>
       </div>
@@ -30,7 +23,6 @@
 export default {
   name: 'BlogPost',
   beforeRouteEnter(to, from, next) {
-    console.log(to);
     next(vm => vm.$store.commit('setBreadcrumbsTitle', `Blog post #${ to.params.id }`));
   },
   props: {
@@ -67,7 +59,7 @@ export default {
     justify-content: space-between;
     align-items: center;
 
-    .v-icon {
+    &:deep(.v-icon) {
       font-size: $fs-h4;
     }
   }

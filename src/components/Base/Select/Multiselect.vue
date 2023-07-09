@@ -1,6 +1,6 @@
 <template>
   <div class="v-multiselect">
-    <v-positioner v-model="isDropdownVisible">
+    <v-positioner v-model="isDropdownVisible" triggers-on-click>
       <template v-slot:body>
         <select-body :is-dropdown-visible="isDropdownVisible" :has-error="hasError">
           <div class="v-multiselect__selected-options">

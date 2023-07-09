@@ -1,6 +1,6 @@
 <template>
-  <div class="v-tooltip" @mouseenter="isShown=true" @mouseleave="isShown=false">
-    <v-positioner v-model="isShown" position="center" :force-top="top">
+  <div class="v-tooltip" @mouseenter="isHovered=true" @mouseleave="isHovered=false">
+    <v-positioner :model-value="isHovered || isTriggerFocused" position="center" :horizontal-margin="4" :force-top="top">
       <template #body>
         <slot name="trigger"></slot>
       </template>
@@ -20,12 +20,13 @@ export default {
       default: 250,
     },
     top: Boolean,
+    isTriggerFocused: Boolean,
   },
   data() {
     return {
-      isShown: false,
+      isHovered: false,
     }
-  }
+  },
 }
 </script>
 
@@ -34,6 +35,7 @@ export default {
   &__content {
     position: relative;
     background: $primary-ds-800;
+    outline: 1px solid $black-10;
     border-radius: $border-radius-small;
     padding: .5rem .75rem;
 

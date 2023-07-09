@@ -25,6 +25,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: .5rem;
+
+    &:deep(.v-icon) {
+      font-size: $fs-medium;
+    }
   }
 
   &__cappers-select__label {

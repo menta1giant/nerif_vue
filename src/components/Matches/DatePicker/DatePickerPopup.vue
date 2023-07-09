@@ -1,51 +1,49 @@
 <template>
-  <v-popup>
-    <div class="date-picker-popup">
-      <div class="date-picker-popup__header">
-        <div class="date-picker-popup__change-month" @click="previousMonth">
-          <v-icon type="solid" name="arrow-left"/>
-        </div>
-        <span>{{ `${ monthName } ${ year }` }}</span>
-        <div 
-          class="date-picker-popup__change-month" 
-          :class="{ 'date-picker-popup__change-month--disabled': isThisMonthCurrentMonth }" 
-          @click="!isThisMonthCurrentMonth && nextMonth()"
-        >
-          <v-icon type="solid" name="arrow-right"/>
-        </div>
+  <div class="date-picker-popup">
+    <div class="date-picker-popup__header">
+      <div class="date-picker-popup__change-month" @click="previousMonth">
+        <v-icon type="solid" name="arrow-left"/>
       </div>
-      <div class="date-picker-popup__body">
-        <table class="date-picker-popup__days">
-          <thead>
-            <tr>
-              <th v-for="day in weekDays" :key="day">{{ day }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(week, index) in weeks" :key="index">
-              <td
-                v-for="date in week"
-                :key="date.day"
-              >
-                <div
-                  class="date-picker-popup__day"
-                  :class="{
-                    'date-picker-popup__day--other-month': !date.inMonth,
-                    'date-picker-popup__day--selected': date.selected,
-                    'date-picker-popup__day--today': date.today,
-                    'date-picker-popup__day--disabled': !date.day || date.disabled,
-                  }"
-                  @click="date.day && !date.disabled && selectDate(date.day)"
-                >
-                  {{ date.day }}
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <span>{{ `${ monthName } ${ year }` }}</span>
+      <div 
+        class="date-picker-popup__change-month" 
+        :class="{ 'date-picker-popup__change-month--disabled': isThisMonthCurrentMonth }" 
+        @click="!isThisMonthCurrentMonth && nextMonth()"
+      >
+        <v-icon type="solid" name="arrow-right"/>
       </div>
     </div>
-  </v-popup>
+    <div class="date-picker-popup__body">
+      <table class="date-picker-popup__days">
+        <thead>
+          <tr>
+            <th v-for="day in weekDays" v-bind:key="Math.random()">{{ day }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(week, index) in weeks" :key="index">
+            <td
+              v-for="date in week"
+              v-bind:key="Math.random()"
+            >
+              <div
+                class="date-picker-popup__day"
+                :class="{
+                  'date-picker-popup__day--other-month': !date.inMonth,
+                  'date-picker-popup__day--selected': date.selected,
+                  'date-picker-popup__day--today': date.today,
+                  'date-picker-popup__day--disabled': !date.day || date.disabled,
+                }"
+                @click="date.day && !date.disabled && selectDate(date.day)"
+              >
+                {{ date.day }}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>

@@ -1,8 +1,8 @@
 <template>
-  <div class="date-picker-item" :class="{ 'date-picker-item--active': isActive }">
+  <button class="date-picker-item" :class="{ 'date-picker-item--active': isActive }">
     <span class="date-picker-item__day">{{ day }}</span>
     <span class="date-picker-item__weekday">{{ displayedWeekday }}</span>
-  </div>
+  </button>
 </template>
   
 <script>

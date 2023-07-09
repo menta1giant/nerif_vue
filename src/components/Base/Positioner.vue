@@ -41,10 +41,14 @@ export default {
         return false;
       },
     },
+    triggersOnClick: Boolean,
   },
   mounted() {
-    window.addEventListener('click',this.handleOutsideClick);
-    this.$refs.dropdown.addEventListener('click',this.stopClickPropagation);
+    if (this.triggersOnClick) {
+      window.addEventListener('click',this.handleOutsideClick);
+      this.$refs.dropdown.addEventListener('click',this.stopClickPropagation);
+    }
+    
     this.bindScrollEvent();
     document.querySelector('#positioners-container').appendChild(this.$refs.dropdown);
     this.setDropdownCoordinates();
@@ -148,6 +152,8 @@ export default {
       this.dropdownCoordinates = dropdownCoordinates;
     },
     handleClick(event) {
+      if (!this.triggersOnClick) return;
+      
       this.changeDropdownVisibilty(!this.modelValue);
       this.stopClickPropagation(event);
     },
@@ -161,7 +167,6 @@ export default {
     removeScrollEvent() {
       document.removeEventListener('scroll', this.handleScroll);
     },
-
     handleScroll() {
       this.setDropdownCoordinates();
     },
@@ -181,7 +186,7 @@ export default {
 
   &__dropdown {
     position: fixed;
-    z-index: 10000;
+    z-index: 9000;
     box-shadow: 0 4px 8px 0 rgba($primary-ds-900, .15);
     visibility: hidden;
 

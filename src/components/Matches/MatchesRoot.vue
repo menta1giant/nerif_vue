@@ -5,20 +5,18 @@
         <date-picker />
       </div>
       <div class="filters desktop">
-        <v-positioner v-model="isFiltersDropdownVisible">
-          <template v-slot:body>
+        <v-popup v-model="isFiltersDropdownVisible">
+          <template #trigger>
             <div class="filters__toggle-button">
               <v-icon type="solid" name="filter"/>
               <span>Filters</span>
               <v-chevron :model-value="isFiltersDropdownVisible" />
             </div>
           </template>
-          <template v-slot:dropdown>
-            <v-popup>
-              <matches-filters />
-            </v-popup>
+          <template #content>
+            <matches-filters />
           </template>
-        </v-positioner>
+        </v-popup>
         <div class="filters__wrapper">
           <matches-filters />
         </div>
@@ -26,7 +24,7 @@
       <div class="feed">
         <div class="feed__title">
           <h3>Telegram Feed</h3>
-          <help-icon>Ten</help-icon>
+          <v-icon-button name="circle-question" tooltip-content="This section contains Telegram post from revered CS:GO cappers"/>
         </div>
         <div class="feed__cappers-select__label"><v-label><b>Select cappers.</b> Or else..</v-label></div>
         <div class="feed__cappers-select__wrapper">
@@ -53,6 +51,7 @@
 
 <script>
 import axios from 'axios';
+import debounce from '@/lib/debounce';
 
 import MatchesList from './MatchesList.vue';
 import DatePicker from './DatePicker/DatePicker.vue';
@@ -60,7 +59,6 @@ import DatePickerMixin from './DatePicker/DatePickerMixin';
 import TelegramFeedPost from './Feed/TelegramFeedPost.vue';
 import MatchesFilters from './Filters/MatchesFilters.vue';
 import MobileToolbar from './MobileToolbar.vue';
-import HelpIcon from '@/components/HelpIcon.vue';
 
 const MATCHES_REQUEST_LIMIT = 10;
 
@@ -71,7 +69,6 @@ export default {
     DatePicker,
     TelegramFeedPost,
     MatchesFilters,
-    HelpIcon,
     MobileToolbar,
   },
   mixins: [DatePickerMixin],
@@ -96,7 +93,6 @@ export default {
       isModalShown: false,
       isLimitOfMatchesReached: false,
       areMatchesLoading: false,
-      isThrottlingMatchesLoad: false,
     }
   },
   computed: {
@@ -121,11 +117,6 @@ export default {
     currentDate: {
       handler() {
         this.$router.replace(`/matches/${this.formattedDate}`);
-
-        if (this.areMatchesLoading) {
-          this.isThrottlingMatchesLoad = true;
-          return;
-        }
 
         this.replaceMatches();
       }
@@ -155,20 +146,14 @@ export default {
 
       this.resetObserver();
 
-      if (this.isThrottlingMatchesLoad) {
-        this.isThrottlingMatchesLoad = false;
-        this.replaceMatches();
-        return;
-      }
-
       this.areMatchesLoading = false;
     },
-    async replaceMatches() {
+    replaceMatches: debounce(async function() {
       this.matchesRequestParams.offset = 0;
       this.matches = [];
 
       await this.loadMatches();
-    },
+    }, 300),
     loadAnotherBatchOfMatches(entries) {
       if (this.areMatchesLoading || this.isLimitOfMatchesReached || this.hasSelectedMatch) return;
 

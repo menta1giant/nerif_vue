@@ -16,7 +16,6 @@ export default {
     title: String,
   },
   beforeRouteEnter(to, from, next) {
-    console.log(from);
     next(vm => vm.$store.commit('setBreadcrumbsTitle', `Article #${ to.params.id }`));
   },
 }

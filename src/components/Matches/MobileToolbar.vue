@@ -3,25 +3,23 @@
     <div class="toolbar__items">
       <div class="toolbar__controls">
         <date-picker />
-        <v-positioner v-model="isFiltersDropdownVisible">
-          <template v-slot:body>
+        <v-popup v-model="isFiltersDropdownVisible" :horizontal-margin="8">
+          <template #trigger>
             <div class="toolbar__icon" :class="{ active: isFiltersDropdownVisible }">
-              <v-icon type="solid" name="filter" />
+              <v-icon-button name="filter" tooltip-content="Filters" :active="isFiltersDropdownVisible" />
             </div>
           </template>
-          <template v-slot:dropdown>
-            <v-popup>
-              <matches-filters />
-            </v-popup>
+          <template #content>
+            <matches-filters />
           </template>
-        </v-positioner>
+        </v-popup>
       </div>
       <div class="toolbar__navigation">
         <div class="toolbar__icon" :class="{ active: isMatchesTabOpened }" @click="toggleOpenedTab(true)">
-          <v-icon type="solid" name="gamepad" />
+          <v-icon-button name="gamepad" tooltip-content="Matches" />
         </div>
         <div class="toolbar__icon" :class="{ active: !isMatchesTabOpened }" @click="toggleOpenedTab(false)">
-          <v-icon type="solid" name="square-rss" />
+          <v-icon-button name="square-rss" tooltip-content="Telegram feed" />
         </div>
       </div>
     </div>

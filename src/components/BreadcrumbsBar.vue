@@ -27,7 +27,6 @@ export default {
       return this.$route.matched.slice(0,-1).map(({ name, path }) => ({ name, path })).filter(route => route.path !== this.$route.path);
     },
     routeName() {
-      console.log(this.$route);
       if (this.$route.name === 'root') {
         return null;
       }

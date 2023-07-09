@@ -15,8 +15,8 @@
               <span class="user-plan-info__title">{{ `${ userInfo.subscription.plan } plan` }}</span>
               <span class="user-plan-info__days-left">{{ `${ userInfo.subscription.daysLeft || 0 } days left` }}</span>
             </div>
-            <v-positioner v-model="isNotificationsTabOpened" position="center" :horizontal-margin="28">
-              <template v-slot:body>
+            <v-popup v-model="isNotificationsTabOpened">
+              <template #trigger>
                 <div class="navbar-square-button notifications-button" :class="{ 'notifications-button--active': hasNotifications }">
                   <div v-if="hasNotifications" class="notifications-count">
                     {{ notificationsCount }}
@@ -24,22 +24,21 @@
                   <v-icon type="solid" name="bell" />
                 </div>
               </template>
-              <template v-slot:dropdown>
+              <template #content>
                 <notifications-popup />
               </template>
-            </v-positioner>
+            </v-popup>
 
-            <v-positioner v-model="isProfilePopupOpened" position="center" :horizontal-margin="28">
-              <template v-slot:body>
+            <v-popup v-model="isProfilePopupOpened">
+              <template #trigger>
                 <div class="navbar-square-button profile-button">
                   <img src="@/assets/images/maria.png" />
                 </div>
               </template>
-              <template v-slot:dropdown>
+              <template #content>
                 <profile-popup />
               </template>
-            </v-positioner>
-
+            </v-popup>
           </template>
           <template v-else>
             <span><b>Sign in.</b></span>

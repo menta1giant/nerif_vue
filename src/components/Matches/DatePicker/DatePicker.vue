@@ -10,17 +10,17 @@
       @click="day !== date.getDay() && changeDate(date)"
     />
     <div class="date-picker__date-increase" :class="{ disabled: isCurrentDateToday }" @click="!isCurrentDateToday && changeToAdjacentDate(1)"><v-icon type="solid" name="arrow-right" /></div>
-    <v-positioner v-model="isDropdownVisible" position="left">
-      <template v-slot:body>
+    <v-popup v-model="isDropdownVisible" :horizontal-margin="8" left>
+      <template #trigger>
         <div class="date-picker__calendar-toggle" :class="{ active: isDropdownVisible }">
-          <v-icon type="solid" name="calendar-days" />
+          <v-icon-button name="calendar-days" tooltip-content="Calendar" :disable-focus="isDropdownVisible" />
         </div>
       </template>
-      <template v-slot:dropdown>
+      <template #content>
         <date-picker-popup v-model="isDropdownVisible" :selected-date="currentDate" @change-date="changeDate"/>
       </template>
       
-    </v-positioner>
+    </v-popup>
   </div>
 </template>
 
