@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      activeStep: 2,
+      activeStep: 0,
       steps: [
         markRaw(InitialStep),
         markRaw(PaymentStep),

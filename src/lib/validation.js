@@ -47,7 +47,7 @@ export function validateFields(formData, validationRules = {}) {
       continue;
     }
 
-    checkValidationRule(validationRules[key], formData, key);
+    checkValidationRule(validationRules[key], key);
   }
 
   return errorMessages;
