@@ -230,7 +230,7 @@
             <h5>RESOURCES</h5>
             <ul>
               <router-link to='/documentation'><li>Documentation</li></router-link>
-              <li>Terms of use</li>
+              <router-link to='/terms-of-use'><li>Terms of use</li></router-link>
               <router-link to='/legal'><li>Legal</li></router-link>
             </ul>
           </div>

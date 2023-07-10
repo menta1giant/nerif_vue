@@ -99,8 +99,9 @@ export default {
     destroyContent() {
       if (!this.hasRefs()) return;
       setTimeout(()=>{
-        this.$refs.dropdown.remove();
+        this.$refs.dropdown?.remove();
         this.resetDropdownCoordinates();
+        this.removeScrollEvent();
       }, 300);
     },
     resetDropdownCoordinates() {
@@ -190,7 +191,8 @@ export default {
       window.addEventListener('resize', this.handleScroll);
     },
     removeScrollEvent() {
-      document.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('resize', this.handleScroll);
     },
     handleScroll() {
       if (!this.modelValue) return;

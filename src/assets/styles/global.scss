@@ -105,6 +105,16 @@ img {
   flex-direction: row;
 }
 
+.centered-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: min-content;
+  align-self: center;
+
+  padding: 0 1rem;
+}
+
 .mobile:not(.desktop) {
   display: none;
 }

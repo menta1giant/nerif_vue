@@ -2,8 +2,8 @@
   <div class="form-field">
     <div v-if="isFormFieldInline" class="form-field--inline">
       <v-radio-button v-if="isInputTypeRadio" :name="name" fluid />
-      <v-switcher v-if="isInputTypeSwitcher" :value="value" fluid />
-      <v-label v-if="label">{{ label }}</v-label>
+      <v-switcher v-if="isInputTypeSwitcher" :value="value" fluid @change="$emit('input')"/>
+      <v-label v-if="label" @click="$emit('input')">{{ label }}</v-label>
     </div>
     <template v-else>
       <v-label v-if="label">{{ label }}</v-label>

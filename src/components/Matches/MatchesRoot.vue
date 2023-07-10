@@ -88,6 +88,16 @@ export default {
         limit: MATCHES_REQUEST_LIMIT,
       },
 
+      filters: {
+        fav_pick: 1,
+        opp_pick: 1,
+        fav_won_first: 1,
+        opp_won_first: 1,
+        map1: 1,
+        map2: 1,
+        map3: 1,
+      },
+
       isMatchesTabOpened: true,
       isFiltersDropdownVisible: false,
       isModalShown: false,
@@ -105,12 +115,14 @@ export default {
     formattedDate() {
       return `${this.year}-${this.month+1}-${this.date}`;
     },
+    matchesFilters() {
+      return Object.fromEntries(this.$store.getters.getMatchesFilters.filter(filter => filter.value).map(filter => [filter.id, 1]));
+    },
     queryParams() {
-      return {
-        'limit': this.matchesRequestParams.limit,
-        'offset': this.matchesRequestParams.offset,
+      console.log(this.matchesFilters);
+      return Object.assign({}, this.matchesRequestParams, this.matchesFilters, {
         'date': this.formattedDate,
-      }
+      })
     }
   },
   watch: {
@@ -118,6 +130,11 @@ export default {
       handler() {
         this.$router.replace(`/matches/${this.formattedDate}`);
 
+        this.replaceMatches();
+      }
+    },
+    matchesFilters: {
+      handler() {
         this.replaceMatches();
       }
     }

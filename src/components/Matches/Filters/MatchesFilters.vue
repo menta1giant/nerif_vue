@@ -1,11 +1,10 @@
 <template>
   <div class="filters-list">
-    <form-field v-for="(filter) in FILTERS" v-bind:key="filter.id" type="switcher" :label="filter.title" :value="filter.default" />
+    <form-field v-for="(filter, idx) in filters" v-bind:key="filter.id" type="switcher" :label="filter.title" :value="filter.value" @input="toggleFilter(idx)" />
   </div>
 </template>
 
 <script>
-import { filters } from './const';
 import FormField from '@/components/FormField';
 
 export default {
@@ -13,11 +12,16 @@ export default {
   components: {
     FormField
   },
-  data() {
-    return {
-      FILTERS: filters,
-    };
+  computed: {
+    filters() {
+      return this.$store.getters.getMatchesFilters;
+    },
   },
+  methods: {
+    toggleFilter(idx) {
+      this.$store.commit('toggleMatchesFilter', idx);
+    }
+  }
 }
 </script>
 

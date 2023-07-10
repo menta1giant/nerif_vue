@@ -15,6 +15,7 @@
 
 export default {
   name: 'Switcher',
+  emits: ['change'],
   props: {
     value: {
       type: Boolean,

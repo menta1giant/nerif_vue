@@ -1,4 +1,5 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import { filters } from '@/components/Matches/Filters/const';
 
 export default createStore({
   state: {
@@ -29,6 +30,7 @@ export default createStore({
     matches: {
       state: {
         matchesSelectedDate: new Date(),
+        matchesFilters: filters,
         selectedMatch: null,
       },
       getters: {
@@ -38,6 +40,9 @@ export default createStore({
         getSelectedMatch(state) {
           return state.selectedMatch;
         },
+        getMatchesFilters(state) {
+          return state.matchesFilters;
+        },
       },
       mutations: {
         setMatchesSelectedDate (state, newDate) {
@@ -45,6 +50,10 @@ export default createStore({
         },
         setSelectedMatch(state, match) {
           state.selectedMatch = match;
+        },
+        toggleMatchesFilter(state, idx) {
+          console.log(state.matchesFilters);
+          state.matchesFilters[idx].value = !state.matchesFilters[idx].value;
         },
       },
     }
