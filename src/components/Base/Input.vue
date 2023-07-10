@@ -1,7 +1,7 @@
 <template>
   <div class="v-input" :class="{ 'v-input--has-icon': inputTypeIcon, 'v-input--error': hasError, 'fluid': fluid }">
     <div v-if="inputTypeIcon" class="v-input__icon"><v-icon :name="inputTypeIcon" /></div>
-    <input :id="id" :type="inputType" :placeholder="placeholder" />
+    <input :id="id" :name="name" :type="inputType" :placeholder="placeholder" :autocomplete="autocompleteStatus" />
   </div>
  
 </template>
@@ -50,6 +50,7 @@ export default {
       type: String,
       default: 'input',
     },
+    autocomplete: Boolean
   },
   computed: {
     inputTypeIcon() {
@@ -57,6 +58,9 @@ export default {
     },
     inputType() {
       return typesMap[this.type] && typesMap[this.type].type || this.type;
+    },
+    autocompleteStatus() {
+      return this.autocomplete ? 'on' : 'off';
     },
   }
 }

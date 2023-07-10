@@ -8,5 +8,11 @@ export default {
         return `form-field__${ generateRandomString() }`;
       }
     },
+    name: {
+      type: String,
+      default() {
+        return 'form-field';
+      }
+    },
   }
 }

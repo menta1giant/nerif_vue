@@ -1,7 +1,7 @@
 <template>
   <form-block header="Localization" subheader="Aloha!">
-    <form-field type="select" label="Language"/>
-    <form-field type="select" label="Timezone"/>
+    <form-field type="select" label="Language" name="language"/>
+    <form-field type="select" label="Timezone" name="timezone"/>
   </form-block>
 </template>
 

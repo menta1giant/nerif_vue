@@ -1,10 +1,10 @@
 <template>
   <form-block header="Personal info" subheader="Tell us more about yourself">
     <template #default>
-      <form-field label="First name" placeholder="Maria"/>
-      <form-field label="Last name" placeholder="Santos"/>
-      <form-field label="Phone number" placeholder="+79009009090"/>
-      <form-field label="E-mail" placeholder="goracio.nelson@gmail.com"/>
+      <form-field label="First name" placeholder="Maria" name="first_name"/>
+      <form-field label="Last name" placeholder="Santos" name="last_name"/>
+      <form-field label="Phone number" placeholder="+79009009090" name="phone"/>
+      <form-field label="E-mail" placeholder="goracio.nelson@gmail.com" name="email" autocomplete/>
     </template>
     <template #right>
       <image-upload />

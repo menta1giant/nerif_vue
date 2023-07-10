@@ -1,9 +1,9 @@
 <template>
   <form-block header="Tell us more about yourself" cta-text="Complete registration" fluid @proceed="$router.push('/profile')">
     <template #default>
-      <form-field label="First name" placeholder="Maria"/>
-      <form-field label="Last name" placeholder="Santos"/>
-      <form-field type="select" label="Location" fluid/>
+      <form-field label="First name" name="first_name" placeholder="Maria"/>
+      <form-field label="Last name" name="last_name" placeholder="Santos"/>
+      <form-field type="select" name="location" label="Location" fluid/>
     </template>
     <template #right>
       <image-upload />

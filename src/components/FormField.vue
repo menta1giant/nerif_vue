@@ -1,15 +1,15 @@
 <template>
   <div class="form-field">
     <div v-if="isFormFieldInline" class="form-field--inline">
-      <v-radio-button v-if="isInputTypeRadio" :id="id" :name="name" fluid />
-      <v-switcher v-if="isInputTypeSwitcher" :id="id" :value="value" fluid @change="$emit('input')"/>
+      <v-radio-button v-if="isInputTypeRadio" :id="id" :name="name" :value="value" fluid />
+      <v-switcher v-if="isInputTypeSwitcher" :id="id" :name="name" :value="value" fluid @change="$emit('input')"/>
       <label v-if="label" :for="id">{{ label }}</label>
     </div>
     <template v-else>
       <label v-if="label" :for="id">{{ label }}</label>
-      <v-input v-if="isInputTypeText" :id="id" :type="type" :placeholder="placeholder" fluid/>
-      <v-select v-else-if="isInputTypeSelect" :id="id" :type="type" fluid/>
-      <v-textarea v-else-if="isInputTypeTextarea" :id="id" fluid></v-textarea>
+      <v-input v-if="isInputTypeText" :id="id" :name="name" :type="type" :placeholder="placeholder" :autocomplete="autocomplete" fluid/>
+      <v-select v-else-if="isInputTypeSelect" :id="id" :name="name" :type="type" fluid/>
+      <v-textarea v-else-if="isInputTypeTextarea" :id="id" :name="name" fluid></v-textarea>
       <span v-if="hasError" class="form-field__error-message">Your name may not contain any sausages and pancakes any sausages or pancakes</span>
     </template>
   </div>
@@ -36,6 +36,7 @@ export default {
       type: [String, Number, Boolean]
     },
     placeholder: String,
+    autocomplete: Boolean,
   },
   computed: {
     isInputTypeText() {

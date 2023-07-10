@@ -1,7 +1,7 @@
 <template>
   <div class="v-radio-button">
     <label>
-      <input type="radio" :id="id" :name="name" checked/>
+      <input type="radio" :id="id" :name="name" :value="value" checked/>
     </label>
   </div>
 </template>
@@ -13,8 +13,8 @@ export default {
   name: 'RadioButton',
   mixins: [formFieldMixin],
   props: {
-    name: String,
-  },
+    value: Number,
+  }
 }
 </script>
 

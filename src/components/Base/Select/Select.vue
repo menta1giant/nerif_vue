@@ -10,6 +10,7 @@
         <select-dropdown :options="options" @select="handleSelectOption" />
       </template>
     </v-positioner>
+    <input class="ghost-input" type="number" :name="name" :value="selectedOption"/>
   </div>
 </template>
 
@@ -29,12 +30,6 @@ export default {
     ErrorMixin,
     formFieldMixin,
   ],
-  props: {
-    id: {
-      type: String,
-      default: 'input',
-    },
-  },
   data() {
     return {
       isDropdownVisible: false,

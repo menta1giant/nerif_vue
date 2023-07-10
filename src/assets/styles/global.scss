@@ -115,6 +115,11 @@ img {
   padding: 0 1rem;
 }
 
+.ghost-input {
+  position: absolute;
+  visibility: hidden;
+}
+
 .mobile:not(.desktop) {
   display: none;
 }

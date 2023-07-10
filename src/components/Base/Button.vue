@@ -1,5 +1,5 @@
 <template>
-  <button class="v-button" :class="{ 'fluid': fluid, [`v-button--${type}`]: true, [`v-button--${size}`]: true }" :disabled="disabled || loading" @click="handleClick">
+  <button class="v-button" :class="{ 'fluid': fluid, [`v-button--${type}`]: true, [`v-button--${size}`]: true }" :disabled="disabled || loading" type="button" @click="handleClick">
     <v-loader v-if="loading" /><slot></slot>
   </button>
 </template>
@@ -37,6 +37,16 @@ export default {
     loading: {
       type: Boolean,
       default: false,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    submit: Boolean,
+  },
+  computed: {
+    buttonType() {
+      return this.submit ? 'submit' : 'button'
     },
   },
   methods: {

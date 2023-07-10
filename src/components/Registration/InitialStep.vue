@@ -5,9 +5,9 @@
       <social-sign-up-button social="discord">Discord</social-sign-up-button>
     </div>
     <div class="sign-up-method-divider"><span>or</span></div>
-    <form-field label="E-mail address" placeholder="goracio.nelson@gmail.com" fluid/>
-    <form-field type="password" label="Password" placeholder="Minimum 6 characters" fluid/>
-    <form-field type="password" label="Confirm password" placeholder="Minimum 6 characters" fluid/>
+    <form-field label="E-mail address" name="email" placeholder="goracio.nelson@gmail.com" fluid autocomplete/>
+    <form-field type="password" label="Password" name="password" placeholder="Minimum 6 characters" fluid/>
+    <form-field type="password" label="Confirm password" name="password_confirmation" placeholder="Minimum 6 characters" fluid/>
   </form-block>
 </template>
 

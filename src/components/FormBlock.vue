@@ -4,17 +4,19 @@
       <h4>{{ header }}</h4>
       <span>{{ subheader }}</span>
     </div>
-    <div class="form-block__body">
-      <div class="form-block__body__left">
-        <slot></slot>
+    <form :name="formName" @submit.prevent="">
+      <div class="form-block__body">
+        <div class="form-block__body__left">
+          <slot></slot>
+        </div>
+        <div v-if="$slots['right']" class="form-block__body__right">
+          <slot name="right"></slot>
+        </div>
       </div>
-      <div v-if="$slots['right']" class="form-block__body__right">
-        <slot name="right"></slot>
+      <div v-if="!noCta" class="form-block__footer">
+        <v-button size="small" :fluid="fluid" @click="handleClickProceed">{{ ctaText }}</v-button>
       </div>
-  </div>
-    <div v-if="!noCta" class="form-block__footer">
-      <v-button size="small" :fluid="fluid" @click="handleClickProceed">{{ ctaText }}</v-button>
-    </div>
+    </form>
   </div>
 </template>
 
@@ -34,8 +36,20 @@ export default {
     },
     noCta: Boolean,
   },
+  computed: {
+    formName() {
+      return `form_${ Math.random()*100 }`;
+    },
+  },
   methods: {
     handleClickProceed() {
+      const form=document.forms[this.formName];
+      console.dir(form);
+      const data = new FormData(form);
+      console.dir(data);
+      for (const [key, value] of data.entries()) { 
+        console.log(key, value);
+      }
       this.$emit('proceed');
     },
   },
