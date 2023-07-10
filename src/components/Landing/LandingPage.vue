@@ -9,7 +9,7 @@
             <div class="cta-wrapper">
               <div class="landing-page-section__cta">
                 <router-link to="/sign-up"><v-button size="large"><v-icon name="clock" type="regular" />Start free trial</v-button></router-link>
-                <a href="#plans"><v-button size="large" type="secondary">See all plans</v-button></a>
+                <a href="#plans"><v-button size="large" type="secondary" loading>See all plans</v-button></a>
               </div>
               <span>No credit card information required</span>
             </div>
@@ -78,7 +78,7 @@
           </div>
           <div class="cta-wrapper">
             <div class="landing-page-section__cta">
-              <router-link to="/sign-up"><v-button size="medium">Get on board with Nerif!</v-button></router-link>
+              <router-link to="/sign-up"><v-button size="medium" loading>Get on board with Nerif!</v-button></router-link>
             </div>
           </div>
         </div>
@@ -223,7 +223,7 @@
           <span>Get a personal -20% off deal by entering your email</span>
         </div>
         <div class="footer__lead-input">
-          <v-input placeholder="Enter your e-mail" fluid/><v-button size="large" type="primary-accent">Get special deal</v-button>
+          <v-input placeholder="Enter your e-mail" fluid/><v-button size="large" type="primary-accent" loading>Get special deal</v-button>
         </div>
         <div class="footer__navigation">
           <div class="footer__navigation__column">

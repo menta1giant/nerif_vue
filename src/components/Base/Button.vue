@@ -1,6 +1,6 @@
 <template>
-  <button class="v-button" :class="{'fluid': fluid, [`v-button--${type}`]: true, [`v-button--${size}`]: true}">
-    <slot></slot>
+  <button class="v-button" :class="{ 'fluid': fluid, [`v-button--${type}`]: true, [`v-button--${size}`]: true }" :disabled="disabled || loading" @click="handleClick">
+    <v-loader v-if="loading" /><slot></slot>
   </button>
 </template>
 
@@ -34,7 +34,18 @@ export default {
         return 'medium';
       },
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
+  methods: {
+    handleClick(event) {
+      if (this.loading && this.disabled) {
+        event.preventDefault();
+      }
+    }
+  }
 
 }
 </script>
@@ -57,6 +68,14 @@ export default {
   white-space: nowrap;
 
   transition-duration: 200ms;
+
+  &:disabled {
+    &:deep(.v-icon) {
+      display: none;
+    }
+
+    cursor: default;
+  }
 
   &--small {
     padding: .5rem 2rem;
@@ -96,6 +115,15 @@ export default {
       border: 2px solid $black-10;
       box-shadow: 0 0 0 2px $primary-s-500;
     }
+
+    &:disabled {
+      background: $primary-s-300;
+      color: $primary-ds-200;
+
+      .v-loader {
+        --border-color: #{$primary-ds-200};
+      }
+    }
   }
 
   &--primary-accent {
@@ -116,6 +144,15 @@ export default {
       border: 2px solid $primary-ds-800;
       box-shadow: 0 0 0 2px $accent-500;
     }
+
+    &:disabled {
+      background: $accent-300;
+      color: $black-500;
+
+      .v-loader {
+        --border-color: #{$black-500};
+      }
+    }
   }
 
   &--secondary {
@@ -132,11 +169,28 @@ export default {
     &:focus {
       border-color: $primary-s-200;
     }
+
+    &:disabled {
+      background: $black-10;
+      color: $primary-ds-200;
+
+      .v-loader {
+        --border-color: #{$primary-ds-200};
+      }
+    }
   }
 
   &--transparent {
     padding: 0;
     justify-content: left;
+
+    &:disabled {
+      color: $primary-ds-400;
+
+      .v-loader {
+        --border-color: #{$primary-ds-400};
+      }
+    }
   }
 }
 </style>
