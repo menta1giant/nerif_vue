@@ -1,15 +1,15 @@
 <template>
   <div class="form-field">
     <div v-if="isFormFieldInline" class="form-field--inline">
-      <v-radio-button v-if="isInputTypeRadio" :name="name" fluid />
-      <v-switcher v-if="isInputTypeSwitcher" :value="value" fluid @change="$emit('input')"/>
-      <v-label v-if="label" @click="$emit('input')">{{ label }}</v-label>
+      <v-radio-button v-if="isInputTypeRadio" :id="id" :name="name" fluid />
+      <v-switcher v-if="isInputTypeSwitcher" :id="id" :value="value" fluid @change="$emit('input')"/>
+      <label v-if="label" :for="id">{{ label }}</label>
     </div>
     <template v-else>
-      <v-label v-if="label">{{ label }}</v-label>
-      <v-input v-if="isInputTypeText" :type="type" :placeholder="placeholder" fluid/>
-      <v-select v-else-if="isInputTypeSelect" :type="type" fluid/>
-      <v-textarea v-else-if="isInputTypeTextarea" fluid></v-textarea>
+      <label v-if="label" :for="id">{{ label }}</label>
+      <v-input v-if="isInputTypeText" :id="id" :type="type" :placeholder="placeholder" fluid/>
+      <v-select v-else-if="isInputTypeSelect" :id="id" :type="type" fluid/>
+      <v-textarea v-else-if="isInputTypeTextarea" :id="id" fluid></v-textarea>
       <span v-if="hasError" class="form-field__error-message">Your name may not contain any sausages and pancakes any sausages or pancakes</span>
     </template>
   </div>
@@ -18,8 +18,13 @@
 <script>
 const TEXT_TYPES = ['text', 'password', 'payment', 'date'];
 
+import formFieldMixin from './Base/formFieldMixin';
+
 export default {
   name: 'FormField',
+  mixins: [
+    formFieldMixin,
+  ],
   props: {
     label: String,
     name: String,
@@ -79,5 +84,19 @@ export default {
     color: $red-600;
     font-weight: $fw-medium;
   }
+}
+
+label {
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-y: visible;
+  text-overflow: ellipsis;
+
+  font-weight: $fw-medium;
+  color: $primary-ds-900;
+  font-size: 1em;
+  line-height: $lh-small;
+
+  flex: 1;
 }
 </style>

@@ -31,7 +31,7 @@
           <v-multiselect>Я мультиселект, меня можно кликать</v-multiselect>
         </div>
         <div class="feed__posts-list">
-          <telegram-feed-post v-for="(a) in Array(32)" v-bind:key="a" @show-modal="isModalShown = true"></telegram-feed-post>
+          <telegram-feed-post v-for="(a) in Array(32)" :key="a" @show-modal="isModalShown = true"></telegram-feed-post>
         </div>
       </div>
     </div>

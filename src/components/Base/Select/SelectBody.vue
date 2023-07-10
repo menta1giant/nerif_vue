@@ -1,5 +1,5 @@
 <template>
-  <button class="v-select__body" :class="{ 'v-select__body--error': hasError }">
+  <button class="v-select__body" :class="{ 'v-select__body--error': hasError }" :id="id">
     <slot></slot>
     <v-chevron :model-value="isDropdownVisible" />
   </button>
@@ -7,10 +7,14 @@
 
 <script>
 import ErrorMixin from '@/components/ErrorMixin';
+import formFieldMixin from '../formFieldMixin';
 
 export default {
   name: 'SelectBody',
-  mixins: [ErrorMixin],
+  mixins: [
+    ErrorMixin,
+    formFieldMixin,
+  ],
   props: {
     isDropdownVisible: Boolean,
   },

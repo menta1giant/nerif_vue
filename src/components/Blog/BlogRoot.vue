@@ -1,7 +1,7 @@
 <template>
   <v-section responsive>
     <div class="posts-wrapper">
-      <blog-post-preview v-for="(post, idx) in posts" v-bind:key="`post_${ idx }`" @open="$router.push({ name: 'post', params: { id: idx }})"/>
+      <blog-post-preview v-for="(post, idx) in posts" :key="`post_${ idx }`" @open="$router.push({ name: 'post', params: { id: idx }})"/>
     </div>
   </v-section>
 </template>

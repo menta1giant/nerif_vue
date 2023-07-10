@@ -177,7 +177,7 @@
           <div class="billing-type-switcher"><span class="billing-type-switcher__item--active">monthly</span>/<span>yearly</span></div>
         </div>
         <div class="subscription-plan-cards-wrapper">
-          <subscription-plan-card v-for="(plan, idx) in plans" v-bind:key="`plan_${ idx }`" :plan="plan" />
+          <subscription-plan-card v-for="(plan, idx) in plans" :key="`plan_${ idx }`" :plan="plan" />
         </div>
       </div>
     </v-section>

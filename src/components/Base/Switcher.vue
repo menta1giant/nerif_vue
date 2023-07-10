@@ -1,5 +1,5 @@
 <template>
-  <div class="v-switcher" :class="{ checked: internalValue }" @click="toggleSwitcher">
+  <div class="v-switcher" :class="{ checked: internalValue }" @click="toggleSwitcher" @input="toggleSwitcher">
     <input
       class="v-switcher__input"
       type="checkbox"
@@ -12,19 +12,17 @@
 </template>
 
 <script>
+import formFieldMixin from './formFieldMixin';
 
 export default {
   name: 'Switcher',
   emits: ['change'],
+  mixins: [formFieldMixin],
   props: {
     value: {
       type: Boolean,
       default: false
     },
-    id: {
-      type: String,
-      default: "switcher"
-    }
   },
   data() {
     return {

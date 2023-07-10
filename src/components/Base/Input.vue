@@ -1,7 +1,7 @@
 <template>
   <div class="v-input" :class="{ 'v-input--has-icon': inputTypeIcon, 'v-input--error': hasError, 'fluid': fluid }">
     <div v-if="inputTypeIcon" class="v-input__icon"><v-icon :name="inputTypeIcon" /></div>
-    <input :type="inputType" :placeholder="placeholder" />
+    <input :id="id" :type="inputType" :placeholder="placeholder" />
   </div>
  
 </template>
@@ -9,6 +9,7 @@
 <script>
 import ControlMixin from '@/components/ControlMixin';
 import ErrorMixin from '@/components/ErrorMixin';
+import formFieldMixin from './formFieldMixin';
 
 const typesMap = {
   password: {
@@ -34,6 +35,7 @@ export default {
   mixins: [
     ControlMixin,
     ErrorMixin,
+    formFieldMixin,
   ],
   props: {
     placeholder: {
@@ -43,6 +45,10 @@ export default {
     type: {
       type: String,
       default: 'text',
+    },
+    id: {
+      type: String,
+      default: 'input',
     },
   },
   computed: {

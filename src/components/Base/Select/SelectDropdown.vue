@@ -1,6 +1,6 @@
 <template>
   <div class="v-select__dropdown">
-    <select-option v-for="(option, idx) in options" v-bind:key="idx" :option="option" @select="handleSelectOption(idx)">{{ option.value }}</select-option>
+    <select-option v-for="(option, idx) in options" :key="idx" :option="option" @select="handleSelectOption(idx)">{{ option.value }}</select-option>
   </div>
 </template>
 

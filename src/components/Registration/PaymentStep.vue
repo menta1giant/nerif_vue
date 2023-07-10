@@ -3,7 +3,7 @@
   <form-field type="radio" label="Monthly" name="a" fluid/>
   <form-field type="radio" label="Annual" name="a" fluid/>
   <div class="subscription-plan-options-wrapper">
-    <subscription-plan-option v-for="(plan, idx) in plans" v-bind:key="`plan_${ idx }`" title="Demo" price="$25" :features="['Tasty treats', 'Meow meow', 'Wasabi']" :is-active="activePlan === idx" @click="activePlan = activePlan === idx ? null : idx"/>
+    <subscription-plan-option v-for="(plan, idx) in plans" :key="`plan_${ idx }`" title="Demo" price="$25" :features="['Tasty treats', 'Meow meow', 'Wasabi']" :is-active="activePlan === idx" @click="activePlan = activePlan === idx ? null : idx"/>
   </div>
   <form-field type="select" label="Currency" fluid/>
   <form-field type="payment" label="Credit or debit card info" placeholder="Add credit or debit card info" fluid/>

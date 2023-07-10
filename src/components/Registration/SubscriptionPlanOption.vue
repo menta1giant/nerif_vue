@@ -7,7 +7,7 @@
       <div class="subscription-plan-option__header-chevron mobile"><v-chevron :model-value="isActive"/></div>
     </div>
     <ul class="desktop" :class="{ mobile: isActive }">
-      <li v-for="(feature, idx) in features" v-bind:key="`feature_${ idx }`" >{{ feature }}</li>
+      <li v-for="(feature, idx) in features" :key="`feature_${ idx }`" >{{ feature }}</li>
     </ul>
   </div>
   <span class="subscription-plan-option__price desktop">Free</span>

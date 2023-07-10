@@ -3,7 +3,7 @@
     <div class="breadcrumbs-bar">
       <div class="breadcrumbs-bar__body">
         <router-link to="/"><v-icon name="house" /></router-link>
-        <template v-for="page in path" v-bind:key="page.name">
+        <template v-for="page in path" :key="page.name">
           <span>></span>
           <router-link :to="page.path"><span>{{ page.name }}</span></router-link>
         </template>

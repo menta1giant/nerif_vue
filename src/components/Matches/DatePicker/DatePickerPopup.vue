@@ -17,14 +17,14 @@
       <table class="date-picker-popup__days">
         <thead>
           <tr>
-            <th v-for="day in weekDays" v-bind:key="Math.random()">{{ day }}</th>
+            <th v-for="day in weekDays" :key="Math.random()">{{ day }}</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(week, index) in weeks" :key="index">
             <td
               v-for="date in week"
-              v-bind:key="Math.random()"
+              :key="Math.random()"
             >
               <div
                 class="date-picker-popup__day"

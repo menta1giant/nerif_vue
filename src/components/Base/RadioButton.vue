@@ -1,12 +1,17 @@
 <template>
-  <label>
-    <input type="radio" :name="name" checked/>
-  </label>
+  <div class="v-radio-button">
+    <label>
+      <input type="radio" :id="id" :name="name" checked/>
+    </label>
+  </div>
 </template>
 
 <script>
+import formFieldMixin from './formFieldMixin';
+
 export default {
   name: 'RadioButton',
+  mixins: [formFieldMixin],
   props: {
     name: String,
   },
@@ -26,6 +31,7 @@ label {
 
   cursor: pointer;
 }
+
 input {
   width: 50%;
   height: 50%;

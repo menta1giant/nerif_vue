@@ -5,7 +5,7 @@
       <span>{{ plan.subHeader }}</span>
     </div>
     <ul class="subscription-plan-card__features-wrapper">
-      <li v-for="(feature, idx) in plan.features" v-bind:key="`feature_${idx}`" class="subscription-plan-card__feature" :class="{ 'subscription-plan-card__feature--active': feature.isActive }"><v-icon name="circle-check" /><span v-html="feature.text"></span></li>
+      <li v-for="(feature, idx) in plan.features" :key="`feature_${idx}`" class="subscription-plan-card__feature" :class="{ 'subscription-plan-card__feature--active': feature.isActive }"><v-icon name="circle-check" /><span v-html="feature.text"></span></li>
     </ul>
     <div class="subscription-plan-card__footer">
       <span class="subscription-plan-card__footer__price"><b>{{ plan.price }}</b>{{ plan.period }}</span>

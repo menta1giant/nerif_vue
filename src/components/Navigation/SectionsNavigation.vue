@@ -4,7 +4,7 @@
       <div class="sections-navigation">
         <div 
           v-for="(section, idx) in sections"
-          v-bind:key="`section_${ idx }`" 
+          :key="`section_${ idx }`" 
           class="sections-navigation__item" 
           :class="{ 'sections-navigation__item--active': idx === modelValue }"
           @click="handleSelectSection(idx)"

@@ -2,7 +2,7 @@
   <div class="v-select">
     <v-positioner v-model="isDropdownVisible" triggers-on-click>
       <template v-slot:body>
-        <select-body :is-dropdown-visible="isDropdownVisible" :has-error="hasError">
+        <select-body :id="id" :is-dropdown-visible="isDropdownVisible" :has-error="hasError">
           <span class="v-select__body__value">{{ options[selectedOption].value }}</span>
         </select-body>
       </template>
@@ -17,6 +17,7 @@
 import SelectBody from './SelectBody';
 import SelectDropdown from './SelectDropdown';
 import ErrorMixin from '@/components/ErrorMixin';
+import formFieldMixin from '../formFieldMixin';
 
 export default {
   name: 'Select',
@@ -24,7 +25,16 @@ export default {
     SelectBody,
     SelectDropdown,
   },
-  mixins: [ErrorMixin],
+  mixins: [
+    ErrorMixin,
+    formFieldMixin,
+  ],
+  props: {
+    id: {
+      type: String,
+      default: 'input',
+    },
+  },
   data() {
     return {
       isDropdownVisible: false,

@@ -2,7 +2,7 @@
   <div class="navigation-pages" :class="{ desktop: !isMobile }">
     <router-link 
       v-for="link in linksToPages"
-      v-bind:key="link.path"
+      :key="link.path"
       :to="link.path">
       <v-icon :name="link.meta.icon" />
       {{ link.name }}

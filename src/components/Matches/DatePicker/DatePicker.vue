@@ -3,7 +3,7 @@
     <div class="date-picker__date-increase" @click="changeToAdjacentDate(-1)"><v-icon type="solid" name="arrow-left" /></div>
     <date-picker-item 
       v-for="date in selectableDates" 
-      v-bind:key="date.getDay()" 
+      :key="date.getDay()" 
       :day="date.getDate()" 
       :weekday="date.getDay()" 
       :isActive="day === date.getDay()" 

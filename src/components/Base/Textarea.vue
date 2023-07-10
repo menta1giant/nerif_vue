@@ -1,10 +1,13 @@
 <template>
-  <textarea></textarea>
+  <textarea :id="id"></textarea>
 </template>
 
 <script>
+import formFieldMixin from './formFieldMixin';
+
 export default {
   name: 'Textarea',
+  mixins: [formFieldMixin],
 }
 </script>
 

@@ -1,19 +1,19 @@
 <template>
   <div class="matches" ref="matches">
     <template v-if="isMatchCardInfoOpened">
-      <match-card v-bind:key="`match_${ openedMatchCard.match.match_id }`" :match="openedMatchCard" is-selected @click="toggleMatchCard()" />
+      <match-card :key="`match_${ openedMatchCard.match.match_id }`" :match="openedMatchCard" is-selected @click="toggleMatchCard()" />
     </template>
     <template v-else>
-      <match-card v-for="(match, idx) in matches" v-bind:key="`match_${ idx }`" :match="match" :is-selected="isScrollingInProcess && idx == lastOpenedMatchCardId" @click="!isScrollingInProcess && toggleMatchCard(idx)" />
+      <match-card v-for="(match, idx) in matches" :key="`match_${ idx }`" :match="match" :is-selected="isScrollingInProcess && idx == lastOpenedMatchCardId" @click="!isScrollingInProcess && toggleMatchCard(idx)" />
       <template v-if="isLoading">
-        <match-card-skeleton v-for="(match, idx) in (new Array(hasMatches ? 1 : 8))" v-bind:key="`match-skeleton_${ idx }`" />
+        <match-card-skeleton v-for="(match, idx) in (new Array(hasMatches ? 1 : 8))" :key="`match-skeleton_${ idx }`" />
       </template>
     </template>
   </div>
   <div class="match-stats" v-if="isMatchCardInfoOpened">
     <div class="match-stats__tabs">
       <div class="button-group">
-        <div v-for="(tab, idx) in tabs" v-bind:key="idx" class="groupped-button" :class="{ 'groupped-button--active': activeTab == idx }" @click="changeActiveTab(idx)">{{ tab }}</div>
+        <div v-for="(tab, idx) in tabs" :key="idx" class="groupped-button" :class="{ 'groupped-button--active': activeTab == idx }" @click="changeActiveTab(idx)">{{ tab }}</div>
       </div>
     </div>
     <div class="match-stats__header">
@@ -22,7 +22,7 @@
       <p><b>Read the docs</b> to learn more about features</p>
     </div>
     <div class="match-stats__bars">
-      <stats-bar v-for="(statsBarTitle, statsBar) in statsTitlesMap" v-bind:key="statsBar" :title="statsBarTitle" :value="statsValues[statsBar]" />
+      <stats-bar v-for="(statsBarTitle, statsBar) in statsTitlesMap" :key="statsBar" :title="statsBarTitle" :value="statsValues[statsBar]" />
     </div>
   </div>
 </template>

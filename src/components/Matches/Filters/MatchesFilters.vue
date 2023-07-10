@@ -1,6 +1,6 @@
 <template>
   <div class="filters-list">
-    <form-field v-for="(filter, idx) in filters" v-bind:key="filter.id" type="switcher" :label="filter.title" :value="filter.value" @input="toggleFilter(idx)" />
+    <form-field v-for="(filter, idx) in filters" :key="filter.id" type="switcher" :label="filter.title" :value="filter.value" @input="toggleFilter(idx)" />
   </div>
 </template>
 

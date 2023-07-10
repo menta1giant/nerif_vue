@@ -4,7 +4,7 @@
       <template v-slot:body>
         <select-body :is-dropdown-visible="isDropdownVisible" :has-error="hasError">
           <div class="v-multiselect__selected-options">
-            <select-option v-for="(option, idx) in selectedOptions" v-bind:key="idx" :option="option">{{ option.value }}</select-option>
+            <select-option v-for="(option, idx) in selectedOptions" :key="idx" :option="option">{{ option.value }}</select-option>
           </div>
         </select-body>
       </template>
