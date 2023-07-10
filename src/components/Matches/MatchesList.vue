@@ -22,15 +22,17 @@
       <p><b>Read the docs</b> to learn more about features</p>
     </div>
     <div class="match-stats__bars">
-      <stats-bar v-for="(a) in Array(16).fill(0)" v-bind:key="a" />
+      <stats-bar v-for="(statsBarTitle, statsBar) in statsTitlesMap" v-bind:key="statsBar" :title="statsBarTitle" :value="statsValues[statsBar]" />
     </div>
   </div>
 </template>
 
 <script>
+import { apiRequestGet } from '@/lib/api';
 import MatchCard from './MatchCard.vue';
 import MatchCardSkeleton from './MatchCardSkeleton.vue';
 import StatsBar from './StatsBar.vue';
+import { matchStatsTitlesMap } from './const';
 
 export default {
   name: 'MatchesList',
@@ -55,6 +57,8 @@ export default {
 
       tabs: ['Stats', 'Odds'],
       activeTab: 0,
+      statsValues: {},
+      statsTitlesMap: matchStatsTitlesMap,
 
       isMatchCardInfoOpened: false,
       isScrollingInProcess: false,
@@ -68,7 +72,20 @@ export default {
       return this.$store.getters.getSelectedMatch;
     },
   },
+  watch: {
+    isMatchCardInfoOpened: {
+      immediate: true,
+      handler(val) {
+        if (!val) return;
+
+        this.loadStatsValues();
+      }
+    }
+  },
   methods: {
+    async loadStatsValues() {
+      this.statsValues = await apiRequestGet(`matches/predictions/stats/${ this.openedMatchCard.id }`);
+    },
     changeStatsVisibility() {
       this.isMatchCardInfoOpened = !this.isMatchCardInfoOpened;
     },

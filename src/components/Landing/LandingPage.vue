@@ -257,9 +257,9 @@
         <div class="footer__footer">
           <span>© 2023 Nerif will conquer us all</span>
           <div class="footer__socials">
-            <v-icon type="brands" name="facebook" />
-            <v-icon type="brands" name="telegram" />
-            <v-icon type="brands" name="discord" />
+            <v-icon-button name="facebook" brands />
+            <v-icon-button name="telegram" brands />
+            <v-icon-button name="discord" brands />
           </div>
         </div>
       </div>

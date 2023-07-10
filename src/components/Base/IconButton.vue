@@ -1,12 +1,13 @@
 <template>
-  <v-tooltip :is-trigger-focused="isTriggerFocused && !disableFocus">
+  <v-tooltip v-if="hasTooltip" :is-trigger-focused="isTriggerFocused && !disableFocus">
     <template #trigger>
-      <button class="icon-button" :class="{ 'icon-button--active': disableFocus }" @focus="isTriggerFocused=true" @blur="isTriggerFocused=false"><v-icon :type="iconType" :name="name" /></button>
+      <button class="v-icon-button" :class="{ 'v-icon-button--active': disableFocus }" @focus="isTriggerFocused=true" @blur="isTriggerFocused=false"><v-icon :type="iconType" :name="name" /></button>
     </template>
     <template #content>
       <span v-html="tooltipContent"></span>
     </template>
   </v-tooltip>
+  <button v-else class="v-icon-button"><v-icon :type="iconType" :name="name" /></button>
 </template>
 
 <script>
@@ -27,17 +28,20 @@ export default {
     iconType() {
       return this.brands ? 'brands' : 'solid';
     },
+    hasTooltip() {
+      return !!this.tooltipContent;
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.icon-button {
+.v-icon-button {
   border-radius: $border-radius-small;
   cursor: pointer;
 
-  &:not(.icon-button--active):focus {
-    outline: 1px solid $primary-s-50;
+  &:not(.v-icon-button--active):focus {
+    outline: 1px solid $primary-s-100;
     outline-offset: 2px;
   }
 }

@@ -50,7 +50,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import debounce from '@/lib/debounce';
 
 import MatchesList from './MatchesList.vue';
@@ -59,6 +58,7 @@ import DatePickerMixin from './DatePicker/DatePickerMixin';
 import TelegramFeedPost from './Feed/TelegramFeedPost.vue';
 import MatchesFilters from './Filters/MatchesFilters.vue';
 import MobileToolbar from './MobileToolbar.vue';
+import { apiRequestGet } from '@/lib/api';
 
 const MATCHES_REQUEST_LIMIT = 10;
 
@@ -147,19 +147,14 @@ export default {
     async loadMatches() {
       this.areMatchesLoading = true;
 
-      const searchParams = new URLSearchParams(this.queryParams);
       const formattedDate = this.formattedDate;
 
-      const matches = await (() => {
-        return new Promise(function(res) {
-          const data = axios.get(`http://5.228.130.64:8002/api/matches/predicted_maps?${ searchParams }`).then(setTimeout(()=>res(data), 1000));
-        })
-      })()
+      const matches = await apiRequestGet('matches/predictions/maps', this.queryParams);
 
-      this.isLimitOfMatchesReached = matches.data.is_enough;
+      this.isLimitOfMatchesReached = matches.is_enough;
       this.matchesRequestParams.offset = this.matchesRequestParams.limit + this.matchesRequestParams.offset;
 
-      this.matches = formattedDate === this.$route.params.date ? this.matches.concat(matches.data.data) : matches.data.data;
+      this.matches = formattedDate === this.$route.params.date ? this.matches.concat(matches.data) : matches.data;
 
       this.resetObserver();
 

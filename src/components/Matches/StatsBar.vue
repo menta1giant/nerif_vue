@@ -9,7 +9,7 @@
           <div class="stats-bar__value">{{ value }}</div>
         </template>
         <template v-else>
-          <div class="stats-bar__value" :class="{ highlighted: value[0].isHighlighted }">{{ value[0].value }}</div><div class="stats-bar__value" :class="{ highlighted: value[1].isHighlighted }">{{ value[1].value }}</div>
+          <div class="stats-bar__value" :class="{ highlighted: value[0] >= value[1] }">{{ value[0] }}</div><div class="stats-bar__value" :class="{ highlighted: value[0] <= value[1] }">{{ value[1] }}</div>
         </template>
       </div>
     </div>
@@ -31,19 +31,13 @@ export default {
     title: {
       type: String,
       default() {
-        return 'Recent Performance';
+        return 'Default feature';
       },
     },
     value: {
       type: [Number, Array],
       default() {
-        return [{ value: Math.floor(Math.random()*20 -10), isHighlighted: false }, { value: Math.floor(Math.random()*20 -10), isHighlighted: true }];
-      },
-    },
-    scaledValue: {
-      type: Number,
-      default() {
-        return Math.floor(Math.random()*100);
+        return [0.5, 0.5];
       },
     },
   },
@@ -67,6 +61,9 @@ export default {
     isValueSingular() {
       return typeof this.value === 'number';
     },
+    scaledValue() {
+      return this.isValueSingular ? this.value * 100 : this.value.reduce((previousValue, currentValue) => (previousValue - currentValue) * 50 + 50);
+    }
   },
 }
 </script>

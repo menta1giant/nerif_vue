@@ -17,12 +17,12 @@
             </div>
             <v-popup v-model="isNotificationsTabOpened">
               <template #trigger>
-                <div class="navbar-square-button notifications-button" :class="{ 'notifications-button--active': hasNotifications }">
+                <button class="navbar-square-button notifications-button" :class="{ 'notifications-button--active': hasNotifications }">
                   <div v-if="hasNotifications" class="notifications-count">
                     {{ notificationsCount }}
                   </div>
                   <v-icon type="solid" name="bell" />
-                </div>
+                </button>
               </template>
               <template #content>
                 <notifications-popup />
@@ -44,9 +44,9 @@
             <span><b>Sign in.</b></span>
             <router-link to="/sign-up"><v-button type="primary-accent" size="small">Subscribe</v-button></router-link>
           </template>
-          <div class="navbar-square-button hamburger-menu-button mobile">
+          <button class="navbar-square-button hamburger-menu-button mobile">
             <v-icon type="solid" name="bars" />
-          </div>
+          </button>
         </div>
       </div>
     </v-section>
