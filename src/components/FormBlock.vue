@@ -14,7 +14,13 @@
         </div>
       </div>
       <div v-if="!noCta" class="form-block__footer">
-        <v-button size="small" :fluid="fluid" @click="handleClickProceed">{{ ctaText }}</v-button>
+        <v-button size="small" :fluid="fluid" :loading="isFormProcessing" @click="handleSubmit">{{ ctaText }}</v-button>
+        <span 
+          v-if="hasError" 
+          class="error-message"
+        >
+          {{ errorMessage }}
+        </span>
       </div>
     </form>
   </div>
@@ -22,11 +28,11 @@
 
 <script>
 import ControlMixin from './ControlMixin';
+import { validateFields } from '@/lib/validation';
 
 export default {
   name: 'FormBlock',
   mixins: [ControlMixin],
-  emits: ['proceed'],
   props: {
     header: String,
     subheader: String,
@@ -34,7 +40,11 @@ export default {
       type: String,
       default: 'Save changes',
     },
+    validationRules: Object,
+    errorMessage: [String, null],
     noCta: Boolean,
+    isFormProcessing: Boolean,
+    hasError: Boolean,
   },
   computed: {
     formName() {
@@ -42,15 +52,21 @@ export default {
     },
   },
   methods: {
-    handleClickProceed() {
-      const form=document.forms[this.formName];
-      console.dir(form);
-      const data = new FormData(form);
-      console.dir(data);
-      for (const [key, value] of data.entries()) { 
-        console.log(key, value);
+    validateForm() {
+      const form = document.forms[this.formName];
+      const formData = new FormData(form);
+
+      const errorFields = validateFields(Object.fromEntries(formData.entries()), this.validationRules);
+      
+      if (Object.keys(errorFields).length) {
+        this.$emit('invalid', errorFields);
+        return;
       }
-      this.$emit('proceed');
+
+      this.$emit('submit', formData);
+    },
+    handleSubmit() {
+      this.validateForm();
     },
   },
 }

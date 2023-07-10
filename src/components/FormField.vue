@@ -1,16 +1,63 @@
 <template>
-  <div class="form-field">
+  <div class="form-field" @change="handleInput" @input="handleInput">
     <div v-if="isFormFieldInline" class="form-field--inline">
-      <v-radio-button v-if="isInputTypeRadio" :id="id" :name="name" :value="value" fluid />
-      <v-switcher v-if="isInputTypeSwitcher" :id="id" :name="name" :value="value" fluid @change="$emit('input')"/>
-      <label v-if="label" :for="id">{{ label }}</label>
+      <v-radio-button
+        v-if="isInputTypeRadio" 
+        :id="id" :name="name" 
+        :value="value" 
+        fluid 
+      />
+      <v-switcher 
+        v-if="isInputTypeSwitcher" 
+        :id="id" 
+        :name="name" 
+        :value="value" 
+        fluid 
+      />
+      <label 
+        v-if="label" 
+        :for="id"
+      >
+        {{ label }}
+      </label>
     </div>
     <template v-else>
-      <label v-if="label" :for="id">{{ label }}</label>
-      <v-input v-if="isInputTypeText" :id="id" :name="name" :type="type" :placeholder="placeholder" :autocomplete="autocomplete" fluid/>
-      <v-select v-else-if="isInputTypeSelect" :id="id" :name="name" :type="type" fluid/>
-      <v-textarea v-else-if="isInputTypeTextarea" :id="id" :name="name" fluid></v-textarea>
-      <span v-if="hasError" class="form-field__error-message">Your name may not contain any sausages and pancakes any sausages or pancakes</span>
+      <label 
+        v-if="label" 
+        :for="id"
+      >
+        {{ label }}
+      </label>
+      <v-input 
+        v-if="isInputTypeText" 
+        :id="id" 
+        :name="name" 
+        :type="type"
+        :placeholder="placeholder"
+        :autocomplete="autocomplete" 
+        :has-error="hasError" 
+        fluid
+      />
+      <v-select 
+        v-else-if="isInputTypeSelect" 
+        :id="id" 
+        :name="name" 
+        :type="type"
+        fluid
+      />
+      <v-textarea 
+        v-else-if="isInputTypeTextarea" 
+        :id="id" 
+        :name="name" 
+        fluid
+      >
+      </v-textarea>
+      <span 
+        v-if="hasError" 
+        class="error-message"
+      >
+        {{ errorMessage }}
+      </span>
     </template>
   </div>
 </template>
@@ -36,6 +83,11 @@ export default {
       type: [String, Number, Boolean]
     },
     placeholder: String,
+    errorMessage: {
+      type: String,
+      default: 'Your name may not contain any sausages and pancakes any sausages or pancakes',
+    },
+    hasError: Boolean,
     autocomplete: Boolean,
   },
   computed: {
@@ -57,10 +109,12 @@ export default {
     isFormFieldInline() {
       return this.isInputTypeSwitcher || this.isInputTypeRadio;
     },
-    hasError() {
-      return false;
+  },
+  methods: {
+    handleInput() {
+      this.$emit('input');
     },
-  }
+  },
 }
 </script>
 
@@ -77,13 +131,6 @@ export default {
     .v-label {
       font-size: .9em;
     }
-  }
-
-  &__error-message {
-    font-size: $fs-xxs;
-    line-height: $lh-small;
-    color: $red-600;
-    font-weight: $fw-medium;
   }
 }
 

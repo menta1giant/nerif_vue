@@ -8,3 +8,9 @@ export async function apiRequestGet(route, params='') {
 
   return data;
 }
+
+export async function apiRequestPost(route, params={}) {
+  const { data } = await axios.post(`${ BACKEND_URL }${ route }`, params);
+
+  return data;
+}

@@ -1,13 +1,45 @@
 <template>
-  <form-block header="Creating account" cta-text="Create account" fluid @proceed="$emit('change-step')">
+  <form-block 
+    header="Creating account" 
+    cta-text="Create account" 
+    :validation-rules="validationRules"
+    :is-form-processing="isFormProcessing"
+    fluid 
+    @submit="handleFormSubmit" 
+    @invalid="handleFormValidationFail"
+    @input="handleInput"
+  >
     <div class="social-sign-up-buttons">
       <social-sign-up-button social="google">Google</social-sign-up-button>
       <social-sign-up-button social="discord">Discord</social-sign-up-button>
     </div>
     <div class="sign-up-method-divider"><span>or</span></div>
-    <form-field label="E-mail address" name="email" placeholder="goracio.nelson@gmail.com" fluid autocomplete/>
-    <form-field type="password" label="Password" name="password" placeholder="Minimum 6 characters" fluid/>
-    <form-field type="password" label="Confirm password" name="password_confirmation" placeholder="Minimum 6 characters" fluid/>
+    <form-field label="E-mail address"
+      name="email"
+      placeholder="goracio.nelson@gmail.com"
+      :has-error="!!errorMessages.email"
+      :error-message="errorMessages.email"
+      fluid
+      autocomplete
+    />
+    <form-field 
+      type="password" 
+      label="Password" 
+      name="password" 
+      placeholder="Minimum 6 characters" 
+      :has-error="!!errorMessages.password"
+      :error-message="errorMessages.password"
+      fluid
+    />
+    <form-field 
+      type="password" 
+      label="Confirm password" 
+      name="password_confirmation" 
+      placeholder="Minimum 6 characters" 
+      :has-error="!!errorMessages.password_confirmation"
+      :error-message="errorMessages.password_confirmation"
+      fluid
+    />
   </form-block>
 </template>
 
@@ -16,6 +48,10 @@ import FormBlock from '@/components/FormBlock.vue';
 import FormField from '@/components/FormField.vue';
 import SocialSignUpButton from '@/components/SocialSignUpButton.vue';
 
+import { apiRequestPost } from '@/lib/api';
+import { ValidationRule } from '@/lib/validation';
+import formHandlerMixin from '../formHandlerMixin';
+
 export default {
   name: 'InitialStep',
   emits: ['change-step'],
@@ -23,6 +59,28 @@ export default {
     SocialSignUpButton,
     FormBlock,
     FormField,
+  },
+  mixins: [formHandlerMixin],
+  data() {
+    return {
+      validationRules: {
+        email: new ValidationRule('email', 'Enter valid e-mail'),
+        password: new ValidationRule('password', 'Enter valid password. Your password should contain only letters a-Z and digits 0-9 and be no shorter than 6 characters.'),
+        password_confirmation: new ValidationRule('password_confirmation', 'Passwords don\'t match'),
+      },
+    }
+  },
+  methods: {
+    handleInput() {
+      this.resetErrors();
+    },
+    async handleFormSubmit(formData) {
+      this.isFormProcessing = true;
+      await apiRequestPost('users/sign-up/create-account', formData);
+      this.isFormProcessing = false;
+
+      this.$emit('change-step');
+    },
   },
 }
 </script>

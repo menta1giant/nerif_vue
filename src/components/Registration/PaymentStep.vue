@@ -1,9 +1,22 @@
 <template>
-<form-block header="Choose your subscription plan" cta-text="Activate your subscription" fluid @proceed="handleChangeStep">
+<form-block 
+  header="Choose your subscription plan" 
+  cta-text="Activate your subscription" 
+  :validation-rules="validationRules"
+  :error-message="errorMessages[defaultError]" 
+
+  :has-error="!!defaultError" 
+  :is-form-processing="isFormProcessing"
+  fluid 
+
+  @submit="handleFormSubmit" 
+  @invalid="handleFormValidationFail"
+  @input="handleInput"
+>
   <form-field type="radio" label="Monthly" name="subscription_period" :value="0" fluid/>
   <form-field type="radio" label="Annual" name="subscription_period" :value="1" fluid/>
   <div class="subscription-plan-options-wrapper">
-    <subscription-plan-option v-for="(plan, idx) in plans" :key="`plan_${ idx }`" title="Demo" price="$25" :features="['Tasty treats', 'Meow meow', 'Wasabi']" :is-active="activePlan === idx" @click="activePlan = activePlan === idx ? null : idx"/>
+    <subscription-plan-option v-for="(plan, idx) in plans" :key="`plan_${ idx }`" title="Demo" price="$25" :features="['Tasty treats', 'Meow meow', 'Wasabi']" :is-active="activePlan === idx" @click="changeActivePlan(idx)"/>
     <input class="ghost-input" type="number" name="subscription_plan" :value="activePlan"/>
   </div>
   <form-field type="select" label="Currency" name="currency" fluid/>
@@ -17,6 +30,10 @@ import FormBlock from '@/components/FormBlock.vue';
 import FormField from '@/components/FormField.vue';
 import SubscriptionPlanOption from '@/components/Registration/SubscriptionPlanOption.vue';
 
+import { apiRequestPost } from '@/lib/api';
+import { ValidationRule } from '@/lib/validation';
+import formHandlerMixin from '../formHandlerMixin';
+
 export default {
   name: 'PaymentStep',
   emits: ['change-step'],
@@ -25,14 +42,37 @@ export default {
     FormField,
     SubscriptionPlanOption,
   },
+  mixins: [formHandlerMixin],
   data() {
     return {
       activePlan: null,
       plans: new Array(3),
+
+      validationRules: {
+        subscription_plan: new ValidationRule('select', 'Select subscription plan'),
+        default: ['subscription_plan']
+      },
     };
   },
+  computed: {
+    defaultError() {
+      return 'default' in this.validationRules ? this.validationRules.default.find(rule => !!this.errorMessages[rule]) : null;
+    }
+  },
   methods: {
-    handleChangeStep() {
+    changeActivePlan(idx) {
+      this.activePlan = this.activePlan === idx ? null : idx;
+      this.resetErrors();
+    },
+    handleInput() {
+      this.resetErrors();
+    },
+    async handleFormSubmit(formData) {
+      this.resetErrors();
+      this.isFormProcessing = true;
+      await apiRequestPost('users/sign-up/set-up-plan', formData);
+      this.isFormProcessing = false;
+
       this.$emit('change-step');
     },
   },

@@ -120,6 +120,13 @@ img {
   visibility: hidden;
 }
 
+.error-message {
+  font-size: $fs-xxs;
+  line-height: $lh-small;
+  color: $red-600;
+  font-weight: $fw-medium;
+}
+
 .mobile:not(.desktop) {
   display: none;
 }
