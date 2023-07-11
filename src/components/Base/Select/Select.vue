@@ -10,7 +10,7 @@
         <select-dropdown :options="options" @select="handleSelectOption" />
       </template>
     </v-positioner>
-    <input class="ghost-input" type="number" :name="name" :value="selectedOption"/>
+    <input ref="ghost-input" class="ghost-input" type="number" :name="name" :value="selectedOption"/>
   </div>
 </template>
 
@@ -56,6 +56,13 @@ export default {
       this.options[id].selected = !this.options[id].selected;
       this.selectedOption = id;
       this.isDropdownVisible = false;
+
+      const event = new Event('input', {
+        bubbles: true,
+        cancelable: true,
+      });
+
+      this.$refs['ghost-input'].dispatchEvent(event, id);
     },
   },
 }

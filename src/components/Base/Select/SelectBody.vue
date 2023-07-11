@@ -1,5 +1,5 @@
 <template>
-  <button class="v-select__body" :class="{ 'v-select__body--error': hasError }" :id="id">
+  <button class="v-select__body" :class="{ 'v-select__body--error': hasError }" :id="id" type="button">
     <slot></slot>
     <v-chevron :model-value="isDropdownVisible" />
   </button>

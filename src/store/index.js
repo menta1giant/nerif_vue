@@ -52,7 +52,6 @@ export default createStore({
           state.selectedMatch = match;
         },
         toggleMatchesFilter(state, idx) {
-          console.log(state.matchesFilters);
           state.matchesFilters[idx].value = !state.matchesFilters[idx].value;
         },
       },

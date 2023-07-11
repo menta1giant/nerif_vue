@@ -1,5 +1,5 @@
 <template>
-  <div class="form-field" @change="handleInput" @input="handleInput">
+  <div class="form-field">
     <div v-if="isFormFieldInline" class="form-field--inline">
       <v-radio-button
         v-if="isInputTypeRadio" 
@@ -13,6 +13,8 @@
         :name="name" 
         :value="value" 
         fluid 
+
+        @change="handleInput"
       />
       <label 
         v-if="label" 
@@ -34,6 +36,7 @@
         :name="name" 
         :type="type"
         :placeholder="placeholder"
+        
         :autocomplete="autocomplete" 
         :has-error="hasError" 
         fluid
@@ -43,12 +46,16 @@
         :id="id" 
         :name="name" 
         :type="type"
+
+        :has-error="hasError" 
         fluid
       />
       <v-textarea 
         v-else-if="isInputTypeTextarea" 
         :id="id" 
         :name="name" 
+
+        :has-error="hasError" 
         fluid
       >
       </v-textarea>
@@ -111,8 +118,8 @@ export default {
     },
   },
   methods: {
-    handleInput() {
-      this.$emit('input');
+    handleInput(val) {
+      this.$emit('input', val);
     },
   },
 }

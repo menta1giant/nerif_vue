@@ -1,7 +1,7 @@
 <template>
   <div class="v-input" :class="{ 'v-input--has-icon': inputTypeIcon, 'v-input--error': hasError, 'fluid': fluid }">
     <div v-if="inputTypeIcon" class="v-input__icon"><v-icon :name="inputTypeIcon" /></div>
-    <input :id="id" :name="name" :type="inputType" :placeholder="placeholder" :autocomplete="autocompleteStatus" @input="handleInput"/>
+    <input :id="id" :name="name" :type="inputType" :placeholder="placeholder" :autocomplete="autocompleteStatus"/>
   </div>
  
 </template>
@@ -61,11 +61,6 @@ export default {
     },
     autocompleteStatus() {
       return this.autocomplete ? 'on' : 'off';
-    },
-  },
-  methods: {
-    handleInput(val) {
-      this.$emit('input', val);
     },
   },
 }

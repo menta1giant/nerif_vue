@@ -16,7 +16,6 @@ import formFieldMixin from './formFieldMixin';
 
 export default {
   name: 'Switcher',
-  emits: ['change'],
   mixins: [formFieldMixin],
   props: {
     value: {

@@ -57,6 +57,13 @@ export default {
   methods: {
     toggleOption(id) {
       this.options[id].selected = !this.options[id].selected;
+
+      const event = new Event('input', {
+        bubbles: true,
+        cancelable: true,
+      });
+
+      this.$refs['ghost-input'].dispatchEvent(event, id);
     },
   },
 }

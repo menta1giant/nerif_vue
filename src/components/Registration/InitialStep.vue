@@ -49,7 +49,7 @@ import FormField from '@/components/FormField.vue';
 import SocialSignUpButton from '@/components/SocialSignUpButton.vue';
 
 import { apiRequestPost } from '@/lib/api';
-import { ValidationRule } from '@/lib/validation';
+import { INITIAL_STEP_VALIDATION_RULES } from './const';
 import formHandlerMixin from '../formHandlerMixin';
 
 export default {
@@ -63,11 +63,7 @@ export default {
   mixins: [formHandlerMixin],
   data() {
     return {
-      validationRules: {
-        email: new ValidationRule('email', 'Enter valid e-mail'),
-        password: new ValidationRule('password', 'Enter valid password. Your password should contain only letters a-Z and digits 0-9 and be no shorter than 6 characters.'),
-        password_confirmation: new ValidationRule('password_confirmation', 'Passwords don\'t match'),
-      },
+      validationRules: INITIAL_STEP_VALIDATION_RULES,
     }
   },
   methods: {

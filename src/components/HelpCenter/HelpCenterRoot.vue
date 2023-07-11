@@ -36,26 +36,18 @@
           </div>
         </div>
       </div>
-      <form-block header="Contact" cta-text="Send message">
-        <form-field label="E-mail" placeholder="goracio.nelson@gmail.com"/>
-        <form-field type="textarea" label="Message" placeholder="Enter your message"/>
-        <div><upload-button size="small">Upload files</upload-button></div>
-      </form-block>
+      <contact-form />
     </div>
   </v-section>
 </template>
 
 <script>
-import FormBlock from '@/components/FormBlock.vue';
-import FormField from '@/components/FormField.vue';
-import UploadButton from '@/components/UploadButton.vue';
+import ContactForm from './ContactForm.vue';
 
 export default {
   name: 'HelpCenterRoot',
   components: {
-    FormBlock,
-    FormField,
-    UploadButton,
+    ContactForm,
   }
 }
 </script>

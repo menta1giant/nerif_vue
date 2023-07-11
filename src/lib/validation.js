@@ -2,6 +2,7 @@ const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_REGEX = /[A-Za-z0-9]+/;
 const PASSWORD_MIN_LENGTH = 6;
 const PLAIN_TEXT_REGEX = /\p{L}/u;
+const PHONE_REGEX = /^\+\d+$/;
 
 const commonValidators = {
   email: validateEmail,
@@ -10,6 +11,7 @@ const commonValidators = {
   select: validateSelect,
   string: validateString,
   plain_text: validatePlainText,
+  phone: validatePhone,
 }
 
 export class ValidationRule {
@@ -77,4 +79,8 @@ export function validateString(string) {
 
 export function validatePlainText(string) {
   return PLAIN_TEXT_REGEX.test(string);
+}
+
+export function validatePhone(phoneString) {
+  return PHONE_REGEX.test(phoneString);
 }

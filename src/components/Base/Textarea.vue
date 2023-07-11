@@ -1,18 +1,19 @@
 <template>
-  <textarea :id="id"></textarea>
+  <textarea class="v-textarea" :id="id" :name="name" :class="{'v-textarea--error': hasError }"></textarea>
 </template>
 
 <script>
 import formFieldMixin from './formFieldMixin';
+import ErrorMixin from '@/components/ErrorMixin';
 
 export default {
   name: 'Textarea',
-  mixins: [formFieldMixin],
+  mixins: [formFieldMixin, ErrorMixin],
 }
 </script>
 
 <style lang="scss" scoped>
-textarea {
+.v-textarea {
   padding: .5rem;
   color: $primary-ds-800;
 
@@ -28,6 +29,10 @@ textarea {
 
   &:focus {
     box-shadow: 0 0 0 1px $primary-s-100;
+  }
+
+  &--error {
+    border-color: $red-600;
   }
 }
 </style>

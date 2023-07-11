@@ -119,7 +119,6 @@ export default {
       return Object.fromEntries(this.$store.getters.getMatchesFilters.filter(filter => filter.value).map(filter => [filter.id, 1]));
     },
     queryParams() {
-      console.log(this.matchesFilters);
       return Object.assign({}, this.matchesRequestParams, this.matchesFilters, {
         'date': this.formattedDate,
       })

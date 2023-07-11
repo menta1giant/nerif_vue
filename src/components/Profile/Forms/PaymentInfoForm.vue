@@ -1,5 +1,10 @@
 <template>
-  <form-block header="Payment info" subheader="All data is secure">
+  <form-block 
+    header="Payment info" 
+    subheader="All data is secure"
+
+    @submit="handleFormSubmit" 
+  >
     <form-field type="select" label="Location" name="location"/>
     <form-field type="select" label="Currency" name="currency"/>
     <form-field type="payment" label="Credit or debit card info" name="card-info" placeholder="Add credit or debit card info"/>
@@ -15,13 +20,26 @@ import FormBlock from '@/components/FormBlock.vue';
 import FormField from '@/components/FormField.vue';
 import UserInfoMixin from '@/components/UserInfoMixin';
 
+import { apiRequestPost } from '@/lib/api';
+import formHandlerMixin from '@/components/formHandlerMixin';
+
 export default {
   name: 'PersonalInfoForm',
   components: {
     FormBlock,
     FormField
   },
-  mixins: [UserInfoMixin],
+  mixins: [UserInfoMixin, formHandlerMixin],
+  methods: {
+    async handleFormSubmit(formData) {
+      this.resetErrors();
+      this.isFormProcessing = true;
+      await apiRequestPost('users/sign-up/set-up-plan', formData);
+      this.isFormProcessing = false;
+
+      this.$emit('change-step');
+    },
+  }
 }
 </script>
 

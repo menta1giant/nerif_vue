@@ -31,7 +31,7 @@ import FormField from '@/components/FormField.vue';
 import SubscriptionPlanOption from '@/components/Registration/SubscriptionPlanOption.vue';
 
 import { apiRequestPost } from '@/lib/api';
-import { ValidationRule } from '@/lib/validation';
+import { PAYMENT_STEP_VALIDATION_RULES } from './const';
 import formHandlerMixin from '../formHandlerMixin';
 
 export default {
@@ -48,10 +48,7 @@ export default {
       activePlan: null,
       plans: new Array(3),
 
-      validationRules: {
-        subscription_plan: new ValidationRule('select', 'Select subscription plan'),
-        default: ['subscription_plan']
-      },
+      validationRules: PAYMENT_STEP_VALIDATION_RULES,
     };
   },
   computed: {

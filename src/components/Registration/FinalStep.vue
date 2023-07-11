@@ -28,7 +28,7 @@ import FormField from '@/components/FormField.vue';
 import ImageUpload from '@/components/ImageUpload.vue';
 
 import { apiRequestPost } from '@/lib/api';
-import { ValidationRule, EMPTY_INPUT_VALIDATION_RULE } from '@/lib/validation';
+import { FINAL_STEP_VALIDATION_RULES } from './const';
 import formHandlerMixin from '../formHandlerMixin';
 
 export default {
@@ -41,10 +41,7 @@ export default {
   mixins: [formHandlerMixin],
   data() {
     return {
-      validationRules: {
-        first_name: [EMPTY_INPUT_VALIDATION_RULE, new ValidationRule('plain_text', 'Your first name may only contain letters')],
-        last_name: [EMPTY_INPUT_VALIDATION_RULE, new ValidationRule('plain_text', 'Your last name may only contain letters')],
-      },
+      validationRules: FINAL_STEP_VALIDATION_RULES,
     }
   },
   methods: {
