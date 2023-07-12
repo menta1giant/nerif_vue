@@ -30,6 +30,12 @@
     gap: .75rem;
 
     padding-top: 1rem;
+
+    &--bleak {
+      .v-icon {
+        color: $primary-ds-200;
+      }
+    }
   }
 
   &__common-buttons:not(:last-child) {
@@ -37,10 +43,6 @@
 
     padding-bottom: 1rem;
   }
-}
-
-.icon-bleak {
-  color: $primary-ds-200;
 }
 
 .button-content-bleak {

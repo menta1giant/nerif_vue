@@ -1,12 +1,12 @@
 <template>
-  <button class="v-select__option" :class="{ 'v-select__option--selected': option.selected }" type="button" @mouseup="toggleOption()" @focus="toggleOption()"><slot></slot></button>
+  <button class="v-select__option" :class="{ 'v-select__option--selected': selected }" type="button" @mouseup="toggleOption()"><slot></slot></button>
 </template>
 
 <script>
 export default {
   name: 'SelectOption',
   props: {
-    option: Object,
+    selected: Boolean,
   },
   methods: {
     toggleOption() {
@@ -19,6 +19,7 @@ export default {
 
 .v-select__option {
   font-weight: $fw-medium;
+  line-height: $lh-medium;
 
   padding: .5rem;
   cursor: pointer;

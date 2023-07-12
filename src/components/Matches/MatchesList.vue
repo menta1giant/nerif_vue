@@ -78,12 +78,12 @@ export default {
       handler(val) {
         if (!val) return;
 
-        this.loadStatsValues();
+        this.fetchStatsValues();
       }
     }
   },
   methods: {
-    async loadStatsValues() {
+    async fetchStatsValues() {
       this.statsValues = await apiRequestGet(`matches/predictions/stats/${ this.openedMatchCard.id }`);
     },
     changeStatsVisibility() {

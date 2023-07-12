@@ -41,7 +41,7 @@
             </v-popup>
           </template>
           <template v-else>
-            <span><b>Sign in.</b></span>
+            <router-link to="/login"><span><b>Sign in.</b></span></router-link>
             <router-link to="/sign-up"><v-button type="primary-accent" size="small">Subscribe</v-button></router-link>
           </template>
           <button class="navbar-square-button hamburger-menu-button mobile">

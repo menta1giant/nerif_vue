@@ -7,7 +7,7 @@ export const INITIAL_STEP_VALIDATION_RULES = {
 };
 
 export const PAYMENT_STEP_VALIDATION_RULES = {
-  subscription_plan: new ValidationRule('select', 'Select subscription plan'),
+  plan: new ValidationRule('select', 'Select subscription plan'),
   default: ['subscription_plan']
 };
 

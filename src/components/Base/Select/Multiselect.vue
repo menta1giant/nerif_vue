@@ -4,12 +4,14 @@
       <template v-slot:body>
         <select-body v-model:is-dropdown-visible="isDropdownVisible" :has-error="hasError">
           <div class="v-multiselect__selected-options">
-            <select-option v-for="(option, idx) in selectedOptions" :key="idx" :option="option">{{ option.value }}</select-option>
+            <select-option v-for="(option, idx) in selectedOptions" :key="idx" selected>{{ option.label }}</select-option>
           </div>
         </select-body>
       </template>
       <template v-slot:dropdown>
-        <select-dropdown :options="options" @select="toggleOption" />
+        <select-dropdown>
+          <select-option v-for="(option, idx) in options" :key="`option_${ idx }`" :selected="optionsStatuses[idx]" @select="handleToggleOption(idx)">{{ option.label }}</select-option>
+        </select-dropdown>
       </template>
     </v-positioner>
   </div>
@@ -29,41 +31,28 @@ export default {
     SelectDropdown,
   },
   mixins: [ErrorMixin],
+  props: {
+    options: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
   data() {
     return {
       isDropdownVisible: false,
-      options: [
-        {
-          selected: true, value: 'Гагарин'
-        },
-        {
-          selected: true, value: 'STORY'
-        },
-        {
-          selected: false, value: 'Рыжик'
-        },
-        {
-          selected: false, value: 'Малыш'
-        },
-      ],
-      selectedOptionsIds: [1,2],
+      optionsStatuses: new Array(this.options.length).fill(false),
     };
   },
   computed: {
     selectedOptions() {
-      return this.options.filter(option => option.selected);
+      return this.options.filter((option, idx) => this.optionsStatuses[idx]);
     },
   },
   methods: {
-    toggleOption(id) {
-      this.options[id].selected = !this.options[id].selected;
-
-      const event = new Event('input', {
-        bubbles: true,
-        cancelable: true,
-      });
-
-      this.$refs['ghost-input'].dispatchEvent(event, id);
+    handleToggleOption(idx) {
+      this.optionsStatuses[idx] = !this.optionsStatuses[idx];
     },
   },
 }
@@ -76,6 +65,8 @@ export default {
   &__selected-options {
     display: flex;
     gap: .25rem;
+
+    min-height: 2.5rem;
   }
 }
 </style>

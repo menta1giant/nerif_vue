@@ -51,7 +51,7 @@ export default {
     async handleFormSubmit(formData) {
       this.resetErrors();
       this.isFormProcessing = true;
-      await apiRequestPost('users/profile/1/update-personal-info', formData);
+      await apiRequestPost('users/profile/update-personal-info', formData);
       this.isFormProcessing = false;
     },
   }

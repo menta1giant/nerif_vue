@@ -35,7 +35,7 @@ export default {
 
       const formData = new FormData(form);
 
-      apiRequestPost('users/profile/1/update-notification-settings', formData);
+      apiRequestPost('users/profile/update-notification-settings', formData);
     }, 500),
   }
 }

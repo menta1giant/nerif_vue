@@ -13,11 +13,11 @@
   @invalid="handleFormValidationFail"
   @input="handleInput"
 >
-  <form-field type="radio" label="Monthly" name="subscription_period" :value="0" fluid/>
-  <form-field type="radio" label="Annual" name="subscription_period" :value="1" fluid/>
+  <form-field type="radio" label="Monthly" name="period" :value="0" fluid/>
+  <form-field type="radio" label="Annual" name="period" :value="1" fluid/>
   <div class="subscription-plan-options-wrapper">
     <subscription-plan-option v-for="(plan, idx) in plans" :key="`plan_${ idx }`" title="Demo" price="$25" :features="['Tasty treats', 'Meow meow', 'Wasabi']" :is-active="activePlan === idx" @click="changeActivePlan(idx)"/>
-    <input class="ghost-input" type="number" name="subscription_plan" :value="activePlan"/>
+    <input class="ghost-input" type="number" name="plan" :value="activePlan"/>
   </div>
   <form-field type="select" label="Currency" name="currency" fluid/>
   <form-field type="payment" label="Credit or debit card info" name="card_info" placeholder="Add credit or debit card info" fluid/>

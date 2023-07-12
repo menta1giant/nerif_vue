@@ -14,3 +14,17 @@ export async function apiRequestPost(route, params={}) {
 
   return data;
 }
+
+const resourcesCache = {
+
+}
+
+export async function fetchResource(resource) {
+  if (resource in resourcesCache) return resourcesCache[resource];
+
+  const data = await apiRequestGet(`storage/${ resource }`);
+
+  resourcesCache[resource] = data;
+
+  return data;
+}

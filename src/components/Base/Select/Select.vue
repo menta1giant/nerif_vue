@@ -3,20 +3,23 @@
     <v-positioner v-model="isDropdownVisible" triggers-on-click>
       <template v-slot:body>
         <select-body :id="id" v-model:is-dropdown-visible="isDropdownVisible" :has-error="hasError">
-          <span class="v-select__body__value">{{ options[selectedOption].value }}</span>
+          <span class="v-select__body__value">{{ options[selectedOption] && options[selectedOption].label || '&nbsp;' }}</span>
         </select-body>
       </template>
       <template v-slot:dropdown>
-        <select-dropdown :options="options" @select="handleSelectOption" />
+        <select-dropdown>
+          <select-option v-for="(option, idx) in options" :key="`option_${ idx }`" :selected="selectedOption === idx" @select="handleSelectOption(idx)">{{ option.label }}</select-option>
+        </select-dropdown>
       </template>
     </v-positioner>
-    <input ref="ghost-input" class="ghost-input" type="number" :name="name" :value="selectedOption"/>
+    <input ref="ghost-input" class="ghost-input" type="text" :name="name" :value="options[selectedOption] && options[selectedOption].value"/>
   </div>
 </template>
 
 <script>
 import SelectBody from './SelectBody';
 import SelectDropdown from './SelectDropdown';
+import SelectOption from './SelectOption';
 import ErrorMixin from '@/components/ErrorMixin';
 import formFieldMixin from '../formFieldMixin';
 
@@ -25,35 +28,28 @@ export default {
   components: {
     SelectBody,
     SelectDropdown,
+    SelectOption,
   },
   mixins: [
     ErrorMixin,
     formFieldMixin,
   ],
+  props: {
+    options: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
   data() {
     return {
       isDropdownVisible: false,
-      options: [
-        {
-          selected: true, value: 'Гагарин'
-        },
-        {
-          selected: false, value: 'STORY'
-        },
-        {
-          selected: false, value: 'Рыжик'
-        },
-        {
-          selected: false, value: 'Малыш'
-        },
-      ],
       selectedOption: 0,
     };
   },
   methods: {
     handleSelectOption(id) {
-      this.options[this.selectedOption].selected = false;
-      this.options[id].selected = !this.options[id].selected;
       this.selectedOption = id;
       this.isDropdownVisible = false;
 

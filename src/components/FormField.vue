@@ -47,6 +47,8 @@
         :name="name" 
         :type="type"
 
+        :options="options"
+
         :has-error="hasError" 
         fluid
       />
@@ -88,6 +90,12 @@ export default {
     },
     value: {
       type: [String, Number, Boolean]
+    },
+    options: {
+      type: Array,
+      default() {
+        return [];
+      },
     },
     placeholder: String,
     errorMessage: {

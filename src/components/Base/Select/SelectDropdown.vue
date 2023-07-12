@@ -1,25 +1,12 @@
 <template>
   <div class="v-select__dropdown">
-    <select-option v-for="(option, idx) in options" :key="idx" :option="option" @select="handleSelectOption(idx)">{{ option.value }}</select-option>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-import SelectOption from './SelectOption';
-
 export default {
   name: 'SelectDropdown',
-  components: {
-    SelectOption,
-  },
-  props: {
-    options: Array,
-  },
-  methods: {
-    handleSelectOption(id) {
-      this.$emit('select', id);
-    },
-  },
 }
 </script>
 

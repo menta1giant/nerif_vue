@@ -75,7 +75,7 @@ export default {
   async created() {
     this.$router.replace(`/matches/${this.formattedDate}`);
     this.setUpIntersectionObserver();
-    await this.loadMatches();
+    await this.fetchMatches();
   },
   data() {
     return {
@@ -143,7 +143,7 @@ export default {
       const target = document.querySelector(".match-card-dummy");
       if (target instanceof HTMLElement) this.invokeObserver(target);
     },
-    async loadMatches() {
+    async fetchMatches() {
       this.areMatchesLoading = true;
 
       const formattedDate = this.formattedDate;
@@ -163,14 +163,14 @@ export default {
       this.matchesRequestParams.offset = 0;
       this.matches = [];
 
-      await this.loadMatches();
+      await this.fetchMatches();
     }, 300),
-    loadAnotherBatchOfMatches(entries) {
+    fetchAnotherBatchOfMatches(entries) {
       if (this.areMatchesLoading || this.isLimitOfMatchesReached || this.hasSelectedMatch) return;
 
       if (!entries[0].isIntersecting) return;
 
-      this.loadMatches();
+      this.fetchMatches();
     },
     setUpIntersectionObserver() {
       let options = {
@@ -179,7 +179,7 @@ export default {
         threshold: 1.0,
       };
 
-      this.observer = new IntersectionObserver(this.loadAnotherBatchOfMatches, options);
+      this.observer = new IntersectionObserver(this.fetchAnotherBatchOfMatches, options);
     },
     invokeObserver(target) {
       this.observer.disconnect();

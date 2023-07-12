@@ -3,10 +3,12 @@
     header="Payment info" 
     subheader="All data is secure"
 
+    :is-form-processing="isFormProcessing"
+
     @submit="handleFormSubmit" 
   >
-    <form-field type="select" label="Location" name="location"/>
-    <form-field type="select" label="Currency" name="currency"/>
+    <form-field type="select" label="Location" name="location" :options="locations"/>
+    <form-field type="select" label="Currency" name="currency" :options="currencies"/>
     <form-field type="payment" label="Credit or debit card info" name="card_info" placeholder="Add credit or debit card info"/>
     <div class="subscription-plan-field">
       <v-label>Subscription plan</v-label>
@@ -20,7 +22,7 @@ import FormBlock from '@/components/FormBlock.vue';
 import FormField from '@/components/FormField.vue';
 import UserInfoMixin from '@/components/UserInfoMixin';
 
-import { apiRequestPost } from '@/lib/api';
+import { apiRequestPost, fetchResource } from '@/lib/api';
 import formHandlerMixin from '@/components/formHandlerMixin';
 
 export default {
@@ -30,11 +32,23 @@ export default {
     FormField
   },
   mixins: [UserInfoMixin, formHandlerMixin],
+  async created() {
+    const [locations, currencies] = await Promise.all([fetchResource('locations'), fetchResource('currencies')]);
+
+    this.locations = locations;
+    this.currencies = currencies;
+  },
+  data() {
+    return {
+      locations: [],
+      currencies: [],
+    };
+  },
   methods: {
     async handleFormSubmit(formData) {
       this.resetErrors();
       this.isFormProcessing = true;
-      await apiRequestPost('users/profile/1/update-payment-info', formData);
+      await apiRequestPost('users/profile/update-payment-info', formData);
       this.isFormProcessing = false;
     },
   }
