@@ -1,5 +1,5 @@
 <template>
-  <div class="v-select__option" :class="{ 'v-select__option--selected': option.selected }" @click="toggleOption()"><slot></slot></div>
+  <button class="v-select__option" :class="{ 'v-select__option--selected': option.selected }" type="button" @mouseup="toggleOption()" @focus="toggleOption()"><slot></slot></button>
 </template>
 
 <script>

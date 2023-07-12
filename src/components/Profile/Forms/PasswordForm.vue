@@ -44,10 +44,8 @@ export default {
     async handleFormSubmit(formData) {
       this.resetErrors();
       this.isFormProcessing = true;
-      await apiRequestPost('users/sign-up/set-up-plan', formData);
+      await apiRequestPost('users/profile/1/change-password', formData);
       this.isFormProcessing = false;
-
-      this.$emit('change-step');
     },
   }
 }

@@ -40,16 +40,17 @@ export default {
       type: String,
       default: 'Save changes',
     },
+    formName: {
+      type: String,
+      default() {
+        return `form_${ Math.random()*100 }`;
+      },
+    },
     validationRules: Object,
     errorMessage: [String, null],
     noCta: Boolean,
     isFormProcessing: Boolean,
     hasError: Boolean,
-  },
-  computed: {
-    formName() {
-      return `form_${ Math.random()*100 }`;
-    },
   },
   methods: {
     validateForm() {

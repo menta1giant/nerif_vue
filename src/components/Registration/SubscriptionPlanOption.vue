@@ -1,6 +1,6 @@
 <template>
 <div class="subscription-plan-option" :class="{ 'subscription-plan-option--active': isActive }">
-  <div class="subscription-plan-option__description">
+  <button class="subscription-plan-option__description" type="button">
     <div class="subscription-plan-option__header">
       <span class="subscription-plan-option__title">{{ title }}</span>
       <span class="subscription-plan-option__price-mobile mobile">{{ price }}</span>
@@ -9,7 +9,7 @@
     <ul class="desktop" :class="{ mobile: isActive }">
       <li v-for="(feature, idx) in features" :key="`feature_${ idx }`" >{{ feature }}</li>
     </ul>
-  </div>
+  </button>
   <span class="subscription-plan-option__price desktop">Free</span>
 </div>
 </template>
@@ -31,8 +31,6 @@ export default {
   display: grid;
   flex-basis: 100%;
 
-  cursor: pointer;
-
   &__description {
     display: flex;
     flex-direction: column;
@@ -44,6 +42,12 @@ export default {
     background: $black-40;
     border-radius: $border-radius-large;
     box-shadow: 0 0 0 1px $primary-s-100;
+
+    cursor: pointer;
+
+    &:focus {
+      box-shadow: 0 0 0 2px $primary-s-100;
+    }
 
     ul {
       flex-direction: column;

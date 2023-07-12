@@ -1,5 +1,7 @@
 import { createStore } from 'vuex';
 import { filters } from '@/components/Matches/Filters/const';
+import { getCookie, setCookie, deleteCookie } from '@/lib/cookie';
+import { updateAuthorizationToken } from '@/lib/authorization';
 
 export default createStore({
   state: {
@@ -27,6 +29,42 @@ export default createStore({
   actions: {
   },
   modules: {
+    authentication: {
+      state: {
+        token: '',
+        isAuthenticated: false,
+      },
+      getters: {
+        getIsUserAuthenticated(state) {
+          return state.isAuthenticated;
+        },
+      },
+      mutations: {
+        initializeStore() {
+          const token = getCookie('Token');
+        
+          if (token) {
+            this.commit('setToken', token);
+          } else {
+            this.commit('removeToken');
+          } 
+        },
+        setToken(state, token) {
+          state.token = token;
+          state.isAuthenticated = true;
+
+          setCookie('Token', token, 7);
+          updateAuthorizationToken(token);
+        },  
+        removeToken(state) {
+          state.token = '';
+          state.isAuthenticated = false;
+
+          deleteCookie('Token');
+          updateAuthorizationToken('');
+        },
+      },
+    },
     matches: {
       state: {
         matchesSelectedDate: new Date(),

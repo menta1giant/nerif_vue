@@ -30,8 +30,6 @@ export default {
       this.isFormProcessing = true;
       await apiRequestPost('users/sign-up/set-up-plan', formData);
       this.isFormProcessing = false;
-
-      this.$emit('change-step');
     },
   }
 }

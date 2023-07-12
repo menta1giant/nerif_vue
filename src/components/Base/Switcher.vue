@@ -4,6 +4,8 @@
       class="v-switcher__input"
       type="checkbox"
       :id="id"
+      :name="name"
+      :value="internalValue"
       :checked="internalValue"
     />
     <div class="v-switcher__track"></div>

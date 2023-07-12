@@ -2,7 +2,7 @@
   <div class="v-select">
     <v-positioner v-model="isDropdownVisible" triggers-on-click>
       <template v-slot:body>
-        <select-body :id="id" :is-dropdown-visible="isDropdownVisible" :has-error="hasError">
+        <select-body :id="id" v-model:is-dropdown-visible="isDropdownVisible" :has-error="hasError">
           <span class="v-select__body__value">{{ options[selectedOption].value }}</span>
         </select-body>
       </template>

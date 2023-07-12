@@ -7,7 +7,7 @@
   >
     <form-field type="select" label="Location" name="location"/>
     <form-field type="select" label="Currency" name="currency"/>
-    <form-field type="payment" label="Credit or debit card info" name="card-info" placeholder="Add credit or debit card info"/>
+    <form-field type="payment" label="Credit or debit card info" name="card_info" placeholder="Add credit or debit card info"/>
     <div class="subscription-plan-field">
       <v-label>Subscription plan</v-label>
       <v-button size="small" type="transparent"><v-icon name="cog" />{{ userInfo.subscription.plan }} <span>(Until 2023-04-26)</span></v-button>
@@ -34,10 +34,8 @@ export default {
     async handleFormSubmit(formData) {
       this.resetErrors();
       this.isFormProcessing = true;
-      await apiRequestPost('users/sign-up/set-up-plan', formData);
+      await apiRequestPost('users/profile/1/update-payment-info', formData);
       this.isFormProcessing = false;
-
-      this.$emit('change-step');
     },
   }
 }

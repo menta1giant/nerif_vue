@@ -18,7 +18,10 @@ export default {
     NavigationBar,
     MobileNavigationBar,
     BreadcrumbsBar,
-  }
+  },
+  beforeCreate() {
+    this.$store.commit('initializeStore');
+  },
 }
 </script>
 

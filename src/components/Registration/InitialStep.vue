@@ -72,8 +72,10 @@ export default {
     },
     async handleFormSubmit(formData) {
       this.isFormProcessing = true;
-      await apiRequestPost('users/sign-up/create-account', formData);
+      const response = await apiRequestPost('users/sign-up/create-account', formData);
       this.isFormProcessing = false;
+
+      this.$store.commit('setToken', response.token);
 
       this.$emit('change-step');
     },

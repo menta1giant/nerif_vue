@@ -70,7 +70,6 @@ export default {
   data() {
     return {
       links: this.$router.getRoutes(),
-      isUserSignedIn: true,
       isNotificationsTabOpened: false,
       isProfilePopupOpened: false,
       notificationsCount: 234,
@@ -79,6 +78,9 @@ export default {
   computed: {
     hasNotifications() {
       return this.isUserSignedIn && this.notificationsCount > 0;
+    },
+    isUserSignedIn() {
+      return this.$store.getters.getIsUserAuthenticated;
     }
   },
 }

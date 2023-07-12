@@ -2,7 +2,7 @@
   <div class="v-multiselect">
     <v-positioner v-model="isDropdownVisible" triggers-on-click>
       <template v-slot:body>
-        <select-body :is-dropdown-visible="isDropdownVisible" :has-error="hasError">
+        <select-body v-model:is-dropdown-visible="isDropdownVisible" :has-error="hasError">
           <div class="v-multiselect__selected-options">
             <select-option v-for="(option, idx) in selectedOptions" :key="idx" :option="option">{{ option.value }}</select-option>
           </div>
