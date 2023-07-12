@@ -7,8 +7,8 @@
 
   @submit="handleFormSubmit" 
   >
-    <form-field type="select" label="Language" name="language" :options="languages"/>
-    <form-field type="select" label="Timezone" name="timezone" :options="timezones"/>
+    <form-field type="select" label="Language" name="language" :value="formData.language" :options="languages"/>
+    <form-field type="select" label="Timezone" name="timezone" :value="formData.timezone" :options="timezones"/>
   </form-block>
 </template>
 
@@ -16,7 +16,7 @@
 import FormBlock from '@/components/FormBlock.vue';
 import FormField from '@/components/FormField.vue';
 
-import { apiRequestPost, fetchResource } from '@/lib/api';
+import { apiRequestPost, apiRequestGet, fetchResource } from '@/lib/api';
 import formHandlerMixin from '@/components/formHandlerMixin';
 
 export default {
@@ -31,9 +31,15 @@ export default {
 
     this.languages = languages;
     this.timezones = timezones;
+
+    const data = await apiRequestGet('users/profile/localization-info');
+
+    this.formData = data;
   },
   data() {
     return {
+      formData: {},
+
       languages: [],
       timezones: [],
     }
@@ -42,7 +48,7 @@ export default {
     async handleFormSubmit(formData) {
       this.resetErrors();
       this.isFormProcessing = true;
-      await apiRequestPost('users/profile/update-localization-info', formData);
+      await apiRequestPost('users/profile/localization-info', formData);
       this.isFormProcessing = false;
     },
   }

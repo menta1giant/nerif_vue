@@ -19,7 +19,7 @@
     <subscription-plan-option v-for="(plan, idx) in plans" :key="`plan_${ idx }`" title="Demo" price="$25" :features="['Tasty treats', 'Meow meow', 'Wasabi']" :is-active="activePlan === idx" @click="changeActivePlan(idx)"/>
     <input class="ghost-input" type="number" name="plan" :value="activePlan"/>
   </div>
-  <form-field type="select" label="Currency" name="currency" fluid/>
+  <form-field type="select" label="Currency" name="currency" :options="currencies" fluid/>
   <form-field type="payment" label="Credit or debit card info" name="card_info" placeholder="Add credit or debit card info" fluid/>
 </form-block>
 
@@ -30,7 +30,7 @@ import FormBlock from '@/components/FormBlock.vue';
 import FormField from '@/components/FormField.vue';
 import SubscriptionPlanOption from '@/components/Registration/SubscriptionPlanOption.vue';
 
-import { apiRequestPost } from '@/lib/api';
+import { apiRequestPost, fetchResource } from '@/lib/api';
 import { PAYMENT_STEP_VALIDATION_RULES } from './const';
 import formHandlerMixin from '../formHandlerMixin';
 
@@ -43,10 +43,16 @@ export default {
     SubscriptionPlanOption,
   },
   mixins: [formHandlerMixin],
+  async created() {
+    const currencies = await fetchResource('currencies');
+
+    this.currencies = currencies;
+  },
   data() {
     return {
       activePlan: null,
       plans: new Array(3),
+      currencies: [],
 
       validationRules: PAYMENT_STEP_VALIDATION_RULES,
     };

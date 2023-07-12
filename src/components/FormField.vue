@@ -36,6 +36,7 @@
         :name="name" 
         :type="type"
         :placeholder="placeholder"
+        :value="value"
         
         :autocomplete="autocomplete" 
         :has-error="hasError" 
@@ -47,6 +48,7 @@
         :name="name" 
         :type="type"
 
+        :value="value"
         :options="options"
 
         :has-error="hasError" 

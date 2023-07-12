@@ -21,13 +21,16 @@ export default {
     SectionsNavigation,
     FormBlock,
   },
+  created() {
+    this.selectedSection = this.profileSections.findIndex(section => this.$route.path.includes(section));
+  },
   beforeRouteUpdate(to) {
     this.selectedSection = this.profileSections.findIndex(section => to.path.includes(section));
   },
   data() {
     return {
       sections: ['Personal info', 'Payment info', 'Password and security', 'Localization', 'Notifications'],
-      selectedSection: 0,
+      selectedSection: null,
       profileSections: ['personal', 'payment', 'password', 'localization', 'notifications'],
     };
   },
@@ -35,6 +38,8 @@ export default {
     selectedSection: {
       immediate: true,
       handler(val) {
+        if (val === null) return;
+
         this.$router.push(`/profile/${ this.profileSections[val] }`);
       }
     }

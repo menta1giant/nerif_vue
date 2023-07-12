@@ -41,12 +41,25 @@ export default {
         return [];
       },
     },
+    value: [Number, String]
   },
   data() {
     return {
       isDropdownVisible: false,
-      selectedOption: 0,
+      selectedOption: null,
     };
+  },
+  watch: {
+    value: {
+      immediate: true,
+      handler(val) {
+        if (this.selectedOption) return;
+
+        const selectedOption = this.options.findIndex(option => option.value === val);
+
+        if (~selectedOption) this.selectedOption = selectedOption;
+      },
+    },
   },
   methods: {
     handleSelectOption(id) {

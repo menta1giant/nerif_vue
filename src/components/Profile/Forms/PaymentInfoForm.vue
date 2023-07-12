@@ -7,9 +7,9 @@
 
     @submit="handleFormSubmit" 
   >
-    <form-field type="select" label="Location" name="location" :options="locations"/>
-    <form-field type="select" label="Currency" name="currency" :options="currencies"/>
-    <form-field type="payment" label="Credit or debit card info" name="card_info" placeholder="Add credit or debit card info"/>
+    <form-field type="select" label="Location" name="location" :value="formData.location" :options="locations"/>
+    <form-field type="select" label="Currency" name="currency" :value="formData.currency" :options="currencies"/>
+    <form-field type="payment" label="Credit or debit card info" name="card_info" :value="formData.card_info" placeholder="Add credit or debit card info"/>
     <div class="subscription-plan-field">
       <v-label>Subscription plan</v-label>
       <v-button size="small" type="transparent"><v-icon name="cog" />{{ userInfo.subscription.plan }} <span>(Until 2023-04-26)</span></v-button>
@@ -22,7 +22,7 @@ import FormBlock from '@/components/FormBlock.vue';
 import FormField from '@/components/FormField.vue';
 import UserInfoMixin from '@/components/UserInfoMixin';
 
-import { apiRequestPost, fetchResource } from '@/lib/api';
+import { apiRequestPost, apiRequestGet, fetchResource } from '@/lib/api';
 import formHandlerMixin from '@/components/formHandlerMixin';
 
 export default {
@@ -37,9 +37,15 @@ export default {
 
     this.locations = locations;
     this.currencies = currencies;
+
+    const data = await apiRequestGet('users/profile/payment-info');
+
+    this.formData = data;
   },
   data() {
     return {
+      formData: {},
+
       locations: [],
       currencies: [],
     };
@@ -48,7 +54,7 @@ export default {
     async handleFormSubmit(formData) {
       this.resetErrors();
       this.isFormProcessing = true;
-      await apiRequestPost('users/profile/update-payment-info', formData);
+      await apiRequestPost('users/profile/payment-info', formData);
       this.isFormProcessing = false;
     },
   }
