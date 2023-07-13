@@ -34,14 +34,14 @@ export default {
     }
   },
   methods: {
-    handleChange: debounce(function() {
-      console.log(this.formName);
+    handleChange: debounce(async function() {
       const form = document.forms[this.formName];
-      console.dir(form);
 
       const formData = new FormData(form);
 
-      apiRequestPost('users/profile/notification-settings', formData);
+      await apiRequestPost('users/profile/notification-settings', formData);
+
+      this.formData = formData;
     }, 500),
   }
 }

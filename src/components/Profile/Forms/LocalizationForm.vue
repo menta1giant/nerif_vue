@@ -50,6 +50,8 @@ export default {
       this.isFormProcessing = true;
       await apiRequestPost('users/profile/localization-info', formData);
       this.isFormProcessing = false;
+      
+      this.formData = formData;
     },
   }
 }

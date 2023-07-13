@@ -56,6 +56,8 @@ export default {
       this.isFormProcessing = true;
       await apiRequestPost('users/profile/payment-info', formData);
       this.isFormProcessing = false;
+
+      this.formData = formData;
     },
   }
 }

@@ -60,6 +60,9 @@ export default {
     value: [String, Number],
     autocomplete: Boolean
   },
+  mounted() {
+    console.log('mount');
+  },
   computed: {
     inputTypeIcon() {
       return typesMap[this.type] && typesMap[this.type].icon;

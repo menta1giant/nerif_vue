@@ -55,9 +55,10 @@ export default {
   methods: {
     validateForm() {
       const form = document.forms[this.formName];
-      const formData = new FormData(form);
+      let formData = new FormData(form);
+      formData = Object.fromEntries(formData.entries());
 
-      const errorFields = validateFields(Object.fromEntries(formData.entries()), this.validationRules);
+      const errorFields = validateFields(formData, this.validationRules);
       
       if (Object.keys(errorFields).length) {
         this.$emit('invalid', errorFields);

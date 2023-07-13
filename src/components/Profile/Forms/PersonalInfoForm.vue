@@ -59,6 +59,8 @@ export default {
       this.isFormProcessing = true;
       await apiRequestPost('users/profile/personal-info', formData);
       this.isFormProcessing = false;
+
+      this.formData = formData;
     },
   }
 }
