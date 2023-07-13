@@ -3,6 +3,7 @@
     <input
       class="v-switcher__input"
       type="checkbox"
+      ref="checkbox"
       :id="id"
       :name="name"
       :value="internalValue"
@@ -19,6 +20,7 @@ import formFieldMixin from './formFieldMixin';
 export default {
   name: 'Switcher',
   mixins: [formFieldMixin],
+  emits: ['toggle'],
   props: {
     value: {
       type: Boolean,
@@ -38,7 +40,13 @@ export default {
   methods: {
     toggleSwitcher() {
       this.internalValue = !this.internalValue;
-      this.$emit('change', this.internalValue);
+
+      const event = new CustomEvent('toggle', {
+        bubbles: true,
+        cancelable: true,
+      });
+
+      this.$refs['checkbox'].dispatchEvent(event, this.internalValue);
     }
   }
 }

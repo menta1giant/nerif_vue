@@ -1,36 +1,36 @@
 <template>
-  <form-block header="Notifications" subheader="The notifications are shown on the right side of the navbar" :form-name="formName" no-cta>
-    <form-field type="switcher" name="new_predictions" label="New predictions" :value="formData.new_predictions || (formData.new_predictions === undefined)" @input="handleChange(formName)" />
-    <form-field type="switcher" name="cappers_predictions" label="Predictions from selected cappers" :value="formData.cappers_predictions || (formData.cappers_predictions === undefined)" @input="handleChange" />
-    <form-field type="switcher" name="dashboard_digests" label="Weekly dashboard digests" :value="formData.dashboard_digests || (formData.dashboard_digests === undefined)" @input="handleChange" />
-    <form-field type="switcher" name="special_offers" label="Special offers" :value="formData.special_offers || (formData.special_offers === undefined)" @input="handleChange" />
-    <form-field type="switcher" name="community_mentions" label="Community mentions" :value="formData.community_mentions || (formData.community_mentions === undefined)" @input="handleChange" />
-  </form-block>
+  <form-block 
+    header="Notifications" 
+    subheader="The notifications are shown on the right side of the navbar" 
+
+    :form-fields="formFields"
+    :form-name="formName"
+    :form-api-route="formApiRoute"
+    :custom-handler="handleChange"
+
+    prefetch-required
+    no-cta
+  />
 </template>
 
 <script>
 import FormBlock from '@/components/FormBlock.vue';
-import FormField from '@/components/FormField.vue';
+
+import { NOTIFICATIONS_FIELDS } from '../const';
 
 import debounce from '@/lib/debounce';
-import { apiRequestPost, apiRequestGet } from '@/lib/api';
+import { apiRequestPost } from '@/lib/api';
 
 export default {
   name: 'NotificationsForm',
   components: {
     FormBlock,
-    FormField,
-  },
-  async created() {
-    const data = await apiRequestGet('users/profile/notification-settings');
-
-    this.formData = data;
   },
   data() {
     return {
-      formData: {},
+      formFields: NOTIFICATIONS_FIELDS,
+      formApiRoute: 'users/profile/notification-settings',
       formName: 'notifications_form',
-      notificationSettings: {},
     }
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
 
       const formData = new FormData(form);
 
-      await apiRequestPost('users/profile/notification-settings', formData);
+      await apiRequestPost(this.formApiRoute, formData);
 
       this.formData = formData;
     }, 500),

@@ -29,3 +29,26 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.v-form {
+  &__body {
+    display: flex;
+    gap: 1.5rem;
+
+    padding-top: 1rem;
+    max-width: 36rem;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+    }
+  }
+
+  &__footer {
+    @include divider-top;
+
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+  }
+}
+</style>

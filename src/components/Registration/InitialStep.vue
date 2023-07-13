@@ -1,56 +1,27 @@
 <template>
-  <form-block 
+  <form-block
     header="Creating account" 
     cta-text="Create account" 
+
     :validation-rules="validationRules"
-    :is-form-processing="isFormProcessing"
-    fluid 
-    @submit="handleFormSubmit" 
-    @invalid="handleFormValidationFail"
-    @input="handleInput"
+    :form-fields="formFields"
+    :form-api-route="formApiRoute"
+
+    @form-submitted="handleFormSubmitted"
   >
     <div class="social-sign-up-buttons">
       <social-sign-up-button social="google">Google</social-sign-up-button>
       <social-sign-up-button social="discord">Discord</social-sign-up-button>
     </div>
     <div class="sign-up-method-divider"><span>or</span></div>
-    <form-field label="E-mail address"
-      name="email"
-      placeholder="goracio.nelson@gmail.com"
-      :has-error="!!errorMessages.email"
-      :error-message="errorMessages.email"
-      fluid
-      autocomplete
-    />
-    <form-field 
-      type="password" 
-      label="Password" 
-      name="password" 
-      placeholder="Minimum 6 characters" 
-      :has-error="!!errorMessages.password"
-      :error-message="errorMessages.password"
-      fluid
-    />
-    <form-field 
-      type="password" 
-      label="Confirm password" 
-      name="password_confirmation" 
-      placeholder="Minimum 6 characters" 
-      :has-error="!!errorMessages.password_confirmation"
-      :error-message="errorMessages.password_confirmation"
-      fluid
-    />
   </form-block>
 </template>
 
 <script>
 import FormBlock from '@/components/FormBlock.vue';
-import FormField from '@/components/FormField.vue';
 import SocialSignUpButton from '@/components/SocialSignUpButton.vue';
 
-import { apiRequestPost } from '@/lib/api';
-import { INITIAL_STEP_VALIDATION_RULES } from './const';
-import formHandlerMixin from '../formHandlerMixin';
+import { INITIAL_STEP_VALIDATION_RULES, INITIAL_STEP_FIELDS } from './const';
 
 export default {
   name: 'InitialStep',
@@ -58,23 +29,16 @@ export default {
   components: {
     SocialSignUpButton,
     FormBlock,
-    FormField,
   },
-  mixins: [formHandlerMixin],
   data() {
     return {
       validationRules: INITIAL_STEP_VALIDATION_RULES,
+      formFields: INITIAL_STEP_FIELDS,
+      formApiRoute: 'users/sign-up/create-account'
     }
   },
   methods: {
-    handleInput() {
-      this.resetErrors();
-    },
-    async handleFormSubmit(formData) {
-      this.isFormProcessing = true;
-      const response = await apiRequestPost('users/sign-up/create-account', formData);
-      this.isFormProcessing = false;
-
+    async handleFormSubmitted(response) {
       this.$store.commit('setToken', response.token);
 
       this.$emit('change-step');
@@ -93,6 +57,7 @@ export default {
   position: relative;
   width: 100%;
   text-align: center;
+  margin-top: 1rem;
 
   &:before {
     position: absolute;

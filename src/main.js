@@ -22,6 +22,8 @@ import Textarea from '@/components/Base/Textarea';
 import RadioButton from '@/components/Base/RadioButton';
 import IconButton from '@/components/Base/IconButton';
 import Loader from '@/components/Base/Loader';
+import Form from '@/components/Base/Form/Form';
+import FormField from '@/components/Base/Form/FormField';
 
 createApp(App).use(store).use(router)
 .component("v-switcher-field", SwitcherField)
@@ -42,4 +44,6 @@ createApp(App).use(store).use(router)
 .component("v-radio-button", RadioButton)
 .component("v-icon-button", IconButton)
 .component("v-loader", Loader)
+.component("v-form", Form)
+.component("v-form-field", FormField)
 .mount('#app')

@@ -2,11 +2,11 @@
   <div class="v-input" :class="{ 'v-input--has-icon': inputTypeIcon, 'v-input--error': hasError, 'fluid': fluid }">
     <div v-if="inputTypeIcon" class="v-input__icon"><v-icon :name="inputTypeIcon" /></div>
     <input 
+      v-model="initialValue"
       :id="id" 
       :name="name" 
       :type="inputType" 
       :placeholder="placeholder" 
-      :value="value || undefined"
       :autocomplete="autocompleteStatus"
     />
   </div>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import ControlMixin from '@/components/ControlMixin';
+import controlMixin from '@/components/controlMixin';
 import ErrorMixin from '@/components/ErrorMixin';
 import formFieldMixin from './formFieldMixin';
 
@@ -40,7 +40,7 @@ const typesMap = {
 export default {
   name: 'Input',
   mixins: [
-    ControlMixin,
+    controlMixin,
     ErrorMixin,
     formFieldMixin,
   ],
@@ -58,10 +58,21 @@ export default {
       default: 'input',
     },
     value: [String, Number],
-    autocomplete: Boolean
   },
-  mounted() {
-    console.log('mount');
+  data() {
+    return {
+      initialValue: null,
+    };
+  },
+  watch: {
+    value: {
+      immediate: true,
+      handler(val) {
+        if (this.initialValue !== null || val === undefined || val === null) return;
+
+        this.initialValue = val;
+      }
+    }
   },
   computed: {
     inputTypeIcon() {
@@ -71,7 +82,7 @@ export default {
       return typesMap[this.type] && typesMap[this.type].type || this.type;
     },
     autocompleteStatus() {
-      return this.autocomplete ? 'on' : 'off';
+      return this.inputType === 'email';
     },
   },
 }

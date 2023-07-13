@@ -1,6 +1,6 @@
 <template>
-  <div class="form-field">
-    <div v-if="isFormFieldInline" class="form-field--inline">
+  <div class="v-form-field">
+    <div v-if="isFormFieldInline" class="v-form-field--inline">
       <v-radio-button
         v-if="isInputTypeRadio" 
         :id="id" :name="name" 
@@ -14,7 +14,7 @@
         :value="value" 
         fluid 
 
-        @change="handleInput"
+        @change="handleChange"
       />
       <label 
         v-if="label" 
@@ -49,7 +49,7 @@
         :type="type"
 
         :value="value"
-        :options="options"
+        :options="resourceData"
 
         :has-error="hasError" 
         fluid
@@ -76,7 +76,8 @@
 <script>
 const TEXT_TYPES = ['text', 'password', 'payment', 'date'];
 
-import formFieldMixin from './Base/formFieldMixin';
+import formFieldMixin from '@/components/Base/formFieldMixin';
+import { fetchResource } from '@/lib/api';
 
 export default {
   name: 'FormField',
@@ -93,12 +94,7 @@ export default {
     value: {
       type: [String, Number, Boolean]
     },
-    options: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
+    resource: String,
     placeholder: String,
     errorMessage: {
       type: String,
@@ -106,6 +102,18 @@ export default {
     },
     hasError: Boolean,
     autocomplete: Boolean,
+  },
+  async created() {
+    if (this.resource) {
+      const data = await fetchResource(this.resource);
+
+      this.resourceData = data;
+    }
+  },
+  data() {
+    return {
+      resourceData: [],
+    };
   },
   computed: {
     isInputTypeText() {
@@ -131,12 +139,15 @@ export default {
     handleInput(val) {
       this.$emit('input', val);
     },
+    handleChange(val) {
+      this.$emit('change', val);
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.form-field {
+.v-form-field {
   display: grid;
   gap: .25rem;
 

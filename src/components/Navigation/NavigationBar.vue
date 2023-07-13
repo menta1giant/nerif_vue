@@ -57,7 +57,7 @@
 import NavigationPages from '@/components/Navigation/NavigationPages.vue';
 import NotificationsPopup from '@/components/Notifications/NotificationsPopup.vue';
 import ProfilePopup from '@/components/Profile/ProfilePopup.vue';
-import UserInfoMixin from '../UserInfoMixin';
+import userInfoMixin from '../userInfoMixin';
 
 export default {
   name: 'NavigationBar',
@@ -66,7 +66,7 @@ export default {
     NotificationsPopup,
     ProfilePopup,
   },
-  mixins: [UserInfoMixin],
+  mixins: [userInfoMixin],
   data() {
     return {
       links: this.$router.getRoutes(),

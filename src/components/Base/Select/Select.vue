@@ -52,16 +52,25 @@ export default {
   watch: {
     value: {
       immediate: true,
-      handler(val) {
-        if (this.selectedOption) return;
-
-        const selectedOption = this.options.findIndex(option => option.value === val);
-
-        if (~selectedOption) this.selectedOption = selectedOption;
+      handler() {
+        this.updateSelectedOption();
+      },
+    },
+    options: {
+      immediate: true,
+      handler() {
+        this.updateSelectedOption();
       },
     },
   },
   methods: {
+    updateSelectedOption() {
+      if (this.selectedOption) return;
+
+      const selectedOption = this.options.findIndex(option => option.value === this.value);
+
+      if (~selectedOption) this.selectedOption = selectedOption;
+    },
     handleSelectOption(id) {
       this.selectedOption = id;
       this.isDropdownVisible = false;

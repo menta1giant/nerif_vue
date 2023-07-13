@@ -4,56 +4,109 @@
       <h4>{{ header }}</h4>
       <span>{{ subheader }}</span>
     </div>
-    <form :name="formName" @submit.prevent="">
-      <div class="form-block__body">
-        <div class="form-block__body__left">
-          <slot></slot>
-        </div>
-        <div v-if="$slots['right']" class="form-block__body__right">
-          <slot name="right"></slot>
-        </div>
-      </div>
-      <div v-if="!noCta" class="form-block__footer">
-        <v-button size="small" :fluid="fluid" :loading="isFormProcessing" @click="handleSubmit">{{ ctaText }}</v-button>
-        <span 
-          v-if="hasError" 
-          class="error-message"
+    <slot></slot>
+    <v-form
+      :form-name="formName"
+      :error-message="errorMessages.default" 
+
+      @input="handleInput"
+    >
+      <template #default>
+        <div 
+          v-for="(fieldsColumn, idx) in formFields"
+          :key="`field-column_${ idx }`"
+          class="form-block__column"
         >
-          {{ errorMessage }}
-        </span>
-      </div>
-    </form>
+          <template v-for="(component, index) in fieldsColumn" :key="index">
+            <component 
+              :is="component.component" 
+              v-bind="component.props"
+              :value="formData[component.props.name]"
+
+              :error-message="errorMessages[component.props.name]"
+
+              :has-error="!!errorMessages[component.props.name]" 
+
+              @toggle="handleSubmit"
+            >
+            </component>
+          </template>
+        </div>
+      </template>
+      <template #cta v-if="!noCta">
+        <slot name="cta">
+          <v-button size="small" :fluid="fluid" :loading="isFormProcessing" @click="handleSubmit">{{ ctaText }}</v-button>
+        </slot>
+      </template>
+    </v-form>
   </div>
 </template>
 
 <script>
-import ControlMixin from './ControlMixin';
+import controlMixin from './controlMixin';
 import { validateFields } from '@/lib/validation';
+import { apiRequestPost, apiRequestGet } from '@/lib/api';
+import formHandlerMixin from '@/components/formHandlerMixin';
 
 export default {
   name: 'FormBlock',
-  mixins: [ControlMixin],
+  mixins: [controlMixin, formHandlerMixin],
+  emits: ['form-submitted'],
   props: {
     header: String,
     subheader: String,
     ctaText: {
       type: String,
-      default: 'Save changes',
+      default: 'Save changes'
     },
     formName: {
       type: String,
       default() {
-        return `form_${ Math.random()*100 }`;
+        return `form_${ Math.round(Math.random()*100) }`;
+      },
+    },
+    formApiRoute: String,
+    formFields: {
+      type: Array,
+      default() {
+        return [[]];
       },
     },
     validationRules: Object,
-    errorMessage: [String, null],
+    customHandler: Function,
+
+    prefetchRequired: Boolean,
     noCta: Boolean,
-    isFormProcessing: Boolean,
-    hasError: Boolean,
+  },
+  async created() {
+    if (this.prefetchRequired) await this.fetchFormData();
+  },
+  data() {
+    return {
+      formData: {},
+    }
   },
   methods: {
-    validateForm() {
+    async fetchFormData() {
+      const data = await apiRequestGet(this.formApiRoute);
+
+      this.formData = data;
+    },
+    handleInput() {
+      this.resetErrors();
+    },
+    async sendForm(formData) {
+      this.resetErrors();
+      
+      this.isFormProcessing = true;
+      const response = await apiRequestPost(this.formApiRoute, formData);
+      this.isFormProcessing = false;
+
+      this.formData = formData;
+
+      return response;
+    },
+    async validateForm() {
       const form = document.forms[this.formName];
       let formData = new FormData(form);
       formData = Object.fromEntries(formData.entries());
@@ -61,13 +114,20 @@ export default {
       const errorFields = validateFields(formData, this.validationRules);
       
       if (Object.keys(errorFields).length) {
-        this.$emit('invalid', errorFields);
+        this.handleFormValidationFail(errorFields);
         return;
       }
 
-      this.$emit('submit', formData);
+      const response = await this.sendForm(formData);
+      this.$emit('form-submitted', response);
     },
     handleSubmit() {
+      if (this.customHandler) {
+        this.customHandler();
+
+        return;
+      }
+
       this.validateForm();
     },
   },
@@ -88,34 +148,14 @@ export default {
   border-radius: $border-radius-large;
 
   &__header {
+    @include divider-bottom;
     padding-bottom: 1rem;
   }
 
-  &__body {
-    @include divider-top;
-
-    display: flex;
-    gap: 1.5rem;
-
-    padding-top: 1rem;
-    max-width: 36rem;
-
-    &__left {
-      display: grid;
-      gap: 1rem;
-      flex: 1;
-    }
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      flex-direction: column;
-    }
-  }
-
-  &__footer {
-    @include divider-top;
-
-    padding-top: 1.5rem;
-    margin-top: 1rem;
+  &__column {
+    display: grid;
+    gap: 1rem;
+    flex: 1;
   }
 }
 </style>

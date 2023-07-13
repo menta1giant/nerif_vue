@@ -2,70 +2,30 @@
   <form-block 
     header="Personal info" 
     subheader="Tell us more about yourself" 
+    :form-fields="formFields"
     :validation-rules="validationRules"
+    :form-api-route="formApiRoute"
 
-    :is-form-processing="isFormProcessing"
-
-    @submit="handleFormSubmit" 
-    @invalid="handleFormValidationFail"
-    @input="handleInput"
-  >
-    <template #default>
-      <form-field label="First name" placeholder="Maria" name="first_name" :value="formData.first_name" :has-error="!!errorMessages.first_name" :error-message="errorMessages.first_name"/>
-      <form-field label="Last name" placeholder="Santos" name="last_name" :value="formData.last_name" :has-error="!!errorMessages.last_name" :error-message="errorMessages.last_name"/>
-      <form-field label="Phone number" placeholder="+79009009090" name="phone" :value="formData.phone" :has-error="!!errorMessages.phone" :error-message="errorMessages.phone"/>
-      <form-field label="E-mail" placeholder="goracio.nelson@gmail.com" name="email" :value="formData.email" :has-error="!!errorMessages.email" :error-message="errorMessages.email" autocomplete/>
-    </template>
-    <template #right>
-      <image-upload />
-    </template>
-  </form-block>
+    prefetch-required
+  />
 </template>
 
 <script>
 import FormBlock from '@/components/FormBlock.vue';
-import FormField from '@/components/FormField.vue';
-import ImageUpload from '@/components/ImageUpload.vue';
 
-import { apiRequestPost, apiRequestGet } from '@/lib/api';
-import { PERSONAL_INFO_FORM_VALIDATION_RULES } from '../const';
-import formHandlerMixin from '@/components/formHandlerMixin';
+import { PERSONAL_INFO_FORM_VALIDATION_RULES, PERSONAL_INFO_FIELDS } from '../const';
 
 export default {
   name: 'PersonalInfoForm',
   components: {
     FormBlock,
-    FormField,
-    ImageUpload
-  },
-  mixins: [formHandlerMixin],
-  async created() {
-    const data = await apiRequestGet('users/profile/personal-info');
-
-    this.formData = data;
   },
   data() {
     return {
-      formData: {},
+      formApiRoute: 'users/profile/personal-info',
+      formFields: PERSONAL_INFO_FIELDS,
       validationRules: PERSONAL_INFO_FORM_VALIDATION_RULES,
     };
   },
-  methods: {
-    handleInput() {
-      this.resetErrors();
-    },
-    async handleFormSubmit(formData) {
-      this.resetErrors();
-      this.isFormProcessing = true;
-      await apiRequestPost('users/profile/personal-info', formData);
-      this.isFormProcessing = false;
-
-      this.formData = formData;
-    },
-  }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

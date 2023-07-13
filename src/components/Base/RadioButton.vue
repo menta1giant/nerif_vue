@@ -1,7 +1,7 @@
 <template>
   <div class="v-radio-button">
     <label>
-      <input type="radio" :id="id" :name="name" :value="value" checked/>
+      <input type="radio" :id="id" :name="name" :value="0" checked/>
     </label>
   </div>
 </template>
