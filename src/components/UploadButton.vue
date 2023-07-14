@@ -1,6 +1,20 @@
 <template>
   <div class="upload-button">
-    <v-button type="transparent" :size="size"><v-icon name="file" /><span><slot>Upload files</slot></span></v-button>
+    <input 
+      ref="file-input" 
+      :id="id" 
+      :name="name" 
+      type="file" 
+      :accept="accept"
+      :multiple="multiple"
+      @change="updateFileName" 
+    >
+    <v-button type="transparent" :size="size" @click="$refs['file-input'].click()"><v-icon name="file" /><span><slot>Upload files</slot></span></v-button>
+    <div 
+      class="upload-button__file-name"
+      v-for="fileName in uploadedFileNames"
+      :key="fileName"
+    >{{ fileName }}</div>
   </div>
 </template>
 
@@ -9,11 +23,45 @@ export default {
   name: 'UploadButton',
   props: {
     size: String,
+    id: {
+      type: String,
+      default: 'file-input',
+    },
+    name: String,
+    accept: {
+      type: String,
+      default: 'image/*',
+    },
+    multiple: Boolean,
   },
+  data() {
+    return {
+      uploadedFileNames: [],
+      imageSource: null,
+    }
+  },
+  methods: {
+    updateFileName(event) {
+      this.uploadedFileNames = Array.from(event.target.files).map(file=>file.name);
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.upload-button {
+  input {
+    display: none;
+  }
+
+  &__file-name {
+    margin: .5rem 0 0 1.5rem;
+
+    font-size: $fs-xxs;
+    line-height: $lh-small;
+    color: $primary-ds-500;
+  }
+}
 .v-icon {
   color: $primary-ds-200;
 }

@@ -2,21 +2,13 @@ import { createStore } from 'vuex';
 import { filters } from '@/components/Matches/Filters/const';
 import { getCookie, setCookie, deleteCookie } from '@/lib/cookie';
 import { updateAuthorizationToken } from '@/lib/authorization';
+import { apiRequestGet } from '@/lib/api';
 
 export default createStore({
   state: {
-    userInfo: {
-      subscription: {
-        plan: 'Standard',
-        daysLeft: 12,
-      }
-    },
     breadcrumbsTitle: '',
   },
   getters: {
-    getUserInfo (state) {
-      return state.userInfo;
-    },
     getBreadcrumbsTitle (state) {
       return state.breadcrumbsTitle;
     },
@@ -33,21 +25,38 @@ export default createStore({
       state: {
         token: '',
         isAuthenticated: false,
+        userInfo: {
+          subscription: {
+            plan: 'Standard',
+            daysLeft: 12,
+          }
+        },
       },
       getters: {
+        getUserInfo (state) {
+          return state.userInfo;
+        },
         getIsUserAuthenticated(state) {
           return state.isAuthenticated;
         },
       },
       mutations: {
-        initializeStore() {
+        async initializeStore() {
           const token = getCookie('Token');
         
           if (token) {
             this.commit('setToken', token);
+
+            await this.commit('setUserInfo');
           } else {
             this.commit('removeToken');
           } 
+        },
+        async setUserInfo(state) {
+          const [userInfo, subscriptionInfo] = await Promise.all([apiRequestGet('users/profile/personal-info'), apiRequestGet('users/profile/subscription-info')]);
+
+          state.userInfo = Object.assign({}, userInfo, { subscription: subscriptionInfo });
+          console.log(state.userInfo);
         },
         setToken(state, token) {
           state.token = token;

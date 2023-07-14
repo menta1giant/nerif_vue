@@ -28,6 +28,8 @@ export const CONTACT_FORM_FIELDS = [
       component: markRaw(UploadButton),
       props: {
         size: 'small',
+        accept: '',
+        multiple: true
       },
     },
   ],

@@ -7,6 +7,8 @@
     :form-api-route="formApiRoute"
 
     prefetch-required
+
+    @form-submitted="handleFormSubmitted"
   />
 </template>
 
@@ -26,6 +28,11 @@ export default {
       formFields: PERSONAL_INFO_FIELDS,
       validationRules: PERSONAL_INFO_FORM_VALIDATION_RULES,
     };
+  },
+  methods: {
+    async handleFormSubmitted() {
+      await this.$store.commit('setUserInfo');
+    },
   },
 }
 </script>

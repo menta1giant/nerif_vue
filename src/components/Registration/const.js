@@ -146,4 +146,14 @@ export const FINAL_STEP_FIELDS = [
       },
     },
   ],
+  [
+    {
+      component: rawFormField,
+      props: {
+        type: 'image',
+        label: 'Profile photo', 
+        name: 'profile_photo', 
+      },
+    },
+  ]
 ]

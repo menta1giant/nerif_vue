@@ -1,16 +1,17 @@
 <template>
   <div class="image-upload">
-    <label :for="id"><img :src="imgSrc" width="100" height="100"/></label>
-    <input 
-      ref="porvafor" 
-      :id="id" 
-      :name="name" 
-      type="file" 
-      accept="image/*" 
-      @change="processFile"
-    >
-    <upload-button size="small" @click="$refs.porvafor.click()">Upload photo</upload-button>
-    <div class="image-upload__file-name">{{ cringe }}</div>
+    <label :for="id">
+      <img 
+        ref="image" 
+        src="@/assets/images/logo-desat.png" 
+        :srcset="imageSource" 
+        width="160" 
+        height="160"
+        class="image-upload__image"
+        :class="{ 'image-upload__image--loading': imageSource === null }"
+      />
+    </label>
+    <upload-button size="small" :id="id" :name="name" @change="processFile">Upload photo</upload-button>
   </div>
 </template>
 
@@ -27,18 +28,32 @@ export default {
   mixins:[formFieldMixin],
   data() {
     return {
-      cringe: null,
+      imageSource: null,
     }
   },
-  computed: {
-    imgSrc() {
-      return `${BACKEND_URL}${this.value}`;
-    },
+  watch: {
+    value: {
+      immediate: true,
+      handler(val) {
+        if (val instanceof File || !val) return;
+
+        this.setImageSource(`${BACKEND_URL}${val}`);
+      }
+    }
   },
   methods: {
-    processFile() {
-      console.dir(this.$refs.porvafor);
-      this.cringe = this.$refs.porvafor?.files?.[0]?.name;
+    setImageSource(src) {
+      this.imageSource = src;
+    },
+    processFile(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.setImageSource(e.target.result);
+      }
+
+      reader.readAsDataURL(file);
     }
   }
 }
@@ -48,24 +63,26 @@ export default {
 .image-upload {
   display: flex;
   flex-direction: column;
+  gap: .5rem;
 
-  width: min-content;
+  width: 10rem;
 
   input[type=file] {
     display: none;
   }
 
-  &__file-name {
-    margin-left: 1.5rem;
-    margin-top: .5rem;
-
-    font-size: $fs-xxs;
-    line-height: $lh-small;
-    color: $primary-ds-500;
-  }
-
   img {
     margin: auto;
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+
+    border: 2px solid $primary-ds-100;
+    border-radius: $border-radius-small;
+
+    &.image-upload__image--loading {
+      border: none;
+    }
   }
 }
 </style>

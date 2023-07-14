@@ -12,8 +12,8 @@
         <div class="navigation-bar__right">
           <template v-if="isUserSignedIn">
             <div class="user-plan-info">
-              <span class="user-plan-info__title">{{ `${ userInfo.subscription.plan } plan` }}</span>
-              <span class="user-plan-info__days-left">{{ `${ userInfo.subscription.daysLeft || 0 } days left` }}</span>
+              <span class="user-plan-info__title">{{ `${ userInfo.subscription?.plan } plan` }}</span>
+              <span class="user-plan-info__days-left">{{ `${ userInfo.subscription?.days_left || 0 } days left` }}</span>
             </div>
             <v-popup v-model="isNotificationsTabOpened">
               <template #trigger>
@@ -32,7 +32,7 @@
             <v-popup v-model="isProfilePopupOpened">
               <template #trigger>
                 <div class="navbar-square-button profile-button">
-                  <img src="@/assets/images/maria.png" />
+                  <img src="@/assets/images/logo-desat.png" :srcset="profilePhotoUrl" />
                 </div>
               </template>
               <template #content>
@@ -58,6 +58,7 @@ import NavigationPages from '@/components/Navigation/NavigationPages.vue';
 import NotificationsPopup from '@/components/Notifications/NotificationsPopup.vue';
 import ProfilePopup from '@/components/Profile/ProfilePopup.vue';
 import userInfoMixin from '../userInfoMixin';
+import { BACKEND_URL } from '@/lib/config';
 
 export default {
   name: 'NavigationBar',
@@ -73,6 +74,7 @@ export default {
       isNotificationsTabOpened: false,
       isProfilePopupOpened: false,
       notificationsCount: 234,
+      profilePhotoUrl: null,
     }
   },
   computed: {
@@ -82,6 +84,15 @@ export default {
     isUserSignedIn() {
       return this.$store.getters.getIsUserAuthenticated;
     }
+  },
+  watch: {
+    userInfo: {
+      immediate: true,
+      handler(userInfo){
+        this.profilePhotoUrl = '';
+        setImmediate(()=>this.profilePhotoUrl = userInfo.profile_photo && `${BACKEND_URL}${userInfo.profile_photo}`);
+      }
+    },
   },
 }
 </script>

@@ -93,7 +93,6 @@ export default {
   },
   computed: {
     defaultErrorMessage() {
-      console.log(this.errorMessages);
       const errorFieldWithDefaultError = 'default' in this.validationRules && this.validationRules.default.find(field => field in this.errorMessages);
 
       return this.errorMessages[errorFieldWithDefaultError] || this.errorMessages.error;
@@ -123,7 +122,6 @@ export default {
       const form = document.forms[this.formName];
       let formData = new FormData(form);
       formData = Object.fromEntries(formData.entries());
-      console.log(formData);
 
       const errorFields = validateFields(formData, this.validationRules);
       

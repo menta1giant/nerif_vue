@@ -32,6 +32,7 @@ export default {
   methods: {
     async handleFormSubmitted(response) {
       console.log(response);
+      await this.$store.commit('setUserInfo');
       this.$emit('change-step');
     },
   },

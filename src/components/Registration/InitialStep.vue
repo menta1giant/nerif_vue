@@ -41,6 +41,8 @@ export default {
     async handleFormSubmitted(response) {
       this.$store.commit('setToken', response.token);
 
+      await this.$store.commit('setUserInfo');
+
       this.$emit('change-step');
     },
   },
