@@ -3,7 +3,6 @@
     header="Localization" 
     subheader="Aloha!"
 
-    :validation-rules="validationRules"
     :form-fields="formFields"
     :form-api-route="formApiRoute"
 

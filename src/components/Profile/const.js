@@ -57,6 +57,16 @@ export const PERSONAL_INFO_FIELDS = [
       },
     },
   ],
+  [
+    {
+      component: rawFormField,
+      props: {
+        type: 'image',
+        label: 'Profile photo', 
+        name: 'profile_photo', 
+      },
+    },
+  ]
 ]
 
 export const PAYMENT_INFO_FIELDS = [
@@ -89,10 +99,10 @@ export const PAYMENT_INFO_FIELDS = [
       },
     },
     {
-      component: SubscriptionPlanField,
+      component: markRaw(SubscriptionPlanField),
       props: {}
     }
-  ],
+  ]
 ]
 
 export const PASSWORD_FIELDS = [

@@ -229,23 +229,23 @@
           <div class="footer__navigation__column">
             <h5>RESOURCES</h5>
             <ul>
-              <router-link to='/documentation'><li>Documentation</li></router-link>
-              <router-link to='/terms-of-use'><li>Terms of use</li></router-link>
-              <router-link to='/legal'><li>Legal</li></router-link>
+              <li><router-link to='/documentation'>Documentation</router-link></li>
+              <li><router-link to='/terms-of-use'>Terms of use</router-link></li>
+              <li><router-link to='/legal'>Legal</router-link></li>
             </ul>
           </div>
           <div class="footer__navigation__column">
             <h5>PRODUCT</h5>
             <ul>
-              <router-link to="/about-us"><li>About Nerif</li></router-link>
-              <router-link to="/blog"><li>Blog</li></router-link>
-              <router-link to="/reviews"><li>User reviews</li></router-link>
+              <li><router-link to="/about-us">About Nerif</router-link></li>
+              <li><router-link to="/blog">Blog</router-link></li>
+              <li><router-link to="/reviews">User reviews</router-link></li>
             </ul>
           </div>
           <div class="footer__navigation__column">
             <h5>COMPANY</h5>
             <ul>
-              <router-link to="/help-center"><li><v-icon name="envelope" />Help center</li></router-link>
+              <li><router-link to="/help-center"><v-icon name="envelope" />Help center</router-link></li>
               <li class="footer__navigation__item--bleak"><v-icon name="phone" />+7 499 900 90 90</li>
               <li class="footer__navigation__item--bleak"><v-icon name="location-dot" />24 Tverskaya Street, Moscow 125009</li>
             </ul>

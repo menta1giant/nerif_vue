@@ -1,5 +1,7 @@
 <template>
-  <v-button type="transparent" :size="size"><v-icon name="file" /><span><slot>Upload files</slot></span></v-button>
+  <div class="upload-button">
+    <v-button type="transparent" :size="size"><v-icon name="file" /><span><slot>Upload files</slot></span></v-button>
+  </div>
 </template>
 
 <script>

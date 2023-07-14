@@ -13,7 +13,7 @@ export const INITIAL_STEP_VALIDATION_RULES = {
 
 export const PAYMENT_STEP_VALIDATION_RULES = {
   plan: new ValidationRule('select', 'Select subscription plan'),
-  default: ['subscription_plan']
+  default: ['plan']
 };
 
 export const FINAL_STEP_VALIDATION_RULES = {
@@ -58,7 +58,7 @@ export const INITIAL_STEP_FIELDS = [
       component: rawFormField,
       props: {
         type: 'password',
-        label: 'New password',  
+        label: 'Password',  
         name: 'password', 
       },
     },

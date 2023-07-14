@@ -14,5 +14,6 @@ export default {
         return 'form-field';
       }
     },
+    value: [String, Number, Boolean, File]
   }
 }

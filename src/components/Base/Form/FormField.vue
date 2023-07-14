@@ -30,6 +30,12 @@
       >
         {{ label }}
       </label>
+      <image-upload
+        v-if="isInputTypeImage"
+        :id="id" 
+        :name="name" 
+        :value="value"
+      />
       <v-input 
         v-if="isInputTypeText" 
         :id="id" 
@@ -67,7 +73,7 @@
         v-if="hasError" 
         class="error-message"
       >
-        {{ errorMessage }}
+        {{ displayedErrorMessage }}
       </span>
     </template>
   </div>
@@ -77,10 +83,14 @@
 const TEXT_TYPES = ['text', 'password', 'payment', 'date'];
 
 import formFieldMixin from '@/components/Base/formFieldMixin';
+import ImageUpload from '@/components/ImageUpload.vue';
 import { fetchResource } from '@/lib/api';
 
 export default {
   name: 'FormField',
+  components: {
+    ImageUpload,
+  },
   mixins: [
     formFieldMixin,
   ],
@@ -92,12 +102,12 @@ export default {
       default: 'text',
     },
     value: {
-      type: [String, Number, Boolean]
+      type: [String, Number, Boolean, File]
     },
     resource: String,
     placeholder: String,
     errorMessage: {
-      type: String,
+      type: [String, Array],
       default: 'Your name may not contain any sausages and pancakes any sausages or pancakes',
     },
     hasError: Boolean,
@@ -116,6 +126,9 @@ export default {
     };
   },
   computed: {
+    displayedErrorMessage() {
+      return Array.isArray(this.errorMessage) ? this.errorMessage.at(-1) : this.errorMessage;
+    },
     isInputTypeText() {
       return TEXT_TYPES.includes(this.type);
     },
@@ -130,6 +143,9 @@ export default {
     },
     isInputTypeSwitcher() {
       return this.type === 'switcher';
+    },
+    isInputTypeImage() {
+      return this.type === 'image';
     },
     isFormFieldInline() {
       return this.isInputTypeSwitcher || this.isInputTypeRadio;
@@ -149,6 +165,7 @@ export default {
 <style lang="scss" scoped>
 .v-form-field {
   display: grid;
+  grid-template-rows: min-content;
   gap: .25rem;
 
   &--inline {

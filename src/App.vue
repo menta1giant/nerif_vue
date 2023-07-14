@@ -5,12 +5,14 @@
   <div class="mobile-navbar-container">
     <mobile-navigation-bar/>
   </div>
+  <global-notifications />
 </template>
 
 <script>
 import NavigationBar from '@/components/Navigation/NavigationBar.vue';
 import MobileNavigationBar from '@/components/Navigation/MobileNavigationBar.vue';
 import BreadcrumbsBar from '@/components/BreadcrumbsBar.vue';
+import GlobalNotifications from '@/components/GlobalNotifications/GlobalNotifications.vue';
 
 export default {
   name: 'app',
@@ -18,6 +20,7 @@ export default {
     NavigationBar,
     MobileNavigationBar,
     BreadcrumbsBar,
+    GlobalNotifications,
   },
   beforeCreate() {
     this.$store.commit('initializeStore');

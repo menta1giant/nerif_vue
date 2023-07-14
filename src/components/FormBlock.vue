@@ -7,7 +7,7 @@
     <slot></slot>
     <v-form
       :form-name="formName"
-      :error-message="errorMessages.default" 
+      :error-message="defaultErrorMessage" 
 
       @input="handleInput"
     >
@@ -45,7 +45,7 @@
 <script>
 import controlMixin from './controlMixin';
 import { validateFields } from '@/lib/validation';
-import { apiRequestPost, apiRequestGet } from '@/lib/api';
+import { apiRequestPostForm, apiRequestGet } from '@/lib/api';
 import formHandlerMixin from '@/components/formHandlerMixin';
 
 export default {
@@ -72,7 +72,12 @@ export default {
         return [[]];
       },
     },
-    validationRules: Object,
+    validationRules: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
     customHandler: Function,
 
     prefetchRequired: Boolean,
@@ -85,6 +90,14 @@ export default {
     return {
       formData: {},
     }
+  },
+  computed: {
+    defaultErrorMessage() {
+      console.log(this.errorMessages);
+      const errorFieldWithDefaultError = 'default' in this.validationRules && this.validationRules.default.find(field => field in this.errorMessages);
+
+      return this.errorMessages[errorFieldWithDefaultError] || this.errorMessages.error;
+    },
   },
   methods: {
     async fetchFormData() {
@@ -99,7 +112,7 @@ export default {
       this.resetErrors();
       
       this.isFormProcessing = true;
-      const response = await apiRequestPost(this.formApiRoute, formData);
+      const response = await apiRequestPostForm(this.formApiRoute, formData, this.handleFormValidationFail);
       this.isFormProcessing = false;
 
       this.formData = formData;
@@ -110,6 +123,7 @@ export default {
       const form = document.forms[this.formName];
       let formData = new FormData(form);
       formData = Object.fromEntries(formData.entries());
+      console.log(formData);
 
       const errorFields = validateFields(formData, this.validationRules);
       

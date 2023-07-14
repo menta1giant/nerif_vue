@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     mountContent() {
-      document.querySelector('body').appendChild(this.$refs.dropdown);
+      document.querySelector('body').append(this.$refs.dropdown);
       this.setDropdownCoordinates();
     },
     destroyContent() {
