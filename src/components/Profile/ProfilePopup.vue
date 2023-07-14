@@ -5,9 +5,9 @@
       <span class="profile-popup__header__email">{{ userInfo.email }}</span>
     </div>
     <div class="profile-popup__common-buttons">
-      <router-link to='/profile'><v-button type="transparent" size="small"><v-icon name="gear" />Profile settings</v-button></router-link>
-      <router-link to='/documentation'><v-button type="transparent" size="small"><v-icon name="book" />Documentation</v-button></router-link>
-      <router-link to="/help-center"><v-button type="transparent" size="small"><v-icon name="handshake-angle" />Help center</v-button></router-link>
+      <v-button type="transparent" size="small" to="/profile"><v-icon name="gear" />Profile settings</v-button>
+      <v-button type="transparent" size="small" to="/documentation"><v-icon name="book" />Documentation</v-button>
+      <v-button type="transparent" size="small" to="/help-center"><v-icon name="handshake-angle" />Help center</v-button>
     </div>
     <div class="profile-popup__common-buttons profile-popup__common-buttons--bleak">
       <v-button type="transparent" size="small" :loading="isLogoutInProcess" @click="handleLogOut"><v-icon name="right-from-bracket" /><span class="button-content-bleak">Log out</span></v-button>

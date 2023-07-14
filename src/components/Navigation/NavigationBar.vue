@@ -42,7 +42,7 @@
           </template>
           <template v-else>
             <router-link to="/login"><span><b>Sign in.</b></span></router-link>
-            <router-link to="/sign-up"><v-button type="primary-accent" size="small">Subscribe</v-button></router-link>
+            <v-button type="primary-accent" size="small"  to="/sign-up">Subscribe</v-button>
           </template>
           <button class="navbar-square-button hamburger-menu-button mobile">
             <v-icon type="solid" name="bars" />
@@ -74,10 +74,12 @@ export default {
       isNotificationsTabOpened: false,
       isProfilePopupOpened: false,
       notificationsCount: 234,
-      profilePhotoUrl: null,
     }
   },
   computed: {
+    profilePhotoUrl() {
+      return this.userInfo.profile_photo && `${BACKEND_URL}${this.userInfo.profile_photo}`
+    },
     hasNotifications() {
       return this.isUserSignedIn && this.notificationsCount > 0;
     },
@@ -86,14 +88,13 @@ export default {
     }
   },
   watch: {
-    userInfo: {
-      immediate: true,
-      handler(userInfo){
-        this.profilePhotoUrl = '';
-        setImmediate(()=>this.profilePhotoUrl = userInfo.profile_photo && `${BACKEND_URL}${userInfo.profile_photo}`);
-      }
-    },
-  },
+    isUserSignedIn(val) {
+      if (val) return;
+
+      this.isNotificationsTabOpened = false;
+      this.isProfilePopupOpened = false;
+    }
+  }
 }
 </script>
 

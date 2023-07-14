@@ -1,7 +1,37 @@
 <template>
-  <button class="v-button" :class="{ 'fluid': fluid, [`v-button--${type}`]: true, [`v-button--${size}`]: true }" :disabled="disabled || loading" type="button" @click="handleClick">
-    <v-loader v-if="loading" /><slot></slot>
-  </button>
+  <template v-if="to">
+    <a 
+      v-if="isExternalLink" 
+      v-bind="$attrs" 
+      class="v-button" 
+      :class="classes" 
+      :href="disabled ? null : to" 
+      :target="externalLinkTarget"
+    >
+      <slot></slot>
+    </a>
+    <router-link 
+      v-else 
+      v-bind="$props"
+      v-slot="{ navigate }"
+      custom
+    >
+      <a
+        v-bind="$attrs"
+        class="v-button" 
+        :class="classes" 
+        :href="disabled ? null : to"
+        @click="navigate"
+      >
+        <slot></slot>
+      </a>
+    </router-link>
+  </template>
+  <template v-else>
+    <button v-bind="$attrs" class="v-button" :class="classes" :disabled="disabled || loading" type="button" @click="handleClick">
+      <v-loader v-if="loading" /><slot></slot>
+    </button>
+  </template>
 </template>
 
 <script>
@@ -12,6 +42,7 @@ const SIZES = ['small', 'medium', 'large'];
 
 export default {
   name: 'Button',
+  inheritAttrs: false,
   mixins: [
     controlMixin,
   ],
@@ -42,11 +73,23 @@ export default {
       type: Boolean,
       default: false,
     },
-    submit: Boolean,
+    to: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
+    classes() {
+      return { 'fluid': this.fluid, [`v-button--${this.type}`]: true, [`v-button--${this.size}`]: true }
+    },
     buttonType() {
       return this.submit ? 'submit' : 'button'
+    },
+    externalLinkTarget() {
+      return this.to.startsWith('#') ? '' : '_blank';
+    },
+    isExternalLink() {
+      return typeof this.to === 'string' && (this.to.startsWith('http') || this.to.startsWith('#'));
     },
   },
   methods: {
@@ -56,7 +99,6 @@ export default {
       }
     }
   }
-
 }
 </script>
 
@@ -79,7 +121,7 @@ export default {
 
   transition-duration: 200ms;
 
-  &:disabled {
+  &:disabled, &:not(button):not(a[href]) {
     &:deep(.v-icon) {
       display: none;
     }
@@ -126,7 +168,7 @@ export default {
       box-shadow: 0 0 0 2px $primary-s-500;
     }
 
-    &:disabled {
+    &:disabled, &:not(button):not(a[href]) {
       background: $primary-s-300;
       color: $primary-ds-200;
 
@@ -155,7 +197,7 @@ export default {
       box-shadow: 0 0 0 2px $accent-500;
     }
 
-    &:disabled {
+    &:disabled, &:not(a[href]) {
       background: $accent-300;
       color: $black-500;
 
@@ -180,7 +222,7 @@ export default {
       border-color: $primary-s-200;
     }
 
-    &:disabled {
+    &:disabled, &:not(button):not(a[href]) {
       background: $black-10;
       color: $primary-ds-200;
 
@@ -194,7 +236,7 @@ export default {
     padding: 0;
     justify-content: left;
 
-    &:disabled {
+    &:disabled, &:not(button):not(a[href]) {
       color: $primary-ds-400;
 
       .v-loader {

@@ -8,8 +8,8 @@
             <p class="body-text">In this new era of safe CS:GO betting, our advanced algorithm delivers the most accurate predictions in the Universe. Join a community unlike anything that has existed before: With Nerif, all your most cherished dreams will come true.</p>
             <div class="cta-wrapper">
               <div class="landing-page-section__cta">
-                <router-link to="/sign-up"><v-button size="large"><v-icon name="clock" type="regular" />Start free trial</v-button></router-link>
-                <a href="#plans"><v-button size="large" type="secondary" loading>See all plans</v-button></a>
+                <v-button size="large" to="/sign-up"><v-icon name="clock" type="regular" />Start free trial</v-button>
+                <v-button size="large" type="secondary" to="#plans" disabled>See all plans</v-button>
               </div>
               <span>No credit card information required</span>
             </div>
@@ -78,7 +78,7 @@
           </div>
           <div class="cta-wrapper">
             <div class="landing-page-section__cta">
-              <router-link to="/sign-up"><v-button size="medium" loading>Get on board with Nerif!</v-button></router-link>
+              <v-button size="medium" to="/sign-up" loading>Get on board with Nerif!</v-button>
             </div>
           </div>
         </div>
@@ -105,7 +105,7 @@
           </div>
           <div class="cta-wrapper">
             <div class="landing-page-section__cta">
-              <router-link to="/dashboards"><v-button size="medium">Try out dashboards for free</v-button></router-link>
+              <v-button size="medium" to="/dashboards">Try out dashboards for free</v-button>
             </div>
           </div>
         </div>
@@ -133,8 +133,8 @@
           <div class="cta-wrapper">
             <span>To see the list of languages and phone numbers for each country, follow the link ⬇️</span>
             <div class="landing-page-section__cta">
-              <router-link to="/sign-up"><v-button size="medium">Get started in caring hands</v-button></router-link>
-              <router-link to="/help-center"><v-button size="medium" type="secondary">Go to help center</v-button></router-link>
+              <v-button size="medium" to="/sign-up">Get started in caring hands</v-button>
+              <v-button size="medium" type="secondary" to="/help-center">Go to help center</v-button>
             </div>
           </div>
         </div>
@@ -164,8 +164,8 @@
         </user-testimonial>
         <div class="cta-wrapper">
           <div class="landing-page-section__cta">
-            <router-link to="/sign-up"><v-button size="small">Start own journey to success</v-button></router-link>
-            <router-link to="/reviews"><v-button size="small" type="secondary">Check out more user reviews</v-button></router-link>
+            <v-button size="small" to="/sign-up">Start own journey to success</v-button>
+            <v-button size="small" type="secondary" to="/reviews">Check out more user reviews</v-button>
           </div>
         </div>
       </div>
@@ -209,8 +209,8 @@
           <h4>Got more questions?</h4>
           <div class="cta-wrapper">
             <div class="landing-page-section__cta">
-              <router-link to="/documentation"><v-button size="medium">View documentation</v-button></router-link>
-              <router-link to="/help-center"><v-button size="medium" type="secondary">Contact support</v-button></router-link>
+              <v-button size="medium" to="/documentation">View documentation</v-button>
+              <v-button size="medium" type="secondary" to="/help-center">Contact support</v-button>
             </div>
           </div>
         </div>
