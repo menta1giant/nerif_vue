@@ -1,6 +1,6 @@
 <template>
   <div class="notifications-popup">
-    <div class="notifications-popup__header"><span>Notifications</span><v-icon name="xmark" /></div>
+    <div class="notifications-popup__header"><span>Notifications</span></div>
     <div class="notifications-popup__messages-container">
       <notification-message v-for="(notification, idx) in notifications" :key="idx" :notificabtion="notification"/>
     </div>

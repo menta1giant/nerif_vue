@@ -11,6 +11,8 @@
 <script>
 import { isElementInViewport } from '@/lib/DOM';
 
+const VERTICAL_MARGIN = 8;
+
 export default {
   name: 'Positioner',
   props: {
@@ -46,7 +48,6 @@ export default {
   mounted() {
     if (this.triggersOnClick) {
       window.addEventListener('click',this.handleOutsideClick);
-      this.$refs.dropdown.addEventListener('click',this.stopClickPropagation);
     }
     
     this.bindScrollEvent();
@@ -62,6 +63,7 @@ export default {
         top: '-9999px',
         left: '-9999px',
       },
+      maxDropdownHeight: 10000,
     };
   },
   watch: {
@@ -88,12 +90,14 @@ export default {
     dropdownStyles() {
       return Object.assign({}, this.dropdownCoordinates, {
         minWidth: this.hasRefs() ? `${ this.$refs.body.clientWidth }px` : 0,
+        maxHeight: `${this.maxDropdownHeight}px`,
       });
     },
   },
   methods: {
     mountContent() {
       document.querySelector('body').append(this.$refs.dropdown);
+      this.bindScrollEvent();
       this.setDropdownCoordinates();
     },
     destroyContent() {
@@ -111,6 +115,7 @@ export default {
       };
     },
     stopClickPropagation(event) {
+      console.log(event);
       event.stopPropagation();
     },
     changeDropdownVisibilty(newValue) {
@@ -131,17 +136,30 @@ export default {
     getOffsetX() {
       return this.isPositionCenter && this.hasRefs() ? this.$refs.dropdown.scrollWidth / 2 - this.$refs.body.scrollWidth / 2 : 0;
     },
-    canDropdownFitBelow() {
-      const spaceBelowBody = document.documentElement.clientHeight - this.bodyCoordinates.bottom;
+    getIsDropdownDisplayedBelow() {
+      let spaceBelowBody = document.documentElement.clientHeight - this.bodyCoordinates.bottom - VERTICAL_MARGIN;
+      let spaceAboveBody = this.bodyCoordinates.top - VERTICAL_MARGIN;
 
-      return (spaceBelowBody - 8) >= this.$refs.dropdown.scrollHeight;
+      if (this.forceTop) [spaceBelowBody, spaceAboveBody] = [spaceAboveBody, spaceBelowBody]
+
+      console.log({spaceBelowBody, spaceAboveBody});
+
+      if (spaceBelowBody >= this.$refs.dropdown.scrollHeight) {
+        return true;
+      } else if (spaceBelowBody*2 > spaceAboveBody) {
+        this.maxDropdownHeight = spaceBelowBody - VERTICAL_MARGIN*2;
+        return true;
+      } 
+
+      this.maxDropdownHeight = spaceAboveBody - VERTICAL_MARGIN*2;
+      return false;
     },
     calculateSideCoordinate() {
       const dropdownWidth = Math.max(this.$refs.body.clientWidth, this.$refs.dropdown.scrollWidth);
       const spaceBesideBody = this.position !== 'right' ? this.bodyCoordinates.left : document.documentElement.clientWidth - this.bodyCoordinates.right;
       let sideCoordinate = Math.max(16, spaceBesideBody - dropdownWidth + this.$refs.body.scrollWidth + this.getOffsetX());
       if (this.isPositionCenter) {
-        sideCoordinate = Math.min(sideCoordinate, document.documentElement.clientWidth - dropdownWidth - 16);
+        sideCoordinate = Math.min(sideCoordinate, document.documentElement.clientWidth - dropdownWidth - VERTICAL_MARGIN*2);
       }
 
       return sideCoordinate;
@@ -151,10 +169,10 @@ export default {
       if (!isElementInViewport(this.$refs.body)) {
         return;
       }
-      const isDisplayedBelow = !this.forceTop && this.canDropdownFitBelow();
+      const isDisplayedBelow = this.getIsDropdownDisplayedBelow();
       const sideCoordinate = this.calculateSideCoordinate();
   
-      const dropdownHeight = 'dropdown' in this.$refs ? this.$refs.dropdown.scrollHeight : 0;
+      const dropdownHeight = 'dropdown' in this.$refs ? Math.min(this.maxDropdownHeight, this.$refs.dropdown.scrollHeight) : 0;
       if (isDisplayedBelow) {
         const top = this.hasRefs() ? this.$refs.body.scrollHeight : 0;
 
@@ -178,12 +196,16 @@ export default {
       this.dropdownCoordinates = dropdownCoordinates;
     },
     handleClick(event) {
+      console.log(event);
       if (!this.triggersOnClick) return;
       
       this.changeDropdownVisibilty(!this.modelValue);
-      this.stopClickPropagation(event);
     },
-    handleOutsideClick() {
+    handleOutsideClick(event) {
+      const containingFormField = event.target.closest('.v-form-field');
+
+      if (this.$refs.body?.contains(event.target) || this.$refs.dropdown?.contains(event.target) || containingFormField?.contains(this.$refs.body)) return;
+
       this.changeDropdownVisibilty(false);
     },
     bindScrollEvent() {
@@ -214,6 +236,8 @@ export default {
   }
 
   &__dropdown {
+    display: flex;
+
     position: fixed;
     z-index: 9000;
     box-shadow: 0 4px 8px 0 rgba($primary-ds-900, .15);

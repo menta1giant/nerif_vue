@@ -127,6 +127,10 @@ img {
   font-weight: $fw-medium;
 }
 
+.text-bleak {
+  color: $primary-ds-400;
+}
+
 .mobile:not(.desktop) {
   display: none;
 }

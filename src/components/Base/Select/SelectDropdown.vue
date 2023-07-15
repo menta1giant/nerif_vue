@@ -20,5 +20,9 @@ export default {
   display: flex;
   flex-direction: column;
   gap: .25rem;
+  flex-shrink: 1;
+
+  overflow: auto;
+  min-width: 100%;
 }
 </style>

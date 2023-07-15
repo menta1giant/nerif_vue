@@ -39,6 +39,8 @@
   }
 
   .v-loader {
+    display: inline-block;
+
     -moz-animation: PreloaderAnimation 1250ms infinite linear;
     -webkit-animation: PreloaderAnimation 1250ms infinite linear;
     animation: PreloaderAnimation 1250ms infinite linear;

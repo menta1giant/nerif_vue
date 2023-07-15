@@ -6,6 +6,7 @@
     <template #dropdown>
       <div class="v-popup">
         <slot name="content"></slot>
+        <div class="v-popup__close" @click="closePopup"><v-icon name="xmark" /></div>
       </div>
     </template>
   </v-positioner>
@@ -42,7 +43,12 @@ export default {
     $route() {
       this.isVisible = false;
     }
-  }
+  },
+  methods: {
+    closePopup() {
+      this.isVisible = false;
+    },
+  },
 }
 </script>
 
@@ -51,6 +57,17 @@ export default {
   background: $black-10;
   border-radius: $border-radius-small;
   padding: .5rem;
+
+  &__close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    
+    font-size: $fs-large;
+    color: $primary-ds-300;
+
+    cursor: pointer;
+  }
 }
 
 </style>

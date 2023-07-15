@@ -3,7 +3,8 @@
     <div v-if="isFormFieldInline" class="v-form-field--inline">
       <v-radio-button
         v-if="isInputTypeRadio" 
-        :id="id" :name="name" 
+        :id="id" 
+        :name="name" 
         :value="value" 
         fluid 
       />
@@ -57,6 +58,7 @@
         :value="value"
         :options="resourceData"
 
+        :is-loading-resource="isLoadingResource"
         :has-error="hasError" 
         fluid
       />
@@ -115,7 +117,9 @@ export default {
   },
   async created() {
     if (this.resource) {
+      this.isLoadingResource = true;
       const data = await fetchResource(this.resource);
+      this.isLoadingResource = false;
 
       this.resourceData = data;
     }
@@ -123,6 +127,7 @@ export default {
   data() {
     return {
       resourceData: [],
+      isLoadingResource: false,
     };
   },
   computed: {

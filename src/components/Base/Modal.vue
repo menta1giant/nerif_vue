@@ -1,10 +1,14 @@
 <template>
-  <div v-if="modelValue" class="v-modal-overlay" @click="$emit('update:modelValue', false)">
+  <div v-if="modelValue" class="v-modal-overlay" @click="closeModal">
     <div class="v-modal" :class="{ [`v-modal--${ type }`]: true }" @click="(event)=>event.stopPropagation()">
-      <div class="v-modal__close"><v-icon name="xmark" /></div>
-      <div class="v-modal__header"><span class="v-modal__status-icon"><v-icon name="circle-exclamation" /></span><span>New Modal</span></div>
-      <div class="v-modal__body">This is a modal which has text</div>
-      <div class="v-modal__footer"><v-button>Hello</v-button></div>
+      <div class="v-modal__close" @click="closeModal"><v-icon name="xmark" /></div>
+      <div class="v-modal__header"><span class="v-modal__status-icon"><v-icon name="circle-exclamation" /></span><span>{{ header }}</span></div>
+      <div class="v-modal__body">
+        <slot></slot>
+      </div>
+      <div class="v-modal__footer">
+        <slot name="cta"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +32,16 @@ export default {
         return 'warn';
       },
     },
-  }
+    header: {
+      type: String,
+      default: 'New modal',
+    }
+  },
+  methods: {
+    closeModal() {
+      this.$emit('update:modelValue', false);
+    },
+  },
 }
 </script>
 
@@ -40,7 +53,7 @@ export default {
   height: calc(100% - $navbar-height);
   left: 0;
   top: $navbar-height;
-  z-index: 10000;
+  z-index: 9000;
 
   display: flex;
   align-items: center;
@@ -83,6 +96,8 @@ export default {
     
     font-size: $fs-h4;
     color: $primary-ds-300;
+
+    cursor: pointer;
   }
 
   &__header {

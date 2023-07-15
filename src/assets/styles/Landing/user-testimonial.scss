@@ -67,6 +67,8 @@
 
     line-height: $lh-h4;
     white-space: nowrap;
+
+    flex-wrap: wrap;
   }
 
   &__header .v-icon {
