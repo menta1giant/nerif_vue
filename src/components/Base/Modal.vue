@@ -140,6 +140,7 @@ export default {
     flex: 1;
     min-height: 8rem;
     overflow: auto;
+    padding: .125rem;
   }
 
   &__footer {

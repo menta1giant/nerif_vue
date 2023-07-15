@@ -111,12 +111,15 @@ export default {
   },
   methods: {
     async fetchFormData() {
+      this.isFormProcessing = true;
       try {
         const data = await apiRequestGet(this.formApiRoute);
 
         this.formData = data;
       } catch(e) {
         undefined
+      } finally {
+        this.isFormProcessing = false;
       }
     },
     handleInput() {
