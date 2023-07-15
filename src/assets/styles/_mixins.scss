@@ -33,3 +33,7 @@
 @mixin divider-bottom-dark {
   border-bottom: 1px solid $primary-ds-600;
 }
+
+@mixin divider-top-bleak {
+  border-top: 1px solid $primary-s-50;
+}

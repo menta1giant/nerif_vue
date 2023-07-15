@@ -36,10 +36,19 @@ export default {
   methods: {
     async handleLogOut() {
       this.isLogoutInProcess = true;
-      await apiRequestPost('users/logout');
-      this.isLogoutInProcess = false;
+      try {
+        await apiRequestPost('users/logout');
+      } catch(e) {
+        undefined
+      } finally {
+        this.isLogoutInProcess = false;
 
-      this.$store.commit('removeToken');
+        this.$store.commit('removeToken');
+
+        if (this.$route.meta?.requiresAuth) {
+          this.$router.push('/');
+        }
+      }
     }
   }
 }

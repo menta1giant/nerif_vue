@@ -115,7 +115,6 @@ export default {
       };
     },
     stopClickPropagation(event) {
-      console.log(event);
       event.stopPropagation();
     },
     changeDropdownVisibilty(newValue) {
@@ -141,8 +140,6 @@ export default {
       let spaceAboveBody = this.bodyCoordinates.top - VERTICAL_MARGIN;
 
       if (this.forceTop) [spaceBelowBody, spaceAboveBody] = [spaceAboveBody, spaceBelowBody]
-
-      console.log({spaceBelowBody, spaceAboveBody});
 
       if (spaceBelowBody >= this.$refs.dropdown.scrollHeight) {
         return true;
@@ -195,8 +192,7 @@ export default {
       const dropdownCoordinates = this.getDropdownCoordinates();
       this.dropdownCoordinates = dropdownCoordinates;
     },
-    handleClick(event) {
-      console.log(event);
+    handleClick() {
       if (!this.triggersOnClick) return;
       
       this.changeDropdownVisibilty(!this.modelValue);

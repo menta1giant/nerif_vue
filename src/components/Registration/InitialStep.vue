@@ -3,6 +3,7 @@
     header="Creating account" 
     cta-text="Create account" 
 
+    :min-width="500"
     :validation-rules="validationRules"
     :form-fields="formFields"
     :form-api-route="formApiRoute"

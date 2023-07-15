@@ -2,6 +2,8 @@
   <form-block 
     header="Personal info" 
     subheader="Tell us more about yourself" 
+    
+    :min-width="500"
     :form-fields="formFields"
     :validation-rules="validationRules"
     :form-api-route="formApiRoute"

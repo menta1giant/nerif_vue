@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SearchInput from '@/components/SearchInput';
+import store from '../store';
 
 const routes = [
   {
@@ -82,6 +83,7 @@ const routes = [
     name: 'Profile settings',
     meta: {
       hasBreadcrumbs: true,
+      requiresAuth: true,
     },
     children: [
       {
@@ -133,7 +135,9 @@ const routes = [
   {
     path: '/sign-up',
     name: 'Registration',
-    meta: {},
+    meta: {
+      requiresGuest: true,
+    },
     component: () => import(/* webpackChunkName: "registration" */ '../views/RegistrationView.vue')
   },
   {
@@ -192,8 +196,22 @@ const router = createRouter({
   },
 })
 
-router.beforeEach((to, from) => {
-  console.log({ from, to });
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.getIsUserAuthenticated) {
+      next({ route: '', params: { 'log-in': 1 } })
+    } else {
+      next()
+    }
+  } else if (to.matched.some(record => record.meta.requiresGuest)) {
+    if (store.getters.getIsUserAuthenticated) {
+      next({ route: '' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

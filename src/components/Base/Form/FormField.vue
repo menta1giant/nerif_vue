@@ -71,6 +71,7 @@
         fluid
       >
       </v-textarea>
+      <slot></slot>
       <span 
         v-if="hasError" 
         class="error-message"
@@ -104,7 +105,10 @@ export default {
       default: 'text',
     },
     value: {
-      type: [String, Number, Boolean, File]
+      type: [String, Number, Boolean, File],
+      default() {
+        return null;
+      },
     },
     resource: String,
     placeholder: String,

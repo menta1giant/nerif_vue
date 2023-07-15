@@ -53,10 +53,12 @@ export default createStore({
           } 
         },
         async setUserInfo(state) {
-          const [userInfo, subscriptionInfo] = await Promise.all([apiRequestGet('users/profile/personal-info'), apiRequestGet('users/profile/subscription-info')]);
-
-          state.userInfo = Object.assign({}, userInfo, { subscription: subscriptionInfo });
-          console.log(state.userInfo);
+          try {
+            const [userInfo, subscriptionInfo] = await Promise.all([apiRequestGet('users/profile/personal-info'), apiRequestGet('users/profile/subscription-info')]);
+            state.userInfo = Object.assign({}, userInfo, { subscription: subscriptionInfo });
+          } catch(e) {
+            this.commit('removeToken');
+          }
         },
         setToken(state, token) {
           state.token = token;

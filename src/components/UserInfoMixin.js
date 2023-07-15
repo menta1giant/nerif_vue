@@ -3,5 +3,8 @@ export default {
     userInfo() {
       return this.$store.getters.getUserInfo;
     },
+    isUserAuthenticated() {
+      return this.$store.getters.getIsUserAuthenticated;
+    }
   },
 }

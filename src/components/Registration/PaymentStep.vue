@@ -30,8 +30,8 @@ export default {
     };
   },
   methods: {
-    async handleFormSubmitted(response) {
-      console.log(response);
+    async handleFormSubmitted() {
+
       await this.$store.commit('setUserInfo');
       this.$emit('change-step');
     },

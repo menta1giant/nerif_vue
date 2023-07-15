@@ -1,54 +1,208 @@
 <template>
-  <form class="v-form" :name="formName" @submit.prevent="">
+  <form class="v-form" :name="formName" :style="{width: minWidthStyle}" @submit.prevent="">
     <div class="v-form__body">
-      <slot></slot>
+      <template v-if="$slots.default">
+        <div class="v-form__column">
+          <slot></slot>
+        </div>
+      </template>
+      <template v-else>
+        <div 
+          v-for="(fieldsColumn, idx) in formFields"
+          :key="`field-column_${ idx }`"
+          class="v-form__column"
+        >
+          <template v-for="(component, index) in fieldsColumn" :key="index">
+            <component 
+              :is="component.component" 
+              v-bind="component.props"
+              :value="formData[component.props.name]"
+  
+              :error-message="errorMessages[component.props.name]"
+  
+              :has-error="!!errorMessages[component.props.name]" 
+  
+              @toggle="handleSubmit"
+            >
+            </component>
+          </template>
+        </div>
+      </template>
     </div>
-    <div v-if="$slots['cta']" class="v-form__footer">
-      <slot name="cta"></slot>
+    <div class="v-form__footer">
+      <template v-if="$slots.cta">
+        <slot name="cta"></slot>
+      </template>
+      <template v-else-if="!noCta">
+        <slot name="cta">
+          <v-button size="small" :fluid="fluid" :loading="isFormProcessing" @click="handleSubmit">{{ ctaText }}</v-button>
+        </slot>
+      </template>
       <span 
-        v-if="hasError" 
+        v-if="!!defaultErrorMessage" 
         class="error-message"
       >
-        {{ errorMessage }}
+        {{ defaultErrorMessage }}
       </span>
     </div>
   </form>
 </template>
-
 <script>
+import controlMixin from '@/components/controlMixin';
+import { validateFields } from '@/lib/validation';
+import { apiRequestPostForm, apiRequestGet } from '@/lib/api';
+import formHandlerMixin from '@/components/formHandlerMixin';
+
 export default {
   name: 'Form',
+  inheritAttrs: false,
+  mixins: [controlMixin, formHandlerMixin],
+  emits: ['form-submitted'],
   props: {
-    errorMessage: String,
-    formName: String,
+    minWidth: {
+      type: [Number, String],
+      default: 400,
+    },
+    formName: {
+      type: String,
+      default() {
+        return `form_${ Math.round(Math.random()*100) }`;
+      },
+    },
+    formApiRoute: String,
+    formFields: {
+      type: Array,
+      default() {
+        return [[]];
+      },
+    },
+    validationRules: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+    customHandler: Function,
+    ctaText: {
+      type: String,
+      default: 'Save changes'
+    },
+    noCta: Boolean,
+
+    prefetchRequired: Boolean,
+  },
+  async created() {
+    if (this.prefetchRequired) await this.fetchFormData();
+  },
+  data() {
+    return {
+      formData: {},
+    }
   },
   computed: {
-    hasError() {
-      return !!this.errorMessage;
-    }
-  }
+    minWidthStyle() {
+      return typeof this.minWidth === 'string' ? this.minWidth : `${ this.minWidth }px`;
+    },
+    defaultErrorMessage() {
+      const errorFieldWithDefaultError = 'default' in this.validationRules && this.validationRules.default.find(field => field in this.errorMessages);
+
+      return this.errorMessages[errorFieldWithDefaultError] || this.errorMessages.error;
+    },
+  },
+  methods: {
+    async fetchFormData() {
+      try {
+        const data = await apiRequestGet(this.formApiRoute);
+
+        this.formData = data;
+      } catch(e) {
+        undefined
+      }
+    },
+    handleInput() {
+      this.resetErrors();
+    },
+    async sendForm(formData) {
+      this.resetErrors();
+      
+      this.isFormProcessing = true;
+      try {
+        const response = await apiRequestPostForm(this.formApiRoute, formData, this.handleFormValidationFail);
+
+        this.formData = formData;
+        return response;
+      } catch(e) {
+        undefined
+      } finally {
+        this.isFormProcessing = false;
+      }
+    },
+    async validateForm() {
+      const form = document.forms[this.formName];
+      let formData = new FormData(form);
+      formData = Object.fromEntries(formData.entries());
+
+      const errorFields = validateFields(formData, this.validationRules);
+      
+      if (Object.keys(errorFields).length) {
+        this.handleFormValidationFail(errorFields);
+        return;
+      }
+
+      try {
+        const response = await this.sendForm(formData);
+        this.$emit('form-submitted', response);
+      } catch(e) {
+        undefined
+      }
+    },
+    handleSubmit() {
+      if (this.customHandler) {
+        this.customHandler();
+
+        return;
+      }
+
+      this.validateForm();
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .v-form {
+  max-width: 100%;
+
   &__body {
     display: flex;
     gap: 1.5rem;
 
     padding-top: 1rem;
-    max-width: 36rem;
+    //max-width: 36rem;
 
     @media screen and (max-width: $mobile-breakpoint) {
       flex-direction: column;
     }
   }
 
-  &__footer {
-    @include divider-top;
+  &__column {
+    display: grid;
+    gap: 1rem;
+    flex: .5;
 
-    padding-top: 1.5rem;
+    &:first-child {
+      flex: 1;
+    }
+  }
+
+  &__footer {
+    @include divider-top-bleak;
+
+    display: flex;
+
+    padding-top: 1rem;
     margin-top: 1rem;
+    margin-bottom: .25rem;
   }
 }
 </style>

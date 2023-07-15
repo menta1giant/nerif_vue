@@ -15,7 +15,7 @@
               <span class="user-plan-info__title">{{ `${ userInfo.subscription?.plan } plan` }}</span>
               <span class="user-plan-info__days-left">{{ `${ userInfo.subscription?.days_left || 0 } days left` }}</span>
             </div>
-            <v-popup v-model="isNotificationsTabOpened">
+            <v-popup v-model="isNotificationsTabOpened" show-x>
               <template #trigger>
                 <button class="navbar-square-button notifications-button" :class="{ 'notifications-button--active': hasNotifications }">
                   <div v-if="hasNotifications" class="notifications-count">
@@ -29,7 +29,7 @@
               </template>
             </v-popup>
 
-            <v-popup v-model="isProfilePopupOpened">
+            <v-popup v-model="isProfilePopupOpened" show-x>
               <template #trigger>
                 <div class="navbar-square-button profile-button">
                   <img src="@/assets/images/logo-desat.png" :srcset="profilePhotoUrl" />
@@ -41,7 +41,7 @@
             </v-popup>
           </template>
           <template v-else>
-            <router-link to="/login"><span><b>Sign in.</b></span></router-link>
+            <v-button type="transparent-accent" size="small" @click="showLoginModal">Sign in.</v-button>
             <v-button type="primary-accent" size="small"  to="/sign-up">Subscribe</v-button>
           </template>
           <button class="navbar-square-button hamburger-menu-button mobile">
@@ -51,12 +51,14 @@
       </div>
     </v-section>
   </div>
+  <login-modal v-model="isLoginModalShown" />
 </template>
 
 <script>
 import NavigationPages from '@/components/Navigation/NavigationPages.vue';
 import NotificationsPopup from '@/components/Notifications/NotificationsPopup.vue';
 import ProfilePopup from '@/components/Profile/ProfilePopup.vue';
+import LoginModal from '@/components/Registration/LoginModal.vue';
 import userInfoMixin from '../userInfoMixin';
 import { BACKEND_URL } from '@/lib/config';
 
@@ -66,6 +68,7 @@ export default {
     NavigationPages,
     NotificationsPopup,
     ProfilePopup,
+    LoginModal,
   },
   mixins: [userInfoMixin],
   data() {
@@ -73,6 +76,7 @@ export default {
       links: this.$router.getRoutes(),
       isNotificationsTabOpened: false,
       isProfilePopupOpened: false,
+      isLoginModalShown: false,
       notificationsCount: 234,
     }
   },
@@ -88,12 +92,26 @@ export default {
     }
   },
   watch: {
+    $route: {
+      immediate: true,
+      deep: true,
+      handler(route) {
+        if ('log-in' in route.params) {
+          this.isLoginModalShown = true;
+        }
+      }
+    },
     isUserSignedIn(val) {
       if (val) return;
 
       this.isNotificationsTabOpened = false;
       this.isProfilePopupOpened = false;
     }
+  },
+  methods: {
+    showLoginModal() {
+      this.isLoginModalShown = true;
+    },
   }
 }
 </script>

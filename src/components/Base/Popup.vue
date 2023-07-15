@@ -1,12 +1,12 @@
 <template>
-  <v-positioner v-model="isVisible" :position="left ? 'left' : 'center'" :horizontal-margin="horizontalMargin" triggers-on-click>
+  <v-positioner v-model="isShown" :position="left ? 'left' : 'center'" :horizontal-margin="horizontalMargin" triggers-on-click>
     <template #body>
       <slot name="trigger"></slot>
     </template>
     <template #dropdown>
       <div class="v-popup">
         <slot name="content"></slot>
-        <div class="v-popup__close" @click="closePopup"><v-icon name="xmark" /></div>
+        <div v-if="showX" class="v-popup__close" @click="closePopup"><v-icon name="xmark" /></div>
       </div>
     </template>
   </v-positioner>
@@ -22,31 +22,34 @@ export default {
       default: 28,
     },
     left: Boolean,
+    showX: Boolean,
   },
   data() {
     return {
-      isVisible: false,
+      isShown: false,
     };
   },
   watch: {
     modelValue: {
       immediate: true,
       handler(val) {
-        this.isVisible = val;
+        this.isShown = val;
       }
     },
-    isVisible: {
+    isShown: {
       handler(val) {
         this.$emit('update:modelValue', val);
       }
     },
-    $route() {
-      this.isVisible = false;
+    '$route.path': {
+      handler() {
+        this.closePopup();
+      }
     }
   },
   methods: {
     closePopup() {
-      this.isVisible = false;
+      this.isShown = false;
     },
   },
 }

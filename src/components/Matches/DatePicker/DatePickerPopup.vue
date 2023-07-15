@@ -56,6 +56,12 @@ export default {
     DatePickerMixin,
   ],
   props: {
+    modelValue: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
     selectedDate: {
       type: Object,
       default() {

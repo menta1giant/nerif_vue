@@ -9,7 +9,7 @@
     </ul>
     <div class="subscription-plan-card__footer">
       <span class="subscription-plan-card__footer__price"><b>{{ plan.price }}</b>{{ plan.period }}</span>
-      <v-button size="small" :type="plan.isPopular ? 'primary-accent' : 'primary'" to="/sign-up" fluid>{{ plan.ctaText }}</v-button>
+      <v-button size="small" :type="plan.isPopular ? 'primary-accent' : 'primary'" :to="{ name: 'Registration', query: { plan: plan.header } }" fluid>{{ plan.ctaText }}</v-button>
     </div>
   </div>
 </template>

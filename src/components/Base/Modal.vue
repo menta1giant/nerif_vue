@@ -2,7 +2,10 @@
   <div v-if="modelValue" class="v-modal-overlay" @click="closeModal">
     <div class="v-modal" :class="{ [`v-modal--${ type }`]: true }" @click="(event)=>event.stopPropagation()">
       <div class="v-modal__close" @click="closeModal"><v-icon name="xmark" /></div>
-      <div class="v-modal__header"><span class="v-modal__status-icon"><v-icon name="circle-exclamation" /></span><span>{{ header }}</span></div>
+      <div class="v-modal__header">
+        <v-icon :name="statusIconName" />
+        <span>{{ header }}</span>
+      </div>
       <div class="v-modal__body">
         <slot></slot>
       </div>
@@ -14,6 +17,10 @@
 </template>
 
 <script>
+const STATUS_ICONS = {
+  warn: 'circle-exclamation',
+}
+
 export default {
   name: 'Modal',
   props: {
@@ -29,12 +36,28 @@ export default {
         return ['warn', 'success', 'danger', 'default'].includes(val);
       },
       default() {
-        return 'warn';
+        return 'default';
       },
     },
     header: {
       type: String,
       default: 'New modal',
+    },
+    statusIcon: {
+      type: String,
+      default: 'arrow-right-to-bracket',
+    }
+  },
+  watch: {
+    '$route.path': {
+      handler() {
+        this.closeModal();
+      }
+    }
+  },
+  computed: {
+    statusIconName() {
+      return this.statusIcon || STATUS_ICONS[this.type];
     }
   },
   methods: {
@@ -49,8 +72,8 @@ export default {
 .v-modal-overlay {
   position: fixed;
   background: rgba($primary-ds-900, .6);
+  height: 100%;
   width: 100%;
-  height: calc(100% - $navbar-height);
   left: 0;
   top: $navbar-height;
   z-index: 9000;
@@ -59,32 +82,31 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
-@media screen and (max-width: $mobile-breakpoint) {
-  .v-modal-overlay {
-    height: calc(100% - (2 * $navbar-height));
-  }
-}
-
 .v-modal {
   position: relative;
 
   background: $black-10;
   box-shadow: 0 4px 8px 0 rgba($primary-ds-900, .15);
   min-width: 200px;
-  height: 300px;
+  max-width: calc(100% - 2rem);
   padding: 1.5rem;
-  padding-right: 3rem;
   border-radius: 0px 6px 6px 0px;
   border-left: 6px solid transparent;
+
+  max-height: calc(100% - $navbar-height * 3);
+
+  transform: translateY(-15%);
 
   display: flex;
   flex-direction: column;
 
+  .v-icon {
+      color: $primary-s-400;
+    }
+
   &--warn {
     border-color: $accent-500;
-
-    .v-modal__status-icon {
+    .v-modal__header .v-icon {
       color: $accent-500;
     }
   }
@@ -94,29 +116,40 @@ export default {
     right: 12px;
     top: 12px;
     
-    font-size: $fs-h4;
+    font-size: $fs-large;
     color: $primary-ds-300;
 
     cursor: pointer;
   }
 
-  &__header {
+  &__header { 
+    @include divider-bottom-bleak;
+
     display: flex;
-    gap: .5rem;
+    gap: .75rem;
+    padding-bottom: 1rem;
+    padding-right: 2rem;
 
     font-size: $fs-h4;
     line-height: $lh-h4;
     font-weight: $fw-semi-bold;
     font-family: $ff-display;
-
-    span {
-      white-space: nowrap;
-    }
   }
 
   &__body {
     flex: 1;
-    margin: 1rem 0;
+    min-height: 8rem;
+    overflow: auto;
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+    }
   }
 }
 </style>

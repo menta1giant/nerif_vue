@@ -8,10 +8,22 @@
 <script>
 import SubscriptionPlanOption from '@/components/Registration/SubscriptionPlanOption.vue';
 
+const PLANS_MAP = {
+  'Demo': 0,
+  'Standard': 1,
+  'Premium': 2,
+}
+
 export default {
   name: 'SubscriptionPlanOptions',
   components: {
     SubscriptionPlanOption,
+  },
+  created() {
+    const activePlan = this.$route.query.plan;
+    if (!activePlan) return;
+
+    this.activePlan = PLANS_MAP[activePlan];
   },
   data() {
     return {

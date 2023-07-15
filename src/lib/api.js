@@ -25,6 +25,7 @@ async function apiRequest({
       if (e.response.data.message) notify.error(e.response.data.message);
       errorCallback(e.response.data)
     }
+    throw e;
   }
 }
 
@@ -56,9 +57,7 @@ export async function apiRequestPost(route, params={}, errorCallback = null) {
   return data;
 }
 
-const resourcesCache = {
-
-}
+const resourcesCache = {}
 
 export async function fetchResource(resource) {
   if (resource in resourcesCache) return resourcesCache[resource];

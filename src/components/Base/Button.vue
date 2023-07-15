@@ -13,14 +13,14 @@
     <router-link 
       v-else 
       v-bind="$props"
-      v-slot="{ navigate }"
+      v-slot="{ href, navigate }"
       custom
     >
       <a
         v-bind="$attrs"
         class="v-button" 
         :class="classes" 
-        :href="disabled ? null : to"
+        :href="disabled ? null : href"
         @click="navigate"
       >
         <slot></slot>
@@ -37,7 +37,7 @@
 <script>
 import controlMixin from '@/components/controlMixin';
 
-const TYPES = ['transparent', 'primary', 'secondary', 'danger', 'primary-accent'];
+const TYPES = ['transparent', 'primary', 'secondary', 'danger', 'primary-accent', 'transparent-accent'];
 const SIZES = ['small', 'medium', 'large'];
 
 export default {
@@ -74,7 +74,7 @@ export default {
       default: false,
     },
     to: {
-      type: String,
+      type: [String, Object],
       default: '',
     },
   },
@@ -110,6 +110,9 @@ export default {
   align-items: center;
   justify-content: center;
   gap: .5em;
+
+  max-width: 100%;
+  flex-shrink: 1;
 
   border-radius: $border-radius-small;
 
@@ -241,6 +244,21 @@ export default {
 
       .v-loader {
         --border-color: #{$primary-ds-400};
+      }
+    }
+  }
+
+  &--transparent-accent {
+    padding: 0;
+    justify-content: left;
+
+    color: $accent-500;
+
+    &:disabled, &:not(button):not(a[href]) {
+      color: $accent-300;
+
+      .v-loader {
+        --border-color: #{$accent-300};
       }
     }
   }
