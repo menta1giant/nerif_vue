@@ -40,7 +40,7 @@ export default {
   border-radius: $border-radius-small;
   cursor: pointer;
 
-  &:not(.v-icon-button--active):focus {
+  &:not(.v-icon-button--active):focus-visible {
     outline: 1px solid $primary-s-100;
     outline-offset: 2px;
   }

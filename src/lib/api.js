@@ -1,6 +1,7 @@
 import axios from "axios"
 import { BACKEND_URL_API } from './config';
 import { notify } from '@/lib/notify';
+import { getLocalStorageDataByKey, setLocalStorageData } from '@/lib/localStorage';
 
 async function apiRequest({
   method = 'GET',
@@ -61,10 +62,16 @@ const resourcesCache = {}
 
 export async function fetchResource(resource) {
   if (resource in resourcesCache) return resourcesCache[resource];
+  const resourceInStorage = getLocalStorageDataByKey(`resource_${ resource }`);
+  if (resourceInStorage) {
+    resourcesCache[resource] = JSON.parse(resourceInStorage);
+    return resourcesCache[resource];
+  }
 
   const data = await apiRequestGet(`storage/${ resource }`);
 
   resourcesCache[resource] = data;
+  setLocalStorageData(`resource_${ resource }`, JSON.stringify(data));
 
   return data;
 }

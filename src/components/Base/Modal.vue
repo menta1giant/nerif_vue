@@ -49,6 +49,17 @@ export default {
     }
   },
   watch: {
+    modelValue: {
+      immediate: true,
+      handler(val) {
+        if (val) {
+          document.body.classList.add("scroll-lock");
+          return
+        }
+
+        document.body.classList.remove("scroll-lock");
+      }
+    },
     '$route.path': {
       handler() {
         this.closeModal();

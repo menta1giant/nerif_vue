@@ -22,6 +22,14 @@ body {
     color: $primary-ds-800;
 }
 
+html, body {
+  scrollbar-gutter: stable;
+}
+
+.scroll-lock {
+  overflow: hidden;
+}
+
 h1 {
   font-size: $fs-h1;
   line-height: $lh-h1;
