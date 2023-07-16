@@ -51,7 +51,7 @@
     border-style: solid;
     border-radius: 50%;
     border-width: 2px;
-    border-color: var(--border-color);
+    border-color: currentColor;//var(--border-color);
     border-right-color: transparent;
 
     position: relative;

@@ -4,7 +4,7 @@ import store from '../store';
 
 const routes = [
   {
-    path: '/home',
+    path: '/home/',
     name: 'Home',
     meta: {
       isInMainNavigation: true,
@@ -20,7 +20,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "landing" */ '../views/HomeView.vue')
   },
   {
-    path: '/matches',
+    path: '/matches/',
     name: 'Matches',
     meta: {
       isInMainNavigation: true,

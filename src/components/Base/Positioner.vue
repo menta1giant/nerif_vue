@@ -142,7 +142,7 @@ export default {
       if (this.forceTop) [spaceBelowBody, spaceAboveBody] = [spaceAboveBody, spaceBelowBody]
 
       if (spaceBelowBody >= this.$refs.dropdown.scrollHeight) {
-        return true;
+        return !this.forceTop;
       } else if (spaceBelowBody*2 > spaceAboveBody) {
         this.maxDropdownHeight = spaceBelowBody - VERTICAL_MARGIN*2;
         return true;
