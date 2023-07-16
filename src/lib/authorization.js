@@ -4,6 +4,6 @@ export function updateAuthorizationToken(token) {
   if (token) {
     axios.defaults.headers.common['Authorization'] = `Token ${ token }`;
   } else {
-      axios.defaults.headers.common['Authorization'] = "";
+    axios.defaults.headers.common['Authorization'] = "";
   }
 }

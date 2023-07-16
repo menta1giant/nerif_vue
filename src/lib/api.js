@@ -2,6 +2,7 @@ import axios from "axios"
 import { BACKEND_URL_API } from './config';
 import { notify } from '@/lib/notify';
 import { getLocalStorageDataByKey, setLocalStorageData } from '@/lib/localStorage';
+import store from '../store';
 
 async function apiRequest({
   method = 'GET',
@@ -22,8 +23,14 @@ async function apiRequest({
 
     return data;
   } catch(e) {
+    if (e.response.data.detail === 'Invalid token.') {
+      store.commit('removeToken');
+      throw e;
+    }
+
+    if (e.response.data.message) notify.error(e.response.data.message);
+
     if (errorCallback) {
-      if (e.response.data.message) notify.error(e.response.data.message);
       errorCallback(e.response.data)
     }
     throw e;

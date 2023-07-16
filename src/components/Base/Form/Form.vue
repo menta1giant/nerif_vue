@@ -38,12 +38,14 @@
           <v-button size="small" :fluid="fluid" :loading="isFormProcessing" @click="handleSubmit">{{ ctaText }}</v-button>
         </slot>
       </template>
-      <span 
-        v-if="!!defaultErrorMessage" 
-        class="error-message"
-      >
-        {{ defaultErrorMessage }}
-      </span>
+      <div>
+        <span 
+          v-if="!!defaultErrorMessage" 
+          class="error-message"
+        >
+          {{ defaultErrorMessage }}
+        </span>
+      </div>
     </div>
   </form>
 </template>
@@ -200,8 +202,6 @@ export default {
 
   &__footer {
     @include divider-top-bleak;
-
-    display: flex;
 
     padding-top: 1rem;
     margin-top: 1rem;

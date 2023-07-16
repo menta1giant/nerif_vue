@@ -71,6 +71,11 @@ export default {
     LoginModal,
   },
   mixins: [userInfoMixin],
+  created() {
+    if ('log-in' in this.$route.query) {
+      this.showLoginModal();
+    }
+  },
   data() {
     return {
       links: this.$router.getRoutes(),
@@ -96,8 +101,8 @@ export default {
       immediate: true,
       deep: true,
       handler(route) {
-        if ('log-in' in route.params) {
-          this.isLoginModalShown = true;
+        if ('log-in' in route.query) {
+          this.showLoginModal();
         }
       }
     },

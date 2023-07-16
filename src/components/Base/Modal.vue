@@ -61,8 +61,9 @@ export default {
       }
     },
     '$route.path': {
-      handler() {
-        this.closeModal();
+      handler(to, from) {
+        console.log({ to, from });
+        if (this.modelValue) this.closeModal();
       }
     }
   },

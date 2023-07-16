@@ -128,7 +128,7 @@ export const PASSWORD_FIELDS = [
       props: {
         type: 'password',
         label: 'Confirm password', 
-        name: 'repeat_password', 
+        name: 'password_confirmation', 
       },
     },
   ],

@@ -13,6 +13,7 @@ import NavigationBar from '@/components/Navigation/NavigationBar.vue';
 import MobileNavigationBar from '@/components/Navigation/MobileNavigationBar.vue';
 import BreadcrumbsBar from '@/components/BreadcrumbsBar.vue';
 import GlobalNotifications from '@/components/GlobalNotifications/GlobalNotifications.vue';
+import userInfoMixin from './components/userInfoMixin';
 
 export default {
   name: 'app',
@@ -22,8 +23,16 @@ export default {
     BreadcrumbsBar,
     GlobalNotifications,
   },
+  mixins: [userInfoMixin],
   beforeCreate() {
     this.$store.commit('initializeStore');
+  },
+  watch: {
+    isUserAuthenticated(val) {
+      if (!val && this.$route.meta.requiresAuth) {
+        this.$router.replace({ name: 'root', query: { 'log-in': 1 } });
+      }
+    },
   },
 }
 </script>

@@ -4,7 +4,7 @@ import store from '../store';
 
 const routes = [
   {
-    path: '/home/',
+    path: '/home',
     name: 'Home',
     meta: {
       isInMainNavigation: true,
@@ -13,14 +13,14 @@ const routes = [
     children: [
       {
         path: '/',
-        name: '',
+        name: 'root',
         component: () => import(/* webpackChunkName: "landing" */ '../views/HomeView.vue')
       }
     ],
     component: () => import(/* webpackChunkName: "landing" */ '../views/HomeView.vue')
   },
   {
-    path: '/matches/',
+    path: '/matches',
     name: 'Matches',
     meta: {
       isInMainNavigation: true,
@@ -199,13 +199,13 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.getIsUserAuthenticated) {
-      next({ route: '', params: { 'log-in': 1 } })
+      next({ path: '/', query: { 'log-in': 1 } })
     } else {
       next()
     }
   } else if (to.matched.some(record => record.meta.requiresGuest)) {
     if (store.getters.getIsUserAuthenticated) {
-      next({ route: '' })
+      next({ path: '/' })
     } else {
       next()
     }

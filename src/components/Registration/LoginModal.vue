@@ -45,7 +45,6 @@ export default {
   },
   watch: {
     modelValue: {
-      immediate: true,
       handler(val) {
         this.isShown = val;
       }
