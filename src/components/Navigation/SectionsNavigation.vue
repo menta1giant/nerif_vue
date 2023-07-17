@@ -4,12 +4,13 @@
       <div class="sections-navigation">
         <div 
           v-for="(section, idx) in sections"
-          :key="`section_${ idx }`" 
+          :key="`section_${ section.id || idx }`" 
           class="sections-navigation__item" 
           :class="{ 'sections-navigation__item--active': idx === modelValue }"
           @click="handleSelectSection(idx)"
         >
-          {{ section }}
+          {{ section.name || section }}
+          <span v-if="isSearchQueryNonEmpty">{{ sectionsCounts[section.name] }}</span>
         </div>
       </div>
     </v-section>
@@ -25,6 +26,8 @@ export default {
       default: 0,
     },
     sections: Array,
+    sectionsCounts: Object,
+    isSearchQueryNonEmpty: Boolean,
   },
   methods: {
     handleSelectSection(idx) {

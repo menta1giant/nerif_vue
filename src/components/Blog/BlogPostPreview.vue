@@ -1,26 +1,43 @@
 <template>
   <div class="blog-post">
     <div class="blog-post__image">
-      <img src="@/assets/images/blog-post1.png"/>
-      <div class="blog-post__tag">News</div>
+      <img :src="imageUrl"/>
+      <div v-for="tag in tags" :key="tag.name" class="blog-post__tag">{{ tag.name }}</div>
     </div>
     <div class="blog-post__body">
-      <div class="blog-post__header"><h5 @click="$emit('open')">Three new features rolled out today</h5><v-icon name="bookmark"/></div>
-      <p>Today we are celebrating the new era of Nerif technology with the ability to write not just one or two, but three and more lines of text to describe an article at our blog which nobody will ever see!</p>
-      <div class="blog-post__footer"><span>by <b>Martin Scorcese</b></span><span>24-05-2023</span></div>
+      <div class="blog-post__header"><h5 @click="$emit('open')">{{ title }}</h5><v-icon name="bookmark"/></div>
+      <p><slot></slot></p>
+      <div class="blog-post__footer"><span>by <b>{{ author }}</b></span><span><time>{{ date_published }}</time></span></div>
     </div>
   </div>
 </template>
 
 <script>
+import { getImageUrl } from '@/lib/image';
+
 export default {
   name: 'BlogPostPreview',
   emits: ['open'],
+  props: {
+    title: String,
+    date_published: String,
+    author: String,
+    tags: Array,
+    cover: String,
+  },
+  computed: {
+    imageUrl() {
+      return getImageUrl(this.cover);
+    },
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .blog-post {
+  display: flex;
+  flex-direction: column;
+
   background: white;
 
   min-height: 100px;
@@ -32,8 +49,16 @@ export default {
   &:not(:nth-child(n+4)) {
     grid-column: span 2;
 
+    img {
+      height: 25vh;
+    }
+
     @media screen and (max-width: $tablet-breakpoint) {
       grid-column: span 3;
+
+      img {
+        height: 10vh;
+      }
     } 
   }
 
@@ -54,10 +79,18 @@ export default {
   @media screen and (max-width: $tablet-breakpoint) {
     &:not(:nth-child(n+3)) {
       grid-column: span 3;
+
+      img {
+        height: 20vh;
+      }
     }
 
     &:nth-child(n+3) {
       grid-column: span 2;
+
+      img {
+        height: 10vh;
+      }
 
       p {
         display: none;
@@ -76,10 +109,18 @@ export default {
   @media screen and (max-width: $mobile-breakpoint) {
     &:not(:nth-child(n+2)) {
       grid-column: span 6;
+
+      img {
+        height: 35vh;
+      }
     }
 
     &:nth-child(n+2) {
       grid-column: span 3;
+
+      img {
+        height: 15vh;
+      }
 
       p {
         display: none;
@@ -100,6 +141,8 @@ export default {
 
     img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 
@@ -119,8 +162,10 @@ export default {
   }
 
   &__body {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: .75rem;
+    flex: 1;
 
     padding: 1rem;
 
@@ -143,13 +188,19 @@ export default {
     display: flex;
     justify-content: space-between;
     gap: .5rem;
+
+    cursor: pointer;
   }
 
   &__footer {
     display: flex;
     flex-wrap: wrap;
+    flex: 1;
+    align-items: flex-end;
 
     font-size: $fs-xxs;
+
+    margin-top: auto;
 
     span:first-child {
       margin-right: .5rem;

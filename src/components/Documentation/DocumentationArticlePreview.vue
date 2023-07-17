@@ -19,8 +19,6 @@ export default {
 
 <style lang="scss" scoped>
 .documentation-article-preview {
-  @include divider-bottom;
-
   max-width: 40rem;
   padding-block: 2rem;
 
@@ -42,6 +40,10 @@ export default {
 
     font-size: $fs-medium;
     line-height: $lh-body;
+  }
+
+  &>.documentation-article-preview {
+    @include divider-bottom;
   }
 }
 </style>

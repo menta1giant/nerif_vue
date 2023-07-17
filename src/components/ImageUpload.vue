@@ -18,7 +18,7 @@
 <script>
 import formFieldMixin from './Base/formFieldMixin';
 import UploadButton from './UploadButton';
-import { BACKEND_URL } from '@/lib/config';
+import { getImageUrl } from '@/lib/image';
 
 export default {
   name: 'ImageUpload',
@@ -37,7 +37,7 @@ export default {
       handler(val) {
         if (val instanceof File || !val) return;
 
-        this.setImageSource(`${BACKEND_URL}${val}`);
+        this.setImageSource(getImageUrl(val));
       }
     }
   },

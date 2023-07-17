@@ -1,7 +1,7 @@
 <template>
   <form-block 
-    header="Personal info" 
-    subheader="Tell us more about yourself" 
+    header="Payment info" 
+    subheader="All data is secure" 
     :form-fields="formFields"
     :form-api-route="formApiRoute"
 

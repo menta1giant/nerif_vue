@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import { filters } from '@/components/Matches/Filters/const';
 import { getCookie, setCookie, deleteCookie } from '@/lib/cookie';
-import { setLocalStorageData, getLocalStorageDataByKey } from '@/lib/localStorage';
+import { setLocalStorageData } from '@/lib/localStorage';
 import { updateAuthorizationToken } from '@/lib/authorization';
 import { apiRequestGet } from '@/lib/api';
 
@@ -26,8 +26,8 @@ export default createStore({
         this.commit('removeToken');
       } 
 
-      const matchesSelectedDate = new Date(Date.parse(getLocalStorageDataByKey('matchesSelectedDate')));
-      if (matchesSelectedDate) this.commit('setMatchesSelectedDate', matchesSelectedDate);
+      //const matchesSelectedDate = new Date(Date.parse(getLocalStorageDataByKey('matchesSelectedDate')));
+      //if (matchesSelectedDate) this.commit('setMatchesSelectedDate', matchesSelectedDate);
     },
     setBreadcrumbsTitle (state, newTitle) {
       state.breadcrumbsTitle = newTitle;

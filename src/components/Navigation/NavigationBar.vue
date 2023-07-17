@@ -60,7 +60,7 @@ import NotificationsPopup from '@/components/Notifications/NotificationsPopup.vu
 import ProfilePopup from '@/components/Profile/ProfilePopup.vue';
 import LoginModal from '@/components/Registration/LoginModal.vue';
 import userInfoMixin from '../userInfoMixin';
-import { BACKEND_URL } from '@/lib/config';
+import { getImageUrl } from '@/lib/image';
 
 export default {
   name: 'NavigationBar',
@@ -87,7 +87,7 @@ export default {
   },
   computed: {
     profilePhotoUrl() {
-      return this.userInfo.profile_photo && `${BACKEND_URL}${this.userInfo.profile_photo}`
+      return this.userInfo.profile_photo && getImageUrl(this.userInfo.profile_photo);
     },
     hasNotifications() {
       return this.isUserSignedIn && this.notificationsCount > 0;

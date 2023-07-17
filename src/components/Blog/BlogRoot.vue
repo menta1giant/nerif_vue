@@ -1,12 +1,15 @@
 <template>
   <v-section responsive>
     <div class="posts-wrapper">
-      <blog-post-preview v-for="(post, idx) in posts" :key="`post_${ idx }`" @open="$router.push({ name: 'post', params: { id: idx }})"/>
+      <blog-post-preview v-for="post in posts" :key="`post_${ post.id }`" v-bind="post" @open="$router.push({ name: 'post', params: { id: post.id }})">
+        {{ post.content }}
+      </blog-post-preview>
     </div>
   </v-section>
 </template>
 
 <script>
+import { apiRequestGet } from '@/lib/api';
 import BlogPostPreview from './BlogPostPreview';
 
 export default {
@@ -14,10 +17,23 @@ export default {
   components: {
     BlogPostPreview,
   },
+  async beforeRouteEnter(to, from, next) {
+    const posts = await apiRequestGet('content/blog/posts');
+    next(vm => {
+      vm.posts = posts;
+    });
+  },
   data() {
     return {
-      posts: new Array(20),
+      posts: [],
     }
+  },
+  methods: {
+    async fetchPosts() {
+      const posts = await apiRequestGet('content/blog/posts');
+
+      this.posts = posts;
+    },
   }
 }
 </script>

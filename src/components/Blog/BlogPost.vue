@@ -3,36 +3,47 @@
     <div class="blog-post">
       <div class="blog-post__header">
         <div class="blog-post__tags">
-          <span>News</span>
-          <span>Updates</span>
+          <span v-for="tag in tags" :key="tag.name" class="blog-post__tag">{{ tag.name }}</span>
         </div>
         <div class="blog-post__title">
           <h2>{{ title }}</h2>
           <v-icon-button name="bookmark" tooltip-content="Save post" />
         </div>
-        <div class="blog-post__meta-info"><span>by <b>{{ author }}</b></span><span>2024-20-05</span></div>
+        <div class="blog-post__meta-info"><span>by <b>{{ author }}</b></span><span><time>{{ date_published }}</time></span></div>
       </div>
       <div class="blog-post__body">
-        <p><slot>Today we are celebrating the new era of Nerif technology with the ability to write not just one or two, but three and more lines of text to describe an article at our blog which nobody will ever see!</slot></p>
+        <p v-html="content"></p>
       </div>
+      <img :src="imageUrl" width="400" height="400"/>
     </div>
   </v-section>
 </template>
 
 <script>
+import { apiRequestGet } from '@/lib/api';
+import { getImageUrl } from '@/lib/image';
+
 export default {
   name: 'BlogPost',
-  beforeRouteEnter(to, from, next) {
-    next(vm => vm.$store.commit('setBreadcrumbsTitle', `Blog post #${ to.params.id }`));
+  async beforeRouteEnter(to, from, next) {
+    const post = await apiRequestGet(`content/blog/posts/${ to.params.id }`);
+    next(vm => {
+      ({ title: vm.title, content: vm.content, author: vm.author, date_published: vm.date_published, tags: vm.tags, cover: vm.cover } = post);
+      vm.$store.commit('setBreadcrumbsTitle', `Blog post #${ to.params.id }`);
+    });
   },
-  props: {
-    title: {
-      type: String,
-      default: 'Default title',
-    },
-    author: {
-      type: String,
-      default: 'Selena Gomez',
+  data() {
+    return {
+      title: '',
+      content: '',
+      date_published: '',
+      tags: [],
+      cover: '',
+    }
+  },
+  computed: {
+    imageUrl() {
+      return getImageUrl(this.cover);
     },
   }
 }
@@ -41,14 +52,19 @@ export default {
 <style lang="scss" scoped>
 .blog-post {
   display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: column;
   gap: 1rem;
 
-  max-width: 40rem;
+  width: 100%;
+
+  padding-bottom: 1rem;
 
   &__header {
     @include divider-bottom;
 
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: .5rem;
 
     padding-bottom: 1rem;
@@ -85,6 +101,27 @@ export default {
 
   &__body p {
     line-height: $lh-body;
+  }
+}
+
+img {
+  grid-row: 1/10;
+  margin-left: auto;
+
+  object-fit: cover;
+  border: 1px solid $primary-ds-100;
+  box-shadow: 0 0 2px 1px $primary-ds-100;
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  .blog-post {
+    grid-auto-flow: row;
+    grid-template-rows: auto;
+  }
+
+  img {
+    grid-row: unset;
+    margin: auto;
   }
 }
 </style>

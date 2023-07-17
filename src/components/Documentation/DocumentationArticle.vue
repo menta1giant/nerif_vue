@@ -1,23 +1,34 @@
 <template>
   <v-section responsive>
     <div class="documentation-article">
-      <h2>How accurate are your CS:GO predictions compared to other betting services in the market?</h2>
+      <h2>{{ article?.header }}</h2>
       <p>
-        Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart.
+        {{ article?.content }}
       </p>
     </div>
   </v-section>
 </template>
 
 <script>
+import { apiRequestGet } from '@/lib/api';
+
 export default {
   name: 'DocumentationArticle',
   props: {
     title: String,
   },
-  beforeRouteEnter(to, from, next) {
-    next(vm => vm.$store.commit('setBreadcrumbsTitle', `Article #${ to.params.id }`));
+  async beforeRouteEnter(to, from, next) {
+    const article = await apiRequestGet(`content/documentation/articles/${ to.params.id }`);
+    next(vm => {
+      vm.$store.commit('setBreadcrumbsTitle', `Article #${ to.params.id }`);
+      vm.article = article;
+    });
   },
+  data() {
+    return {
+      article: null,
+    }
+  }
 }
 </script>
 
@@ -26,13 +37,13 @@ export default {
   max-width: 52rem;
 
   display: grid;
-  gap: 1rem;
+  gap: .5rem;
 
   h2 {
     @include divider-bottom;
 
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 
     color: $primary-s-700;
     font-weight: $fw-semi-bold;

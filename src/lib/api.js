@@ -37,12 +37,23 @@ async function apiRequest({
   }
 }
 
-export async function apiRequestGet(route, params='', errorCallback = null) {
+export async function apiRequestGetWithCache(route, { errorCallback = null, cacheProp = null } = {}) {
+  if (resourcesCache[cacheProp]) return resourcesCache[cacheProp];
+
+  const data = await apiRequestGet(route, '', { errorCallback });
+
+  resourcesCache[cacheProp] = data;
+
+  return data;
+}
+
+export async function apiRequestGet(route, params='', { errorCallback = null } = {}) {
+
   const searchParams = new URLSearchParams(params);
 
   const url =  `${ BACKEND_URL_API }${ route }?${ searchParams }`;
 
-  const data = apiRequest({method: 'GET', url, errorCallback})
+  const data = apiRequest({method: 'GET', url, errorCallback});
 
   return data;
 }
@@ -69,15 +80,15 @@ const resourcesCache = {}
 
 export async function fetchResource(resource) {
   if (resource in resourcesCache) return resourcesCache[resource];
+
   const resourceInStorage = getLocalStorageDataByKey(`resource_${ resource }`);
-  if (resourceInStorage) {
-    resourcesCache[resource] = JSON.parse(resourceInStorage);
-    return resourcesCache[resource];
-  }
+    if (resourceInStorage) {
+      resourcesCache[resource] = JSON.parse(resourceInStorage);
+      return resourcesCache[resource];
+    }
 
-  const data = await apiRequestGet(`storage/${ resource }`);
+  const data = await apiRequestGetWithCache(`storage/${ resource }`, { cacheProp: resource });
 
-  resourcesCache[resource] = data;
   setLocalStorageData(`resource_${ resource }`, JSON.stringify(data));
 
   return data;
