@@ -8,10 +8,14 @@ import { apiRequestGet } from '@/lib/api';
 export default createStore({
   state: {
     breadcrumbsTitle: '',
+    isLoading: false,
   },
   getters: {
     getBreadcrumbsTitle (state) {
       return state.breadcrumbsTitle;
+    },
+    getLoadingStatus (state) {
+      return state.isLoading;
     },
   },
   mutations: {
@@ -31,6 +35,9 @@ export default createStore({
     },
     setBreadcrumbsTitle (state, newTitle) {
       state.breadcrumbsTitle = newTitle;
+    },
+    setLoadingStatus (state, isLoading) {
+      state.isLoading = isLoading;
     },
   },
   actions: {

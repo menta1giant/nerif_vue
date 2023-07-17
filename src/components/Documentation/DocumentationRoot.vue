@@ -1,5 +1,5 @@
 <template>
-  <sections-navigation v-model="selectedSection" :sections="sections" :sections-counts="articlesCounts" />
+  <sections-navigation v-model="selectedSection" :sections="sections" :sections-counts="articlesCounts" :loading="isGlobalLoading" />
   <v-section responsive>
     <div class="documentation-articles-wrapper">
       <documentation-article-preview v-for="(article, idx) in articles" :key="`article_${ idx }`" :title="article.header" @open="$router.push(`/documentation/${ article.id }`)">
@@ -13,6 +13,7 @@
 import SectionsNavigation from '@/components/Navigation/SectionsNavigation.vue';
 import DocumentationArticlePreview from '@/components/Documentation/DocumentationArticlePreview.vue';
 import { apiRequestGet, apiRequestGetWithCache } from '@/lib/api';
+import loadingMixin from '../loadingMixin';
 
 export default {
   name: 'DocumentationRoot',
@@ -20,11 +21,12 @@ export default {
     SectionsNavigation,
     DocumentationArticlePreview,
   },
+  mixins: [loadingMixin],
   async created() {
-    this.isLoading = true;
+    this.changeLoadingStatus(true);
     await this.fetchSections();
-    await this.fetchArticles(this.$route.query);
-    this.isLoading = false;
+    await this.fetchArticles(this.$route.query.search);
+    this.changeLoadingStatus(false);
   },
   data() {
     return {
@@ -33,8 +35,6 @@ export default {
       articles: [],
       articlesCounts: {},
       searchQuery: false,
-
-      isLoading: true,
     };
   },
   watch: {
@@ -45,42 +45,34 @@ export default {
     },
     '$route.query': {
       handler() {
-        if (this.isLoading) return;
+        if (this.isGlobalLoading) return;
         const searchQuery = this.$route.query['search'];
-        console.log('a');
-        if (!searchQuery) return;
+
         this.fetchArticles(searchQuery);
       }
     },
-    // INSTEAD OF THIS DISABLE SEARCH INPUT ON LOADING AND MAKE DEBOUNCE TIME LONGER
-    isLoading(val) {
-      const searchQuery = this.$route.query['search'];
-      if (!val && this.searchQuery !== searchQuery) {
-        this.fetchArticles(searchQuery);
-      }
-    }
   },
   methods: {
     async fetchSections() {
-      this.isLoading = true;
+      this.changeLoadingStatus(true);
       const sections = await apiRequestGetWithCache('content/documentation/sections', { cacheProp: 'documentationSections' });
 
       this.sections = sections;
-      this.isLoading = false;
+      this.changeLoadingStatus(false);
     },
     async fetchArticles(searchQuery) {
-      this.isLoading = true;
+      this.changeLoadingStatus(true);
       let query = { section: this.sections[this.selectedSection].id }
       if (searchQuery) {
         query.search = searchQuery;
         this.searchQuery = searchQuery;
       }
-
+      console.log(query);
       const { articles, counts } = await apiRequestGet('content/documentation/articles', query);
 
       this.articles = articles;
-      this.articlesCounts = counts;
-      this.isLoading = false;
+      this.articlesCounts = searchQuery ? counts : {};
+      this.changeLoadingStatus(false);
     },
   },
 }

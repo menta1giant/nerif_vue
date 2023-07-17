@@ -1,0 +1,17 @@
+.blog-post__tag {
+  &--news {
+    background: hsl(100 , 90, 75);
+  }
+
+  &--stories {
+    background: hsl(200 , 90, 75);
+  }
+  
+  &--updates {
+    background: hsl(300 , 90, 75);
+  }
+
+  &--guide {
+    background: hsl(0 , 90, 75);
+  }
+}

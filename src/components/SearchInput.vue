@@ -1,16 +1,22 @@
 <template>
-  <v-input placeholder="Search..." type="search" :value="$route.query.search" fluid :disabled="true" @input="handleInput" />
+  <v-input placeholder="Search..." type="search" :value="$route.query.search" fluid :disabled="isGlobalLoading" @change="handleInput" />
 </template>
 
 <script>
 import debounce from '@/lib/debounce';
+import loadingMixin from './loadingMixin';
 
 export default {
   name: 'SearchInput',
+  mixins: [loadingMixin],
   methods: {
     handleInput: debounce(function(event) {
-      this.$router.push({ path: '/documentation', query: { search: event.target.value } });
-    }, 300)
+      const inputValue = event.target.value;
+      let route = { path: this.$route.path };
+      if (inputValue) route.query = { search: event.target.value };
+
+      this.$router.push(route);
+    }, 100)
   }
 }
 </script>

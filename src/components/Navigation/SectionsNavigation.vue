@@ -2,16 +2,18 @@
   <div class="sections-wrapper">
     <v-section>
       <div class="sections-navigation">
-        <div 
+        <button 
           v-for="(section, idx) in sections"
           :key="`section_${ section.id || idx }`" 
-          class="sections-navigation__item" 
-          :class="{ 'sections-navigation__item--active': idx === modelValue }"
+          class="sections-navigation__button" 
+          :class="{ 'sections-navigation__button--active': idx === modelValue, 'sections-navigation__button--disabled': isSearchQueryNonEmpty && !sectionsCounts[section.name] }"
+          type="button"
           @click="handleSelectSection(idx)"
         >
+          <v-loader v-if="loading && idx === modelValue" />
           {{ section.name || section }}
-          <span v-if="isSearchQueryNonEmpty">{{ sectionsCounts[section.name] }}</span>
-        </div>
+          <span v-if="isSearchQueryNonEmpty && sectionsCounts[section.name]" class="sections-navigation__items-count">{{ sectionsCounts[section.name] }}</span>
+        </button>
       </div>
     </v-section>
   </div>
@@ -27,10 +29,20 @@ export default {
     },
     sections: Array,
     sectionsCounts: Object,
-    isSearchQueryNonEmpty: Boolean,
+    loading: Boolean,
+  },
+  computed: {
+    isSearchQueryNonEmpty() {
+      return !!this.$route.query.search;
+    },
   },
   methods: {
     handleSelectSection(idx) {
+      if (
+        this.isSearchQueryNonEmpty && !this.sectionsCounts[this.sections[idx].name] ||
+        this.loading
+      ) return;
+
       this.$emit('update:modelValue', idx);
     }
   }
@@ -60,7 +72,11 @@ export default {
   overflow-x: auto;
   scrollbar-width: none;
 
-  &__item {
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
     padding: 1rem .5rem;
     background: $primary-s-50;
 
@@ -70,6 +86,12 @@ export default {
 
     cursor: pointer;
     
+    &--disabled {
+      color: $primary-s-100;
+
+      cursor: default;
+    }
+
     &--active {
       color: $primary-s-600;
       font-weight: $fw-semi-bold;
@@ -77,6 +99,13 @@ export default {
 
       cursor: default;
     }
+  }
+
+  &__items-count {
+    padding: 0 .5rem;
+    background: rgba($primary-s-300, .3);
+    border-radius: $border-radius-small;
+    text-align: center;
   }
 
   @media screen and (max-width: $mobile-breakpoint) {

@@ -3,11 +3,11 @@
     <div class="blog-post">
       <div class="blog-post__header">
         <div class="blog-post__tags">
-          <span v-for="tag in tags" :key="tag.name" class="blog-post__tag">{{ tag.name }}</span>
+          <span v-for="tag in tags" :key="tag.name" class="blog-post__tag" :class="[`blog-post__tag--${ tag.name.toLowerCase() }`]">{{ tag.name }}</span>
         </div>
         <div class="blog-post__title">
           <h2>{{ title }}</h2>
-          <v-icon-button name="bookmark" tooltip-content="Save post" />
+          <save-bookmark-button :id="id" />
         </div>
         <div class="blog-post__meta-info"><span>by <b>{{ author }}</b></span><span><time>{{ date_published }}</time></span></div>
       </div>
@@ -22,9 +22,13 @@
 <script>
 import { apiRequestGet } from '@/lib/api';
 import { getImageUrl } from '@/lib/image';
+import SaveBookmarkButton from './SaveBookmarkButton.vue';
 
 export default {
   name: 'BlogPost',
+  components: {
+    SaveBookmarkButton,
+  },
   async beforeRouteEnter(to, from, next) {
     const post = await apiRequestGet(`content/blog/posts/${ to.params.id }`);
     next(vm => {
@@ -34,8 +38,10 @@ export default {
   },
   data() {
     return {
+      id: Number(this.$route.params.id),
       title: '',
       content: '',
+      author: '',
       date_published: '',
       tags: [],
       cover: '',
@@ -85,12 +91,12 @@ export default {
     gap: .75rem;
 
     span {
-      background: green;
       padding: .5rem 1.75rem;
-      color: white;
       border-radius: $border-radius-large;
-      font-size: $fs-xxs;
-      line-height: 1.2;
+
+      font-size: $fs-xs;
+      font-weight: $fw-bold;
+      line-height: $lh-body;
     }
   }
 
@@ -124,4 +130,6 @@ img {
     margin: auto;
   }
 }
+
+@import '@/assets/styles/Blog/blog-post-tag.scss';
 </style>

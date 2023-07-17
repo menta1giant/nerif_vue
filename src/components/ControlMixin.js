@@ -3,6 +3,7 @@ export default {
     fluid: {
       type: Boolean,
       default: false,
-    }
+    },
+    disabled: Boolean,
   }
 }

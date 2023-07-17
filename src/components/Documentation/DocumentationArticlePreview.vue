@@ -42,8 +42,8 @@ export default {
     line-height: $lh-body;
   }
 
-  &>.documentation-article-preview {
-    @include divider-bottom;
+  & + .documentation-article-preview {
+    @include divider-top;
   }
 }
 </style>

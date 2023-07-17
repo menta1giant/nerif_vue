@@ -8,6 +8,8 @@
       :type="inputType" 
       :placeholder="placeholder" 
       :autocomplete="autocompleteStatus"
+
+      :disabled="disabled"
     />
   </div>
  
@@ -148,6 +150,11 @@ input {
 
   &::-ms-input-placeholder { /* Microsoft Edge */
     color: $primary-s-100;
+  }
+
+  &:disabled {
+    background: $primary-ds-50;
+    cursor: not-allowed;
   }
 }
 </style>
