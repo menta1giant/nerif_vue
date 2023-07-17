@@ -103,7 +103,7 @@ export default {
       cursor: default;
     }
 
-    &--active {
+    &--active, &--active:focus {
       color: $primary-s-600;
       font-weight: $fw-semi-bold;
       box-shadow: inset 0 -2px 0 0px $primary-s-400;

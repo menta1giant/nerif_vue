@@ -1,6 +1,6 @@
 <template>
   <div class="documentation-article-preview">
-    <h5 @click="$emit('open')">{{ title }}</h5>
+    <router-link :to="`/documentation/${ id }`"><h5>{{ title }}</h5></router-link>
     <p>
       <slot></slot>
     </p>
@@ -10,9 +10,9 @@
 <script>
 export default {
   name: 'DocumentationArticlePreview',
-  emits: ['open'],
   props: {
     title: String,
+    id: Number,
   },
 }
 </script>

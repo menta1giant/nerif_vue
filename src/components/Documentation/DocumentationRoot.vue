@@ -2,7 +2,7 @@
   <sections-navigation v-model="selectedSection" :sections="sections" :sections-counts="articlesCounts" :loading="isGlobalLoading" />
   <v-section responsive>
     <div class="documentation-articles-wrapper">
-      <documentation-article-preview v-for="(article, idx) in articles" :key="`article_${ idx }`" :title="article.header" @open="$router.push(`/documentation/${ article.id }`)">
+      <documentation-article-preview v-for="(article, idx) in articles" :key="`article_${ idx }`" :title="article.header" :id="article.id">
         {{ article.content }}
       </documentation-article-preview>
     </div>
