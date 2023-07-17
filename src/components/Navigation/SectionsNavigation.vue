@@ -6,8 +6,9 @@
           v-for="(section, idx) in sections"
           :key="`section_${ section.id || idx }`" 
           class="sections-navigation__button" 
-          :class="{ 'sections-navigation__button--active': idx === modelValue, 'sections-navigation__button--disabled': isSearchQueryNonEmpty && !sectionsCounts[section.name] }"
+          :class="{ 'sections-navigation__button--active': idx === modelValue }"
           type="button"
+          :disabled="loading && idx !== modelValue || isSearchQueryNonEmpty && !sectionsCounts[section.name]"
           @click="handleSelectSection(idx)"
         >
           <v-loader v-if="loading && idx === modelValue" />
@@ -85,8 +86,18 @@ export default {
     white-space: nowrap;
 
     cursor: pointer;
+
+    transition-duration: .2s;
+
+    &:hover {
+      background: rgba($primary-ds-100, .2);
+    }
+
+    &:focus {
+      box-shadow: inset 0 -2px 0 0px $primary-s-100;
+    }
     
-    &--disabled {
+    &:disabled {
       color: $primary-s-100;
 
       cursor: default;
@@ -95,7 +106,7 @@ export default {
     &--active {
       color: $primary-s-600;
       font-weight: $fw-semi-bold;
-      border-bottom: 2px solid $primary-s-400;
+      box-shadow: inset 0 -2px 0 0px $primary-s-400;
 
       cursor: default;
     }

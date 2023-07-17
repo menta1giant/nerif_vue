@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import ErrorMixin from '@/components/ErrorMixin';
+import errorMixin from '@/components/errorMixin';
 import formFieldMixin from '../formFieldMixin';
 
 export default {
   name: 'SelectBody',
   mixins: [
-    ErrorMixin,
+    errorMixin,
     formFieldMixin,
   ],
   props: {

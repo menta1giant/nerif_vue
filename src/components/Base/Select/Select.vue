@@ -32,7 +32,7 @@
 import SelectBody from './SelectBody';
 import SelectDropdown from './SelectDropdown';
 import SelectOption from './SelectOption';
-import ErrorMixin from '@/components/ErrorMixin';
+import errorMixin from '@/components/errorMixin';
 import formFieldMixin from '../formFieldMixin';
 
 export default {
@@ -43,7 +43,7 @@ export default {
     SelectOption,
   },
   mixins: [
-    ErrorMixin,
+    errorMixin,
     formFieldMixin,
   ],
   props: {

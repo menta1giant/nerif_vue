@@ -21,7 +21,7 @@
 import SelectBody from './SelectBody';
 import SelectOption from './SelectOption';
 import SelectDropdown from './SelectDropdown';
-import ErrorMixin from '@/components/ErrorMixin';
+import errorMixin from '@/components/errorMixin';
 
 export default {
   name: 'Multiselect',
@@ -30,7 +30,7 @@ export default {
     SelectOption,
     SelectDropdown,
   },
-  mixins: [ErrorMixin],
+  mixins: [errorMixin],
   props: {
     options: {
       type: Array,
