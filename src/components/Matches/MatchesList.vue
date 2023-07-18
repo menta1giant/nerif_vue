@@ -16,14 +16,25 @@
         <div v-for="(tab, idx) in tabs" :key="idx" class="groupped-button" :class="{ 'groupped-button--active': activeTab == idx }" @click="changeActiveTab(idx)">{{ tab }}</div>
       </div>
     </div>
-    <div class="match-stats__header">
-      <h2><b>Statistics</b></h2>
-      <p>Those are the general stats, that represent how well teams are positioned going into the match.</p>
-      <p><b>Read the docs</b> to learn more about features</p>
-    </div>
-    <div class="match-stats__bars">
-      <stats-bar v-for="(statsBarTitle, statsBar) in statsTitlesMap" :key="statsBar" :title="statsBarTitle" :value="statsValues[statsBar]" />
-    </div>
+    <template v-if="activeTab===0">
+      <div class="match-stats__header">
+        <h2><b>Statistics</b></h2>
+        <p>Those are the general stats, that represent how well teams are positioned going into the match.</p>
+        <a><p><b>Read the docs</b> to learn more about features</p></a>
+      </div>
+      <div class="match-stats__bars">
+        <stats-bar v-for="(statsBarTitle, statsBar) in statsTitlesMap" :key="statsBar" :title="statsBarTitle" :value="statsValues[statsBar]" />
+      </div>
+    </template>
+    <template v-else>
+      <div class="match-stats__header">
+        <h2><b>Odds</b></h2>
+        <p>This chart shows how the odds have changed during an hour before the match began.</p>
+      </div>
+      <div class="match-stats__chart">
+        <line-chart :colors="chartColors" />
+      </div>
+    </template>
   </div>
 </template>
 
@@ -33,6 +44,8 @@ import MatchCard from './MatchCard.vue';
 import MatchCardSkeleton from './MatchCardSkeleton.vue';
 import StatsBar from './StatsBar.vue';
 import { matchStatsTitlesMap } from './const';
+import LineChart from '@/components/LineChart.vue';
+import { BRIGHT_COLORS } from '@/lib/chart';
 
 export default {
   name: 'MatchesList',
@@ -41,6 +54,7 @@ export default {
     MatchCard,
     StatsBar,
     MatchCardSkeleton,
+    LineChart,
   },
   props: {
     matches: {
@@ -59,6 +73,7 @@ export default {
       activeTab: 0,
       statsValues: {},
       statsTitlesMap: matchStatsTitlesMap,
+      chartColors: BRIGHT_COLORS,
 
       isMatchCardInfoOpened: false,
       isScrollingInProcess: false,

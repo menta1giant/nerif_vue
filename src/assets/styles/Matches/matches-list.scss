@@ -41,7 +41,7 @@
       line-height: $lh-small;
     }
 
-    p:last-child {
+    a>p {
       color: $primary-s-500;
     }
   }
@@ -51,6 +51,17 @@
     grid-template-columns: repeat(2, 1fr);
     gap: .75rem;
     column-gap: 2rem;
+  }
+
+  &__chart {
+    min-height: 500px;
+    height: 500px;
+
+    margin: 0 -24px;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      min-height: 250px;
+    }
   }
 }
 
