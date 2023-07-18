@@ -67,7 +67,7 @@ export default {
         query.search = searchQuery;
         this.searchQuery = searchQuery;
       }
-      console.log(query);
+
       const { articles, counts } = await apiRequestGet('content/documentation/articles', query);
 
       this.articles = articles;

@@ -26,12 +26,21 @@
           <h3>Telegram Feed</h3>
           <v-icon-button name="circle-question" tooltip-content="This section contains Telegram post from revered CS:GO cappers"/>
         </div>
-        <div class="feed__cappers-select__label"><v-label><b>Select cappers.</b> Or else..</v-label></div>
+        <div class="feed__cappers-select__label"><v-label><b>Select cappers.</b></v-label></div>
         <div class="feed__cappers-select__wrapper">
-          <v-multiselect>Я мультиселект, меня можно кликать</v-multiselect>
+          <v-multiselect :options="cappers" placeholder="By default, all cappers are selected" @change="handleSelectCappers">Я мультиселект, меня можно кликать</v-multiselect>
         </div>
         <div class="feed__posts-list">
-          <telegram-feed-post v-for="(a) in Array(32)" :key="a" @show-modal="isModalShown = true"></telegram-feed-post>
+          <telegram-feed-post 
+            v-for="endorsement in endorsements" 
+            :key="`endorsement_${endorsement.id}`" 
+            :author="endorsement.author"
+            :content="endorsement.content"
+            :related-map="endorsement.related_map"
+            :link="endorsement.link"
+            :is-favorite="endorsement.is_favorite"
+          >
+        </telegram-feed-post>
         </div>
       </div>
     </div>
@@ -45,8 +54,6 @@
     :is-matches-tab-opened="isMatchesTabOpened"
     @toggle-opened-tab="handleToggleOpenedTab"
   />
-
-  <v-modal v-model="isModalShown"/>
 </template>
 
 <script>
@@ -75,7 +82,8 @@ export default {
   async created() {
     this.$router.replace(`/matches/${this.formattedDate}`);
     this.setUpIntersectionObserver();
-    await this.fetchMatches();
+    await Promise.all([this.fetchMatches(), this.fetchCappers(), this.fetchEndorsements()]);
+
   },
   data() {
     return {
@@ -98,9 +106,11 @@ export default {
         map3: 1,
       },
 
+      cappers: [],
+      endorsements: [],
+
       isMatchesTabOpened: true,
       isFiltersDropdownVisible: false,
-      isModalShown: false,
       isLimitOfMatchesReached: false,
       areMatchesLoading: false,
     }
@@ -142,6 +152,20 @@ export default {
     resetObserver() {
       const target = document.querySelector(".match-card-dummy");
       if (target instanceof HTMLElement) this.invokeObserver(target);
+    },
+    async fetchCappers() {
+      const cappers = await apiRequestGet('matches/cappers');
+
+      this.cappers = cappers;
+    },
+    async fetchEndorsements(selectedCappers) {
+      let query = {}
+      if (selectedCappers) {
+        query.cappers = selectedCappers;
+      }
+      const endorsements = await apiRequestGet('matches/endorsements', query);
+
+      this.endorsements = endorsements;
     },
     async fetchMatches() {
       this.areMatchesLoading = true;
@@ -208,6 +232,9 @@ export default {
     handleToggleOpenedTab(newValue) {
       this.scrollContainerToYZero();
       this.isMatchesTabOpened = newValue;
+    },
+    handleSelectCappers(selectedCappers) {
+      this.fetchEndorsements(selectedCappers);
     }
   }
 }

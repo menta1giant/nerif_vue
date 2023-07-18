@@ -1,5 +1,5 @@
 <template>
-  <v-modal v-model="isShown" header="Log in">
+  <v-modal v-model="isShown" header="Log in" status-icon="arrow-right-to-bracket">
     <v-form
       cta-text="Log in"
       :form-api-route="formApiRoute"

@@ -4,13 +4,18 @@
       <template v-slot:body>
         <select-body v-model:is-dropdown-visible="isDropdownVisible" :has-error="hasError">
           <div class="v-multiselect__selected-options">
-            <select-option v-for="(option, idx) in selectedOptions" :key="idx" selected>{{ option.label }}</select-option>
+            <template v-if="selectedOptions.length">
+              <select-option v-for="(option, idx) in selectedOptions" :key="idx" selected @click="(event) => handleToggleOption(option, event)">{{ option.label }}<v-icon name="xmark" /></select-option>
+            </template>
+            <template v-else>
+              <span class="v-multiselect__placeholder text-bleak">{{ placeholder }}</span>
+            </template>
           </div>
         </select-body>
       </template>
       <template v-slot:dropdown>
         <select-dropdown>
-          <select-option v-for="(option, idx) in options" :key="`option_${ idx }`" :selected="optionsStatuses[idx]" @select="handleToggleOption(idx)">{{ option.label }}</select-option>
+          <select-option v-for="(option, idx) in options" :key="`option_${ idx }`" :selected="selectedOptions.includes(option)" @select="handleToggleOption(option)">{{ option.label }}</select-option>
         </select-dropdown>
       </template>
     </v-positioner>
@@ -38,21 +43,50 @@ export default {
         return [];
       },
     },
+    placeholder: {
+      type: String,
+      default: 'Select options',
+    },
+    value: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
   },
   data() {
     return {
       isDropdownVisible: false,
-      optionsStatuses: new Array(this.options.length).fill(false),
+      selectedOptions: [],
     };
   },
-  computed: {
-    selectedOptions() {
-      return this.options.filter((option, idx) => this.optionsStatuses[idx]);
+  watch: {
+    value: {
+      immediate: true,
+      handler(options) {
+        this.selectedOptions = this.options.filter(option => options.includes(option.id));
+      }
     },
+    selectedOptions: {
+      deep: true,
+      handler(options) {
+        this.$emit('change', options.map(option => option.id));
+      }
+    }
   },
   methods: {
-    handleToggleOption(idx) {
-      this.optionsStatuses[idx] = !this.optionsStatuses[idx];
+    handleToggleOption(option, event) {
+      const currentOptionIdx = this.selectedOptions.indexOf(option);
+
+      if (~currentOptionIdx) {
+        this.selectedOptions.splice(currentOptionIdx, 1);
+      } else {
+        this.selectedOptions.push(option);
+      }
+
+      if (event) {
+        event.stopPropagation();
+      }
     },
   },
 }
@@ -66,7 +100,14 @@ export default {
     display: flex;
     gap: .25rem;
 
-    min-height: 2.5rem;
+    .v-icon {
+      color: $primary-ds-300;
+    }
+  }
+
+  &__placeholder {
+    padding: 0.5rem;
+    line-height: $lh-medium;
   }
 }
 </style>

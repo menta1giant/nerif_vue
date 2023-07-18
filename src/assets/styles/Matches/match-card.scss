@@ -20,6 +20,8 @@
 
   transition: box-shadow 0.5s ease;
 
+  z-index: -1;
+
   &__upper-wrapper { 
     width: 100%;
     gap: .75rem;

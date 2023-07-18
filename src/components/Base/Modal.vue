@@ -1,9 +1,9 @@
 <template>
-  <div v-if="modelValue" class="v-modal-overlay" @click="closeModal">
+  <div ref="modal" class="v-modal-overlay" :class="{ 'v-modal-overlay--shown': modelValue }" @click="closeModal">
     <div class="v-modal" :class="{ [`v-modal--${ type }`]: true }" @click="(event)=>event.stopPropagation()">
       <div class="v-modal__close" @click="closeModal"><v-icon name="xmark" /></div>
       <div class="v-modal__header">
-        <v-icon :name="statusIconName" />
+        <v-icon v-if="statusIconName" :name="statusIconName" />
         <span>{{ header }}</span>
       </div>
       <div class="v-modal__body">
@@ -43,26 +43,26 @@ export default {
       type: String,
       default: 'New modal',
     },
-    statusIcon: {
-      type: String,
-      default: 'arrow-right-to-bracket',
-    }
+    statusIcon: String,
+  },
+  beforeUnmount() {
+    this.$refs.modal?.remove();
   },
   watch: {
     modelValue: {
       immediate: true,
       handler(val) {
         if (val) {
+          document.body.append(this.$refs.modal);
           document.body.classList.add("scroll-lock");
-          return
+          return;
         }
-
+        this.$refs.modal?.remove();
         document.body.classList.remove("scroll-lock");
       }
     },
     '$route.path': {
-      handler(to, from) {
-        console.log({ to, from });
+      handler() {
         if (this.modelValue) this.closeModal();
       }
     }
@@ -93,6 +93,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  visibility: hidden;
+
+  &--shown {
+    visibility: visible;
+  }
 }
 .v-modal {
   position: relative;
@@ -152,7 +158,7 @@ export default {
     flex: 1;
     min-height: 8rem;
     overflow: auto;
-    padding: .125rem;
+    padding: 1rem .125rem;
   }
 
   &__footer {

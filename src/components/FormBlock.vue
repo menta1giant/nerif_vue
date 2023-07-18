@@ -43,6 +43,7 @@ export default {
   &__header {
     @include divider-bottom-bleak;
     padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 }
 </style>

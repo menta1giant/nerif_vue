@@ -1,12 +1,12 @@
 <template>
   <div class="blog-post">
     <div class="blog-post__image">
-      <animated-placeholder />
+      <animated-placeholder border-radius="12px" />
     </div>
     <div class="blog-post__body">
-      <div class="blog-post__header"><animated-placeholder height="28px" width="50%" /></div>
-      <p><animated-placeholder height="64px" width="95%" /></p>
-      <div class="blog-post__footer"><animated-placeholder height="24px" width="80%" /></div>
+      <div class="blog-post__header"><animated-placeholder height="28px" width="50%" border-radius="3px" /></div>
+      <p><animated-placeholder height="64px" width="95%" border-radius="3px" /></p>
+      <div class="blog-post__footer"><animated-placeholder height="24px" width="80%" border-radius="3px" /></div>
     </div>
   </div>
 </template>

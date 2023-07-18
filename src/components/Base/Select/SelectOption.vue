@@ -18,6 +18,9 @@ export default {
 <style lang="scss" scoped>
 
 .v-select__option {
+  display: flex;
+  gap: .5rem;
+
   font-weight: $fw-medium;
   line-height: $lh-medium;
 

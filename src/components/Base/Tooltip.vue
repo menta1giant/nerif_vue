@@ -1,6 +1,6 @@
 <template>
-  <div class="v-tooltip" @mouseenter="isHovered=true" @mouseleave="isHovered=false">
-    <v-positioner :model-value="isHovered || isTriggerFocused" position="center" :force-top="top">
+  <div class="v-tooltip" @mouseenter="handleHover" @mouseleave="handleHoverOut">
+    <v-positioner :model-value="isHovered" position="center" :force-top="top">
       <template #body>
         <slot name="trigger"></slot>
       </template>
@@ -25,8 +25,23 @@ export default {
   data() {
     return {
       isHovered: false,
+      timeout: null
     }
   },
+  methods: {
+    clearTimeout() {
+      if (!this.timeout) return;
+      clearTimeout(this.timeout);
+      this.timeout = null;
+    },
+    handleHover() {
+      this.clearTimeout();
+      this.isHovered = true;
+    },
+    handleHoverOut() {
+      this.timeout = setTimeout(()=>this.isHovered=false, 500);
+    },
+  }
 }
 </script>
 

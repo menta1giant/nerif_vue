@@ -182,9 +182,6 @@ export default {
     display: flex;
     gap: 1.5rem;
 
-    padding-top: 1rem;
-    //max-width: 36rem;
-
     @media screen and (max-width: $mobile-breakpoint) {
       flex-direction: column;
     }
