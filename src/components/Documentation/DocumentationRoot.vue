@@ -64,14 +64,17 @@ export default {
       this.changeLoadingStatus(true);
       let query = { section: this.sections[this.selectedSection].id }
       if (searchQuery) {
-        query.search = searchQuery;
         this.searchQuery = searchQuery;
+      }
+
+      if (this.searchQuery) {
+        query.search = this.searchQuery;
       }
 
       const { articles, counts } = await apiRequestGet('content/documentation/articles', query);
 
       this.articles = articles;
-      this.articlesCounts = searchQuery ? counts : {};
+      this.articlesCounts = this.searchQuery ? counts : {};
       this.changeLoadingStatus(false);
     },
   },

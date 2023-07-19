@@ -3,8 +3,11 @@
 </template>
 
 <script>
-import { Bar } from 'vue-chartjs'
-import * as lineChartConfig from './lineChartConfig.js'
+import { Bar } from 'vue-chartjs';
+import { generateData, generateLabels } from './chartConfig';
+import { getData, getOptions } from './barChartConfig.js';
+const a = generateData().slice(0,6);
+const b = generateLabels().slice(0,6);
 
 import {
   Chart,
@@ -41,8 +44,8 @@ export default {
   },
   data() {
     return {
-      data: lineChartConfig.getData({ colors: this.colors }),
-      options: lineChartConfig.getOptions({ colors: this.colors }),
+      data: getData({ data: a, labels: b, colors: this.colors }),
+      options: getOptions({ colors: this.colors }),
     }
   }
 }
@@ -56,5 +59,6 @@ export default {
 
 canvas {
   background-color: v-bind(backgroundColor);
+  margin: -0.25rem -2rem;
 }
 </style>

@@ -14,7 +14,7 @@ import {
   Legend
 } from 'chart.js'
 import { Line } from 'vue-chartjs'
-import * as lineChartConfig from './lineChartConfig.js'
+import { getData, getOptions } from './lineChartConfig.js'
 
 ChartJS.register(
   CategoryScale,
@@ -40,8 +40,8 @@ export default {
   },
   data() {
     return {
-      data: lineChartConfig.getData({ colors: this.colors }),
-      options: lineChartConfig.getOptions({ colors: this.colors }),
+      data: getData({ colors: this.colors }),
+      options: getOptions({ colors: this.colors }),
     }
   }
 }
@@ -55,5 +55,6 @@ export default {
 
 canvas {
   background-color: v-bind(backgroundColor);
+  margin: -.25rem -2rem;
 }
 </style>
