@@ -26,7 +26,7 @@ export default {
   },
   mixins: [userInfoMixin],
   beforeRouteLeave(to) {
-    if (this.isFirstStep || this.isLeavingSignUpModalShown) return true;
+    if (this.isFirstStep || this.isLeavingSignUpModalShown || to.path.includes('profile')) return true;
 
     this.leavingTo = to;
     this.isLeavingSignUpModalShown = true;

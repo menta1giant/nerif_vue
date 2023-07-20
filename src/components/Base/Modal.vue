@@ -46,7 +46,7 @@ export default {
     statusIcon: String,
   },
   beforeUnmount() {
-    this.$refs.modal?.remove();
+    this.removeModal();
   },
   watch: {
     modelValue: {
@@ -57,8 +57,7 @@ export default {
           document.body.classList.add("scroll-lock");
           return;
         }
-        this.$refs.modal?.remove();
-        document.body.classList.remove("scroll-lock");
+        this.removeModal();
       }
     },
     '$route.path': {
@@ -76,6 +75,10 @@ export default {
     closeModal() {
       this.$emit('update:modelValue', false);
     },
+    removeModal() {
+      this.$refs.modal?.remove();
+      document.body.classList.remove("scroll-lock");
+    }
   },
 }
 </script>

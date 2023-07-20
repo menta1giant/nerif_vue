@@ -1,7 +1,8 @@
 <template>
   <form-block 
     header="Choose your subscription plan" 
-    cta-text="Activate your subscription" 
+    cta-text="Activate your subscription"
+    min-width="500" 
 
     :validation-rules="validationRules"
     :form-fields="formFields"
