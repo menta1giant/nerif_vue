@@ -27,6 +27,7 @@ import SelectBody from './SelectBody';
 import SelectOption from './SelectOption';
 import SelectDropdown from './SelectDropdown';
 import errorMixin from '@/components/errorMixin';
+import debounce from '@/lib/debounce';
 
 export default {
   name: 'Multiselect',
@@ -57,6 +58,7 @@ export default {
   data() {
     return {
       isDropdownVisible: false,
+      hasValueChanged: false,
       selectedOptions: [],
     };
   },
@@ -67,14 +69,19 @@ export default {
         this.selectedOptions = this.options.filter(option => options.includes(option.id));
       }
     },
-    selectedOptions: {
-      deep: true,
-      handler(options) {
-        this.$emit('change', options.map(option => option.id));
+    isDropdownVisible: {
+      handler(val) {
+        if (!val && this.hasValueChanged) {
+          this.handleChange();
+        }
       }
     }
   },
   methods: {
+    handleChange: debounce(function(){
+      this.$emit('change', this.selectedOptions.map(option => option.id));
+      this.hasValueChanged = false;
+    }, 500),
     handleToggleOption(option, event) {
       const currentOptionIdx = this.selectedOptions.indexOf(option);
 
@@ -84,7 +91,10 @@ export default {
         this.selectedOptions.push(option);
       }
 
+      this.hasValueChanged = true;
+
       if (event) {
+        this.handleChange();
         event.stopPropagation();
       }
     },

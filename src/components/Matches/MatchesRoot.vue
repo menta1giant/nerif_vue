@@ -31,16 +31,23 @@
           <v-multiselect :options="cappers" placeholder="By default, all cappers are selected" @change="handleSelectCappers">Я мультиселект, меня можно кликать</v-multiselect>
         </div>
         <div class="feed__posts-list">
-          <telegram-feed-post 
-            v-for="endorsement in endorsements" 
-            :key="`endorsement_${endorsement.id}`" 
-            :author="endorsement.author"
-            :content="endorsement.content"
-            :related-map="endorsement.related_map"
-            :link="endorsement.link"
-            :is-favorite="endorsement.is_favorite"
-          >
-        </telegram-feed-post>
+          <template v-if="!areEndorsementsLoading">
+            <telegram-feed-post 
+              v-for="endorsement in endorsements" 
+              :key="`endorsement_${endorsement.id}`" 
+              :author="endorsement.author"
+              :content="endorsement.content"
+              :related-map="endorsement.related_map"
+              :link="endorsement.link"
+              :is-favorite="endorsement.is_favorite"
+            ></telegram-feed-post>
+          </template>
+          <template v-else>
+            <telegram-feed-post-skeleton 
+              v-for="(_, idx) in (new Array(4))"
+              :key="`endorsement_skeleton_${ idx }`"
+            />
+          </template>
         </div>
       </div>
     </div>
@@ -63,6 +70,7 @@ import MatchesList from './MatchesList.vue';
 import DatePicker from './DatePicker/DatePicker.vue';
 import DatePickerMixin from './DatePicker/DatePickerMixin';
 import TelegramFeedPost from './Feed/TelegramFeedPost.vue';
+import TelegramFeedPostSkeleton from './Feed/TelegramFeedPostSkeleton.vue';
 import MatchesFilters from './Filters/MatchesFilters.vue';
 import MobileToolbar from './MobileToolbar.vue';
 import { apiRequestGet } from '@/lib/api';
@@ -75,6 +83,7 @@ export default {
     MatchesList,
     DatePicker,
     TelegramFeedPost,
+    TelegramFeedPostSkeleton,
     MatchesFilters,
     MobileToolbar,
   },
@@ -113,6 +122,7 @@ export default {
       isFiltersDropdownVisible: false,
       isLimitOfMatchesReached: false,
       areMatchesLoading: false,
+      areEndorsementsLoading: false,
     }
   },
   computed: {
@@ -159,6 +169,7 @@ export default {
       this.cappers = cappers;
     },
     async fetchEndorsements(selectedCappers) {
+      this.areEndorsementsLoading = true;
       let query = {}
       if (selectedCappers) {
         query.cappers = selectedCappers;
@@ -166,6 +177,7 @@ export default {
       const endorsements = await apiRequestGet('matches/endorsements', query);
 
       this.endorsements = endorsements;
+      this.areEndorsementsLoading = false;
     },
     async fetchMatches() {
       this.areMatchesLoading = true;
