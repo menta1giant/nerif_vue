@@ -9,7 +9,7 @@
             <div class="cta-wrapper">
               <div class="landing-page-section__cta">
                 <v-button size="large" to="/sign-up"><v-icon name="clock" type="regular" />Start free trial</v-button>
-                <v-button size="large" type="secondary" to="#plans" disabled>See all plans</v-button>
+                <v-button size="large" type="secondary" to="#plans">See all plans</v-button>
               </div>
               <span>No credit card information required</span>
             </div>
@@ -152,7 +152,7 @@
       </div>
     </v-section>
     <v-section responsive>
-      <div class="testimonials-wrapper">
+      <div id="testimonials" class="testimonials-wrapper">
         <user-testimonial name="Anton Petrov" job="Marketing Manager" location="Moscow, Russia" image="testimonial1.png" img-position="0 40%">
           I've always loved gaming, but I never thought it could be a profitable venture until I discovered Nerif. With the extra money, I was able to <b>invest in stocks</b> and start building my portfolio. What's more, I was able to achieve my lifelong dream of buying <b>my own apartment</b> in the heart of Moscow and start building a life that I'm truly proud of.
         </user-testimonial>

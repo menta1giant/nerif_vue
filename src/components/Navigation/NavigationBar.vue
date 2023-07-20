@@ -44,8 +44,8 @@
             <v-button type="transparent-accent" size="small" @click="showLoginModal">Sign in.</v-button>
             <v-button type="primary-accent" size="small"  to="/sign-up">Subscribe</v-button>
           </template>
-          <button class="navbar-square-button hamburger-menu-button mobile">
-            <v-icon type="solid" name="bars" />
+          <button class="navbar-square-button hamburger-menu-button mobile" :class="{ 'hamburger-menu-button--active': isHamburgerMenuOpened }" @click="handleToggleHamburgerMenu">
+            <v-icon type="solid" :name="isHamburgerMenuOpened ? 'xmark' : 'bars'" />
           </button>
         </div>
       </div>
@@ -70,6 +70,7 @@ export default {
     ProfilePopup,
     LoginModal,
   },
+  emits: ['toggle-hambuger-menu'],
   mixins: [userInfoMixin],
   created() {
     if ('log-in' in this.$route.query) {
@@ -82,6 +83,7 @@ export default {
       isNotificationsTabOpened: false,
       isProfilePopupOpened: false,
       isLoginModalShown: false,
+      isHamburgerMenuOpened: false,
       notificationsCount: 234,
     }
   },
@@ -104,6 +106,10 @@ export default {
         if ('log-in' in route.query) {
           this.showLoginModal();
         }
+
+        if (this.isHamburgerMenuOpened) {
+          this.handleToggleHamburgerMenu();
+        }
       }
     },
     isUserSignedIn(val) {
@@ -117,6 +123,17 @@ export default {
     showLoginModal() {
       this.isLoginModalShown = true;
     },
+    handleToggleHamburgerMenu() {
+      this.isHamburgerMenuOpened = !this.isHamburgerMenuOpened;
+
+      if (this.isHamburgerMenuOpened) {
+        document.body.classList.add("scroll-lock");
+      } else {
+        document.body.classList.remove("scroll-lock");
+      }
+
+      this.$emit('toggle-hamburger-menu');
+    }
   }
 }
 </script>

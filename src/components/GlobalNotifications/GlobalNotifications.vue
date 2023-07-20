@@ -18,7 +18,7 @@ export default {
       const { message, type } = event.detail;
 
       const wrapperDiv = document.createElement('div');
-      this.$refs['notifications-container'].append(wrapperDiv);
+      this.$refs['notifications-container']?.append(wrapperDiv);
 
       const notification = createApp(NotificationMessage, { message, type } );
       notification.mount(wrapperDiv);
@@ -36,11 +36,18 @@ export default {
 #global-notifications {
   position: fixed;
   top: calc($navbar-height + 1rem);
-  right: 1rem;
+  right: 0px;
 
   display: grid;
   gap: 1.25rem;
 
   width: 20rem;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    width: 100vw;
+    padding: 0 1rem;
+  }
+
+  z-index: 9000;
 }
 </style>

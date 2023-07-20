@@ -1,5 +1,6 @@
 <template>
-  <navigation-bar/>
+  <hamburger-menu v-if="isHamburgerMenuOpened" />
+  <navigation-bar @toggle-hamburger-menu="isHamburgerMenuOpened=!isHamburgerMenuOpened"/>
   <breadcrumbs-bar v-if="$route.meta.hasBreadcrumbs" />
   <router-view/>
   <div class="mobile-navbar-container">
@@ -14,6 +15,7 @@ import MobileNavigationBar from '@/components/Navigation/MobileNavigationBar.vue
 import BreadcrumbsBar from '@/components/BreadcrumbsBar.vue';
 import GlobalNotifications from '@/components/GlobalNotifications/GlobalNotifications.vue';
 import userInfoMixin from './components/userInfoMixin';
+import HamburgerMenu from '@/components/Navigation/HamburgerMenu.vue';
 
 export default {
   name: 'app',
@@ -22,10 +24,16 @@ export default {
     MobileNavigationBar,
     BreadcrumbsBar,
     GlobalNotifications,
+    HamburgerMenu,
   },
   mixins: [userInfoMixin],
   beforeCreate() {
     this.$store.commit('initializeStore');
+  },
+  data() {
+    return {
+      isHamburgerMenuOpened: false,
+    }
   },
   watch: {
     isUserAuthenticated(val) {
