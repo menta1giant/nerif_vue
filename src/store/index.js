@@ -79,6 +79,8 @@ export default createStore({
           updateAuthorizationToken(token);
         },  
         removeToken(state) {
+          if (!state.isAuthenticated) return;
+          
           state.token = '';
           state.isAuthenticated = false;
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="hamburger-menu__overlay">
+  <div class="hamburger-menu">
     <router-link to="/help-center">Help center</router-link>
     <router-link to="/documentation">Documentation</router-link>
     <router-link to="/home#testimonials">Testimonials</router-link>
@@ -16,7 +16,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.hamburger-menu__overlay {
+.hamburger-menu {
+  transform: translateX(-100%);
+  transition: transform 400ms ease-out;
+
   position: fixed;
   top: $navbar-height;
   right: 0px;
@@ -32,6 +35,10 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  &--active {
+    transform: translateX(0);
+  }
 
   a {
     display: flex;

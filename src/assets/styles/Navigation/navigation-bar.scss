@@ -62,15 +62,6 @@
       white-space: nowrap;
       font-size: 0.875em;
     }
-
-    .hamburger-menu-button {
-      color: $black-10;
-
-      &--active {
-        color: $accent-700;
-        font-size: 1.5rem;
-      }
-    }
   }
 }
 

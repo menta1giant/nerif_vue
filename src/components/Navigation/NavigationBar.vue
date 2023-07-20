@@ -44,9 +44,12 @@
             <v-button type="transparent-accent" size="small" @click="showLoginModal">Sign in.</v-button>
             <v-button type="primary-accent" size="small"  to="/sign-up">Subscribe</v-button>
           </template>
-          <button class="navbar-square-button hamburger-menu-button mobile" :class="{ 'hamburger-menu-button--active': isHamburgerMenuOpened }" @click="handleToggleHamburgerMenu">
-            <v-icon type="solid" :name="isHamburgerMenuOpened ? 'xmark' : 'bars'" />
-          </button>
+          <hamburger-menu-button 
+            class="navbar-square-button hamburger-menu-button mobile"
+            :class="{ 'hamburger-menu-button--active': isHamburgerMenuOpened }" 
+            :aria-expanded="isHamburgerMenuOpened" 
+            @click="handleToggleHamburgerMenu"
+          />
         </div>
       </div>
     </v-section>
@@ -56,6 +59,7 @@
 
 <script>
 import NavigationPages from '@/components/Navigation/NavigationPages.vue';
+import HamburgerMenuButton from '@/components/Navigation/HamburgerMenuButton.vue';
 import NotificationsPopup from '@/components/Notifications/NotificationsPopup.vue';
 import ProfilePopup from '@/components/Profile/ProfilePopup.vue';
 import LoginModal from '@/components/Registration/LoginModal.vue';
@@ -66,6 +70,7 @@ export default {
   name: 'NavigationBar',
   components: {
     NavigationPages,
+    HamburgerMenuButton,
     NotificationsPopup,
     ProfilePopup,
     LoginModal,

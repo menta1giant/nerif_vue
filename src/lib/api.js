@@ -25,7 +25,17 @@ async function apiRequest({
   } catch(e) {
     if (e.response.data.detail === 'Invalid token.') {
       store.commit('removeToken');
-      throw e;
+      
+      const { data } = await axios({
+        method,
+        url,
+        data: params,
+        headers,
+      })
+      
+      if (data.message) notify.success(data.message);
+  
+      return data;
     }
 
     if (e.response.data.message) notify.error(e.response.data.message);

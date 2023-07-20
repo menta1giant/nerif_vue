@@ -42,10 +42,10 @@ export default {
   gap: 1.25rem;
 
   width: 20rem;
+  padding: 0 1rem;
 
   @media screen and (max-width: $mobile-breakpoint) {
     width: 100vw;
-    padding: 0 1rem;
   }
 
   z-index: 9000;
