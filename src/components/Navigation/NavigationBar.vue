@@ -70,7 +70,7 @@ export default {
     ProfilePopup,
     LoginModal,
   },
-  emits: ['toggle-hambuger-menu'],
+  emits: ['toggle-hamburger-menu'],
   mixins: [userInfoMixin],
   created() {
     if ('log-in' in this.$route.query) {
