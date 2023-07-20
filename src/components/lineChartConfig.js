@@ -1,6 +1,6 @@
-import { CHART_FONT, CHART_PADDING, DARK_COLORS, getChartTooltipSettings, generateLabels, generateData } from './chartConfig';
+import { CHART_FONT, CHART_PADDING, DARK_COLORS, getChartTooltipSettings } from './chartConfig';
 
-export function getData({ data=generateData(), labels=generateLabels(), colors=DARK_COLORS }) {
+export function getData({ data=[], labels=[], colors=DARK_COLORS }) {
   return {
     labels: labels,
     datasets: [

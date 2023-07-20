@@ -1,5 +1,5 @@
 <template>
-  <Line :data="data" :options="options" />
+  <Line :data="chartData" :options="chartOptions" />
 </template>
 
 <script>
@@ -36,12 +36,21 @@ export default {
     backgroundColor: {
       type: String,
       default: 'transparent',
-    }
+    },
+    data: Object,
   },
   data() {
     return {
-      data: getData({ colors: this.colors }),
-      options: getOptions({ colors: this.colors }),
+      chartData: {},
+      chartOptions: getOptions({ colors: this.colors }),
+    }
+  },
+  watch: {
+    data: {
+      immediate: true,
+      handler(data) {
+        this.chartData = getData({ data: data.data, labels: data.labels, colors: this.colors });
+      }
     }
   }
 }

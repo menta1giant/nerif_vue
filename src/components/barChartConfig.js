@@ -10,9 +10,9 @@ export function getData({ data=generateData(), labels=generateLabels(), colors=D
         borderColor: 'transparent',
         backgroundColor: function(context) {
           var value = context.dataset.data[context.dataIndex];
-          if (value > 1.6) {
+          if (value > 0.5) {
             return '#B7E5B3';  
-          } else if (value > 1.4) {
+          } else if (value > 0) {
             return '#E5D9B3';
           } else {
             return '#E5BCB3'; 
@@ -47,12 +47,13 @@ export function getOptions({ colors=DARK_COLORS }) {
         },
       },
       y: {
+        beginAtZero: true,
         grid: {
           color: colors.gridY,
         },
         ticks: {
           color: colors.tickText,
-          callback: (value) => value.toFixed(2),
+          callback: (value) => `${parseInt(value.toFixed(2) * 100)}%`,
           font: CHART_FONT,
           padding: CHART_PADDING,
         },

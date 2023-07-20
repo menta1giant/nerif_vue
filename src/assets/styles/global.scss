@@ -97,22 +97,6 @@ img {
   line-height: inherit
 }
 
-.container {
-  flex: 1;
-
-  width: 100%;
-  min-height: 0;
-  max-width: $desktop-breakpoint;
-  margin: 0 auto;
-  padding: 0 $container-horizontal-padding-desktop;
-
-  position: relative;
-
-  display: flex;
-  align-items: stretch;
-  flex-direction: row;
-}
-
 .centered-container {
   display: flex;
   justify-content: center;
@@ -143,21 +127,7 @@ img {
   display: none;
 }
 
-@media (max-width: $tablet-breakpoint) {
-  .container {
-      padding: 0 $container-horizontal-padding-tablet;
-  }
-}
-
 @media (max-width: $mobile-breakpoint) {
-  .container {
-      padding: 0;
-  }
-
-  .container.responsive {
-    padding: 0 1rem;
-}
-
   .desktop:not(.mobile) {
     display: none !important;
   }

@@ -3,7 +3,7 @@
     <div class="dashboards-wrapper">
       <section class="dashboard dashboard--dark profits-chart">
         <h3><b>Profits Chart</b></h3>
-        <div class="dashboard__chart"><line-chart :colors="lineChartColors" /></div>
+        <div class="dashboard__chart"><line-chart :colors="lineChartColors" :data="profits" /></div>
         <div class="profits-chart__meta">
           <div>Estimated profit in the past 3 days:</div><div>57%</div>
           <div>Projected bank within a month:</div><div>75 USD</div>
@@ -13,7 +13,7 @@
       </section>
       <section class="dashboard">
         <h3><b>Profit by odds</b></h3>
-        <div class="dashboard__chart"><bar-chart :colors="barChartsColors" /></div>
+        <div class="dashboard__chart"><bar-chart :colors="barChartsColors" :data="odds" /></div>
       </section>
       <section class="dashboard">
         <h3><b>Detailed stats</b> (past 30 days)</h3>
@@ -21,70 +21,37 @@
           <table cellpadding="0" cellspacing="0">
             <tr>
               <th></th>
-              <th>Pref</th>
+              <th>Scenario</th>
               <th colspan="2">Winrate</th>
               <th colspan="2">RD</th>
               <th colspan="2">BAmC</th>
             </tr>
-            <tr>
-              <td class="stats-table__cell--favorite"></td>
-              <td><span>1st map,</span><br/><span>Favorite pick</span></td>
-              <td>0.34333</td>
-              <td>0.34</td>
-              <td>0.34</td>
-              <td>0.3777</td>
-              <td>0.34</td>
-              <td>0.34</td>
-            </tr>
-            <tr>
-              <td class="stats-table__cell--opponent"></td>
-              <td>1st map,<br/>Favorite pick</td>
-              <td class="stats-table__cell--bleak">0.34</td>
-              <td>0.34</td>
-              <td>0.34</td>
-              <td>0.34</td>
-              <td>0.34</td>
-              <td>0.34</td>
-            </tr>
-            <tr>
-              <td class="stats-table__cell--favorite"></td>
-              <td><span>1st map,</span><br/><span>Favorite pick</span></td>
-              <td>0.34333</td>
-              <td>0.34</td>
-              <td>0.34</td>
-              <td>0.3777</td>
-              <td>0.34</td>
-              <td>0.34</td>
-            </tr>
-            <tr>
-              <td class="stats-table__cell--favorite"></td>
-              <td><span>1st map,</span><br/><span>Favorite pick</span></td>
-              <td>0.34333</td>
-              <td>0.34</td>
-              <td>0.34</td>
-              <td>0.3777</td>
-              <td>0.34</td>
-              <td>0.34</td>
-            </tr>
-            <tr>
-              <td class="stats-table__cell--favorite"></td>
-              <td><span>1st map,</span><br/><span>Favorite pick</span></td>
-              <td>0.34333</td>
-              <td>0.34</td>
-              <td>0.34</td>
-              <td>0.3777</td>
-              <td>0.34</td>
-              <td>0.34</td>
-            </tr>
-            <tr>
-              <td class="stats-table__cell--favorite"></td>
-              <td><span>1st map,</span><br/><span>Favorite pick</span></td>
-              <td>0.34333</td>
-              <td>0.34</td>
-              <td>0.34</td>
-              <td>0.3777</td>
-              <td>0.34</td>
-              <td>0.34</td>
+            <tr
+              v-for="(row, rowIdx) in stats.data"
+              :key="`row_${ rowIdx }`"
+            >
+              <template
+                v-for="column in stats.columns" 
+                :key="`row_${ rowIdx }_${ column.id }`"
+              >
+                <template v-if="column.spans > 1">
+                  <td
+                    v-for="(value, idx) in (new Array(column.spans))"
+                    :key="`row_${ rowIdx }_${ column.id }${ idx+1 }`"
+                    :class="{ 'stats-table__cell--bleak': row[`${ column.id }${ idx+1 }`].unimportant }"
+                  >
+                    {{ row[`${ column.id }${ idx+1 }`].value }}
+                  </td>
+                </template>
+                <td 
+                  v-else-if="column.id === 'is_favorite'"
+                  :class="{ 'stats-table__cell--favorite': row[column.id], 'stats-table__cell--opponent': !row[column.id] }"
+                >
+                </td>
+                <td v-else>
+                  {{ row[column.id] }}
+                </td>
+              </template>
             </tr>
           </table>
         </div>
@@ -124,7 +91,6 @@
 import LineChart from '@/components/LineChart.vue';
 import BarChart from '@/components/BarChart.vue';
 import { BRIGHT_COLORS, DARK_COLORS } from '@/components/chartConfig';
-import { apiRequestGet } from '@/lib/api';
 
 export default {
   name: 'DashboardsRoot',
@@ -132,38 +98,26 @@ export default {
     LineChart,
     BarChart,
   },
-  async created() {
-    await this.fetchDashboardsData();
+  props: {
+    profits: Object,
+    odds: Object,
+    stats: Object,
+    upsets: Object,
   },
   data() {
     return {
       lineChartColors: DARK_COLORS,
       barChartsColors: BRIGHT_COLORS,
-
-      profits: [],
-      odds: [],
-      stats: [],
-      upsets: [],
     };
   },
-  methods: {
-    async fetchDashboardsData() {
-      [this.profits, this.odds, this.stats, this.upsets] = await Promise.all([
-        apiRequestGet('dashboards/profits'), 
-        apiRequestGet('dashboards/odds-intervals'),
-        apiRequestGet('dashboards/stats'),
-        apiRequestGet('dashboards/upsets'),
-      ]);
-
-    }
-  }
 }
 </script>
 
 <style lang="scss" scoped>
 .dashboards-wrapper {
   width: 100%;
-  height: 85vh;
+  min-height: 72rem;
+  max-height: 85vh;
 
   display: flex;
   flex-direction: column;
@@ -171,7 +125,10 @@ export default {
   gap: 2rem;
 
   @media screen and (max-width: $laptop-breakpoint) {
+    flex-wrap: nowrap;
     height: unset;
+    min-height: unset;
+    max-height: unset;
   }
 }
 
@@ -258,6 +215,8 @@ export default {
       font-weight: $fw-medium;
       vertical-align: top;
       position: relative;
+
+      white-space: pre-wrap;
     }
 
     :where(td, th):not(:nth-child(n+3)) {

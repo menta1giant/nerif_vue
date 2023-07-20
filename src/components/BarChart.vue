@@ -1,13 +1,10 @@
 <template>
-  <Bar :data="data" :options="options" />
+  <Bar :data="chartData" :options="chartOptions" />
 </template>
 
 <script>
 import { Bar } from 'vue-chartjs';
-import { generateData, generateLabels } from './chartConfig';
 import { getData, getOptions } from './barChartConfig.js';
-const a = generateData().slice(0,6);
-const b = generateLabels().slice(0,6);
 
 import {
   Chart,
@@ -40,12 +37,21 @@ export default {
     backgroundColor: {
       type: String,
       default: 'transparent',
-    }
+    },
+    data: Object,
   },
   data() {
     return {
-      data: getData({ data: a, labels: b, colors: this.colors }),
-      options: getOptions({ colors: this.colors }),
+      chartData: {},
+      chartOptions: getOptions({ colors: this.colors }),
+    }
+  },
+  watch: {
+    data: {
+      immediate: true,
+      handler(data) {
+        this.chartData = getData({ data: data.data, labels: data.labels, colors: this.colors });
+      }
     }
   }
 }

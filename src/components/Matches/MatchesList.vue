@@ -32,7 +32,7 @@
         <p>This chart shows how the odds have changed during an hour before the match began.</p>
       </div>
       <div class="match-stats__chart">
-        <line-chart :colors="chartColors" />
+        <line-chart :colors="chartColors" :data="oddsData" />
       </div>
     </template>
   </div>
@@ -68,6 +68,7 @@ export default {
   data() {
     return {
       lastOpenedMatchCardId: null,
+      oddsData: {},
 
       tabs: ['Stats', 'Odds'],
       activeTab: 0,
@@ -94,10 +95,14 @@ export default {
         if (!val) return;
 
         this.fetchStatsValues();
+        this.fetchUpcomingOdds();
       }
     }
   },
   methods: {
+    async fetchUpcomingOdds() {
+      this.oddsData = await apiRequestGet('matches/predictions/odds');
+    },
     async fetchStatsValues() {
       this.statsValues = await apiRequestGet(`matches/predictions/stats/${ this.openedMatchCard.id }`);
     },
