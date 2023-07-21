@@ -74,7 +74,7 @@ export default {
     height: 16px;
     border-radius: 8px;
     background-color: $black-10;
-    box-shadow: 0 0 4px 4px rgba($primary-ds-800, .25);
+    box-shadow: 0 0 4px 2px rgba($primary-ds-800, .2);
     transition: all 0.2s ease;
   }
 

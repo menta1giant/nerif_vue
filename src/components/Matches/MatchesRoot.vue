@@ -235,8 +235,8 @@ export default {
     changeScroll(openedCardId, behavior) {
       if (openedCardId === undefined) return;
       const containerRight = this.$refs['container-right'];
-      const firstMatchTop = containerRight.firstElementChild.firstElementChild.offsetTop
-      const nthMatchTop = containerRight.firstElementChild.children[openedCardId].offsetTop;
+      const firstMatchTop = containerRight.firstElementChild?.firstElementChild?.offsetTop || 0;
+      const nthMatchTop = containerRight.firstElementChild?.children[openedCardId]?.offsetTop || 0;
       
       this.matchesScroll = nthMatchTop - firstMatchTop;
       this.scrollMatches(behavior);
