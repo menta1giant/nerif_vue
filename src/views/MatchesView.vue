@@ -18,7 +18,7 @@ export default {
   computed: {
     initialDate() {
       return Date.parse(this.$route.params.date);
-    }
-  }
+    },
+  },
 }
 </script>

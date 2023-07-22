@@ -33,25 +33,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.documentation-article {
-  max-width: 52rem;
-
-  display: grid;
-  gap: .5rem;
-
-  h2 {
-    @include divider-bottom;
-
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-
-    color: $primary-s-700;
-    font-weight: $fw-semi-bold;
-  }
-
-  p {
-    font-size: $fs-large;
-    line-height: $lh-body;
-  }
-}
+@import '@/assets/styles/Documentation/documentation-article.scss';
 </style>

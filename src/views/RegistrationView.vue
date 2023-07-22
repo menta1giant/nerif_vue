@@ -62,14 +62,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.registration {
-  @include flex-column;
-  gap: .5rem;
-
-  max-width: 100%;
-
-  > :first-child {
-    margin-bottom: 1rem;
-  }
-}
+@import '@/assets/styles/Registration/registration.scss';
 </style>

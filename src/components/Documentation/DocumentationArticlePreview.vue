@@ -18,32 +18,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.documentation-article-preview {
-  max-width: 40rem;
-  padding-block: 2rem;
-
-  display: grid;
-  gap: 1rem;
-
-  h5 {
-    @include text-large;
-
-    color: $primary-s-700;
-    font-weight: $fw-semi-bold;
-
-    cursor: pointer;
-  }
-
-  p {
-    padding-left: 1rem;
-    border-left: 3px solid $primary-s-400;
-
-    font-size: $fs-medium;
-    line-height: $lh-body;
-  }
-
-  & + .documentation-article-preview {
-    @include divider-top;
-  }
-}
+@import '@/assets/styles/Documentation/documentation-article-preview.scss';
 </style>

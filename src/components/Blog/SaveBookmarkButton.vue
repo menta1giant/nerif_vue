@@ -27,15 +27,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .save-bookmark-button {
-    &:deep(.v-icon) {
-      color: $black-250;
-    }
-
-    &--active {
-      &:deep(.v-icon) {
-        color: $accent-700;
-      }
-    }
-  }
+@import '@/assets/styles/Blog/save-bookmark-button.scss';
 </style>

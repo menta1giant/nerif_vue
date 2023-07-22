@@ -1,4 +1,6 @@
-.blog-post {
+@import './blog-post-tag.scss';
+
+.blog-post-preview {
   @include flex-column;
 
   background: white;
@@ -12,14 +14,14 @@
   &:not(:nth-child(n+4)) {
     grid-column: span 2;
 
-    img, .blog-post__image .animated-placeholder {
+    img, .blog-post-preview__image .animated-placeholder {
       height: 25vh;
     }
 
     @media screen and (max-width: $tablet-breakpoint) {
       grid-column: span 3;
 
-      img, .blog-post__image .blog-post__image .animated-placeholder {
+      img, .blog-post-preview__image .animated-placeholder {
         height: 10vh;
       }
     } 
@@ -30,7 +32,7 @@
       display: none;
     }
 
-    h5 {
+    .blog-post-preview__title {
       font-size: .8em;
     }
 
@@ -43,7 +45,7 @@
     &:not(:nth-child(n+3)) {
       grid-column: span 3;
 
-      img, .blog-post__image .animated-placeholder {
+      img, .blog-post-preview__image .animated-placeholder {
         height: 20vh;
       }
     }
@@ -51,7 +53,7 @@
     &:nth-child(n+3) {
       grid-column: span 2;
 
-      img, .blog-post__image .animated-placeholder {
+      img, .blog-post-preview__image .animated-placeholder {
         height: 10vh;
       }
 
@@ -59,7 +61,7 @@
         display: none;
       }
 
-      h5 {
+      .blog-post-preview__title {
         font-size: .8em;
       }
 
@@ -73,7 +75,7 @@
     &:not(:nth-child(n+2)) {
       grid-column: span 6;
 
-      img, .blog-post__image .animated-placeholder {
+      img, .blog-post-preview__image .animated-placeholder {
         height: 35vh;
       }
     }
@@ -81,7 +83,7 @@
     &:nth-child(n+2) {
       grid-column: span 3;
 
-      img, .blog-post__image .animated-placeholder {
+      img, .blog-post-preview__image .animated-placeholder {
         height: 15vh;
       }
 
@@ -89,7 +91,7 @@
         display: none;
       }
 
-      h5 {
+      .blog-post-preview__title {
         font-size: .8em;
       }
 
@@ -102,7 +104,7 @@
   &__image {
     position: relative;
 
-    img, .blog-post__image .animated-placeholder {
+    img, .blog-post-preview__image .animated-placeholder {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -116,17 +118,17 @@
 
     display: flex;
     gap: .25rem;
-  }
 
-  &__tag {
-    @include text-xxs;
-
-    padding: .25rem 1rem;
-
-    border-radius: 20px;
-
-    font-family: $ff-display;
-    font-weight: $fw-semi-bold;
+    .blog-post__tag {
+      @include text-xxs;
+  
+      padding: .25rem 1rem;
+  
+      border-radius: 20px;
+  
+      font-family: $ff-display;
+      font-weight: $fw-semi-bold;
+    }
   }
 
   &__body {
@@ -138,7 +140,7 @@
 
     padding: 1rem;
 
-    h5 {
+    .blog-post-preview__title {
       color: $primary-s-700;
       font-weight: $fw-semi-bold;
       line-height: 1.4;
@@ -183,5 +185,3 @@
     }
   }
 }
-
-@import './blog-post-tag.scss';

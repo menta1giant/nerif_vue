@@ -1,0 +1,11 @@
+.save-bookmark-button {
+  &:deep(.v-icon) {
+    color: $black-250;
+  }
+
+  &--active {
+    &:deep(.v-icon) {
+      color: $accent-700;
+    }
+  }
+}
