@@ -53,12 +53,12 @@
 import ControlMixin from '@/components/ControlMixin.js';
 import { validateFields } from '@/lib/validation';
 import { apiRequestPostForm, apiRequestGet } from '@/lib/api';
-import formHandlerMixin from '@/components/formHandlerMixin.js';
+import FormHandlerMixin from '@/components/FormHandlerMixin.js';
 
 export default {
   name: 'Form',
   inheritAttrs: false,
-  mixins: [ControlMixin, formHandlerMixin],
+  mixins: [ControlMixin, FormHandlerMixin],
   emits: ['form-submitted'],
   props: {
     minWidth: {
