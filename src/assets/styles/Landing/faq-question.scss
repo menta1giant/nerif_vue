@@ -2,15 +2,11 @@
   @include divider-bottom;
   @include flex-column;
   @include text-medium;
-  
+
   gap: 1rem;
 
   padding-block: 1.5rem;
   line-height: $lh-body;
-
-  &:not(.faq-question+.faq-question) {
-    margin-top: 2rem;
-  }
 
   &__header {
     display: flex;

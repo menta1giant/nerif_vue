@@ -95,7 +95,7 @@
 }
 
 @media screen and (max-width: $laptop-breakpoint) {
-  .hero-section h1 {
+  .hero-section .landing-page-section__header {
     width: unset !important;
   }
 }

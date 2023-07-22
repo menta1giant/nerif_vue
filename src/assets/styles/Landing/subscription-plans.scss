@@ -5,11 +5,8 @@
     align-items: center;
     margin-bottom: 3rem;
     gap: .25rem;
-
-    h1 {
-      color: $black-10;
-      line-height: $lh-h1;
-    }
+    
+    line-height: $lh-h1;
 
     .billing-type-switcher {
       @include text-large;
