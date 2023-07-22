@@ -20,7 +20,7 @@
 import { apiRequestGet } from '@/lib/api';
 import BlogPostPreview from './BlogPostPreview';
 import BlogPostPreviewSkeleton from './BlogPostPreviewSkeleton';
-import LoadingMixin from '@/components/LoadingMixin.js';
+import LoadingMixin from '../LoadingMixin.js';
 
 export default {
   name: 'BlogRoot',

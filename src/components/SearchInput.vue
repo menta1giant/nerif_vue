@@ -4,7 +4,7 @@
 
 <script>
 import debounce from '@/lib/debounce';
-import LoadingMixin from './LoadingMixin.js';
+import LoadingMixin from '../LoadingMixin.js';
 
 export default {
   name: 'SearchInput',
