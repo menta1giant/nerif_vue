@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import controlMixin from '@/components/controlMixin.js';
+import controlMixin from '@/components/mixins/controlMixin.js';
 
 const TYPES = ['transparent', 'primary', 'secondary', 'danger', 'primary-accent', 'transparent-accent'];
 const SIZES = ['small', 'medium', 'large'];

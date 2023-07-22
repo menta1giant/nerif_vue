@@ -16,7 +16,7 @@ import LeaveSignUpModal from '@/components/Registration/LeaveSignUpModal.vue';
 import RegistrationSteps from '@/components/Registration/RegistrationSteps.vue';
 
 import { markRaw } from 'vue';
-import userInfoMixin from '@/components/userInfoMixin.js';
+import userInfoMixin from '@/components/mixins/userInfoMixin.js';
 
 export default {
   name: 'RegistrationView',

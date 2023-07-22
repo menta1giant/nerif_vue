@@ -32,8 +32,8 @@
 import SelectBody from './SelectBody';
 import SelectDropdown from './SelectDropdown';
 import SelectOption from './SelectOption';
-import errorMixin from '@/components/errorMixin.js';
-import formFieldMixin from '../formFieldMixin.js';
+import errorMixin from '@/components/mixins/errorMixin.js';
+import formFieldMixin from '@/components/mixins/formFieldMixin.js';
 
 export default {
   name: 'Select',

@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import formFieldMixin from './formFieldMixin.js';
-import errorMixin from '@/components/errorMixin.js';
+import formFieldMixin from '@/components/mixins/formFieldMixin.js';
+import errorMixin from '@/components/mixins/errorMixin.js';
 
 export default {
   name: 'Textarea',

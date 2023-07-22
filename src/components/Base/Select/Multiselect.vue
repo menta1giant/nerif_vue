@@ -26,7 +26,7 @@
 import SelectBody from './SelectBody';
 import SelectOption from './SelectOption';
 import SelectDropdown from './SelectDropdown';
-import errorMixin from '@/components/errorMixin.js';
+import errorMixin from '@/components/mixins/errorMixin.js';
 import debounce from '@/lib/debounce';
 
 export default {

@@ -12,7 +12,7 @@ import NavigationBar from '@/components/Navigation/NavigationBar.vue';
 import MobileNavigationBar from '@/components/Navigation/MobileNavigationBar.vue';
 import BreadcrumbsBar from '@/components/BreadcrumbsBar.vue';
 import GlobalNotifications from '@/components/GlobalNotifications/GlobalNotifications.vue';
-import userInfoMixin from '@/components/userInfoMixin.js';
+import userInfoMixin from '@/components/mixins/userInfoMixin.js';
 import HamburgerMenu from '@/components/Navigation/HamburgerMenu.vue';
 
 export default {

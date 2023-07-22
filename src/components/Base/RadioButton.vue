@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import formFieldMixin from './formFieldMixin.js';
+import formFieldMixin from '@/components/mixins/formFieldMixin.js';
 
 export default {
   name: 'RadioButton',
