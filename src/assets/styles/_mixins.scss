@@ -1,3 +1,7 @@
+@import './mixins/divider';
+@import './mixins/typography';
+@import './mixins/display';
+
 @mixin noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -16,24 +20,4 @@
 @mixin no-tap-highlight {
   -webkit-tap-highlight-color: transparent; /* For WebKit-based browsers */
   tap-highlight-color: transparent;
-}
-
-@mixin divider-bottom {
-  border-bottom: 1px solid $primary-ds-100;
-}
-
-@mixin divider-top {
-  border-top: 1px solid $primary-ds-100;
-}
-
-@mixin divider-bottom-bleak {
-  border-bottom: 1px solid $primary-s-50;
-}
-
-@mixin divider-bottom-dark {
-  border-bottom: 1px solid $primary-ds-600;
-}
-
-@mixin divider-top-bleak {
-  border-top: 1px solid $primary-s-50;
 }

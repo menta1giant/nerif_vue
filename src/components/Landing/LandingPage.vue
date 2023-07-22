@@ -5,7 +5,7 @@
         <div class="landing-page-section landing-page-section--split">
           <div class="landing-page-section__content hero-section__left">
             <h1 style="width: 45rem">Become a champion with the <div class="underlined-text"><span>most reliable</span></div> betting assistant</h1>
-            <p class="body-text">In this new era of safe CS:GO betting, our advanced algorithm delivers the most accurate predictions in the Universe. Join a community unlike anything that has existed before: With Nerif, all your most cherished dreams will come true.</p>
+            <p class="text-body">In this new era of safe CS:GO betting, our advanced algorithm delivers the most accurate predictions in the Universe. Join a community unlike anything that has existed before: With Nerif, all your most cherished dreams will come true.</p>
             <div class="cta-wrapper">
               <div class="landing-page-section__cta">
                 <v-button size="large" to="/sign-up"><v-icon name="clock" type="regular" />Start free trial</v-button>
@@ -58,7 +58,7 @@
         <div class="landing-page-section__content">
           <div class="landing-page-section__tag">FEATURES</div>
           <h1>Embrace a permanent stream of income</h1>
-          <p class="body-text">Follow Nerif’s predictions precisely to ensure multifold increase of your bank. Trusted by industry leaders, we'll guide you through a sea of uncertainty to the harbor of prosperity.</p>
+          <p class="text-body">Follow Nerif’s predictions precisely to ensure multifold increase of your bank. Trusted by industry leaders, we'll guide you through a sea of uncertainty to the harbor of prosperity.</p>
           <div class="landing-page-section__meta">
             <div class="meta1-content-wrapper">
               <div class="meta1-block">
@@ -89,7 +89,7 @@
         <div class="landing-page-section__content">
           <div class="landing-page-section__tag">FEATURES</div>
           <h1>Track your success with our personalized dashboards</h1>
-          <p class="body-text">Gain insights, track your success, and make data-driven decisions. Tailor the dashboard to your preferences and elevate your betting experience to new heights.</p>
+          <p class="text-body">Gain insights, track your success, and make data-driven decisions. Tailor the dashboard to your preferences and elevate your betting experience to new heights.</p>
           <div class="landing-page-section__meta">
             <div class="meta2-content-wrapper">
               <svg class="meta2-benefits-path" width="20">
@@ -122,7 +122,7 @@
         <div id="landing-page-content3" class="landing-page-section__content">
           <div class="landing-page-section__tag">FEATURES</div>
           <h1>We offer 24/7 customer support</h1>
-          <p class="body-text">Our dedicated team is available around the clock to assist you. Every step of the way, we’re alongside you to make your betting experience both pleasant and safe.</p>
+          <p class="text-body">Our dedicated team is available around the clock to assist you. Every step of the way, we’re alongside you to make your betting experience both pleasant and safe.</p>
           <div class="landing-page-section__meta">
             <ul class="meta3-content-wrapper">
               <li><v-icon type="regular" name="message"/><span><b>Chat with our operators - </b>the first free operator will rush to help.</span></li>

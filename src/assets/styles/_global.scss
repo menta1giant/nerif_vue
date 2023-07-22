@@ -24,9 +24,7 @@ html, body {
   scrollbar-gutter: stable;
 }
 
-.scroll-lock {
-  overflow: hidden;
-}
+// HEADERS
 
 h1 {
   font-size: $fs-h1;
@@ -67,14 +65,6 @@ p {
   font-weight: $fw-regular;
 
   line-height: $lh-medium;
-
-  &.body-text {
-    line-height: $lh-body;
-  }
-}
-
-a>button {
-  width: 100%;
 }
 
 b {
@@ -86,68 +76,17 @@ img {
   align-self: center;
 }
 
-.fluid {
-  width: 100% !important;
-  flex: 1;
-}
-
-.fa, .fa-brands, .fa-classic, .fa-regular, .fa-sharp, .fa-solid, .fab, .far, .fas {
-  line-height: inherit
-}
-
-.centered-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: min-content;
-  align-self: center;
-
-  padding: 0 1rem;
-}
-
-.ghost-input {
-  position: absolute;
-  visibility: hidden;
-}
-
-.error-message {
-  font-size: $fs-xxs;
-  line-height: $lh-small;
-  color: $red-600;
-  font-weight: $fw-medium;
-}
-
-.text-bleak {
-  color: $primary-ds-400;
-}
-
-.mobile:not(.desktop) {
-  display: none;
-}
-
-@media (max-width: $mobile-breakpoint) {
-  .desktop:not(.mobile) {
-    display: none !important;
-  }
-
-  .mobile {
-    display: flex !important;
-  }
-}
-
-.text-highlight {
-  color: $accent-500;
-}
-
-// scroll bar ------
+// SCROLL BAR
 
 /* Firefox */
+
 * {
   scrollbar-width: thin;
   scrollbar-color: $primary-ds-100 transparent;
 }
 
 /* Chrome, Edge and Safari */
+
 *::-webkit-scrollbar {
   width: .25rem;
 }
@@ -176,4 +115,10 @@ img {
 
 *::-webkit-scrollbar-thumb:active {
   background-color: $primary-s-100;
+}
+
+// FONT AWESOME
+
+.fa, .fa-brands, .fa-classic, .fa-regular, .fa-sharp, .fa-solid, .fab, .far, .fas {
+  line-height: inherit
 }

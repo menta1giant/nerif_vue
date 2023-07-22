@@ -1,0 +1,56 @@
+.fluid {
+  width: 100% !important;
+  flex: 1;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: min-content;
+  align-self: center;
+
+  padding: 0 1rem;
+}
+
+.scroll-lock {
+  overflow: hidden;
+}
+
+.ghost-input {
+  position: absolute;
+  visibility: hidden;
+}
+
+.error-message {
+  font-size: $fs-xxs;
+  line-height: $lh-small;
+  color: $red-600;
+  font-weight: $fw-medium;
+}
+
+.text-unimportant {
+  color: $primary-ds-400;
+}
+
+.text-highlight {
+  color: $accent-500;
+}
+
+.text-body {
+  line-height: $lh-body;
+}
+
+.mobile:not(.desktop) {
+  display: none;
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .desktop:not(.mobile) {
+    display: none !important;
+  }
+
+  .mobile {
+    display: flex !important;
+  }
+}

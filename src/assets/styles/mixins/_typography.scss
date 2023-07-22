@@ -1,0 +1,39 @@
+@mixin text-xxs {
+  font-size: $fs-xxs;
+  line-height: $lh-small;
+}
+
+@mixin text-xs {
+  font-size: $fs-xs;
+  line-height: $lh-small;
+}
+
+@mixin text-medium {
+  font-size: $fs-medium;
+  line-height: $lh-medium;
+}
+
+@mixin text-large {
+  font-size: $fs-large;
+  line-height: $lh-large;
+}
+
+@mixin text-h4 {
+  font-size: $fs-h4;
+  line-height: $lh-h4;
+}
+
+@mixin text-h3 {
+  font-size: $fs-h3;
+  line-height: $lh-h3;
+}
+
+@mixin text-h2 {
+  font-size: $fs-h2;
+  line-height: $lh-h2;
+}
+
+@mixin text-h1 {
+  font-size: $fs-h1;
+  line-height: $lh-h1;
+}

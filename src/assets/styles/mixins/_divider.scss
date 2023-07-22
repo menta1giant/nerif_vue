@@ -1,0 +1,44 @@
+@mixin divider {
+  border-width: 0px;
+  border-style: solid;
+}
+
+@mixin divider-regular {
+  @include divider;
+  border-color: $primary-ds-100;
+}
+
+@mixin divider-bleak {
+  @include divider;
+  border-color: $primary-s-50;
+}
+
+@mixin divider-dark {
+  @include divider;
+  border-color: $primary-ds-600;
+}
+
+@mixin divider-bottom {
+  @include divider-regular;
+  border-bottom-width: 1px;
+}
+
+@mixin divider-top {
+  @include divider-regular;
+  border-top-width: 1px;
+}
+
+@mixin divider-bottom-bleak {
+  @include divider-bleak;
+  border-bottom-width: 1px;
+}
+
+@mixin divider-bottom-dark {
+  @include divider-dark;
+  border-bottom-width: 1px;
+}
+
+@mixin divider-top-bleak {
+  @include divider-bleak;
+  border-top-width: 1px;
+}
