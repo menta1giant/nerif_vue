@@ -52,5 +52,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/landing/betting-provider.scss';
+@import '@/assets/styles/Landing/betting-provider.scss';
 </style>

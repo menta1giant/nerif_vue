@@ -294,13 +294,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/landing/landing.scss';
-@import '@/assets/styles/landing/features-sections.scss';
-@import '@/assets/styles/landing/hero-section.scss';
-@import '@/assets/styles/landing/betting-providers.scss';
-@import '@/assets/styles/landing/ceo-testimonial.scss';
-@import '@/assets/styles/landing/user-testimonials.scss';
-@import '@/assets/styles/landing/subscription-plans.scss';
-@import '@/assets/styles/landing/faq.scss';
-@import '@/assets/styles/landing/footer.scss';
+@import '@/assets/styles/Landing/landing.scss';
+@import '@/assets/styles/Landing/features-sections.scss';
+@import '@/assets/styles/Landing/hero-section.scss';
+@import '@/assets/styles/Landing/betting-providers.scss';
+@import '@/assets/styles/Landing/ceo-testimonial.scss';
+@import '@/assets/styles/Landing/user-testimonials.scss';
+@import '@/assets/styles/Landing/subscription-plans.scss';
+@import '@/assets/styles/Landing/faq.scss';
+@import '@/assets/styles/Landing/footer.scss';
 </style>

@@ -17,5 +17,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/landing/hero-section-feature.scss';
+@import '@/assets/styles/Landing/hero-section-feature.scss';
 </style>

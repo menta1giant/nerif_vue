@@ -59,5 +59,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/landing/user-testimonial.scss';
+@import '@/assets/styles/Landing/user-testimonial.scss';
 </style>

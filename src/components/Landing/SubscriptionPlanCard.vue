@@ -34,6 +34,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/landing/subscription-plan-card.scss';
+@import '@/assets/styles/Landing/subscription-plan-card.scss';
 
 </style>
