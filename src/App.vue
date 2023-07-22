@@ -3,9 +3,7 @@
   <navigation-bar @toggle-hamburger-menu="isHamburgerMenuOpened=!isHamburgerMenuOpened"/>
   <breadcrumbs-bar v-if="$route.meta.hasBreadcrumbs" />
   <router-view/>
-  <div class="mobile-navbar-container">
-    <mobile-navigation-bar/>
-  </div>
+  <mobile-navigation-bar/>
   <global-notifications />
 </template>
 
@@ -51,27 +49,11 @@ export default {
 #app {
   display: flex;
   flex-direction: column;
-  //height: 100%;
   overflow-x: hidden;
   padding-top: $navbar-height;
-}
 
-.mobile-navbar-container {
-  display: none;
-}
-
-@media screen and (max-width: $mobile-breakpoint) {
-
-  #app {
+  @media screen and (max-width: $mobile-breakpoint) {
     padding-bottom: 5rem;
-  }
-
-  .mobile-navbar-container {
-    display: block;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 9000;
   }
 }
 
