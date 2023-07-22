@@ -50,10 +50,10 @@
   </form>
 </template>
 <script>
-import controlMixin from '@/components/controlMixin';
+import controlMixin from '@/components/controlMixin.js';
 import { validateFields } from '@/lib/validation';
 import { apiRequestPostForm, apiRequestGet } from '@/lib/api';
-import formHandlerMixin from '@/components/formHandlerMixin';
+import formHandlerMixin from '@/components/formHandlerMixin.js';
 
 export default {
   name: 'Form',

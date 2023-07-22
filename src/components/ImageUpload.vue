@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import formFieldMixin from './Base/formFieldMixin';
+import formFieldMixin from './Base/formFieldMixin.js';
 import UploadButton from './UploadButton';
 import { getImageUrl } from '@/lib/image';
 

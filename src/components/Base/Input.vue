@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import controlMixin from '@/components/controlMixin';
-import errorMixin from '@/components/errorMixin';
-import formFieldMixin from './formFieldMixin';
+import controlMixin from '@/components/controlMixin.js';
+import errorMixin from '@/components/errorMixin.js';
+import formFieldMixin from './formFieldMixin.js';
 
 const typesMap = {
   password: {

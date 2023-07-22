@@ -15,7 +15,7 @@
 
 <script>
 import Form from '@/components/Base/Form/Form';
-import controlMixin from '@/components/controlMixin';
+import controlMixin from '@/components/controlMixin.js';
 
 export default {
   name: 'FormBlock',

@@ -68,7 +68,7 @@ import debounce from '@/lib/debounce';
 
 import MatchesList from './MatchesList.vue';
 import DatePicker from './DatePicker/DatePicker.vue';
-import DatePickerMixin from './DatePicker/DatePickerMixin';
+import DatePickerMixin from './DatePicker/DatePickerMixin.js';
 import TelegramFeedPost from './Feed/TelegramFeedPost.vue';
 import TelegramFeedPostSkeleton from './Feed/TelegramFeedPostSkeleton.vue';
 import MatchesFilters from './Filters/MatchesFilters.vue';

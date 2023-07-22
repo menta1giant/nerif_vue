@@ -85,7 +85,7 @@
 <script>
 const TEXT_TYPES = ['text', 'password', 'payment', 'date'];
 
-import formFieldMixin from '@/components/Base/formFieldMixin';
+import formFieldMixin from '@/components/Base/formFieldMixin.js';
 import ImageUpload from '@/components/ImageUpload.vue';
 import { fetchResource } from '@/lib/api';
 

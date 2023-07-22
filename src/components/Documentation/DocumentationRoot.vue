@@ -13,7 +13,7 @@
 import SectionsNavigation from '@/components/Navigation/SectionsNavigation.vue';
 import DocumentationArticlePreview from '@/components/Documentation/DocumentationArticlePreview.vue';
 import { apiRequestGet, apiRequestGetWithCache } from '@/lib/api';
-import loadingMixin from '../loadingMixin';
+import loadingMixin from '../loadingMixin.js';
 
 export default {
   name: 'DocumentationRoot',

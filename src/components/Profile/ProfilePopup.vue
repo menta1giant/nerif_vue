@@ -17,7 +17,7 @@
 
 <script>
 import { apiRequestPost } from '@/lib/api';
-import userInfoMixin from '@/components/userInfoMixin';
+import userInfoMixin from '@/components/userInfoMixin.js';
 
 export default {
   name: 'NotificationPopup',

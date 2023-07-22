@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import errorMixin from '@/components/errorMixin';
-import formFieldMixin from '../formFieldMixin';
+import errorMixin from '@/components/errorMixin.js';
+import formFieldMixin from '../formFieldMixin.js';
 
 export default {
   name: 'SelectBody',

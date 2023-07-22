@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import userInfoMixin from '@/components/userInfoMixin';
+import userInfoMixin from '@/components/userInfoMixin.js';
 
 export default {
   name: 'SubscriptionPlanField',
