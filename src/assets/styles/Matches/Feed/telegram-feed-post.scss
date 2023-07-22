@@ -1,11 +1,10 @@
 .tf-post {
+  @include flex-column;
+
   background: $primary-ds-50;
   font-size: $fs-xs;
   padding: 1em;
   gap: 8px;
-
-  display: flex;
-  flex-direction: column;
 
   &__header {
     display: flex;

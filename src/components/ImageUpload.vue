@@ -61,8 +61,8 @@ export default {
 
 <style lang="scss" scoped>
 .image-upload {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
+  
   gap: .5rem;
 
   width: 10rem;

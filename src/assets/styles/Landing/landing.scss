@@ -52,10 +52,10 @@
   }
 
   &__content {
+    @include flex-column;
+    
     position: relative;
 
-    display: flex;
-    flex-direction: column;
     gap: 1.5rem;
 
     margin-block: 4rem;

@@ -6,9 +6,8 @@
 
   &__header {
     @include divider-bottom-bleak;
-
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
+    
     gap: .25rem;
 
     font-weight: $fw-semi-bold;

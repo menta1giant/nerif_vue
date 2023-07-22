@@ -104,6 +104,8 @@ export default {
   }
 }
 .v-modal {
+  @include flex-column;
+
   position: relative;
 
   background: $black-10;
@@ -117,9 +119,6 @@ export default {
   max-height: calc(100% - $navbar-height * 3);
 
   transform: translateY(-15%);
-
-  display: flex;
-  flex-direction: column;
 
   .v-icon {
       color: $primary-s-400;

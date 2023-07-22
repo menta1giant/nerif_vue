@@ -2,6 +2,7 @@
 
 .match-card {
   @include no-tap-highlight;
+  @include flex-column;
   cursor: pointer;
 
   padding-block: .75rem;
@@ -11,9 +12,7 @@
   border-radius: $border-radius-medium;
   box-shadow: 0 4px 9px 0 rgba($primary-ds-800, 0.1);
 
-  display: flex;
   flex: 1;
-  flex-direction: column;
   align-items: center;
 
   outline: 2px solid transparent;
@@ -37,14 +36,13 @@
 }
 
 .match-info {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   line-height: $lh-small;
   align-items: center;
   color: $primary-ds-800;
   
   .match-date {
-    font-size: $fs-xs;
+    @include text-xs;
     font-size: clamp($fs-xxs, 1vw, $fs-xs);
   }
 
@@ -57,11 +55,10 @@
   }
 
   &-wrapper {
-    width: $match-info-wrapper-width;
-
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     justify-content: space-between;
+
+    width: $match-info-wrapper-width;
   }
 }
 

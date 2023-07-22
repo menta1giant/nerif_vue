@@ -17,6 +17,8 @@ export default {
 
 <style lang="scss" scoped>
 .hamburger-menu {
+  @include flex-column;
+
   transform: translateX(-100%);
   transition: transform 400ms ease-out;
 
@@ -32,8 +34,6 @@ export default {
 
   padding: 2rem;
 
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
 
   &--active {

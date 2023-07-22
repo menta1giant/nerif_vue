@@ -102,8 +102,8 @@
 }
 
 .user-plan-info {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
+  
   align-items: flex-end;
   gap: .25rem;
 

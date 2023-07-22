@@ -6,14 +6,12 @@
 
 .feed {
   @include thick-rounded-block;
+  @include flex-column;
 
   width: 100%;
   max-height: 100%;
   overflow: auto;
   padding-top: 1rem;
-
-  display: flex;
-  flex-direction: column;
 
   &__title {
     padding: 0 1rem;
@@ -38,15 +36,15 @@
   }
 
   &__cappers-select__wrapper {
+    @include flex-column;
+
     padding: .25rem 1rem 1rem 1rem;
 
     font-size: $fs-xs;
     line-height: $lh-small;
     font-weight: $fw-regular;
 
-    display: flex;
     align-items: flex-start;
-    flex-direction: column;
     gap: .25rem;
 
     z-index: 1;
@@ -109,14 +107,14 @@
 .content-wrapper {
   &-left,
   &-right {
+    @include flex-column;
+
     min-width: 0;
     flex: 1;
     padding-block: var(--container-padding-block);
     padding-left: .5rem;
     padding-right: .5rem;
 
-    display: flex;
-    flex-direction: column;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
@@ -125,8 +123,7 @@
   }
 
   &-left {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: 2rem;
 
     position: sticky;

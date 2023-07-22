@@ -1,8 +1,8 @@
 .date-picker-popup {
+  @include flex-column;
+
   height: auto;
   gap: .5rem;
-  display: flex;
-  flex-direction: column;
 
   >div {
     background: $primary-ds-50;

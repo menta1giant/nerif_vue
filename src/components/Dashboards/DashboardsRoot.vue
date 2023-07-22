@@ -115,12 +115,12 @@ export default {
 
 <style lang="scss" scoped>
 .dashboards-wrapper {
+  @include flex-column;
+
   width: 100%;
   min-height: 72rem;
   max-height: 85vh;
 
-  display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
   gap: 2rem;
 
@@ -272,8 +272,7 @@ export default {
 }
 
 .upsets-section {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   
   .upsets-stat {
     display: grid;

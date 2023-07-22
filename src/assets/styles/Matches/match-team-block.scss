@@ -1,8 +1,8 @@
 @import './variables.scss';
 
 .team-block {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
+  
   flex: 1;
   justify-content: flex-end;
 

@@ -49,8 +49,8 @@ export default {
 @import '@/assets/styles/main.scss';
 
 #app {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
+  
   overflow-x: hidden;
   padding-top: $navbar-height;
 

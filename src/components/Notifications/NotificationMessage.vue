@@ -49,8 +49,7 @@ export default {
   }
 
   &__content {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: .5rem;
 
     font-size: $fs-medium;
@@ -62,8 +61,7 @@ export default {
   }
 
   &__body {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: .25rem;
 
     padding: .25rem .5rem;

@@ -1,23 +1,22 @@
 @import './mixins.scss';
 
 .matches {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
+
   width: 100%;
   gap: 2rem;
 }
 
 .match-stats {
   @include thick-rounded-block;
+  @include flex-column;
 
   margin-top: 2rem;
   padding: 2em;
   font-size: $fs-medium;
   width: 100%;
   overflow: auto;
-
-  display: flex;
-  flex-direction: column;
+  
   gap: 1.5rem;
 
   &__tabs {
@@ -26,8 +25,8 @@
   }
 
   &__header {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
+
     gap: .5rem;
 
     h2 {

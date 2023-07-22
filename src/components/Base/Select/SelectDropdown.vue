@@ -12,13 +12,13 @@ export default {
 
 <style lang="scss" scoped>
 .v-select__dropdown {
+  @include flex-column;
+
   border: 1px solid $primary-ds-100;
   border-radius: $border-radius-small;
   background: $black-10;
   padding: .5rem;
 
-  display: flex;
-  flex-direction: column;
   gap: .25rem;
   flex-shrink: 1;
 

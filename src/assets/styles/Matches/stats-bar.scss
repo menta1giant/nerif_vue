@@ -1,6 +1,6 @@
 .stats-bar {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
+  
   gap: .5rem;
   min-width: 0;
 

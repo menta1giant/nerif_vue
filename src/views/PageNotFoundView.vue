@@ -32,8 +32,7 @@
   }
 
   section {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     justify-content: center;
     gap: .5rem;
 

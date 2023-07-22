@@ -45,8 +45,7 @@ export default {
   }
 
   &__buttons {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: .5rem;
 
     margin-top: 1rem;

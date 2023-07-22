@@ -1,6 +1,5 @@
 .hero-section-feature {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
 
   width: 60%;
   background: linear-gradient(0deg, rgba(177, 184, 225, 0.18) 0%, rgba(178, 185, 226, 0.06) 100%);

@@ -32,8 +32,7 @@ export default {
   flex-basis: 100%;
 
   &__description {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     align-items: center;
 
     width: 100%;
@@ -50,7 +49,7 @@ export default {
     }
 
     ul {
-      flex-direction: column;
+      @include flex-column;
 
       list-style: none;
       padding: 0 1em;

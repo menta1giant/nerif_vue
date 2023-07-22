@@ -12,10 +12,9 @@
 
 
   a {
-    display: flex;
+    @include flex-column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     gap: .25rem;
 
     color: $black-10;

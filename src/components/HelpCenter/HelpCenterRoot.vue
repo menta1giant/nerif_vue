@@ -66,8 +66,8 @@ export default {
 }
 
 .help-center {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
+
   gap: 2rem;
 
   width: 100%;
@@ -79,8 +79,7 @@ export default {
   gap: 2rem;
 
   .help-center-option-card {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: 2.5rem;
     flex-basis: 100%;
     height: fit-content;
@@ -96,8 +95,8 @@ export default {
     }
 
     &__content {
-      display: flex;
-      flex-direction: column;
+      @include flex-column;
+
       gap: .75rem;
 
       p {

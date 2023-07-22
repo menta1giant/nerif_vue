@@ -68,9 +68,7 @@ export default {
 
   &__header {
     @include divider-bottom;
-
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: .5rem;
 
     padding-bottom: 1rem;
