@@ -15,7 +15,7 @@ export function getChartTooltipSettings(colors) {
     borderColor: colors.tooltipBorder,
     borderWidth: 1,
     backgroundColor: colors.tooltipBackground,
-    displayСolors: false,
+    displayColors: false,
     boxWidth: 0,
     boxHeight: 0,
     padding: 8,

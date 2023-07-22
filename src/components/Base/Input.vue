@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import controlMixin from '@/components/controlMixin.js';
+import ControlMixin from '@/components/ControlMixin.js';
 import errorMixin from '@/components/errorMixin.js';
 import formFieldMixin from './formFieldMixin.js';
 
@@ -42,7 +42,7 @@ const typesMap = {
 export default {
   name: 'Input',
   mixins: [
-    controlMixin,
+    ControlMixin,
     errorMixin,
     formFieldMixin,
   ],
