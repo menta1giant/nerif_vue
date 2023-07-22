@@ -1,9 +1,8 @@
 .testimonials-wrapper {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   gap: 4rem;
+
+  width: 100%;
 }
 
 @media screen and (max-width: $laptop-breakpoint) {

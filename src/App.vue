@@ -2,7 +2,9 @@
   <hamburger-menu :class="{ 'hamburger-menu--active': isHamburgerMenuOpened }" />
   <navigation-bar @toggle-hamburger-menu="isHamburgerMenuOpened=!isHamburgerMenuOpened"/>
   <breadcrumbs-bar v-if="$route.meta.hasBreadcrumbs" />
-  <router-view/>
+  <main>
+    <router-view/>
+  </main>
   <mobile-navigation-bar/>
   <global-notifications />
 </template>

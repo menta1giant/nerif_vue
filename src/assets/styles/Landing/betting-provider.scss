@@ -20,8 +20,7 @@
   }
 
   &__title {
-    font-size: $fs-h4;
-    line-height: $lh-h4;
+    @include text-h4;
   }
 
   &__rating {

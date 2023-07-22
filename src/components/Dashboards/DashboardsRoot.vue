@@ -2,7 +2,7 @@
   <v-section padded responsive>
     <div class="dashboards-wrapper">
       <section class="dashboard dashboard--dark profits-chart">
-        <h3><b>Profits Chart</b></h3>
+        <h3 class="h3"><b>Profits Chart</b></h3>
         <div class="dashboard__chart"><line-chart :colors="lineChartColors" :data="profits" /></div>
         <div class="profits-chart__meta">
           <div>Estimated profit in the past 3 days:</div><div>57%</div>
@@ -12,11 +12,11 @@
         </div>
       </section>
       <section class="dashboard">
-        <h3><b>Profit by odds</b></h3>
+        <h3 class="h3"><b>Profit by odds</b></h3>
         <div class="dashboard__chart"><bar-chart :colors="barChartsColors" :data="odds" /></div>
       </section>
       <section class="dashboard">
-        <h3><b>Detailed stats</b> (past 30 days)</h3>
+        <h3 class="h3"><b>Detailed stats</b> (past 30 days)</h3>
         <div class="stats-table">
           <table cellpadding="0" cellspacing="0">
             <tr>
@@ -57,9 +57,9 @@
         </div>
       </section>
       <section class="dashboard upsets-section">
-        <h3><b>Upsets</b></h3>
+        <h3 class="h3"><b>Upsets</b></h3>
         <div class="upsets-stat">
-          <h4 class="upsets-stat__header">Worst coeff loser</h4>
+          <h4 class="upsets-stat__header h4">Worst coeff loser</h4>
           <span class="upsets-stat__meta">12-04-2023 | Map 1</span>
           <div class="upsets-stat__teams">
             <span>Spirit Academy</span>
@@ -71,7 +71,7 @@
           </div>
         </div>
         <div class="upsets-stat">
-          <h4 class="upsets-stat__header">Worst result on a map</h4>
+          <h4 class="upsets-stat__header h4">Worst result on a map</h4>
           <span class="upsets-stat__meta">12-04-2023 | Map 1</span>
           <div class="upsets-stat__teams">
             <span>Spirit Academy</span>
@@ -255,7 +255,8 @@ export default {
       color: $primary-ds-900;
       text-align: center;
       font-size: $fs-xxs;
-      font-weight: $fw-medium;
+      font-weight: $fw-semi-bold;
+      line-height: 24px;
     }
 
     &--favorite:after {

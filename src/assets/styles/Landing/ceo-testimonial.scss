@@ -4,8 +4,7 @@
   gap: 2rem;
 
   &__personal {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     align-items: center;
 
     flex: 1;
@@ -17,8 +16,7 @@
   }
 
   &__name {
-    font-size: $fs-h4;
-    line-height: $lh-h4;
+    @include text-h4;
     font-weight: $fw-semi-bold;
     font-family: $ff-display;
 
@@ -29,8 +27,7 @@
   }
 
   &__position {
-    font-size: $fs-medium;
-    line-height: $lh-medium;
+    @include text-medium;
     font-weight: $fw-medium;
     font-family: $ff-display;
 
@@ -38,13 +35,12 @@
   }
 
   &__quote {
+    @include text-h4;
+
     position: relative;
     flex: 4;
 
     padding-top: 1rem;
-
-    font-size: $fs-h4;
-    line-height: $lh-h4;
     font-weight: $fw-medium;
     font-family: $ff-primary;
 

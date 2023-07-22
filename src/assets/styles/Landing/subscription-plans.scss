@@ -1,7 +1,7 @@
 .subscription-plans-section {
   &__header {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
+
     align-items: center;
     margin-bottom: 3rem;
     gap: .25rem;
@@ -12,11 +12,11 @@
     }
 
     .billing-type-switcher {
+      @include text-large;
+
       display: flex;
       gap: .25rem;
 
-      font-size: $fs-large;
-      line-height: $lh-large;
       color: $black-100;
       font-weight: $fw-semi-bold;
 

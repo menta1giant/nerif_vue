@@ -1,17 +1,16 @@
 .subscription-plan-card {
+  @include flex-column;
+  @include text-medium;
+
   padding: 1rem 1.5rem;
   width: clamp(18rem, 14vw, 25%);
 
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
 
   background: $black-40;
 
   color: $primary-ds-800;
   font-family: $ff-display;
-  font-size: $fs-medium;
-  line-height: $lh-medium;
 
   border: 2px solid $primary-ds-200;
   border-radius: $border-radius-large;
@@ -22,8 +21,8 @@
   }
 
   &__features-wrapper {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
+
     gap: .75rem;
     padding-bottom: 1rem;
 
@@ -60,17 +59,15 @@
   }
 
   &__footer {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
+    @include text-large;
+
     gap: .75rem;
 
-    font-size: $fs-large;
-    line-height: $lh-large;
     font-weight: $fw-medium;
 
     b {
-      font-size: $fs-h4;
-      line-height: $lh-h4;
+      @include text-h4;
       font-weight: $fw-semi-bold;
     }
   }

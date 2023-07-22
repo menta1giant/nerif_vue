@@ -4,8 +4,8 @@
       <v-section responsive>
         <div class="landing-page-section landing-page-section--split">
           <div class="landing-page-section__content hero-section__left">
-            <h1 style="width: 45rem">Become a champion with the <div class="underlined-text"><span>most reliable</span></div> betting assistant</h1>
-            <p class="text-body">In this new era of safe CS:GO betting, our advanced algorithm delivers the most accurate predictions in the Universe. Join a community unlike anything that has existed before: With Nerif, all your most cherished dreams will come true.</p>
+            <h1 style="width: 45rem" class="landing-page-section__header h1 text-ds-700">Become a champion with the <span class="underlined-text"><span>most reliable</span></span> betting assistant</h1>
+            <p class="text-large text-body">In this new era of safe CS:GO betting, our advanced algorithm delivers the most accurate predictions in the Universe. Join a community unlike anything that has existed before: With Nerif, all your most cherished dreams will come true.</p>
             <div class="cta-wrapper">
               <div class="landing-page-section__cta">
                 <v-button size="large" to="/sign-up"><v-icon name="clock" type="regular" />Start free trial</v-button>
@@ -20,28 +20,28 @@
                   <img src="@/assets/images/hero-section__teaser__person2.png" width="40" height="40"/>
                   <img src="@/assets/images/hero-section__teaser__person3.png" width="32" height="32"/>
                 </div>
-                <p><b>More than 5000 people </b><br/>like you are already using these groundbreaking features!</p>
+                <p class="text-large"><b>More than 5000 people </b><br/>like you are already using these groundbreaking features!</p>
                 <img src="@/assets/images/hero-section__teaser__arrow.svg" />
               </div>
-              <hero-section-feature icon="arrow-trend-up" header="UNLIMITED GROWTH">
+              <hero-section-feature icon="arrow-trend-up" header="Unlimited growth">
                 Get an estimated 150% return on your investment within first three months
               </hero-section-feature>
-              <hero-section-feature icon="rss" header="TELEGRAM FEED">
+              <hero-section-feature icon="rss" header="Telegram feed">
                 View a compilation of opinions from 30+ of the most respected cappers of CS:GO scene
               </hero-section-feature>
-              <hero-section-feature icon="headset" header="24/7 SUPPORT">
+              <hero-section-feature icon="headset" header="24/7 support">
                 In the world of CS:GO betting, you aren’t alone. Our staff of 400 operators is ready to assist
               </hero-section-feature>
             </div>
           </div>
           <div class="landing-page-section__image hero-section__right">
-            <img id="landing-page-image-hs" src="@/assets/images/landing-hero-image.png" />
+            <img id="landing-page-image-hs" src="@/assets/images/landing-hero-image.png" alt="Counter-terrorist from CS:GO happily displaying his success using Nerif" />
           </div>
         </div>
       </v-section>
       <v-section dark responsive>
         <div class="landing-page-section">
-          <h2>We are trusted by esports bet providers across all dimensions</h2>
+          <h2 class="landing-page-section__header h2 text-center">We are trusted by esports bet providers across all dimensions</h2>
           <div class="betting-providers-wrapper">
             <betting-provider logo="betting-provider1.png" title="RateBet.com" :rating="4.83" />
             <betting-provider logo="betting-provider2.png" title="AngryFerret" :rating="4.9" />
@@ -53,12 +53,12 @@
     <v-section responsive>
       <div class="landing-page-section landing-page-section--split">
         <div class="landing-page-section__image">
-          <img id="landing-page-image1" src="@/assets/images/landing-section1.png" />
+          <img id="landing-page-image1" src="@/assets/images/landing-section1.png" alt="Happy fennec fox sitting on top of a pile of money" />
         </div>
         <div class="landing-page-section__content">
-          <div class="landing-page-section__tag">FEATURES</div>
-          <h1>Embrace a permanent stream of income</h1>
-          <p class="text-body">Follow Nerif’s predictions precisely to ensure multifold increase of your bank. Trusted by industry leaders, we'll guide you through a sea of uncertainty to the harbor of prosperity.</p>
+          <div class="landing-page-section__tag">Features</div>
+          <h2 class="landing-page-section__header h1 text-ds-700">Embrace a permanent stream of income</h2>
+          <p class="text-large text-body">Follow Nerif’s predictions precisely to ensure multifold increase of your bank. Trusted by industry leaders, we'll guide you through a sea of uncertainty to the harbor of prosperity.</p>
           <div class="landing-page-section__meta">
             <div class="meta1-content-wrapper">
               <div class="meta1-block">
@@ -87,9 +87,9 @@
     <v-section responsive>
       <div class="landing-page-section landing-page-section--split">
         <div class="landing-page-section__content">
-          <div class="landing-page-section__tag">FEATURES</div>
-          <h1>Track your success with our personalized dashboards</h1>
-          <p class="text-body">Gain insights, track your success, and make data-driven decisions. Tailor the dashboard to your preferences and elevate your betting experience to new heights.</p>
+          <div class="landing-page-section__tag">Features</div>
+          <h2 class="landing-page-section__header h1 text-ds-700">Track your success with our personalized dashboards</h2>
+          <p class="text-large text-body">Gain insights, track your success, and make data-driven decisions. Tailor the dashboard to your preferences and elevate your betting experience to new heights.</p>
           <div class="landing-page-section__meta">
             <div class="meta2-content-wrapper">
               <svg class="meta2-benefits-path" width="20">
@@ -120,9 +120,9 @@
           <img id="landing-page-image3" src="@/assets/images/landing-section3.png" />
         </div>
         <div id="landing-page-content3" class="landing-page-section__content">
-          <div class="landing-page-section__tag">FEATURES</div>
-          <h1>We offer 24/7 customer support</h1>
-          <p class="text-body">Our dedicated team is available around the clock to assist you. Every step of the way, we’re alongside you to make your betting experience both pleasant and safe.</p>
+          <div class="landing-page-section__tag">Features</div>
+          <h2 class="landing-page-section__header h1 text-ds-700">We offer 24/7 customer support</h2>
+          <p class="text-large text-body">Our dedicated team is available around the clock to assist you. Every step of the way, we’re alongside you to make your betting experience both pleasant and safe.</p>
           <div class="landing-page-section__meta">
             <ul class="meta3-content-wrapper">
               <li><v-icon type="regular" name="message"/><span><b>Chat with our operators - </b>the first free operator will rush to help.</span></li>
@@ -138,7 +138,6 @@
             </div>
           </div>
         </div>
-        
       </div>
     </v-section>
     <v-section dark responsive>
@@ -173,7 +172,7 @@
     <v-section dark responsive>
       <div id="plans" class="landing-page-section subscription-plans-section">
         <div class="subscription-plans-section__header">
-          <h1>Our pricing</h1>
+          <h2 class="landing-page-section__header h1">Our pricing</h2>
           <div class="billing-type-switcher"><span class="billing-type-switcher__item--active">monthly</span>/<span>yearly</span></div>
         </div>
         <div class="subscription-plan-cards-wrapper">
@@ -184,7 +183,7 @@
     <v-section responsive>
       <div class="landing-page-section faq-section">
         <div class="landing-page-section__tag">FAQ</div>
-        <h1>Frequently asked questions</h1>
+        <h2 class="landing-page-section__header h1 text-ds-700">Frequently asked questions</h2>
         <faq-question 
           question="How accurate are your CS:GO predictions compared to other betting services in the market?"
           answer="Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart."
@@ -206,7 +205,7 @@
           answer="Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart."
         />
         <div class="faq-section__footer">
-          <h4>Got more questions?</h4>
+          <span class="h4 text-bold text-ds-700">Got more questions?</span>
           <div class="cta-wrapper">
             <div class="landing-page-section__cta">
               <v-button size="medium" to="/documentation">View documentation</v-button>
@@ -217,9 +216,9 @@
       </div>
     </v-section>
     <v-section dark responsive>
-      <div class="landing-page-section footer">
+      <footer class="landing-page-section footer">
         <div class="footer__header">
-          <h1>Join more than 5000 monthly users!</h1>
+          <h3 class="landing-page-section__header h1">Join more than 5000 monthly users!</h3>
           <span>Get a personal -20% off deal by entering your email</span>
         </div>
         <div class="footer__lead-input">
@@ -227,7 +226,7 @@
         </div>
         <div class="footer__navigation">
           <div class="footer__navigation__column">
-            <h5>RESOURCES</h5>
+            <h4 class="text-large text-bold">RESOURCES</h4>
             <ul>
               <li><router-link to='/documentation'>Documentation</router-link></li>
               <li><router-link to='/terms-of-use'>Terms of use</router-link></li>
@@ -235,7 +234,7 @@
             </ul>
           </div>
           <div class="footer__navigation__column">
-            <h5>PRODUCT</h5>
+            <h4 class="text-large text-bold">PRODUCT</h4>
             <ul>
               <li><router-link to="/about-us">About Nerif</router-link></li>
               <li><router-link to="/blog">Blog</router-link></li>
@@ -243,7 +242,7 @@
             </ul>
           </div>
           <div class="footer__navigation__column">
-            <h5>COMPANY</h5>
+            <h4 class="text-large text-bold">COMPANY</h4>
             <ul>
               <li><router-link to="/help-center"><v-icon name="envelope" />Help center</router-link></li>
               <li class="footer__navigation__item--bleak"><v-icon name="phone" />+7 499 900 90 90</li>
@@ -262,7 +261,7 @@
             <v-icon-button name="discord" brands />
           </div>
         </div>
-      </div>
+      </footer>
     </v-section>
   </div>
 </template>

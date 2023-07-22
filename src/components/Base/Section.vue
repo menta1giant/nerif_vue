@@ -1,9 +1,9 @@
 <template>
-  <div class="v-section" :class="{ 'dark': dark, 'span': span, 'padded': padded }">
+  <section class="v-section" :class="{ 'dark': dark, 'span': span, 'padded': padded }">
     <div class="container" :class="{'responsive': responsive }">
       <slot></slot>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

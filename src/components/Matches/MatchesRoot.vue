@@ -23,7 +23,7 @@
       </div>
       <div class="feed">
         <div class="feed__title">
-          <h3>Telegram Feed</h3>
+          <h3 class="h3">Telegram Feed</h3>
           <v-icon-button name="circle-question" tooltip-content="This section contains Telegram post from revered CS:GO cappers"/>
         </div>
         <div class="feed__cappers-select__label"><v-label><b>Select cappers.</b></v-label></div>

@@ -53,8 +53,7 @@
   }
 
   &__content {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: 1.5rem;
 
     max-width: 33rem;
@@ -91,9 +90,9 @@
   }
 
   &__meta {
+    @include text-medium;
+
     color: $primary-ds-400;
-    font-size: $fs-medium;
-    font-weight: $fw-medium;
 
     &--city {
       &::before {

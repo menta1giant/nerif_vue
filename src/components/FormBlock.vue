@@ -1,7 +1,7 @@
 <template>
   <div class="form-block" :class="{ fluid: fluid }">
     <div class="form-block__header">
-      <h4>{{ header }}</h4>
+      <span class="h4">{{ header }}</span>
       <span>{{ subheader }}</span>
     </div>
     <slot></slot>

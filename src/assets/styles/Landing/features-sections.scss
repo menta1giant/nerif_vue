@@ -2,12 +2,13 @@
   display: flex;
   
   .meta1-block {
+    @include text-medium;
+
     max-width: 9rem;
     padding-right: 1rem;
     margin-right: 1rem;
 
     font-family: $ff-display;
-    font-weight: $fw-medium;
 
     &:not(:last-child) {
       border-right: 1px solid $primary-ds-100;
@@ -18,15 +19,15 @@
     }
 
     &__header {
+      @include text-h1;
+
       color: $primary-s-600;
-      font-size: $fs-h1;
-      line-height: $lh-h1;
     }
 
     &__body {
+      @include text-medium;
+
       color: $primary-ds-600;
-      font-size: $fs-medium;
-      line-height: $lh-medium;
     }
   }
 }
@@ -34,6 +35,7 @@
 .meta2-content-wrapper {
   position: relative;
   display: flex;
+  
   .meta2-benefits *, .meta2-benefits-path * {
     stroke: $primary-s-200;
     stroke-width: 4px;
@@ -74,9 +76,9 @@
 }
 
 .meta3-content-wrapper {
+  @include text-large;
+
   color: $primary-s-400;
-  font-size: $fs-large;
-  line-height: $lh-large;
   font-family: $ff-display;
 
   .v-icon {

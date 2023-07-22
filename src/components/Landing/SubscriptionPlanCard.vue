@@ -1,7 +1,7 @@
 <template>
   <div class="subscription-plan-card" :class="{ 'subscription-plan-card--popular': plan.isPopular }">
     <div class="subscription-plan-card__header">
-      <h3>{{ plan.header }}</h3>
+      <h3 class="h3 text-display text-semi-bold">{{ plan.header }}</h3>
       <span>{{ plan.subHeader }}</span>
     </div>
     <ul class="subscription-plan-card__features-wrapper">

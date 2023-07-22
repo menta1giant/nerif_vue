@@ -1,32 +1,36 @@
 .faq-question {
   @include divider-bottom;
-
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
+  @include text-medium;
+  
   gap: 1rem;
 
   padding-block: 1.5rem;
-
-  font-size: $fs-medium;
   line-height: $lh-body;
+
+  &:not(.faq-question+.faq-question) {
+    margin-top: 2rem;
+  }
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 
-    font-size: $fs-h4;
-
-    h4 {
+    h3 {
       cursor: pointer;
     }
   }
 
-  .v-chevron--active {
-    animation: 1s tap;
-    animation-fill-mode: forwards;
+  .v-chevron {
+    @include text-large;
 
-    color: $accent-900;
+    &--active {
+      animation: 1s tap;
+      animation-fill-mode: forwards;
+  
+      color: $accent-900;
+    }
   }
 }
 
