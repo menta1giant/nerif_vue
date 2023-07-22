@@ -13,7 +13,7 @@
 import SectionsNavigation from '@/components/Navigation/SectionsNavigation.vue';
 import DocumentationArticlePreview from '@/components/Documentation/DocumentationArticlePreview.vue';
 import { apiRequestGet, apiRequestGetWithCache } from '@/lib/api';
-import loadingMixin from '../loadingMixin.js';
+import LoadingMixin from '../LoadingMixin.js';
 
 export default {
   name: 'DocumentationRoot',
@@ -21,7 +21,7 @@ export default {
     SectionsNavigation,
     DocumentationArticlePreview,
   },
-  mixins: [loadingMixin],
+  mixins: [LoadingMixin],
   async created() {
     this.changeLoadingStatus(true);
     await this.fetchSections();

@@ -20,7 +20,7 @@
 import { apiRequestGet } from '@/lib/api';
 import BlogPostPreview from './BlogPostPreview';
 import BlogPostPreviewSkeleton from './BlogPostPreviewSkeleton';
-import loadingMixin from '../loadingMixin.js';
+import LoadingMixin from '../LoadingMixin.js';
 
 export default {
   name: 'BlogRoot',
@@ -28,7 +28,7 @@ export default {
     BlogPostPreview,
     BlogPostPreviewSkeleton,
   },
-  mixins: [loadingMixin],
+  mixins: [LoadingMixin],
   async created() {
     this.changeLoadingStatus(true);
     await this.fetchPosts(this.$route.query.search);

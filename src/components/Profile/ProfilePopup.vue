@@ -17,11 +17,11 @@
 
 <script>
 import { apiRequestPost } from '@/lib/api';
-import userInfoMixin from '@/components/userInfoMixin.js';
+import UserInfoMixin from '@/components/UserInfoMixin.js';
 
 export default {
   name: 'NotificationPopup',
-  mixins: [userInfoMixin],
+  mixins: [UserInfoMixin],
   data() {
     return {
       profile: new Array(3),

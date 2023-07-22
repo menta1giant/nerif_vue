@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import userInfoMixin from '@/components/userInfoMixin.js';
+import UserInfoMixin from '@/components/UserInfoMixin.js';
 
 export default {
   name: 'SubscriptionPlanField',
-  mixins: [userInfoMixin],
+  mixins: [UserInfoMixin],
 }
 </script>
 

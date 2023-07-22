@@ -26,7 +26,7 @@
 import SelectBody from './SelectBody';
 import SelectOption from './SelectOption';
 import SelectDropdown from './SelectDropdown';
-import errorMixin from '@/components/errorMixin.js';
+import ErrorMixin from '@/components/ErrorMixin.js';
 import debounce from '@/lib/debounce';
 
 export default {
@@ -36,7 +36,7 @@ export default {
     SelectOption,
     SelectDropdown,
   },
-  mixins: [errorMixin],
+  mixins: [ErrorMixin],
   props: {
     options: {
       type: Array,

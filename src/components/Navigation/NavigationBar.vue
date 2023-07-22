@@ -63,7 +63,7 @@ import HamburgerMenuButton from '@/components/Navigation/HamburgerMenuButton.vue
 import NotificationsPopup from '@/components/Notifications/NotificationsPopup.vue';
 import ProfilePopup from '@/components/Profile/ProfilePopup.vue';
 import LoginModal from '@/components/Registration/LoginModal.vue';
-import userInfoMixin from '@/components/userInfoMixin.js';
+import UserInfoMixin from '@/components/UserInfoMixin.js';
 import { getImageUrl } from '@/lib/image';
 
 export default {
@@ -76,7 +76,7 @@ export default {
     LoginModal,
   },
   emits: ['toggle-hamburger-menu'],
-  mixins: [userInfoMixin],
+  mixins: [UserInfoMixin],
   created() {
     if ('log-in' in this.$route.query) {
       this.showLoginModal();
