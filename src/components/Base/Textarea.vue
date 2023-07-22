@@ -4,11 +4,11 @@
 
 <script>
 import formFieldMixin from './formFieldMixin.js';
-import ErrorMixin from '@/components/ErrorMixin.js';
+import errorMixin from '@/components/errorMixin.js';
 
 export default {
   name: 'Textarea',
-  mixins: [formFieldMixin, ErrorMixin],
+  mixins: [formFieldMixin, errorMixin],
 }
 </script>
 

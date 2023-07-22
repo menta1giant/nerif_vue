@@ -15,12 +15,12 @@
 
 <script>
 import Form from '@/components/Base/Form/Form';
-import ControlMixin from '@/components/ControlMixin.js';
+import controlMixin from '@/components/controlMixin.js';
 
 export default {
   name: 'FormBlock',
   emits: ['form-submitted'],
-  mixins: [ControlMixin],
+  mixins: [controlMixin],
   props: {
     header: String,
     subheader: String,

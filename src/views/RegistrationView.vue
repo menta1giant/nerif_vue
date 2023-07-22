@@ -16,7 +16,7 @@ import LeaveSignUpModal from '@/components/Registration/LeaveSignUpModal.vue';
 import RegistrationSteps from '@/components/Registration/RegistrationSteps.vue';
 
 import { markRaw } from 'vue';
-import UserInfoMixin from '@/components/UserInfoMixin.js';
+import userInfoMixin from '@/components/userInfoMixin.js';
 
 export default {
   name: 'RegistrationView',
@@ -24,7 +24,7 @@ export default {
     RegistrationSteps,
     LeaveSignUpModal
   },
-  mixins: [UserInfoMixin],
+  mixins: [userInfoMixin],
   beforeRouteLeave(to) {
     if (this.isFirstStep || this.isLeavingSignUpModalShown || to.path.includes('profile')) return true;
 

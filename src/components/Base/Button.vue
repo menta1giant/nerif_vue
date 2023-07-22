@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import ControlMixin from '@/components/ControlMixin.js';
+import controlMixin from '@/components/controlMixin.js';
 
 const TYPES = ['transparent', 'primary', 'secondary', 'danger', 'primary-accent', 'transparent-accent'];
 const SIZES = ['small', 'medium', 'large'];
@@ -44,7 +44,7 @@ export default {
   name: 'Button',
   inheritAttrs: false,
   mixins: [
-    ControlMixin,
+    controlMixin,
   ],
   props: {
     type: {

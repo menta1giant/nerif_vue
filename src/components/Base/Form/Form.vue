@@ -50,15 +50,15 @@
   </form>
 </template>
 <script>
-import ControlMixin from '@/components/ControlMixin.js';
+import controlMixin from '@/components/controlMixin.js';
 import { validateFields } from '@/lib/validation';
 import { apiRequestPostForm, apiRequestGet } from '@/lib/api';
-import FormHandlerMixin from '@/components/FormHandlerMixin.js';
+import formHandlerMixin from '@/components/formHandlerMixin.js';
 
 export default {
   name: 'Form',
   inheritAttrs: false,
-  mixins: [ControlMixin, FormHandlerMixin],
+  mixins: [controlMixin, formHandlerMixin],
   emits: ['form-submitted'],
   props: {
     minWidth: {

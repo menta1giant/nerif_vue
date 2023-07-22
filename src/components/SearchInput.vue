@@ -4,11 +4,11 @@
 
 <script>
 import debounce from '@/lib/debounce';
-import LoadingMixin from '@/components/LoadingMixin.js';
+import loadingMixin from '@/components/loadingMixin.js';
 
 export default {
   name: 'SearchInput',
-  mixins: [LoadingMixin],
+  mixins: [loadingMixin],
   methods: {
     handleInput: debounce(function(event) {
       const inputValue = event.target.value;

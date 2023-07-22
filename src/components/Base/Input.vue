@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import ControlMixin from '@/components/ControlMixin.js';
-import ErrorMixin from '@/components/ErrorMixin.js';
+import controlMixin from '@/components/controlMixin.js';
+import errorMixin from '@/components/errorMixin.js';
 import formFieldMixin from './formFieldMixin.js';
 
 const typesMap = {
@@ -42,8 +42,8 @@ const typesMap = {
 export default {
   name: 'Input',
   mixins: [
-    ControlMixin,
-    ErrorMixin,
+    controlMixin,
+    errorMixin,
     formFieldMixin,
   ],
   props: {
