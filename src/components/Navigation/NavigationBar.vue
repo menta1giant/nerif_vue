@@ -63,7 +63,7 @@ import HamburgerMenuButton from '@/components/Navigation/HamburgerMenuButton.vue
 import NotificationsPopup from '@/components/Notifications/NotificationsPopup.vue';
 import ProfilePopup from '@/components/Profile/ProfilePopup.vue';
 import LoginModal from '@/components/Registration/LoginModal.vue';
-import userInfoMixin from '../userInfoMixin';
+import userInfoMixin from '@/components/userInfoMixin';
 import { getImageUrl } from '@/lib/image';
 
 export default {
