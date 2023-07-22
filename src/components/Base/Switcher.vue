@@ -1,5 +1,5 @@
 <template>
-  <div class="v-switcher" :class="{ checked: internalValue }" @click="toggleSwitcher" @input="toggleSwitcher">
+  <div class="v-switcher" :class="{ checked: internalValue }" @click="toggleSwitcher">
     <input
       class="v-switcher__input"
       type="checkbox"

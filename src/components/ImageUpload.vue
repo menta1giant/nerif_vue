@@ -1,6 +1,6 @@
 <template>
   <div class="image-upload">
-    <label :for="id">
+    <label :for="id" class="label">
       <img 
         ref="image" 
         src="@/assets/images/logo-desat.png" 

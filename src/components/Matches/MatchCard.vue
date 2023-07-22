@@ -11,8 +11,8 @@
       />
       <div class="match-info-wrapper">
         <div class="match-info">
-            <span class="match-date">{{ match.match.match_date }}</span>
-            <span class="match-type">Map {{ match.map_order }}</span>
+          <span class="match-date">{{ match.match.match_date }}</span>
+          <span class="match-type">Map {{ match.map_order }}</span>
         </div>
         <div class="match-scores-wrapper">
           <template v-if="hasScores">

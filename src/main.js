@@ -9,8 +9,6 @@ import Positioner from '@/components/Base/Positioner';
 import Chevron from '@/components/Base/Chevron';
 import Popup from '@/components/Base/Popup';
 import Switcher from '@/components/Base/Switcher';
-import SwitcherField from '@/components/Base/SwitcherField';
-import Label from '@/components/Base/Label';
 import Icon from '@/components/Base/Icon';
 import Button from '@/components/Base/Button';
 import Modal from '@/components/Base/Modal';
@@ -26,9 +24,7 @@ import Form from '@/components/Base/Form/Form';
 import FormField from '@/components/Base/Form/FormField';
 
 createApp(App).use(store).use(router)
-.component("v-switcher-field", SwitcherField)
 .component("v-switcher", Switcher)
-.component("v-label", Label)
 .component("v-icon", Icon)
 .component("v-multiselect", Multiselect)
 .component("v-select", Select)
