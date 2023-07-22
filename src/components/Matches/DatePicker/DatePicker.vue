@@ -27,7 +27,7 @@
 <script>
 import DatePickerItem from './DatePickerItem.vue';
 import DatePickerPopup from './DatePickerPopup.vue';
-import DatePickerMixin from './DatePickerMixin.js';
+import datePickerMixin from './datePickerMixin.js';
 
 import { millisecondsInADay } from '@/lib/date';
 
@@ -38,7 +38,7 @@ export default {
     DatePickerPopup,
   },
   mixins: [
-    DatePickerMixin,
+    datePickerMixin,
   ],
   data() {
     return {

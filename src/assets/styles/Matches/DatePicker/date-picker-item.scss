@@ -14,7 +14,8 @@
   cursor: pointer;
 
   &__day {
-    line-height: $lh-medium; 
+    @include text-medium;
+    
     color: $primary-ds-900;
   }
 

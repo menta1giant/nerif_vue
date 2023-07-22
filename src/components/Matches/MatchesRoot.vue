@@ -1,10 +1,10 @@
 <template>
   <v-section span responsive>
-    <div class="content-wrapper-left" :class="{ desktop: isMatchesTabOpened }">
-      <div class="date-picker-wrapper desktop">
+    <section class="content-wrapper-left" :class="{ desktop: isMatchesTabOpened }">
+      <section class="date-picker-wrapper desktop">
         <date-picker />
-      </div>
-      <div class="filters desktop">
+      </section>
+      <section class="filters desktop">
         <v-popup v-model="isFiltersDropdownVisible">
           <template #trigger>
             <div class="filters__toggle-button">
@@ -20,8 +20,8 @@
         <div class="filters__wrapper">
           <matches-filters />
         </div>
-      </div>
-      <div class="feed">
+      </section>
+      <section class="feed">
         <div class="feed__title">
           <h3 class="h3">Telegram Feed</h3>
           <v-icon-button name="circle-question" tooltip-content="This section contains Telegram post from revered CS:GO cappers"/>
@@ -49,12 +49,12 @@
             />
           </template>
         </div>
-      </div>
-    </div>
-    <div class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }" ref="container-right">
+      </section>
+    </section>
+    <section class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }" ref="container-right">
       <matches-list :matches="matches" :is-loading="areMatchesLoading" @change-scroll="changeScroll"/>
       <div class="match-card-dummy"></div>
-    </div>
+    </section>
   </v-section>
 
   <mobile-toolbar
@@ -68,7 +68,7 @@ import debounce from '@/lib/debounce';
 
 import MatchesList from './MatchesList.vue';
 import DatePicker from './DatePicker/DatePicker.vue';
-import DatePickerMixin from './DatePicker/DatePickerMixin.js';
+import datePickerMixin from './DatePicker/datePickerMixin.js';
 import TelegramFeedPost from './Feed/TelegramFeedPost.vue';
 import TelegramFeedPostSkeleton from './Feed/TelegramFeedPostSkeleton.vue';
 import MatchesFilters from './Filters/MatchesFilters.vue';
@@ -87,7 +87,7 @@ export default {
     MatchesFilters,
     MobileToolbar,
   },
-  mixins: [DatePickerMixin],
+  mixins: [datePickerMixin],
   async created() {
     this.$router.replace(`/matches/${this.formattedDate}`);
     this.setUpIntersectionObserver();

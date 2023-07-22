@@ -1,15 +1,15 @@
 <template>
   <div class="stats-bar">
     <div class="stats-bar__upper">
-      <div class="stats-bar__title">
+      <span class="stats-bar__title">
         {{ title }}
-      </div>
+      </span>
       <div class="stats-bar__values-wrapper">
         <template v-if="isValueSingular">
-          <div class="stats-bar__value">{{ value }}</div>
+          <span class="stats-bar__value">{{ value }}</span>
         </template>
         <template v-else>
-          <div class="stats-bar__value" :class="{ highlighted: value[0] >= value[1] }">{{ value[0] }}</div><div class="stats-bar__value" :class="{ highlighted: value[0] <= value[1] }">{{ value[1] }}</div>
+          <span class="stats-bar__value" :class="{ highlighted: value[0] >= value[1] }">{{ value[0] }}</span><span class="stats-bar__value" :class="{ highlighted: value[0] <= value[1] }">{{ value[1] }}</span>
         </template>
       </div>
     </div>
@@ -18,7 +18,6 @@
 </template>
 
 <script>
-
 const SCALE_COLORS = {
   'red': '#E5BCB3',
   'yellow': '#E5D9B3',

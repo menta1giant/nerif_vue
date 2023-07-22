@@ -47,13 +47,13 @@
 </template>
 
 <script>
-import DatePickerMixin from './DatePickerMixin.js';
+import datePickerMixin from './datePickerMixin.js';
 import { weekDays, monthNames } from './const';
 
 export default {
   name: 'DatePickerPopup',
   mixins: [
-    DatePickerMixin,
+    datePickerMixin,
   ],
   props: {
     modelValue: {

@@ -15,8 +15,8 @@ export default {
   methods: {
     toggleFilter(idx) {
       this.$store.commit('toggleMatchesFilter', idx);
-    }
-  }
+    },
+  },
 }
 </script>
 

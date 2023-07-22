@@ -1,5 +1,5 @@
 <template>
-  <div class="tf-post">
+  <article class="tf-post">
     <div class="tf-post__header">
       <span class="tf-post__capper-name">{{ author.name }}</span>
       <div class="tf-post__icons">
@@ -10,7 +10,7 @@
     <p class="tf-post__body">
         {{ content }}
     </p>
-  </div>
+  </article>
 
   <warn-modal
     v-model="isRedirectModalShown"

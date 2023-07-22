@@ -1,12 +1,12 @@
 <template>
-  <div class="tf-post">
+  <article class="tf-post">
     <div class="tf-post__header">
       <animated-placeholder width="50%"/>
     </div>
     <p class="tf-post__body">
       <animated-placeholder width="100%" height="56px"/>
     </p>
-  </div>
+  </article>
 </template>
   
 <script>

@@ -1,19 +1,19 @@
 <template>
-  <div class="match-card match-card-skeleton">
+  <article class="match-card match-card-skeleton">
     <div class="match-card__upper-wrapper">
-        <div class="match-card-skeleton__team-block">
-          <animated-placeholder width="100px" height="auto" border-radius="6px"/>
-          <animated-placeholder width="50px" height="auto" border-radius="6px"/>
-        </div>
-        <div class="match-info-wrapper"> 
-          <animated-placeholder width="auto" height="70px" border-radius="6px"/>
-        </div>
-        <div class="match-card-skeleton__team-block">
-          <animated-placeholder width="100px" height="auto" border-radius="6px"/>
-          <animated-placeholder width="50px" height="auto" border-radius="6px"/>
-        </div>
+      <div class="match-card-skeleton__team-block">
+        <animated-placeholder width="100px" height="auto" border-radius="6px"/>
+        <animated-placeholder width="50px" height="auto" border-radius="6px"/>
+      </div>
+      <div class="match-info-wrapper"> 
+        <animated-placeholder width="auto" height="70px" border-radius="6px"/>
+      </div>
+      <div class="match-card-skeleton__team-block">
+        <animated-placeholder width="100px" height="auto" border-radius="6px"/>
+        <animated-placeholder width="50px" height="auto" border-radius="6px"/>
+      </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>

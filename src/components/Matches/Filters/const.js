@@ -9,11 +9,6 @@ export const filters = [
     'title': 'Opponent Pick',
     'value': true,
   },
-  //{
-  //  'id': 'entire',
-  //  'title': 'Entire match',
-  //  'default': true,
-  //},
   {
     'id': 'map1',
     'title': 'Map 1',

@@ -1,33 +1,33 @@
 <template>
-  <div class="match-card" :class="{ 'match-card--selected': isSelected }">
+  <article class="match-card" :class="{ 'match-card--selected': isSelected }">
     <div class="match-card__upper-wrapper">
-        <match-team-block 
-          :team-info="match.match.team_favorite" 
-          :endorsements-count="match.endorsements.favorite" 
-          :odds-change="match.match.odds_change" 
-          :is-odds-change-significant="isOddsChangeSignificant"
-          :is-predicted="match.scores.favorite.is_predicted"
-          is-left
-        />
-        <div class="match-info-wrapper">
-            <div class="match-info">
-                <span class="match-date">{{ match.match.match_date }}</span>
-                <span class="match-type">Map {{ match.map_order }}</span>
-            </div>
-            <div class="match-scores-wrapper">
-              <template v-if="hasScores">
-                <div class="match-score">{{ match.match.team_favorite.map_score }}</div>
-                <div class="match-score">{{ match.match.team_opponent.map_score }}</div>
-              </template>
-            </div>
+      <match-team-block 
+        :team-info="match.match.team_favorite" 
+        :endorsements-count="match.endorsements.favorite" 
+        :odds-change="match.match.odds_change" 
+        :is-odds-change-significant="isOddsChangeSignificant"
+        :is-predicted="match.scores.favorite.is_predicted"
+        is-left
+      />
+      <div class="match-info-wrapper">
+        <div class="match-info">
+            <span class="match-date">{{ match.match.match_date }}</span>
+            <span class="match-type">Map {{ match.map_order }}</span>
         </div>
-        <match-team-block 
-          :team-info="match.match.team_opponent" 
-          :endorsements-count="match.endorsements.opponent" 
-          :odds-change="match.match.odds_change" 
-          :is-odds-change-significant="isOddsChangeSignificant"
-          :is-predicted="match.scores.opponent.is_predicted"
-        />
+        <div class="match-scores-wrapper">
+          <template v-if="hasScores">
+            <div class="match-score">{{ match.match.team_favorite.map_score }}</div>
+            <div class="match-score">{{ match.match.team_opponent.map_score }}</div>
+          </template>
+        </div>
+      </div>
+      <match-team-block 
+        :team-info="match.match.team_opponent" 
+        :endorsements-count="match.endorsements.opponent" 
+        :odds-change="match.match.odds_change" 
+        :is-odds-change-significant="isOddsChangeSignificant"
+        :is-predicted="match.scores.opponent.is_predicted"
+      />
     </div>
     <div class="match-card__scale" :style="scaleStyles">
       <div class="match-card__scale-divider match-card__scale-divider--fav" :style="scaleDividerStyles[0]">
@@ -43,7 +43,7 @@
         </v-tooltip>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>
@@ -53,7 +53,7 @@ const ODDS_CHANGE_SIGNIFICANCE_FACTOR = 0.1;
 export default {
   name: 'MatchCard',
   components: {
-    MatchTeamBlock
+    MatchTeamBlock,
   },
   props: {
     match: Object,

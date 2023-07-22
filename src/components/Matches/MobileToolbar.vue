@@ -1,11 +1,11 @@
 <template>
-  <div class="toolbar mobile">
-    <div class="toolbar__items">
-      <div class="toolbar__controls">
+  <div class="matches-toolbar mobile">
+    <div class="matches-toolbar__items">
+      <div class="matches-toolbar__controls">
         <date-picker />
         <v-popup v-model="isFiltersDropdownVisible" :horizontal-margin="8">
           <template #trigger>
-            <div class="toolbar__icon" :class="{ active: isFiltersDropdownVisible }">
+            <div class="matches-toolbar__icon" :class="{ active: isFiltersDropdownVisible }">
               <v-icon-button name="filter" tooltip-content="Filters" :disable-focus="isFiltersDropdownVisible" />
             </div>
           </template>
@@ -14,11 +14,11 @@
           </template>
         </v-popup>
       </div>
-      <div class="toolbar__navigation">
-        <div class="toolbar__icon" :class="{ active: isMatchesTabOpened }" @click="toggleOpenedTab(true)">
+      <div class="matches-toolbar__navigation">
+        <div class="matches-toolbar__icon" :class="{ active: isMatchesTabOpened }" @click="toggleOpenedTab(true)">
           <v-icon-button name="gamepad" tooltip-content="Matches" />
         </div>
-        <div class="toolbar__icon" :class="{ active: !isMatchesTabOpened }" @click="toggleOpenedTab(false)">
+        <div class="matches-toolbar__icon" :class="{ active: !isMatchesTabOpened }" @click="toggleOpenedTab(false)">
           <v-icon-button name="square-rss" tooltip-content="Telegram feed" />
         </div>
       </div>

@@ -35,11 +35,11 @@
     line-height: $lh-small;
 
     display: -webkit-box;
-   -webkit-line-clamp: 4;
-   -webkit-box-orient: vertical;  
-   overflow: hidden;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
 
-   white-space: pre-line;
+    white-space: pre-line;
   }
 }
 

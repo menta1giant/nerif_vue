@@ -1,5 +1,5 @@
 <template>
-  <div class="matches" ref="matches">
+  <section class="matches" ref="matches">
     <template v-if="isMatchCardInfoOpened">
       <match-card :key="`match_${ openedMatchCard.match.match_id }`" :match="openedMatchCard" is-selected @click="toggleMatchCard()" />
     </template>
@@ -9,8 +9,8 @@
         <match-card-skeleton v-for="(match, idx) in (new Array(hasMatches ? 1 : 8))" :key="`match-skeleton_${ idx }`" />
       </template>
     </template>
-  </div>
-  <div class="match-stats" v-if="isMatchCardInfoOpened">
+  </section>
+  <section class="match-stats" v-if="isMatchCardInfoOpened">
     <div class="match-stats__tabs">
       <div class="button-group">
         <div v-for="(tab, idx) in tabs" :key="idx" class="groupped-button" :class="{ 'groupped-button--active': activeTab == idx }" @click="changeActiveTab(idx)">{{ tab }}</div>
@@ -35,7 +35,7 @@
         <line-chart :colors="chartColors" :data="oddsData" />
       </div>
     </template>
-  </div>
+  </section>
 </template>
 
 <script>
