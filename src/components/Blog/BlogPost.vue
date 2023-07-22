@@ -80,7 +80,7 @@ export default {
     align-items: center;
 
     &:deep(.v-icon) {
-      font-size: $fs-h4;
+      @include text-h4;
     }
   }
 

@@ -26,7 +26,7 @@
           <h3 class="h3">Telegram Feed</h3>
           <v-icon-button name="circle-question" tooltip-content="This section contains Telegram post from revered CS:GO cappers"/>
         </div>
-        <div class="feed__cappers-select__label"><v-label><b>Select cappers.</b></v-label></div>
+        <label class="feed__cappers-select__label label">Select cappers</label>
         <div class="feed__cappers-select__wrapper">
           <v-multiselect :options="cappers" placeholder="By default, all cappers are selected" @change="handleSelectCappers">Я мультиселект, меня можно кликать</v-multiselect>
         </div>

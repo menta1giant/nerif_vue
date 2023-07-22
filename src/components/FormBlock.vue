@@ -1,7 +1,7 @@
 <template>
   <div class="form-block" :class="{ fluid: fluid }">
     <div class="form-block__header">
-      <span class="h4">{{ header }}</span>
+      <span class="h4 text-bold text-ds-700">{{ header }}</span>
       <span>{{ subheader }}</span>
     </div>
     <slot></slot>
@@ -42,6 +42,8 @@ export default {
 
   &__header {
     @include divider-bottom-bleak;
+    @include flex-column;
+
     padding-bottom: 1rem;
     margin-bottom: 1rem;
   }

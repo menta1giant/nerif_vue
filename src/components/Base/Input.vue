@@ -128,7 +128,7 @@ export default {
 input {
   width: 100%;
 
-  padding: .5rem;
+  padding: .5rem .75rem;
   color: $primary-ds-800;
 
   background: $black-10;

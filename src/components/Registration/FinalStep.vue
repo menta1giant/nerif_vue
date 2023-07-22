@@ -2,6 +2,7 @@
   <form-block 
     header="Tell us more about yourself" 
     cta-text="Complete registration" 
+    :min-width="500"
 
     :validation-rules="validationRules"
     :form-fields="formFields"

@@ -24,12 +24,12 @@ export default {
 
 <style lang="scss" scoped>
 .v-switcher-field {
+  @include text-xs;
+
   display: flex;
   align-items: center;
 
   min-width: 0;
   gap: .5rem;
-
-  font-size: $fs-xs;
 }
 </style>

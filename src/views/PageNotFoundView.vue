@@ -70,7 +70,7 @@
   }
 
   &__subheader {
-    font-size: $fs-h3;
+    @include text-h3;
   }
 
   @media screen and (max-width: $tablet-breakpoint) {
@@ -86,7 +86,7 @@
     }
 
     &__subheader {
-      font-size: $fs-h4;
+      @include text-h4;
     }
 
     p {

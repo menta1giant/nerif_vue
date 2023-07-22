@@ -1,7 +1,7 @@
 <template>
   <v-section responsive padded>
     <div class="registration">
-      <h1 class="h2">Congratulations on joining Nerif!</h1>
+      <h1 class="h2 text-bold">Congratulations on joining Nerif!</h1>
       <registration-steps :active-step="activeStep"/>
       <component :is="steps[activeStep]" @change-step="activeStep++"/>
     </div>
@@ -63,10 +63,13 @@ export default {
 
 <style lang="scss" scoped>
 .registration {
-  max-width: 100%;
-}
+  @include flex-column;
+  gap: .5rem;
 
-h2 {
-  margin-bottom: 1.5rem;
+  max-width: 100%;
+
+  > :first-child {
+    margin-bottom: 1rem;
+  }
 }
 </style>

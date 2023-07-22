@@ -228,6 +228,7 @@ export default {
   height: fit-content;
 
   &__body {
+    display: flex;
     min-width: fit-content;
   }
 

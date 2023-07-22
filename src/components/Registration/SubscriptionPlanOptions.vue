@@ -48,7 +48,7 @@ export default {
 
 <style lang="scss" scoped>
 .subscription-plan-options-wrapper {
-  @include divider-bottom;
+  @include divider-bottom-bleak;
 
   display: flex;
   gap: 1.5rem;

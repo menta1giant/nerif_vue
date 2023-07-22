@@ -34,13 +34,12 @@ export default {
 
   &__header {
     @include divider-bottom-bleak;
+    @include text-large;
 
     display: flex;
     justify-content: space-between;
 
     font-weight: $fw-semi-bold;
-    font-size: $fs-large;
-    line-height: $lh-large;
     padding-bottom: 1rem;
   }
 

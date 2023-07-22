@@ -26,9 +26,9 @@ export default {
   gap: 1rem;
 
   h5 {
+    @include text-large;
+
     color: $primary-s-700;
-    font-size: $fs-large;
-    line-height: $lh-large;
     font-weight: $fw-semi-bold;
 
     cursor: pointer;

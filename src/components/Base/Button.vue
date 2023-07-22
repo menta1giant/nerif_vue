@@ -133,24 +133,21 @@ export default {
   }
 
   &--small {
-    padding: .5rem 2rem;
+    @include text-medium;
 
-    font-size: $fs-medium;
-    line-height: $lh-medium;
+    padding: .5rem 2rem;
   }
 
   &--medium {
-    padding: .75rem 2rem;
+    @include text-large;
 
-    font-size: $fs-large;
-    line-height: $lh-large;
+    padding: .75rem 2rem;
   }
 
   &--large {
+    @include text-h4;
+    
     padding: .75rem 3rem;
-
-    font-size: $fs-h4;
-    line-height: $fs-h4;
   }
 
   &--primary {

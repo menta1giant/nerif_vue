@@ -34,5 +34,6 @@ export default {
 
   height: min-content;
   width: 1em;
+  line-height: $lh-default;
 }
 </style>

@@ -25,10 +25,9 @@ html, body {
 }
 
 p {
-  font-size: $fs-medium;
+  @include text-medium;
+  
   font-weight: $fw-regular;
-
-  line-height: $lh-medium;
 }
 
 b {

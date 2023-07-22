@@ -47,13 +47,13 @@ export default {
   height: 2.5rem;
   
   &__body {
+    @include text-large;
+
     display: flex;
     align-items: center;
     gap: .5rem;
 
-    font-size: $fs-large;
     font-weight: $fw-semi-bold;
-    line-height: $lh-large;
     color: $primary-ds-700;
 
     .v-icon {

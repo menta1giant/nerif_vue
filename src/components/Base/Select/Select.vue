@@ -118,7 +118,7 @@ export default {
       align-items: center;
 
       .v-loader {
-        --border-color: #{$primary-s-100};
+        color: #{$primary-s-100};
       }
     }
   }

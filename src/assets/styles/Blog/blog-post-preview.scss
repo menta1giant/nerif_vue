@@ -119,24 +119,24 @@
   }
 
   &__tag {
+    @include text-xxs;
+
     padding: 0 1rem;
 
     border-radius: 20px;
 
     font-family: $ff-display;
     font-weight: $fw-semi-bold;
-    font-size: $fs-xxs;
   }
 
   &__body {
     @include flex-column;
+    @include text-large;
 
     gap: .75rem;
     flex: 1;
 
     padding: 1rem;
-
-    font-size: $fs-large;
 
     h5 {
       color: $primary-s-700;
@@ -160,12 +160,12 @@
   }
 
   &__footer {
+    @include text-xxs;
+
     display: flex;
     flex-wrap: wrap;
     flex: 1;
     align-items: flex-end;
-
-    font-size: $fs-xxs;
 
     margin-top: auto;
 

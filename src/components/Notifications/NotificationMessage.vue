@@ -50,10 +50,9 @@ export default {
 
   &__content {
     @include flex-column;
-    gap: .5rem;
+    @include text-medium;
 
-    font-size: $fs-medium;
-    line-height: $lh-medium;
+    gap: .5rem;
   }
 
   &__header {

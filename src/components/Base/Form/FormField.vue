@@ -20,6 +20,7 @@
       <label 
         v-if="label" 
         :for="id"
+        class="label"
       >
         {{ label }}
       </label>
@@ -28,6 +29,7 @@
       <label 
         v-if="label" 
         :for="id"
+        class="label"
       >
         {{ label }}
       </label>
@@ -176,29 +178,15 @@ export default {
   display: grid;
   grid-template-rows: min-content;
   gap: .25rem;
-
+  
   &--inline {
     display: flex;
     align-items: center;
     gap: .5rem;
 
-    .v-label {
-      font-size: .9em;
+    .label {
+      font-weight: $fw-medium;
     }
   }
-}
-
-label {
-  white-space: nowrap;
-  overflow-y: hidden;
-  overflow-y: visible;
-  text-overflow: ellipsis;
-
-  font-weight: $fw-medium;
-  color: $primary-ds-900;
-  font-size: 1em;
-  line-height: $lh-small;
-
-  flex: 1;
 }
 </style>

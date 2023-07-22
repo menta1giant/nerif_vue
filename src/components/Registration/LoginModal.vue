@@ -75,9 +75,9 @@ export default {
   margin-top: 1rem;
 }
 .link-text {
+  @include text-xs;
+
   color: $primary-s-400;
-  font-size: $fs-xs;
-  line-height: $lh-small;
 
   cursor: pointer;
 

@@ -48,6 +48,8 @@ export default {
 <style lang="scss" scoped>
 .v-tooltip {
   &__content {
+    @include text-xxs;
+
     position: relative;
     background: $primary-ds-800;
     outline: 1px solid $black-10;
@@ -56,8 +58,6 @@ export default {
 
     color: $black-10;
     font-weight: $fw-regular;
-    font-size: $fs-xxs;
-    line-height: $lh-small;
 
     &::after {
       content: '';

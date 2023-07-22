@@ -49,12 +49,12 @@
 
 
   &__right {
+    @include text-medium;
+
     display: flex;
     align-items: center;
 
     color: $accent-500;
-    font-size: $fs-medium;
-    line-height: $lh-medium;
 
     gap: 16px;
 
@@ -66,8 +66,8 @@
 }
 
 .logo-wrapper {
+  @include text-h4;
   font-family: $ff-logo;
-  font-size: $fs-h4;
   color: $primary-ds-100;
   cursor: pointer;
 
@@ -103,6 +103,7 @@
 
 .user-plan-info {
   @include flex-column;
+  @include text-xs;
   
   align-items: flex-end;
   gap: .25rem;
@@ -110,12 +111,11 @@
   font-family: $ff-display;
   color: $black-10;
   font-weight: $fw-semi-bold;
-  font-size: $fs-xs;
-  line-height: $lh-small;
 
   &__days-left {
+    @include text-xxs;
+
     font-weight: $fw-regular;
-    font-size: $fs-xxs;
   }
 }
 
@@ -131,8 +131,9 @@
   cursor: pointer;
 
   &.notifications-button {
+    @include text-h4;
+    
     position: relative;
-    font-size: $fs-h4;
     color: $black-500;
 
     cursor: default;

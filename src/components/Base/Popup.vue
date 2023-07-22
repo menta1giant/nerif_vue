@@ -62,11 +62,12 @@ export default {
   padding: .5rem;
 
   &__close {
+    @include text-large;
+    
     position: absolute;
     right: 12px;
     top: 12px;
     
-    font-size: $fs-large;
     color: $primary-ds-300;
 
     cursor: pointer;

@@ -1,8 +1,8 @@
 .tf-post {
   @include flex-column;
+  @include text-xs;
 
   background: $primary-ds-50;
-  font-size: $fs-xs;
   padding: 1em;
   gap: 8px;
 
@@ -45,6 +45,6 @@
 
 @media screen and (max-width: $mobile-breakpoint) {
   .tf-post {
-    font-size: $fs-medium;
+    @include text-medium;
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <v-section responsive>
     <div class="help-center-welcome">
-      <h1 class="h2">Welcome to help center!</h1>
+      <h1 class="h2 text-bold">Welcome to help center!</h1>
       <p>Here are a few ways to contact us. Make sure to tell us all the info about the situation and Nerif’s proffessional staff will help you in no time!</p>
     </div>
   </v-section>
@@ -58,11 +58,6 @@ export default {
   gap: .5rem;
 
   max-width: 50ch;
-
-  p {
-    font-size: $fs-medium;
-    line-height: $lh-medium;
-  }
 }
 
 .help-center {

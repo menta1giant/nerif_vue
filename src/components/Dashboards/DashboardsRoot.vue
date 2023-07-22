@@ -144,8 +144,8 @@ export default {
   }
 
   h3 {
-    font-size: $fs-h4;
-    line-height: $lh-h4;
+    @include text-h4;
+    
     font-weight: $fw-regular;
   }
 
@@ -168,12 +168,12 @@ export default {
 
 .profits-chart {
   &__meta {
+    @include text-xs;
+
     display: grid;
     column-gap: .25rem;
     grid-template-columns: repeat(4, auto);
 
-    font-size: $fs-xs;
-    line-height: $lh-small;
     font-weight: $fw-medium;
     
     div {
@@ -286,7 +286,7 @@ export default {
     }
 
     &__header {
-      font-size: $fs-large;
+      @include text-large;
       font-weight: $fw-medium;
       color: $primary-s-700;
 
@@ -294,9 +294,9 @@ export default {
     }
 
     &__meta {
+      @include text-xxs;
+      
       color: $primary-s-100;
-      font-size: $fs-xxs;
-      line-height: $lh-small;
     }
 
     &__teams {

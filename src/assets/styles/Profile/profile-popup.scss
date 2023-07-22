@@ -7,17 +7,16 @@
   &__header {
     @include divider-bottom-bleak;
     @include flex-column;
+    @include text-large;
     
     gap: .25rem;
 
     font-weight: $fw-semi-bold;
-    font-size: $fs-large;
-    line-height: $lh-large;
     padding-bottom: 1rem;
 
     &__email {
-      font-size: $fs-xs;
-      line-height: $lh-small;
+      @include text-xs;
+
       font-weight: $fw-regular;
       color: $primary-ds-500;
     }

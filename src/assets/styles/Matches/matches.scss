@@ -14,11 +14,12 @@
   padding-top: 1rem;
 
   &__title {
+    @include text-h4;
+
     padding: 0 1rem;
     margin-bottom: 1.25rem;
 
     font-weight: $fw-bold;
-    font-size: $fs-h4;
 
     display: flex;
     justify-content: center;
@@ -31,17 +32,17 @@
   }
 
   &__cappers-select__label {
+    @include text-xs;
+
     padding: 0 1rem;
-    font-size: $fs-xs;
   }
 
   &__cappers-select__wrapper {
     @include flex-column;
+    @include text-xs;
 
     padding: .25rem 1rem 1rem 1rem;
 
-    font-size: $fs-xs;
-    line-height: $lh-small;
     font-weight: $fw-regular;
 
     align-items: flex-start;
@@ -51,7 +52,7 @@
   }
 
   &__posts-list {
-    font-size: $fs-xxs;
+    @include text-xxs;
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
@@ -60,12 +61,6 @@
     padding: 0 .8rem 1rem 1rem;
     margin-right: .2rem;
     overflow-y: scroll;
-
-    //scrollbar-width: none;
-
-    //&::-webkit-scrollbar {
-    //  display: none;
-    //}
   }
 }
 

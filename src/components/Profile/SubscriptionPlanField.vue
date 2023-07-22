@@ -1,6 +1,6 @@
 <template>
   <div class="subscription-plan-field">
-    <v-label>Subscription plan</v-label>
+    <label class="label">Subscription plan</label>
     <v-button size="small" type="transparent"><v-icon name="cog" />{{ userInfo.subscription?.plan }} <span>(Until 2023-04-26)</span></v-button>
   </div>
 </template>

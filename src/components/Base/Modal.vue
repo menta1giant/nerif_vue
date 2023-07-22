@@ -132,11 +132,12 @@ export default {
   }
 
   &__close {
+    @include text-large;
+
     position: absolute;
     right: 12px;
     top: 12px;
     
-    font-size: $fs-large;
     color: $primary-ds-300;
 
     cursor: pointer;
@@ -144,14 +145,13 @@ export default {
 
   &__header { 
     @include divider-bottom-bleak;
+    @include text-h4;
 
     display: flex;
     gap: .75rem;
     padding-bottom: 1rem;
     padding-right: 2rem;
 
-    font-size: $fs-h4;
-    line-height: $lh-h4;
     font-weight: $fw-semi-bold;
     font-family: $ff-display;
   }

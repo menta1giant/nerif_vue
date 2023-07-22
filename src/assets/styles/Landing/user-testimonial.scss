@@ -75,9 +75,10 @@
   }
 
   &__name {
+    @include text-h4;
+
     display: flex;
 
-    font-size: $fs-h4;
     font-weight: $fw-semi-bold;
     color: $primary-s-700;
     text-decoration-line: underline;

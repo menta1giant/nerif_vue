@@ -9,7 +9,7 @@
 
   &__header {
     span {
-      font-size: $fs-large;
+      @include text-large;
       font-weight: $fw-medium;
     }
   }
@@ -20,9 +20,7 @@
     gap: .5rem;
     padding-bottom: 4rem;
 
-    &:deep(input) {
-      height: 3.25rem;
-    }
+    font-size: $fs-large;
 
     .v-input {
       flex: 1;
@@ -73,26 +71,26 @@
   }
 
   &__footer {
+    @include text-xs;
+
     padding-bottom: 2rem;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    font-size: $fs-xs;
-    line-height: $lh-small;
     color: $black-100;
     font-weight: $fw-regular;
   }
 
   &__socials {
+    @include text-h4;
+
     padding: .5rem 1.5rem;
 
     display: flex;
     align-items: center;
     gap: 1rem;
-
-    font-size: $fs-h4;
 
     background: $black-10;
     border-radius: 20px;

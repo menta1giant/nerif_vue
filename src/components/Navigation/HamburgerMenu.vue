@@ -41,6 +41,8 @@ export default {
   }
 
   a {
+    @include text-h4;
+
     display: flex;
     gap: .75rem;
     align-items: center;
@@ -48,8 +50,6 @@ export default {
     text-align: right;
 
     color: $black-10;
-    font-size: $fs-h4;
-    line-height: $lh-h4;
     font-family: $ff-display;
     font-weight: $fw-semi-bold;
     padding: .5rem 0;

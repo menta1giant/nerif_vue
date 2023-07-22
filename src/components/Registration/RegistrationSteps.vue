@@ -84,10 +84,10 @@ export default {
   }
 
   &__title {
+    @include text-xs;
+
     text-align: center;
     flex-basis: 100%;
-    font-size: $fs-xs;
-    line-height: $lh-small;
     color: $primary-ds-200;
     font-weight: $fw-medium;
 

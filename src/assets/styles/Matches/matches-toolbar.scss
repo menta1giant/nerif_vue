@@ -36,9 +36,9 @@
 
   &__icon {
     @include clickable-icon;
+    @include text-h4;
 
     color: $primary-ds-600;
-    font-size: $fs-h4;
 
     display: flex;
     align-items: center;

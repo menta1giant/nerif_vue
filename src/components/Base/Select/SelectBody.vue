@@ -24,14 +24,15 @@ export default {
 
 <style lang="scss" scoped>
 .v-select__body {
+  font-size: $fs-xs;
+  line-height: $lh-default;
+
   border: 1px solid $black-100;
   border-radius: $border-radius-small;
   background: $black-10;
   width: 100%;
   padding: .25rem;
   padding-right: .5rem;
-
-  font-size: $fs-xs;
 
   display: flex;
   align-items: center;

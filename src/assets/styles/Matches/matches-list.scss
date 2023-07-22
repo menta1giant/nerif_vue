@@ -10,10 +10,10 @@
 .match-stats {
   @include thick-rounded-block;
   @include flex-column;
+  @include text-medium;
 
   margin-top: 2rem;
   padding: 2em;
-  font-size: $fs-medium;
   width: 100%;
   overflow: auto;
   
@@ -30,14 +30,13 @@
     gap: .5rem;
 
     h2 {
-      font-size: $fs-large;
-      line-height: $lh-large;
+      @include text-large;
+      
       margin-bottom: .25rem;
     }
 
     p {
-      font-size: $fs-xs;
-      line-height: $lh-small;
+      @include text-xs;
     }
 
     a>p {

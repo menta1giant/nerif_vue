@@ -23,8 +23,8 @@
 }
 
 .error-message {
-  font-size: $fs-xxs;
-  line-height: $lh-small;
+  @include text-xxs;
+  
   color: $red-600;
   font-weight: $fw-medium;
 }
@@ -79,6 +79,20 @@
 
 .text-ds-700 {
   color: $primary-ds-700;
+}
+
+.label {
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-y: visible;
+  text-overflow: ellipsis;
+
+  font-weight: $fw-semi-bold;
+  color: $primary-ds-600;
+  font-size: 1em;
+  line-height: $lh-small;
+
+  flex: 1;
 }
 
 .mobile:not(.desktop) {

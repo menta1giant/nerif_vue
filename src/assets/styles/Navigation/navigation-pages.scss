@@ -64,9 +64,9 @@
     } 
   
     .v-icon {
+      @include text-h4;
+
       display: flex;
-  
-      font-size: $fs-h4;
     }
   }
   

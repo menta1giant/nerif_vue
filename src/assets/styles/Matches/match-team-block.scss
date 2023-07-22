@@ -2,18 +2,19 @@
 
 .team-block {
   @include flex-column;
+  @include text-medium;
   
   flex: 1;
   justify-content: flex-end;
 
-  font-size: $fs-medium;
   font-size: clamp($fs-xxs, 2vw, $fs-medium);
   min-width: 0;
   gap: .25em;
 
   &__name {
+    @include text-medium;
+
     font-family: $ff-display;
-    line-height: $lh-medium;
     font-weight: $fw-semi-bold;
     text-align: left;
     color: $primary-ds-700;
@@ -54,7 +55,8 @@
   }
 
   &__meta {
-    font-size: $fs-medium;
+    @include text-medium;
+    
     padding: .25em;
     gap: .25em;
 

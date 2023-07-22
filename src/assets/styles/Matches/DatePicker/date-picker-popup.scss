@@ -9,12 +9,12 @@
   }
 
   &__header {
+    @include text-medium;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: .5rem 1rem;
-    font-size: $fs-medium;
-    line-height: $lh-medium;
   }
 
   &__change-month {
@@ -35,7 +35,6 @@
   }
 
   &__days {
-
     font-size: $fs-medium;
     line-height: $lh-small;
     border-spacing: 30px;

@@ -69,8 +69,7 @@ export default {
   }
 
   &__title {
-    font-size: $fs-large;
-    line-height: $lh-large;
+    @include text-large;
     color: $primary-s-700;
     font-weight: $fw-semi-bold;
     font-family: $ff-display;

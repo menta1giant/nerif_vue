@@ -1,9 +1,9 @@
 .date-picker-item {
   @include noselect;
   @include flex-column;
+  @include text-medium;
 
   width: 3em;
-  font-size: $fs-medium;
   background: $black-10;
   font-weight: $fw-regular;
   border: 1px solid $primary-ds-100;
