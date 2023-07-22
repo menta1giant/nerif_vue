@@ -1,0 +1,25 @@
+.image-upload {
+  @include flex-column;
+  
+  gap: .5rem;
+
+  width: 10rem;
+
+  input[type=file] {
+    display: none;
+  }
+
+  img {
+    margin: auto;
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+
+    border: 2px solid $primary-ds-100;
+    border-radius: $border-radius-small;
+
+    &.image-upload__image--loading {
+      border: none;
+    }
+  }
+}

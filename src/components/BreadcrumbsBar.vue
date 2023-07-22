@@ -38,27 +38,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.breadcrumbs-bar {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-
-  width: 100%;
-  height: 2.5rem;
-  
-  &__body {
-    @include text-large;
-
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-
-    font-weight: $fw-semi-bold;
-    color: $primary-ds-700;
-
-    .v-icon {
-      color: $primary-ds-400;
-    }
-  }
-}
+@import '@/assets/styles/breadcrumbs-bar.scss';
 </style>

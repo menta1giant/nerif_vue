@@ -33,21 +33,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#global-notifications {
-  position: fixed;
-  top: calc($navbar-height + 1rem);
-  right: 0px;
-
-  display: grid;
-  gap: 1.25rem;
-
-  width: 20rem;
-  padding: 0 1rem;
-
-  @media screen and (max-width: $mobile-breakpoint) {
-    width: 100vw;
-  }
-
-  z-index: 9000;
-}
+@import '@/assets/styles/GlobalNotifications/global-notifications.scss';
 </style>

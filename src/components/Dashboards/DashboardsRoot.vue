@@ -88,9 +88,9 @@
 </template>
 
 <script>
-import LineChart from '@/components/LineChart.vue';
-import BarChart from '@/components/BarChart.vue';
-import { BRIGHT_COLORS, DARK_COLORS } from '@/components/chartConfig';
+import LineChart from '@/components/charts/LineChart.vue';
+import BarChart from '@/components/charts/BarChart.vue';
+import { BRIGHT_COLORS, DARK_COLORS } from '@/components/charts/chartConfig';
 
 export default {
   name: 'DashboardsRoot',

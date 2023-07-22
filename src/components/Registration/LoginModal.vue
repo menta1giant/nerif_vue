@@ -80,9 +80,5 @@ export default {
   color: $primary-s-400;
 
   cursor: pointer;
-
-  b {
-    font-weight: $fw-semi-bold;
-  }
 }
 </style>

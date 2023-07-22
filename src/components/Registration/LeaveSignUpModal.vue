@@ -11,7 +11,7 @@
       </div>
     </template>
     <template #cta>
-      <v-button type="primary" size="medium" @click="handleCloseModal">Continue sign up</v-button><v-button type="secondary" size="medium" @click="$emit('confirm')">Leave the page</v-button>
+      <v-button type="primary" size="small" @click="handleCloseModal">Continue sign up</v-button><v-button type="secondary" size="small" @click="$emit('confirm')">Leave the page</v-button>
     </template>
   </v-modal>
 </template>
@@ -49,13 +49,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.leaving-sign-up-modal__body {
-  padding-block: 1.25rem;
-
-  p {
-    max-width: 50ch;
-    line-height: $lh-body;
-    margin-bottom: 1.25rem;
-  }
+p {
+  max-width: 50ch;
+  line-height: $lh-body;
+  margin-bottom: 1.25rem;
 }
 </style>

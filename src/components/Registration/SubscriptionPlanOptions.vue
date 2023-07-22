@@ -47,16 +47,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.subscription-plan-options-wrapper {
-  @include divider-bottom-bleak;
-
-  display: flex;
-  gap: 1.5rem;
-
-  padding: .75rem 0 1.25rem;
-
-  @media screen and (max-width: $mobile-breakpoint) {
-    flex-wrap: wrap;
-  }
-}
+@import '@/assets/styles/Registration/subscription-plan-options.scss';
 </style>

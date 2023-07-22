@@ -28,26 +28,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.notifications-popup {
-  padding: .5rem;
-  color: $primary-ds-800;
-
-  &__header {
-    @include divider-bottom-bleak;
-    @include text-large;
-
-    display: flex;
-    justify-content: space-between;
-
-    font-weight: $fw-semi-bold;
-    padding-bottom: 1rem;
-  }
-
-  &__buttons {
-    @include flex-column;
-    gap: .5rem;
-
-    margin-top: 1rem;
-  }
-}
+@import '@/assets/styles/Notifications/notifications-popup.scss';
 </style>

@@ -44,8 +44,8 @@ import MatchCard from './MatchCard.vue';
 import MatchCardSkeleton from './MatchCardSkeleton.vue';
 import StatsBar from './StatsBar.vue';
 import { matchStatsTitlesMap } from './const';
-import LineChart from '@/components/LineChart.vue';
-import { BRIGHT_COLORS } from '@/components/chartConfig';
+import LineChart from '@/components/charts/LineChart.vue';
+import { BRIGHT_COLORS } from '@/components/charts/chartConfig';
 
 export default {
   name: 'MatchesList',

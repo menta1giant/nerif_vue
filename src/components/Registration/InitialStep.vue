@@ -51,33 +51,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.social-sign-up-buttons {
-  display: grid;
-  gap: .75rem;
-}
-
-.sign-up-method-divider {
-  position: relative;
-  width: 100%;
-  text-align: center;
-  margin-top: 1rem;
-
-  &:before {
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    top: 50%;
-    left: 0;
-    background: $primary-ds-100;
-    content: '';
-    z-index: 99;
-  }
-
-  span {
-    position: relative;
-    padding: 0 .5rem;
-    background: $black-10;
-    z-index: 100;
-  }
-}
+@import '@/assets/styles/Registration/initial-step.scss';
 </style>

@@ -49,25 +49,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.upload-button {
-  input {
-    display: none;
-  }
-
-  &__file-name {
-    @include text-xxs;
-
-    margin: .5rem 0 0 1.5rem;
-
-    color: $primary-ds-500;
-  }
-}
-.v-icon {
-  color: $primary-ds-200;
-}
-
-span {
-  text-decoration: dashed underline;
-  text-underline-offset: 8px;
-}
+@import '@/assets/styles/upload-button.scss';
 </style>

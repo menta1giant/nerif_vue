@@ -70,7 +70,7 @@ export function validatePasswordConfirmation(password, formData) {
 export function validateSelect(value) {
   const parsedValue = parseInt(value);
   
-  return !isNaN(parsedValue) && typeof parsedValue == 'number'
+  return !isNaN(parsedValue) && typeof parsedValue == 'number';
 }
 
 export function validateString(string) {

@@ -57,13 +57,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.chart-container {
-  width: 600px; 
-  margin: 0 auto;
-}
-
-canvas {
-  background-color: v-bind(backgroundColor);
-  margin: -.25rem -2rem;
-}
+@import '@/assets/styles/charts.scss';
 </style>
