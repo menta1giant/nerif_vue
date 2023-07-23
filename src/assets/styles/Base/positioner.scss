@@ -1,0 +1,47 @@
+.v-positioner {
+  position: relative;
+  min-width: fit-content;
+  height: fit-content;
+
+  &__body {
+    display: flex;
+    min-width: fit-content;
+  }
+
+  &__dropdown {
+    display: flex;
+
+    position: fixed;
+    z-index: 9000;
+    box-shadow: 0 4px 8px 0 rgba($primary-ds-900, .15);
+    visibility: hidden;
+
+    animation: .2s fadeOut;
+    animation-fill-mode: forwards;
+
+    &--visible {
+      animation: .2s fadeIn;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}

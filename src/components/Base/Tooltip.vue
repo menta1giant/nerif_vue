@@ -46,36 +46,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-tooltip {
-  &__content {
-    @include text-xxs;
-
-    position: relative;
-    background: $primary-ds-800;
-    outline: 1px solid $black-10;
-    border-radius: $border-radius-small;
-    padding: .5rem .75rem;
-
-    color: $black-10;
-    font-weight: $fw-regular;
-
-    &::after {
-      content: '';
-      position: absolute;
-      left: calc(50% - 2px);
-      top: -2px;
-      transform: rotate(45deg);
-
-      width: 4px;
-      height: 4px;
-      background: $primary-ds-800;
-    }
-
-    &--top::after {
-      top: unset !important;
-      bottom: -2px;
-      transform: rotate(45deg);
-    }
-  }
-}
+@import '@/assets/styles/Base/tooltip.scss';
 </style>

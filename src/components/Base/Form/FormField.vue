@@ -174,19 +174,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-form-field {
-  display: grid;
-  grid-template-rows: min-content;
-  gap: .25rem;
-  
-  &--inline {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-
-    .label {
-      font-weight: $fw-medium;
-    }
-  }
-}
+@import '@/assets/styles/Base/Form/form-field.scss';
 </style>

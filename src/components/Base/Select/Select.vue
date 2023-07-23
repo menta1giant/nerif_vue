@@ -107,20 +107,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-select {
-  width: 100%;
-
-  &__body {
-    &__value {
-      padding: .25rem;
-
-      display: flex;
-      align-items: center;
-
-      .v-loader {
-        color: #{$primary-s-100};
-      }
-    }
-  }
-}
+@import '@/assets/styles/Base/Select/select.scss';
 </style>

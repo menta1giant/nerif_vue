@@ -175,34 +175,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-form {
-  max-width: 100%;
-
-  &__body {
-    display: flex;
-    gap: 1.5rem;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      flex-direction: column;
-    }
-  }
-
-  &__column {
-    display: grid;
-    gap: 1rem;
-    flex: .5;
-
-    &:first-child {
-      flex: 1;
-    }
-  }
-
-  &__footer {
-    @include divider-top-bleak;
-
-    padding-top: 1rem;
-    margin-top: 1rem;
-    margin-bottom: .25rem;
-  }
-}
+@import '@/assets/styles/Base/Form/form.scss';
 </style>

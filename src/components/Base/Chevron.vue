@@ -25,25 +25,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-chevron {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: .8em;
-  margin-left: .25rem;
-  border-radius: 50%;
-  aspect-ratio: 1;
-  height: 1.5em;
-
-  cursor: pointer;
-
-  transition-duration: 300ms;
-  transform: translateY(2px);
-
-  &--active {
-    rotate: 180deg;
-    transform: translateY(0px);
-  }
-}
+@import '@/assets/styles/Base/chevron.scss';
 </style>

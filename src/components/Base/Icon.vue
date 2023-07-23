@@ -25,15 +25,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  position: relative;
-
-  height: min-content;
-  width: 1em;
-  line-height: $lh-default;
-}
+@import '@/assets/styles/Base/icon.scss';
 </style>

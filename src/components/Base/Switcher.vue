@@ -53,43 +53,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-switcher {
-  position: relative;
-  width: 40px;
-  max-width: 40px;
-  min-width: 40px;
-  height: 20px;
-  border-radius: 10px;
-  background-color: $primary-ds-200;
-  cursor: pointer;
-
-  display: flex;
-
-  &:before {
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
-    border-radius: 8px;
-    background-color: $black-10;
-    box-shadow: 0 0 4px 2px rgba($primary-ds-800, .2);
-    transition: all 0.2s ease;
-  }
-
-  &.checked {
-    background-color: $primary-s-500;
-
-    &:before {
-      left: 22px;
-    }
-  }
-
-  &__input {
-    width: 0;
-    height: 0;
-    opacity: 0;
-  }
-}
+@import '@/assets/styles/Base/switcher.scss';
 </style>

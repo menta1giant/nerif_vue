@@ -36,13 +36,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-icon-button {
-  border-radius: $border-radius-small;
-  cursor: pointer;
-
-  &:not(.v-icon-button--active):focus-visible {
-    outline: 1px solid $primary-s-100;
-    outline-offset: 2px;
-  }
-}
+@import '@/assets/styles/Base/icon-button.scss';
 </style>

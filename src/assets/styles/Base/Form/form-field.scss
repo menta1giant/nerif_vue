@@ -1,0 +1,15 @@
+.v-form-field {
+  display: grid;
+  grid-template-rows: min-content;
+  gap: .25rem;
+  
+  &--inline {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    .label {
+      font-weight: $fw-medium;
+    }
+  }
+}

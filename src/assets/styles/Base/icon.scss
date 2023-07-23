@@ -1,0 +1,11 @@
+.v-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  height: min-content;
+  width: 1em;
+  line-height: $lh-default;
+}

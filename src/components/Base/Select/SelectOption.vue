@@ -16,23 +16,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
-.v-select__option {
-  display: flex;
-  gap: .5rem;
-
-  font-weight: $fw-medium;
-  line-height: $lh-medium;
-
-  padding: .5rem;
-  cursor: pointer;
-
-  &:hover {
-    background: $primary-ds-50;
-  }
-
-  &--selected {
-    background: $primary-ds-100 !important;
-  }
-}
+@import '@/assets/styles/Base/Select/select-option.scss';
 </style>

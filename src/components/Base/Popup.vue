@@ -56,22 +56,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-popup {
-  background: $black-10;
-  border-radius: $border-radius-small;
-  padding: .5rem;
-
-  &__close {
-    @include text-large;
-    
-    position: absolute;
-    right: 12px;
-    top: 12px;
-    
-    color: $primary-ds-300;
-
-    cursor: pointer;
-  }
-}
+@import '@/assets/styles/Base/popup.scss';
 
 </style>

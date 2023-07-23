@@ -103,21 +103,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-multiselect {
-  width: 100%;
-
-  &__selected-options {
-    display: flex;
-    gap: .25rem;
-
-    .v-icon {
-      color: $primary-ds-300;
-    }
-  }
-
-  &__placeholder {
-    padding: 0.5rem;
-    line-height: $lh-medium;
-  }
-}
+@import '@/assets/styles/Base/Select/multiselect.scss';
 </style>
