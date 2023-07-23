@@ -21,12 +21,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.filters-list {
-  width: 100%;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr));
-  grid-column-gap: .75rem;
-  gap: .75rem;
-}
+@import '@/assets/styles/Matches/Filters/matches-filters.scss';
 </style>

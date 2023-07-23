@@ -36,6 +36,10 @@
     gap: 1.5rem;
 
     margin-top: 4rem;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      margin-top: 1.5rem;
+    }
   }
 
   &__features__teaser {

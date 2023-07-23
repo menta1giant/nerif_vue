@@ -28,7 +28,7 @@ export const LOGIN_FIELDS = [
       props: {
         type: 'text',
         label: 'E-mail', 
-        placeholder: 'goracio.nelson@gmail.com', 
+        placeholder: 'placeholder.email@gmail.com', 
         name: 'email', 
       },
     },
@@ -50,7 +50,7 @@ export const INITIAL_STEP_FIELDS = [
       props: {
         type: 'text',
         label: 'E-mail', 
-        placeholder: 'goracio.nelson@gmail.com', 
+        placeholder: 'placeholder.email@gmail.com', 
         name: 'email', 
       },
     },
