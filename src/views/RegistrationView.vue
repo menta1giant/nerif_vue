@@ -1,7 +1,7 @@
 <template>
   <v-section responsive padded>
     <div class="registration">
-      <h1 class="h2 text-bold">Congratulations on joining Nerif!</h1>
+      <h1 class="h2 header-common">Congratulations on joining Nerif!</h1>
       <registration-steps :active-step="activeStep"/>
       <component :is="steps[activeStep]" @change-step="activeStep++"/>
     </div>

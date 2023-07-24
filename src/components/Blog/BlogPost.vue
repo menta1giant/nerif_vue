@@ -6,7 +6,7 @@
           <span v-for="tag in tags" :key="tag.name" class="blog-post__tag" :class="[`blog-post__tag--${ tag.name.toLowerCase() }`]">{{ tag.name }}</span>
         </div>
         <div class="blog-post__title">
-          <h1 class="h2 text-semi-bold">{{ title }}</h1>
+          <h1 class="h2 text-semi-bold text-ds-700">{{ title }}</h1>
           <save-bookmark-button :id="id" />
         </div>
         <div class="blog-post__meta-info"><span>by <b>{{ author }}</b></span><span><time>{{ date_published }}</time></span></div>

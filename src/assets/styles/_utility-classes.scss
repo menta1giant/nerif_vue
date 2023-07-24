@@ -85,6 +85,11 @@
   color: $primary-ds-700;
 }
 
+.header-common {
+  @extend .text-bold;
+  @extend .text-ds-700;
+}
+
 .label {
   white-space: nowrap;
   overflow-y: hidden;
@@ -97,6 +102,8 @@
   line-height: $lh-small;
 
   flex: 1;
+
+  cursor: default;
 }
 
 .mobile:not(.desktop) {

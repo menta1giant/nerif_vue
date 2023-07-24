@@ -1,7 +1,7 @@
 <template>
   <v-section responsive>
     <div class="documentation-article">
-      <h1 class="h2">{{ article?.header }}</h1>
+      <h1 class="documentation-article__title h2 header-common">{{ article?.header }}</h1>
       <p>
         {{ article?.content }}
       </p>

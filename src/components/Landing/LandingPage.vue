@@ -208,7 +208,7 @@
           answer="Our CS:GO prediction algorithm has consistently demonstrated high accuracy rates, outperforming many competitors in the industry. Our focus on advanced data analysis and real-time updates sets us apart."
         />
         <div class="faq-section__footer">
-          <span class="h4 text-bold text-ds-700">Got more questions?</span>
+          <span class="h4 header-common">Got more questions?</span>
           <div class="cta-wrapper">
             <div class="landing-page-section__cta">
               <v-button size="medium" to="/documentation">View documentation</v-button>

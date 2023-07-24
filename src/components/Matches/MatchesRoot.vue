@@ -23,7 +23,7 @@
       </section>
       <section class="feed">
         <div class="feed__title">
-          <h2 class="h3">Telegram Feed</h2>
+          <h2 class="h3 header-common">Telegram Feed</h2>
           <v-icon-button name="circle-question" tooltip-content="This section contains Telegram post from revered CS:GO cappers"/>
         </div>
         <label class="feed__cappers-select__label label">Select cappers</label>

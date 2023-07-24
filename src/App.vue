@@ -57,6 +57,11 @@ export default {
   @media screen and (max-width: $mobile-breakpoint) {
     padding-bottom: 5rem;
   }
+
+  .v-section:has(.breadcrumbs-bar) + main:not(:has(.sections-wrapper)) {
+    @include divider-top-bleak;
+    padding-top: 1rem;
+  }
 }
 
 </style>

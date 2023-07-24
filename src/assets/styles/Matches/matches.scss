@@ -19,8 +19,6 @@
     padding: 0 1rem;
     margin-bottom: 1.25rem;
 
-    font-weight: $fw-bold;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,6 +26,7 @@
 
     &:deep(.v-icon) {
       font-size: $fs-medium;
+      color: $primary-s-500;
     }
   }
 

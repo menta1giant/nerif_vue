@@ -42,3 +42,13 @@
   @include divider-bleak;
   border-top-width: 1px;
 }
+
+@mixin divider-top-dark {
+  @include divider-dark;
+  border-top-width: 1px;
+}
+
+@mixin divider-bottom-dark {
+  @include divider-dark;
+  border-bottom-width: 1px;
+}

@@ -28,7 +28,7 @@
     v-model="isDetailsModalShown"
     header="Endorsement details"
   >
-    <p>{{ content }}</p>
+    <p style="max-width: 500px;">{{ content }}</p>
   </v-modal>
 </template>
   
