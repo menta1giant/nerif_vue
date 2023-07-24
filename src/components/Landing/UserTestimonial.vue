@@ -1,5 +1,5 @@
 <template>
-  <div class="testimonial">
+  <article class="testimonial">
     <div class="testimonial__photo">
       <svg class="testimonial__photo__border" width="300" height="200">
         <rect width="300" height="200" rx="3"/>
@@ -20,15 +20,17 @@
     </div>
     <div class="testimonial__content">
       <div class="testimonial__header">
-        <span class="testimonial__name">{{ name }}</span><v-icon name="facebook" type="brands" />
+        <span class="testimonial__name"><cite>{{ name }}</cite></span><v-icon name="facebook" type="brands" />
         <span class="testimonial__meta testimonial__meta--position">{{ job }}</span>
         <span class="testimonial__meta testimonial__meta--city">{{ location }}</span>
       </div>
-      <p class="testimonial__quote">
-        <slot></slot>
-      </p>
+      <blockquote class="testimonial__quote">
+        <p>
+          <slot></slot>
+        </p>
+      </blockquote>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>

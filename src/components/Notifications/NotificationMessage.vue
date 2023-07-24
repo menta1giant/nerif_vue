@@ -6,7 +6,7 @@
     <div class="notification-message__content">
       <div class="notification-message__header">{{ notification.headerText }}</div>
       <div class="notification-message__body">
-        <div class="notification-message__timestamp">{{ notification.timestamp }}</div>
+        <time class="notification-message__timestamp">{{ notification.timestamp }}</time>
         <div class="notification-message__text">{{ notification.messageText }}</div>
       </div>
     </div>

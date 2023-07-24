@@ -18,7 +18,7 @@
     </div>
     <template v-if="activeTab===0">
       <div class="match-stats__header">
-        <h2 class="h2"><b>Statistics</b></h2>
+        <h3 class="h2"><b>Statistics</b></h3>
         <p>Those are the general stats, that represent how well teams are positioned going into the match.</p>
         <a><p><b>Read the docs</b> to learn more about features</p></a>
       </div>
@@ -28,7 +28,7 @@
     </template>
     <template v-else>
       <div class="match-stats__header">
-        <h2 class="h2"><b>Odds</b></h2>
+        <h3 class="h2"><b>Odds</b></h3>
         <p>This chart shows how the odds have changed during an hour before the match began.</p>
       </div>
       <div class="match-stats__chart">

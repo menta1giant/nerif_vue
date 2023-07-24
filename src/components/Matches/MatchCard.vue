@@ -11,7 +11,7 @@
       />
       <div class="match-info-wrapper">
         <div class="match-info">
-          <span class="match-date">{{ match.match.match_date }}</span>
+          <time class="match-date">{{ match.match.match_date }}</time>
           <span class="match-type">Map {{ match.map_order }}</span>
         </div>
         <div class="match-scores-wrapper">

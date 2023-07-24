@@ -4,7 +4,7 @@
       <div class="v-modal__close" @click="closeModal"><v-icon name="xmark" /></div>
       <div class="v-modal__header">
         <v-icon v-if="statusIconName" :name="statusIconName" />
-        <span>{{ header }}</span>
+        <h2>{{ header }}</h2>
       </div>
       <div class="v-modal__body">
         <slot></slot>

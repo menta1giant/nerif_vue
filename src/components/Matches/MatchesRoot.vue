@@ -23,7 +23,7 @@
       </section>
       <section class="feed">
         <div class="feed__title">
-          <h3 class="h3">Telegram Feed</h3>
+          <h2 class="h3">Telegram Feed</h2>
           <v-icon-button name="circle-question" tooltip-content="This section contains Telegram post from revered CS:GO cappers"/>
         </div>
         <label class="feed__cappers-select__label label">Select cappers</label>
@@ -52,6 +52,7 @@
       </section>
     </section>
     <section class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }" ref="container-right">
+      <h2 class="visually-hidden">Matches list</h2>
       <matches-list :matches="matches" :is-loading="areMatchesLoading" @change-scroll="changeScroll"/>
       <div class="match-card-dummy"></div>
     </section>

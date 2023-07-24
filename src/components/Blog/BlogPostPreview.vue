@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-post-preview">
+  <article class="blog-post-preview">
     <div class="blog-post-preview__image">
       <img :src="imageUrl"/>
       <div class="blog-post-preview__tags">
@@ -11,7 +11,7 @@
       <p><slot></slot></p>
       <div class="blog-post-preview__footer"><span>by <b>{{ author }}</b></span><span><time>{{ date_published }}</time></span></div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>

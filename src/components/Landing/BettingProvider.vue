@@ -1,5 +1,5 @@
 <template>
-  <div class="betting-provider">
+  <article class="betting-provider">
     <img class="betting-provider__logo" :src="imagePath" height="60"/>
     <div class="betting-provider__info">
       <span class="betting-provider__title">{{ title }}</span>
@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>

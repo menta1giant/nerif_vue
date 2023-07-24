@@ -5,7 +5,7 @@
   display: grid;
   gap: 1rem;
 
-  h5 {
+  &__title {
     @include text-large;
 
     color: $primary-s-700;

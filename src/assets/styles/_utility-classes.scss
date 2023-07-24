@@ -3,6 +3,10 @@
   flex: 1;
 }
 
+.visually-hidden {
+  visibility: hidden;
+}
+
 .centered-container {
   display: flex;
   justify-content: center;

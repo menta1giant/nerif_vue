@@ -1,6 +1,4 @@
 .hamburger-menu {
-  @include flex-column;
-
   transform: translateX(-100%);
   transition: transform 400ms ease-out;
 
@@ -15,61 +13,68 @@
   z-index: 8900;
 
   padding: 2rem;
-  gap: 1rem;
+
+  ul {
+    @include flex-column;
+    gap: 1rem;
+
+    li {
+      color: $black-10;
+
+      &:last-child {
+        color: $primary-ds-300;
+  
+        &::after {
+          background: $primary-ds-500;
+        }
+      }
+
+      a {
+        @include text-h4;
+    
+        display: flex;
+        gap: .75rem;
+        align-items: center;
+        justify-content: flex-end;
+        text-align: right;
+    
+        font-family: $ff-display;
+        font-weight: $fw-semi-bold;
+        padding: .5rem 0;
+    
+        width: 100%;
+    
+        transition-duration: .4s;
+    
+        &::after {
+          content: '';
+    
+          display: block;
+          width: 4px;
+          height: 16px;
+          background: $primary-ds-200;
+    
+          transition-duration: .2s;
+        }
+    
+        &:hover, &:active, &:focus, &.router-link-active:not([href*="#"]) {
+          color: $black-10;
+          background: rgba($black-10, .05);
+    
+          &::after {
+            height: 24px;
+            background: $accent-700;
+          }
+        }
+    
+        &.router-link-active:not([href*="#"]) {
+          cursor: default;
+        }
+      }
+    }
+  }
 
   &--active {
     transform: translateX(0);
-  }
-
-  a {
-    @include text-h4;
-
-    display: flex;
-    gap: .75rem;
-    align-items: center;
-    justify-content: flex-end;
-    text-align: right;
-
-    color: $black-10;
-    font-family: $ff-display;
-    font-weight: $fw-semi-bold;
-    padding: .5rem 0;
-
-    width: 100%;
-
-    transition-duration: .4s;
-
-    &::after {
-      content: '';
-
-      display: block;
-      width: 4px;
-      height: 16px;
-      background: $primary-ds-200;
-
-      transition-duration: .2s;
-    }
-
-    &:last-child {
-      color: $primary-ds-300;
-
-      &::after {
-        background: $primary-ds-500;
-      }
-    }
-
-    &:hover, &:active, &:focus, &.router-link-active:not([href*="#"]) {
-      color: $black-10;
-      background: rgba($black-10, .05);
-
-      &::after {
-        height: 24px;
-        background: $accent-700;
-      }
-    }
-
-    &.router-link-active:not([href*="#"]) {
-      cursor: default;
-    }
   }
 }

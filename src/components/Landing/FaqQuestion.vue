@@ -1,8 +1,8 @@
 <template>
-  <div class="faq-question">
+  <article class="faq-question">
     <div class="faq-question__header"><h3 class="h4 text-display text-bold text-ds-700" @click="toggleAnswer">{{ question }}</h3><v-chevron v-model="isOpen" /></div>
     <p v-if="isOpen" class="faq-question__body">{{ answer }}</p>
-  </div>
+  </article>
 </template>
 
 <script>

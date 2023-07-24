@@ -8,7 +8,7 @@
   <v-section responsive padded>
     <div class="help-center">
       <div class="help-center-contacts">
-        <div class="help-center-option-card">
+        <article class="help-center-option-card">
           <img src="@/assets/images/help-center1.png"/>
           <div class="help-center-option-card__content">
             <h2 class="h4 text-bold">Write us an e-mail</h2>
@@ -16,16 +16,16 @@
             <p>Alternatively, we welcome you to send us suggestions for improvements or just general feedback on your experience with Nerif.</p>
             <p>Write us at <b>support@nerif.bet</b> or <b>feedback@nerif.bet</b> or simply fill in the form below.</p>
           </div>
-        </div>
-        <div class="help-center-option-card">
+        </article>
+        <article class="help-center-option-card">
           <img src="@/assets/images/help-center2.png"/>
           <div class="help-center-option-card__content">
             <h2 class="h4 text-bold">Chat with our operators online</h2>
             <p>Get an answer to your question within mere minutes. You may need to provide access to your betting data to resolve the issue quickly.</p>
             <div><v-button size="small">Enter a chat</v-button></div>
           </div>
-        </div>
-        <div class="help-center-option-card">
+        </article>
+        <article class="help-center-option-card">
           <img src="@/assets/images/help-center3.png"/>
           <div class="help-center-option-card__content">
             <h2 class="h4 text-bold">Get on a call with our operators</h2>
@@ -34,7 +34,7 @@
             <p>You may also request a call back and we will ring you whenever there’s a free operator or at a scheduled time.</p>
             <div><v-button size="small">Request a call back</v-button></div>
           </div>
-        </div>
+        </article>
       </div>
       <contact-form />
     </div>

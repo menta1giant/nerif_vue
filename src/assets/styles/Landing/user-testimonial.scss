@@ -107,22 +107,26 @@
     font-size: $fs-medium;
     line-height: $lh-body;
 
-    &::before, &::after {
-      display: inline;
-      color: $primary-ds-200;
-      font-weight: 800;
-    }
-
-    &::before {
-      content: '“'
-    }
-
-    &::after {
-      content: '”'
-    }
-
-    &:deep(b) {
-      color: rgba(var(--main-color));
+    p {
+      font: inherit;
+      
+      &::before, &::after {
+        display: inline;
+        color: $primary-ds-200;
+        font-weight: 800;
+      }
+  
+      &::before {
+        content: '“'
+      }
+  
+      &::after {
+        content: '”'
+      }
+  
+      &:deep(b) {
+        color: rgba(var(--main-color));
+      }
     }
   }
 

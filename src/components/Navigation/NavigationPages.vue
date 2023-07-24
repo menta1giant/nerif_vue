@@ -1,13 +1,18 @@
 <template>
-  <div class="navigation-pages" :class="{ desktop: !isMobile }">
-    <router-link 
-      v-for="link in linksToPages"
-      :key="link.path"
-      :to="link.path">
-      <v-icon :name="link.meta.icon" />
-      {{ link.name }}
-    </router-link>
-  </div>
+  <nav class="navigation-pages" :class="{ desktop: !isMobile }">
+    <ul>
+      <li
+        v-for="link in linksToPages"
+        :key="link.path"
+      >
+        <router-link 
+          :to="link.path">
+          <v-icon :name="link.meta.icon" />
+          {{ link.name }}
+        </router-link>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>

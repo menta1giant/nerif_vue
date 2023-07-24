@@ -1,7 +1,7 @@
 <template>
-  <div class="subscription-plan-card" :class="{ 'subscription-plan-card--popular': plan.isPopular }">
+  <article class="subscription-plan-card" :class="{ 'subscription-plan-card--popular': plan.isPopular }">
     <div class="subscription-plan-card__header">
-      <h3 class="h3 text-display text-semi-bold">{{ plan.header }}</h3>
+      <h4 class="h3 text-display text-semi-bold">{{ plan.header }}</h4>
       <span>{{ plan.subHeader }}</span>
     </div>
     <ul class="subscription-plan-card__features-wrapper">
@@ -11,7 +11,7 @@
       <span class="subscription-plan-card__footer__price"><b>{{ plan.price }}</b>{{ plan.period }}</span>
       <v-button size="small" :type="plan.isPopular ? 'primary-accent' : 'primary'" :to="{ name: 'Registration', query: { plan: plan.header } }" fluid>{{ plan.ctaText }}</v-button>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>

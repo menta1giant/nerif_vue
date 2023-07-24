@@ -144,10 +144,13 @@
       <div class="landing-page-section ceo-testimonial">
         <div class="ceo-testimonial__personal">
           <img class="ceo-testimonial__photo" src="@/assets/images/ceo.png" width="128" />
-          <div class="ceo-testimonial__name" >Mikhail Gostev</div>
+          <div class="ceo-testimonial__name" ><cite>Mikhail Gostev</cite></div>
           <div class="ceo-testimonial__position" >CEO of Nerif</div>
         </div>
-        <p class="ceo-testimonial__quote">Nerif has <span class="text-highlight">revolutionized</span> the industry by providing subscribers with unmatched accuracy in predicting match outcomes. We're proud to be at the forefront of this new era in esports betting.<span class="ceo-testimonial__quote__closing">”</span></p>
+        <blockquote  class="ceo-testimonial__quote">
+          <p>Nerif has <span class="text-highlight">revolutionized</span> the industry by providing subscribers with unmatched accuracy in predicting match outcomes. 
+            We're proud to be at the forefront of this new era in esports betting.<span class="ceo-testimonial__quote__closing">”</span></p>
+        </blockquote>
       </div>
     </v-section>
     <v-section responsive>
@@ -245,8 +248,8 @@
             <h4 class="text-large text-bold">COMPANY</h4>
             <ul>
               <li><router-link to="/help-center"><v-icon name="envelope" />Help center</router-link></li>
-              <li class="footer__navigation__item--bleak"><v-icon name="phone" />+7 499 900 90 90</li>
-              <li class="footer__navigation__item--bleak"><v-icon name="location-dot" />24 Tverskaya Street, Moscow 125009</li>
+              <li class="footer__navigation__item--bleak"><v-icon name="phone" /><address><a href="tel:+74999009090">+7 499 900 90 90</a></address></li>
+              <li class="footer__navigation__item--bleak"><v-icon name="location-dot" /><address>24 Tverskaya Street, Moscow 125009</address></li>
             </ul>
           </div>
           <div class="footer__navigation__column">

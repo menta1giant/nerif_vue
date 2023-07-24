@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation-bar">
+  <header class="navigation-bar">
     <v-section dark responsive>
       <div class="navigation-bar__items">
         <router-link to="/">
@@ -53,7 +53,7 @@
         </div>
       </div>
     </v-section>
-  </div>
+  </header>
   <login-modal v-model="isLoginModalShown" />
 </template>
 

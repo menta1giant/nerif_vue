@@ -1,7 +1,7 @@
 <template>
   <div class="sections-wrapper">
     <v-section>
-      <div class="sections-navigation">
+      <nav class="sections-navigation">
         <button 
           v-for="(section, idx) in sections"
           :key="`section_${ section.id || idx }`" 
@@ -15,7 +15,7 @@
           {{ section.name || section }}
           <span v-if="isSearchQueryNonEmpty && sectionsCounts[section.name]" class="sections-navigation__items-count">{{ sectionsCounts[section.name] }}</span>
         </button>
-      </div>
+      </nav>
     </v-section>
   </div>
 </template>

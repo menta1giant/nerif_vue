@@ -1,10 +1,10 @@
 <template>
-  <div class="documentation-article-preview">
-    <router-link :to="`/documentation/${ id }`"><h5>{{ title }}</h5></router-link>
+  <article class="documentation-article-preview">
+    <router-link :to="`/documentation/${ id }`"><span class="documentation-article-preview__title">{{ title }}</span></router-link>
     <p>
       <slot></slot>
     </p>
-  </div>
+  </article>
 </template>
 
 <script>
