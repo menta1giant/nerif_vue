@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="blog-post-preview__body">
-      <div class="blog-post-preview__header"><span class="blog-post-preview__title" @click="$emit('open')">{{ title }}</span><save-bookmark-button :id="id" /></div>
+      <div class="blog-post-preview__header"><router-link :to="{ name: 'post', params: { id: id } }" class="link-text"><span class="blog-post-preview__title">{{ title }}</span></router-link><save-bookmark-button :id="id" /></div>
       <p><slot></slot></p>
       <div class="blog-post-preview__footer"><span>by <b>{{ author }}</b></span><span><time>{{ date_published }}</time></span></div>
     </div>
@@ -23,7 +23,6 @@ export default {
   components: {
     SaveBookmarkButton
   },
-  emits: ['open'],
   props: {
     id: Number,
     title: String,

@@ -12,7 +12,7 @@
                 {{ options[selectedOption].label }}
               </template>
               <template v-else>
-                <span class="text-unimportant">Select an option</span>
+                <span class="text-ds-400">Select an option</span>
               </template>
             </template>
           </div>

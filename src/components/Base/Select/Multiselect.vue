@@ -8,7 +8,7 @@
               <select-option v-for="(option, idx) in selectedOptions" :key="idx" selected @click="(event) => handleToggleOption(option, event)">{{ option.label }}<v-icon name="xmark" /></select-option>
             </template>
             <template v-else>
-              <span class="v-multiselect__placeholder text-unimportant">{{ placeholder }}</span>
+              <span class="v-multiselect__placeholder text-ds-400">{{ placeholder }}</span>
             </template>
           </div>
         </select-body>

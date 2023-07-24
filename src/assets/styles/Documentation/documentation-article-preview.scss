@@ -6,12 +6,23 @@
   gap: 1rem;
 
   &__title {
-    @include text-large;
+    .v-icon {
+      display: inline-block;
+      margin-left: .5rem;
 
-    color: $primary-s-700;
-    font-weight: $fw-semi-bold;
+      font-size: .85em;
+      vertical-align: baseline;
+      color: $primary-s-200;
+      opacity: 0;
+      
+      transition: opacity 200ms;
+    }
 
-    cursor: pointer;
+    &:hover {
+      .v-icon {
+        opacity: 100%;
+      }
+    }
   }
 
   p {

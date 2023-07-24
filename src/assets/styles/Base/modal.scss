@@ -34,9 +34,9 @@
 
   transform: translateY(-15%);
 
-  .v-icon {
-      color: $primary-s-400;
-    }
+  &__icon {
+    color: $primary-s-400;
+  }
 
   &--warn {
     border-color: $accent-500;
@@ -51,10 +51,6 @@
     position: absolute;
     right: 12px;
     top: 12px;
-    
-    color: $primary-ds-300;
-
-    cursor: pointer;
   }
 
   &__header { 

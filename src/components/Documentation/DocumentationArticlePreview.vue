@@ -1,6 +1,6 @@
 <template>
   <article class="documentation-article-preview">
-    <router-link :to="`/documentation/${ id }`"><span class="documentation-article-preview__title">{{ title }}</span></router-link>
+    <router-link :to="`/documentation/${ id }`" class="link-text"><span class="documentation-article-preview__title text-large">{{ title }}<v-icon name="arrow-right"/></span></router-link>
     <p>
       <slot></slot>
     </p>

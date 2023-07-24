@@ -28,10 +28,30 @@ p {
   @include text-medium;
   
   font-weight: $fw-regular;
+
+  &:not(:last-child) {
+    margin-bottom: .5rem;
+  }
 }
 
 b {
   font-weight: $fw-semi-bold;
+}
+
+a, button {
+  transition-property: color, border-color, background-color;
+  transition-duration: 200ms;
+
+  &:not(:disabled) {
+    cursor: pointer !important;
+  }
+}
+
+a {
+  &:focus {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
 }
 
 img {

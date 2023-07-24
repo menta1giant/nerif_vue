@@ -5,7 +5,7 @@
         <blog-post-preview-skeleton v-for="_, idx in (new Array(3))" :key="`post_skeleton_${ idx }`"/>
       </template>
       <template v-else>
-        <blog-post-preview v-for="post in posts" :key="`post_${ post.id }`" v-bind="post" @open="$router.push({ name: 'post', params: { id: post.id }})">
+        <blog-post-preview v-for="post in posts" :key="`post_${ post.id }`" v-bind="post">
           {{ post.content }}
         </blog-post-preview>
       </template>

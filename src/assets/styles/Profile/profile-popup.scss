@@ -1,5 +1,5 @@
 .profile-popup {
-  padding: .5rem;
+  padding: .25rem .5rem;
   color: $primary-ds-800;
   min-width: 16rem;
   max-width: 18rem;
@@ -25,24 +25,14 @@
   &__common-buttons {
     display: flex;
     flex-direction: column;
-    gap: .75rem;
+    gap: .5rem;
 
-    padding-top: 1rem;
-
-    &--bleak {
-      .v-icon {
-        color: $primary-ds-200;
-      }
-    }
+    padding-top: .75rem;
   }
 
   &__common-buttons:not(:last-child) {
     @include divider-bottom-bleak;
 
-    padding-bottom: 1rem;
+    padding-bottom: .75rem;
   }
-}
-
-.button-content-bleak {
-  color: $primary-ds-300 !important;
 }

@@ -9,8 +9,8 @@
       <v-button type="transparent" size="small" to="/documentation"><v-icon name="book" />Documentation</v-button>
       <v-button type="transparent" size="small" to="/help-center"><v-icon name="handshake-angle" />Help center</v-button>
     </div>
-    <div class="profile-popup__common-buttons profile-popup__common-buttons--bleak">
-      <v-button type="transparent" size="small" :loading="isLogoutInProcess" @click="handleLogOut"><v-icon name="right-from-bracket" /><span class="button-content-bleak">Log out</span></v-button>
+    <div class="profile-popup__common-buttons">
+      <v-button type="transparent" size="small" class="v-button--bleak" :loading="isLogoutInProcess" @click="handleLogOut"><v-icon name="right-from-bracket" />Log out</v-button>
     </div>
   </div>
 </template>

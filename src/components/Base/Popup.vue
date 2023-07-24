@@ -6,7 +6,7 @@
     <template #dropdown>
       <div class="v-popup">
         <slot name="content"></slot>
-        <div v-if="showX" class="v-popup__close" @click="closePopup"><v-icon name="xmark" /></div>
+        <button v-if="showX" class="v-popup__close text-ds-300" @click="closePopup"><v-icon name="xmark" /></button>
       </div>
     </template>
   </v-positioner>

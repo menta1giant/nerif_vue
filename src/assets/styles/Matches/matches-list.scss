@@ -83,6 +83,10 @@
     background: $primary-s-50;
     color: $primary-s-500;
   }
+
+  &:hover:not(&--active) {
+    color: $primary-s-500;
+  }
 }
 
 @media screen and (max-width: 64em) {

@@ -31,9 +31,17 @@
     }
   }
 
+  &:focus-within {
+    outline: 1px solid $black-10;
+    box-shadow: 0 0 0px 3px $primary-s-200;
+  }
+
   &__input {
-    width: 0;
-    height: 0;
+    position: absolute;
+    right: 0px;
+
+    width: 20px;
+    height: 20px;
     opacity: 0;
   }
 }

@@ -58,6 +58,7 @@
         }
     
         &:hover, &:active, &:focus, &.router-link-active:not([href*="#"]) {
+          text-decoration: none;
           color: $black-10;
           background: rgba($black-10, .05);
     

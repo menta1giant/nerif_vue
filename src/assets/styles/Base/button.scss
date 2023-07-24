@@ -19,7 +19,11 @@
 
   transition-duration: 200ms;
 
-  &:disabled, &:not(button):not(a[href]) {
+  &:focus {
+    text-decoration: none;
+  }
+
+  &--loading, &:not(button):not(a[href]) {
     &:deep(.v-icon) {
       display: none;
     }
@@ -128,8 +132,19 @@
   }
 
   &--transparent {
-    padding: 0;
+    padding: .25rem 0;
     justify-content: left;
+
+    &:hover:not(:disabled) {
+      color: $primary-s-600;
+      background: $primary-s-50;
+    }
+
+    &:focus:not(:disabled) {
+      text-decoration: underline;
+      text-decoration-color: $primary-s-200;
+      text-underline-offset: 2px;
+    }
 
     &:disabled, &:not(button):not(a[href]) {
       color: $primary-ds-400;
@@ -153,5 +168,9 @@
         --border-color: #{$accent-300};
       }
     }
+  }
+
+  &--bleak {
+    color: $primary-ds-300;
   }
 }

@@ -40,7 +40,10 @@
   }
 
   &__header {
+    @include flex-column;
+
     color: $primary-s-600;
+    align-items: center;
   }
 
   &__big-text {

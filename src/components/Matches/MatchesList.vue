@@ -13,14 +13,14 @@
   <section class="match-stats" v-if="isMatchCardInfoOpened">
     <div class="match-stats__tabs">
       <div class="button-group">
-        <div v-for="(tab, idx) in tabs" :key="idx" class="groupped-button" :class="{ 'groupped-button--active': activeTab == idx }" @click="changeActiveTab(idx)">{{ tab }}</div>
+        <button v-for="(tab, idx) in tabs" :key="idx" class="groupped-button" :class="{ 'groupped-button--active': activeTab == idx }" @click="changeActiveTab(idx)">{{ tab }}</button>
       </div>
     </div>
     <template v-if="activeTab===0">
       <div class="match-stats__header">
         <h3 class="text-large header-common"><b>Statistics</b></h3>
         <p>Those are the general stats, that represent how well teams are positioned going into the match.</p>
-        <a><p><b>Read the docs</b> to learn more about features</p></a>
+        <p class="link-text"><router-link to="/documentation">Read the docs</router-link> to learn more about features</p>
       </div>
       <div class="match-stats__bars">
         <stats-bar v-for="(statsBarTitle, statsBar) in statsTitlesMap" :key="statsBar" :title="statsBarTitle" :value="statsValues[statsBar]" />

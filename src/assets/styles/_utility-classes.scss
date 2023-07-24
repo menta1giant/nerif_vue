@@ -33,7 +33,11 @@
   font-weight: $fw-medium;
 }
 
-.text-unimportant {
+.text-ds-300 {
+  color: $primary-ds-300;
+}
+
+.text-ds-400 {
   color: $primary-ds-400;
 }
 
@@ -88,6 +92,19 @@
 .header-common {
   @extend .text-bold;
   @extend .text-ds-700;
+}
+
+.link-text {
+  color: $primary-s-600;
+
+  &:is(a), a {
+    @extend .text-semi-bold;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-s-500;
+    }
+  }
 }
 
 .label {

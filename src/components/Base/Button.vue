@@ -80,7 +80,7 @@ export default {
   },
   computed: {
     classes() {
-      return { 'fluid': this.fluid, [`v-button--${this.type}`]: true, [`v-button--${this.size}`]: true }
+      return { 'fluid': this.fluid, [`v-button--${this.type}`]: true, [`v-button--${this.size}`]: true, 'v-button--loading': this.loading }
     },
     buttonType() {
       return this.submit ? 'submit' : 'button'

@@ -28,9 +28,11 @@
     justify-content: center;
     align-items: center;
 
-    &--disabled {
+    font-size: 1em;
+
+    &--disabled, :disabled {
       cursor: default;
-      color: $primary-ds-100;
+      color: $primary-ds-100 !important;
     }
   }
 
@@ -63,6 +65,20 @@
         border-radius: 50%;
         text-align: center;
         margin: 0 .25rem;
+        border: 2px solid transparent;
+
+        transition-property: background-color, border-color;
+        transition-duration: 200ms;
+
+        &:not(:is(&--disabled, &--selected, &--today)) {
+          &:hover {
+            background-color: $primary-s-50;
+          }
+
+          &:focus {
+            outline: 1px solid $primary-s-200;
+          }
+        }
 
         &--other-month {
           color: $primary-s-200;

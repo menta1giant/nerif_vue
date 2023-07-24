@@ -1,9 +1,9 @@
 <template>
   <div ref="modal" class="v-modal-overlay" :class="{ 'v-modal-overlay--shown': modelValue }" @click="closeModal">
     <div class="v-modal" :class="{ [`v-modal--${ type }`]: true }" @click="(event)=>event.stopPropagation()">
-      <div class="v-modal__close" @click="closeModal"><v-icon name="xmark" /></div>
+      <button class="v-modal__close text-ds-300" @click="closeModal"><v-icon name="xmark" /></button>
       <div class="v-modal__header">
-        <v-icon v-if="statusIconName" :name="statusIconName" />
+        <v-icon v-if="statusIconName" :name="statusIconName" class="v-modal__icon" />
         <h2>{{ header }}</h2>
       </div>
       <div class="v-modal__body">

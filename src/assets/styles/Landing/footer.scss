@@ -62,6 +62,12 @@
       a {
         display: flex;
         gap: .375rem;
+
+        transition: color 200ms ease;
+
+        &:hover {
+          color: $primary-s-100;
+        }
       }
     }
 

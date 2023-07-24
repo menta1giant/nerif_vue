@@ -13,6 +13,23 @@
 
   cursor: pointer;
 
+  :not(&--active) {
+    &:hover {
+      border-color: $primary-s-100;
+    }
+  
+    &:focus {
+      background: $primary-ds-50;
+      border-color: $primary-s-200;
+    }
+  }
+
+  &--active {
+    cursor: default;
+    background: $primary-s-50;
+    border-color: $primary-s-400;
+  }
+
   &__day {
     @include text-medium;
     
@@ -24,12 +41,6 @@
     font-size: $fs-xxxs;
     line-height: $lh-small; 
     color: $black-500;
-  }
-
-  &--active {
-    cursor: default;
-    background: $primary-s-50;
-    border-color: $primary-s-400;
   }
 
   @media screen and (max-width: $mobile-breakpoint) {
