@@ -14,7 +14,7 @@ import Button from '@/components/Base/Button';
 import Modal from '@/components/Base/Modal';
 import Tooltip from '@/components/Base/Tooltip';
 import Section from '@/components/Base/Section';
-import Input from '@/components/Base/Input';
+import Input from '@/components/Base/Input/Input';
 import Select from '@/components/Base/Select/Select';
 import Textarea from '@/components/Base/Textarea';
 import RadioButton from '@/components/Base/RadioButton';

@@ -26,7 +26,7 @@ export const LOGIN_FIELDS = [
     {
       component: rawFormField,
       props: {
-        type: 'text',
+        type: 'email',
         label: 'E-mail', 
         placeholder: 'placeholder.email@gmail.com', 
         name: 'email', 
@@ -48,7 +48,7 @@ export const INITIAL_STEP_FIELDS = [
     {
       component: rawFormField,
       props: {
-        type: 'text',
+        type: 'email',
         label: 'E-mail', 
         placeholder: 'placeholder.email@gmail.com', 
         name: 'email', 

@@ -2,7 +2,7 @@
   <div class="v-multiselect">
     <v-positioner v-model="isDropdownVisible" triggers-on-click>
       <template v-slot:body>
-        <select-body v-model:is-dropdown-visible="isDropdownVisible" :has-error="hasError">
+        <select-body ref="body" v-model:is-dropdown-visible="isDropdownVisible" :has-error="hasError" @keyup.down="handleOptionsGainFocus">
           <div class="v-multiselect__selected-options">
             <template v-if="selectedOptions.length">
               <select-option v-for="(option, idx) in selectedOptions" :key="idx" selected @click="(event) => handleToggleOption(option, event)">{{ option.label }}<v-icon name="xmark" /></select-option>
@@ -14,7 +14,7 @@
         </select-body>
       </template>
       <template v-slot:dropdown>
-        <select-dropdown>
+        <select-dropdown ref="dropdown" @keyup.up="handleOptionsLoseFocus">
           <select-option v-for="(option, idx) in options" :key="`option_${ idx }`" :selected="selectedOptions.includes(option)" @select="handleToggleOption(option)">{{ option.label }}</select-option>
         </select-dropdown>
       </template>
@@ -27,6 +27,7 @@ import SelectBody from './SelectBody';
 import SelectOption from './SelectOption';
 import SelectDropdown from './SelectDropdown';
 import errorMixin from '@/components/mixins/errorMixin.js';
+import selectMixin from './selectMixin.js';
 import debounce from '@/lib/debounce';
 
 export default {
@@ -36,7 +37,7 @@ export default {
     SelectOption,
     SelectDropdown,
   },
-  mixins: [errorMixin],
+  mixins: [errorMixin, selectMixin],
   props: {
     options: {
       type: Array,
@@ -57,8 +58,8 @@ export default {
   },
   data() {
     return {
-      isDropdownVisible: false,
       hasValueChanged: false,
+
       selectedOptions: [],
     };
   },

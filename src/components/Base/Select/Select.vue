@@ -2,7 +2,7 @@
   <div class="v-select">
     <v-positioner v-model="isDropdownVisible" triggers-on-click>
       <template v-slot:body>
-        <select-body :id="id" v-model:is-dropdown-visible="isDropdownVisible" :has-error="hasError" :is-loading="isLoading">
+        <select-body ref="body" :id="id" v-model:is-dropdown-visible="isDropdownVisible" :has-error="hasError" :is-loading="isLoading" @keyup.down="handleOptionsGainFocus">
           <div class="v-select__body__value">
             <template v-if="isLoading">
               <v-loader/>&nbsp;
@@ -19,7 +19,7 @@
         </select-body>
       </template>
       <template v-slot:dropdown>
-        <select-dropdown>
+        <select-dropdown ref="dropdown" @keyup.up="handleOptionsLoseFocus">
           <select-option v-for="(option, idx) in options" :key="`option_${ idx }`" :selected="selectedOption === idx" @select="handleSelectOption(idx)">{{ option.label }}</select-option>
         </select-dropdown>
       </template>
@@ -34,6 +34,7 @@ import SelectDropdown from './SelectDropdown';
 import SelectOption from './SelectOption';
 import errorMixin from '@/components/mixins/errorMixin.js';
 import formFieldMixin from '@/components/mixins/formFieldMixin.js';
+import selectMixin from './selectMixin';
 
 export default {
   name: 'Select',
@@ -45,6 +46,7 @@ export default {
   mixins: [
     errorMixin,
     formFieldMixin,
+    selectMixin,
   ],
   props: {
     options: {
@@ -58,7 +60,6 @@ export default {
   },
   data() {
     return {
-      isDropdownVisible: false,
       isLoadingOptions: true,
       selectedOption: null,
     };

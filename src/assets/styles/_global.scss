@@ -39,7 +39,7 @@ b {
 }
 
 a, button {
-  transition-property: color, border-color, background-color;
+  transition-property: color, border-color, background-color, box-shadow;
   transition-duration: 200ms;
 
   &:not(:disabled) {

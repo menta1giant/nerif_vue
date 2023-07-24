@@ -6,6 +6,7 @@
       :id="id" 
       :name="name" 
       :type="inputType" 
+      :inputmode="inputMode" 
       :placeholder="placeholder" 
       :autocomplete="autocompleteStatus"
 
@@ -19,25 +20,7 @@
 import controlMixin from '@/components/mixins/controlMixin.js';
 import errorMixin from '@/components/mixins/errorMixin.js';
 import formFieldMixin from '@/components/mixins/formFieldMixin.js';
-
-const typesMap = {
-  password: {
-    type: 'password',
-    icon: 'key',
-  },
-  date: {
-    type: 'text',
-    icon: 'password',
-  },
-  search: {
-    type: 'text',
-    icon: 'search',
-  },
-  payment: {
-    type: 'text',
-    icon: 'credit-card',
-  },
-}
+import { TYPES_MAP } from './const';
 
 export default {
   name: 'Input',
@@ -52,6 +35,10 @@ export default {
       default: '',
     },
     type: {
+      type: String,
+      default: 'text',
+    },
+    inputmode: {
       type: String,
       default: 'text',
     },
@@ -78,13 +65,16 @@ export default {
   },
   computed: {
     inputTypeIcon() {
-      return typesMap[this.type] && typesMap[this.type].icon;
+      return TYPES_MAP[this.type] && TYPES_MAP[this.type].icon;
     },
     inputType() {
-      return typesMap[this.type] && typesMap[this.type].type || this.type;
+      return TYPES_MAP[this.type] && TYPES_MAP[this.type].type || this.type;
+    },
+    inputMode() {
+      return TYPES_MAP[this.type] && TYPES_MAP[this.type].inputmode || this.inputmode;
     },
     autocompleteStatus() {
-      return this.inputType === 'email';
+      return TYPES_MAP[this.type] && TYPES_MAP[this.type].autocomplete ? 'on' : 'off';
     },
   },
 }

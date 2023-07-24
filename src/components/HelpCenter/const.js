@@ -9,7 +9,7 @@ export const CONTACT_FORM_FIELDS = [
     {
       component: rawFormField,
       props: {
-        type: 'text',
+        type: 'email',
         label: 'E-mail', 
         placeholder: 'placeholder.email@gmail.com', 
         name: 'email', 

@@ -41,7 +41,7 @@ export const PERSONAL_INFO_FIELDS = [
     {
       component: rawFormField,
       props: {
-        type: 'text',
+        type: 'tel',
         label: 'Phone number', 
         placeholder: '+79009009090', 
         name: 'phone', 
@@ -50,7 +50,7 @@ export const PERSONAL_INFO_FIELDS = [
     {
       component: rawFormField,
       props: {
-        type: 'text',
+        type: 'email',
         label: 'E-mail', 
         placeholder: 'placeholder.email@gmail.com', 
         name: 'email', 

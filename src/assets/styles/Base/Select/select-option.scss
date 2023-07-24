@@ -8,8 +8,12 @@
   padding: .5rem;
   cursor: pointer;
 
-  &:hover {
+  &:hover, &:focus {
     background: $primary-ds-50;
+  }
+
+  &:focus {
+    color: $primary-s-600;
   }
 
   &--selected {

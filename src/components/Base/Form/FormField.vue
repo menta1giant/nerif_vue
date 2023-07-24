@@ -85,8 +85,7 @@
 </template>
 
 <script>
-const TEXT_TYPES = ['text', 'password', 'payment', 'date'];
-
+import { getInputTypes } from '../Input/const';
 import formFieldMixin from '@/components/mixins/formFieldMixin.js';
 import ImageUpload from '@/components/ImageUpload.vue';
 import { fetchResource } from '@/lib/api';
@@ -134,6 +133,7 @@ export default {
     return {
       resourceData: [],
       isLoadingResource: false,
+      inputTextTypes: getInputTypes(),
     };
   },
   computed: {
@@ -141,7 +141,7 @@ export default {
       return Array.isArray(this.errorMessage) ? this.errorMessage.at(-1) : this.errorMessage;
     },
     isInputTypeText() {
-      return TEXT_TYPES.includes(this.type);
+      return this.inputTextTypes.includes(this.type);
     },
     isInputTypeSelect() {
       return this.type === 'select';

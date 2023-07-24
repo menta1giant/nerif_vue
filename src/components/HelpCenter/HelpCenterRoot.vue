@@ -14,7 +14,7 @@
             <h2 class="h4 header-common">Write us an e-mail</h2>
             <p>We recommend you send us an email when your problem is complex and requires special kind of assistance, or you haven’t been able to resolve it via online chat.</p>
             <p>Alternatively, we welcome you to send us suggestions for improvements or just general feedback on your experience with Nerif.</p>
-            <p>Write us at <b>support@nerif.bet</b> or <b>feedback@nerif.bet</b> or simply fill in the form below.</p>
+            <p>Write us at <a href="mailto:support@nerif.bet" class="link-text">support@nerif.bet</a> or <a href="mailto:feedback@nerif.bet" class="link-text">feedback@nerif.bet</a> or simply fill in the form below.</p>
           </div>
         </article>
         <article class="help-center-option-card">
