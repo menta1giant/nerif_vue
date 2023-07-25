@@ -1,6 +1,6 @@
 <template>
   <article class="betting-provider">
-    <img class="betting-provider__logo" :src="imagePath" height="60"/>
+    <img class="betting-provider__logo" :src="imagePath" height="60" loading="lazy"/>
     <div class="betting-provider__info">
       <span class="betting-provider__title">{{ title }}</span>
       <div class="betting-provider__score">

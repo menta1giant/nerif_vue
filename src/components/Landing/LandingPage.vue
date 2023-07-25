@@ -14,14 +14,15 @@
               <span>No credit card information required</span>
             </div>
             <div class="hero-section__features">
+              <h2 class="visually-hidden">Nerif features</h2>
               <div class="hero-section__features__teaser">
                 <div class="hero-section__features__teaser__images">
-                  <img src="@/assets/images/hero-section__teaser__person1.webp" width="32" height="32"/>
-                  <img src="@/assets/images/hero-section__teaser__person2.webp" width="40" height="40"/>
-                  <img src="@/assets/images/hero-section__teaser__person3.webp" width="32" height="32"/>
+                  <img src="@/assets/images/hero-section__teaser__person1.webp" width="32" height="32" loading="lazy"/>
+                  <img src="@/assets/images/hero-section__teaser__person2.webp" width="40" height="40" loading="lazy"/>
+                  <img src="@/assets/images/hero-section__teaser__person3.webp" width="32" height="32" loading="lazy"/>
                 </div>
                 <p class="text-large"><b>More than 5000 people </b><br/>like you are already using these groundbreaking features!</p>
-                <img src="@/assets/images/hero-section__teaser__arrow.svg" />
+                <img src="@/assets/images/hero-section__teaser__arrow.svg" loading="lazy" />
               </div>
               <hero-section-feature icon="arrow-trend-up" header="Unlimited growth">
                 Get an estimated 150% return on your investment within first three months
@@ -56,7 +57,7 @@
           <picture>
             <source srcset="@/assets/images/landing-section1.webp" media="(min-width: 480px)" />
             <source srcset="@/assets/images/landing-section1-small.webp" />
-            <img id="landing-page-image1" alt="Happy fennec fox sitting on top of a pile of money" />
+            <img id="landing-page-image1" alt="Happy fennec fox sitting on top of a pile of money" loading="lazy" />
           </picture>
         </div>
         <div class="landing-page-section__content">
@@ -104,7 +105,7 @@
                 <li><svg width="20" height="20"><circle r="8" cy="10" cx="10" /></svg>Make the most informed betting decisions</li>
                 <li><svg width="20" height="20"><circle r="8" cy="10" cx="10" /></svg>Become a CS:GO betting champion</li>
               </ul>
-              <img class="meta2-watermark-path" src="@/assets/images/meta2-watermark.svg" />
+              <img class="meta2-watermark-path" src="@/assets/images/meta2-watermark.svg" loading="lazy" />
             </div>
           </div>
           <div class="cta-wrapper">
@@ -117,7 +118,7 @@
           <picture>
             <source srcset="@/assets/images/landing-section2.webp" media="(min-width: 480px)" />
             <source srcset="@/assets/images/landing-section2-small.webp" />
-            <img id="landing-page-image2" alt="Demonstration of dashboards" />
+            <img id="landing-page-image2" alt="Demonstration of dashboards" loading="lazy" />
           </picture>
          
         </div>
@@ -129,7 +130,7 @@
           <picture>
             <source srcset="@/assets/images/landing-section3.webp" media="(min-width: 480px)" />
             <source srcset="@/assets/images/landing-section3-small.webp" />
-            <img id="landing-page-image3" alt="Fennec mascot of Nerif wearing headphones" />
+            <img id="landing-page-image3" alt="Fennec mascot of Nerif wearing headphones" loading="lazy" />
           </picture>
         </div>
         <div id="landing-page-content3" class="landing-page-section__content">
@@ -156,7 +157,7 @@
     <v-section dark responsive>
       <div class="landing-page-section ceo-testimonial">
         <div class="ceo-testimonial__personal">
-          <img class="ceo-testimonial__photo" srcset="@/assets/images/ceo-small.webp, @/assets/images/ceo.webp 2x" width="128" />
+          <img class="ceo-testimonial__photo" srcset="@/assets/images/ceo-small.webp, @/assets/images/ceo.webp 2x" width="128" loading="lazy" />
           <div class="ceo-testimonial__name" ><cite>Mikhail Gostev</cite></div>
           <div class="ceo-testimonial__position" >CEO of Nerif</div>
         </div>
@@ -266,15 +267,15 @@
             </ul>
           </div>
           <div class="footer__navigation__column">
-            <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" />
+            <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" loading="lazy" />
           </div>
         </div>
         <div class="footer__footer">
           <span>© 2023 Nerif will conquer us all</span>
           <div class="footer__socials">
-            <v-icon-button name="facebook" brands />
-            <v-icon-button name="telegram" brands />
-            <v-icon-button name="discord" brands />
+            <v-icon-button name="facebook" label="Facebook page" brands />
+            <v-icon-button name="telegram" label="Telegram channel" brands />
+            <v-icon-button name="discord" label="Discord server" brands />
           </div>
         </div>
       </footer>

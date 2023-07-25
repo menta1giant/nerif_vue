@@ -6,7 +6,7 @@
       </svg>
       <picture>
         <source :srcset="imagePath" />
-        <img width="300" :style="imgPositionStyles"/>
+        <img width="300" :style="imgPositionStyles" loading="lazy"/>
       </picture>
       <svg class="testimonial__photo__decoration-circles" width="72" height="72">
         <circle cx="6" cy="66" r="6" />
