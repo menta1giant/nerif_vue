@@ -2,7 +2,7 @@
   <v-section responsive padded span>
     <div class="centered-container">
       <div class="not-found-page-content">
-        <img class="desktop" src="@/assets/images/404.png" />
+        <img class="desktop" src="@/assets/images/404.webp" />
         <div class="not-found-page-content__right">
           <div class="not-found-page-content__header">
             <span class="not-found-page-content__big-text text-semi-bold">404</span>

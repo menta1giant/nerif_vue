@@ -56,7 +56,7 @@
           <picture>
             <source srcset="@/assets/images/landing-section1.webp" media="(min-width: 480px)" />
             <source srcset="@/assets/images/landing-section1-small.webp" />
-            <img id="landing-page-image1" src="@/assets/images/landing-section1.png" alt="Happy fennec fox sitting on top of a pile of money" />
+            <img id="landing-page-image1" alt="Happy fennec fox sitting on top of a pile of money" />
           </picture>
         </div>
         <div class="landing-page-section__content">
@@ -117,7 +117,7 @@
           <picture>
             <source srcset="@/assets/images/landing-section2.webp" media="(min-width: 480px)" />
             <source srcset="@/assets/images/landing-section2-small.webp" />
-            <img id="landing-page-image2" src="@/assets/images/landing-section2.png" />
+            <img id="landing-page-image2" alt="Demonstration of dashboards" />
           </picture>
          
         </div>
@@ -126,11 +126,11 @@
     <v-section responsive>
       <div class="landing-page-section landing-page-section--split">
         <div class="landing-page-section__image">
-          <pitcure>
+          <picture>
             <source srcset="@/assets/images/landing-section3.webp" media="(min-width: 480px)" />
             <source srcset="@/assets/images/landing-section3-small.webp" />
-            <img id="landing-page-image3" src="@/assets/images/landing-section3.png" />
-          </pitcure>
+            <img id="landing-page-image3" alt="Fennec mascot of Nerif wearing headphones" />
+          </picture>
         </div>
         <div id="landing-page-content3" class="landing-page-section__content">
           <div class="landing-page-section__tag">Features</div>

@@ -32,7 +32,7 @@
             <v-popup v-model="isProfilePopupOpened" show-x>
               <template #trigger>
                 <div class="navbar-square-button profile-button">
-                  <img src="@/assets/images/logo-desat.png" :srcset="profilePhotoUrl" />
+                  <img :srcset="profilePhotoUrl" />
                 </div>
               </template>
               <template #content>
