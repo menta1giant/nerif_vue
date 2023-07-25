@@ -1,7 +1,7 @@
 <template>
   <div class="notification-message">
     <div class="notification-message__photo">
-      <img src="@/assets/images/logo.png"/>
+      <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" />
     </div>
     <div class="notification-message__content">
       <div class="notification-message__header">{{ notification.headerText }}</div>
@@ -22,7 +22,7 @@ export default {
       type: Object,
       default() {
         return {
-          logoSrc: '@/assets/logo.png',
+          logoSrc: '@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x',
           headerText: 'New prediction:',
           timestamp: '01-06-2023 22:00',
           messageText: 'Astralis vs Faze, map 2. Bet on Astralis!',

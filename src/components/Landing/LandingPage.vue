@@ -16,9 +16,9 @@
             <div class="hero-section__features">
               <div class="hero-section__features__teaser">
                 <div class="hero-section__features__teaser__images">
-                  <img src="@/assets/images/hero-section__teaser__person1.png" width="32" height="32"/>
-                  <img src="@/assets/images/hero-section__teaser__person2.png" width="40" height="40"/>
-                  <img src="@/assets/images/hero-section__teaser__person3.png" width="32" height="32"/>
+                  <img src="@/assets/images/hero-section__teaser__person1.webp" width="32" height="32"/>
+                  <img src="@/assets/images/hero-section__teaser__person2.webp" width="40" height="40"/>
+                  <img src="@/assets/images/hero-section__teaser__person3.webp" width="32" height="32"/>
                 </div>
                 <p class="text-large"><b>More than 5000 people </b><br/>like you are already using these groundbreaking features!</p>
                 <img src="@/assets/images/hero-section__teaser__arrow.svg" />
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="landing-page-section__image hero-section__right">
-            <img id="landing-page-image-hs" src="@/assets/images/landing-hero-image.png" alt="Counter-terrorist from CS:GO happily displaying his success using Nerif" />
+            <img id="landing-page-image-hs" src="@/assets/images/landing-hero-image.webp" alt="Counter-terrorist from CS:GO happily displaying his success using Nerif" />
           </div>
         </div>
       </v-section>
@@ -43,9 +43,9 @@
         <div class="landing-page-section">
           <h2 class="landing-page-section__header h2 text-center">We are trusted by esports bet providers across all dimensions</h2>
           <div class="betting-providers-wrapper">
-            <betting-provider logo="betting-provider1.png" title="RateBet.com" :rating="4.83" />
-            <betting-provider logo="betting-provider2.png" title="AngryFerret" :rating="4.9" />
-            <betting-provider logo="betting-provider3.png" title="K-WIN" :rating="4.81" />
+            <betting-provider logo="betting-provider1-small.webp" title="RateBet.com" :rating="4.83" />
+            <betting-provider logo="betting-provider2-small.webp" title="AngryFerret" :rating="4.9" />
+            <betting-provider logo="betting-provider3-small.webp" title="K-WIN" :rating="4.81" />
           </div>
         </div>
       </v-section>
@@ -53,7 +53,11 @@
     <v-section responsive>
       <div class="landing-page-section landing-page-section--split">
         <div class="landing-page-section__image">
-          <img id="landing-page-image1" src="@/assets/images/landing-section1.png" alt="Happy fennec fox sitting on top of a pile of money" />
+          <picture>
+            <source srcset="@/assets/images/landing-section1.webp" media="(min-width: 480px)" />
+            <source srcset="@/assets/images/landing-section1-small.webp" />
+            <img id="landing-page-image1" src="@/assets/images/landing-section1.png" alt="Happy fennec fox sitting on top of a pile of money" />
+          </picture>
         </div>
         <div class="landing-page-section__content">
           <div class="landing-page-section__tag">Features</div>
@@ -110,14 +114,23 @@
           </div>
         </div>
         <div class="landing-page-section__image">
-          <img id="landing-page-image2" src="@/assets/images/landing-section2.png" />
+          <picture>
+            <source srcset="@/assets/images/landing-section2.webp" media="(min-width: 480px)" />
+            <source srcset="@/assets/images/landing-section2-small.webp" />
+            <img id="landing-page-image2" src="@/assets/images/landing-section2.png" />
+          </picture>
+         
         </div>
       </div>
     </v-section>
     <v-section responsive>
       <div class="landing-page-section landing-page-section--split">
         <div class="landing-page-section__image">
-          <img id="landing-page-image3" src="@/assets/images/landing-section3.png" />
+          <pitcure>
+            <source srcset="@/assets/images/landing-section3.webp" media="(min-width: 480px)" />
+            <source srcset="@/assets/images/landing-section3-small.webp" />
+            <img id="landing-page-image3" src="@/assets/images/landing-section3.png" />
+          </pitcure>
         </div>
         <div id="landing-page-content3" class="landing-page-section__content">
           <div class="landing-page-section__tag">Features</div>
@@ -143,7 +156,7 @@
     <v-section dark responsive>
       <div class="landing-page-section ceo-testimonial">
         <div class="ceo-testimonial__personal">
-          <img class="ceo-testimonial__photo" src="@/assets/images/ceo.png" width="128" />
+          <img class="ceo-testimonial__photo" srcset="@/assets/images/ceo-small.webp, @/assets/images/ceo.webp 2x" width="128" />
           <div class="ceo-testimonial__name" ><cite>Mikhail Gostev</cite></div>
           <div class="ceo-testimonial__position" >CEO of Nerif</div>
         </div>
@@ -155,13 +168,13 @@
     </v-section>
     <v-section responsive>
       <div id="testimonials" class="testimonials-wrapper">
-        <user-testimonial name="Anton Petrov" job="Marketing Manager" location="Moscow, Russia" image="testimonial1.png" img-position="0 40%">
+        <user-testimonial name="Anton Petrov" job="Marketing Manager" location="Moscow, Russia" :image="['testimonial1-small.webp', 'testimonial1.webp']" img-position="0 40%">
           I've always loved gaming, but I never thought it could be a profitable venture until I discovered Nerif. With the extra money, I was able to <b>invest in stocks</b> and start building my portfolio. What's more, I was able to achieve my lifelong dream of buying <b>my own apartment</b> in the heart of Moscow and start building a life that I'm truly proud of.
         </user-testimonial>
-        <user-testimonial name="Maria Santos" job="Graphic Designer" location="Rio de Janeiro, Brazil" image="testimonial2.png" img-position="0 20%">
+        <user-testimonial name="Maria Santos" job="Graphic Designer" location="Rio de Janeiro, Brazil" :image="['testimonial2-small.webp', 'testimonial2.webp']" img-position="0 20%">
           Thanks to Nerif, I've been able to predict the outcomes of CS:GO matches accurately, making me an expert in the game. With the earnings I've made, I was able to buy my dream car, <b>a brand-new Mustang.</b> Now, I'm the envy of my friends.
         </user-testimonial>
-        <user-testimonial name="Jason Kim" job="Data Analyst" location="Seattle, WA" image="testimonial3.png" img-position="0 80%">
+        <user-testimonial name="Jason Kim" job="Data Analyst" location="Seattle, WA" :image="['testimonial3-small.webp', 'testimonial3.webp']" img-position="0 80%">
           Nerif has been a game-changer for me. As someone who loves to analyze data, it's been fascinating to see how the program can predict CS:GO outcomes with such accuracy. With the extra money I've made, I was able to take <b>a trip to Hawaii</b> and cross <b>parasailing</b> off my bucket list.
         </user-testimonial>
         <div class="cta-wrapper">
@@ -253,7 +266,7 @@
             </ul>
           </div>
           <div class="footer__navigation__column">
-            <img src="@/assets/images/logo.png" />
+            <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" />
           </div>
         </div>
         <div class="footer__footer">

@@ -4,7 +4,7 @@
       <div class="navigation-bar__items">
         <router-link to="/">
           <div class="logo-wrapper">
-            <img src="@/assets/images/logo.png" height="80"/>
+            <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" height="80"/>
             <span>Nerif</span>
           </div>
         </router-link>

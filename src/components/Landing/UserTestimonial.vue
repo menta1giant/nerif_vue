@@ -4,7 +4,10 @@
       <svg class="testimonial__photo__border" width="300" height="200">
         <rect width="300" height="200" rx="3"/>
       </svg>
-      <img :src="imagePath" width="300" :style="imgPositionStyles"/>
+      <picture>
+        <source :srcset="imagePath" />
+        <img width="300" :style="imgPositionStyles"/>
+      </picture>
       <svg class="testimonial__photo__decoration-circles" width="72" height="72">
         <circle cx="6" cy="66" r="6" />
         <circle cx="26" cy="46" r="6" />
@@ -40,13 +43,13 @@ export default {
     name: String,
     job: String,
     location: String,
-    image: String,
+    image: Array,
     imgPosition: String,
   },
   computed: {
     imagePath() {
-      if (this.image !== '') {
-        return require(`@/assets/images/${ this.image }`);
+      if (this.image.length) {
+        return this.image.map(image => require(`@/assets/images/${ image }`)).join(', ') + ' 2px';
       }
 
       return '';

@@ -9,7 +9,7 @@
     <div class="help-center">
       <div class="help-center-contacts">
         <article class="help-center-option-card">
-          <img src="@/assets/images/help-center1.png"/>
+          <img src="@/assets/images/help-center1.webp"/>
           <div class="help-center-option-card__content">
             <h2 class="h4 header-common">Write us an e-mail</h2>
             <p>We recommend you send us an email when your problem is complex and requires special kind of assistance, or you haven’t been able to resolve it via online chat.</p>
@@ -18,7 +18,7 @@
           </div>
         </article>
         <article class="help-center-option-card">
-          <img src="@/assets/images/help-center2.png"/>
+          <img src="@/assets/images/help-center2.webp"/>
           <div class="help-center-option-card__content">
             <h2 class="h4 header-common">Chat with our operators online</h2>
             <p>Get an answer to your question within mere minutes. You may need to provide access to your betting data to resolve the issue quickly.</p>
@@ -26,7 +26,7 @@
           </div>
         </article>
         <article class="help-center-option-card">
-          <img src="@/assets/images/help-center3.png"/>
+          <img src="@/assets/images/help-center3.webp"/>
           <div class="help-center-option-card__content">
             <h2 class="h4 header-common">Get on a call with our operators</h2>
             <p>Speak with a human operator on matters important to you. We have the most compassionate staff of operators in the Universe.</p>

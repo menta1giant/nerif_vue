@@ -3,7 +3,7 @@
     <label :for="id">
       <img 
         ref="image" 
-        src="@/assets/images/logo-desat.png" 
+        src="@/assets/images/logo-desat-small.webp" 
         :srcset="imageSource" 
         width="160" 
         height="160"
