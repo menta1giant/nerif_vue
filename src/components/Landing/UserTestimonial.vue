@@ -49,7 +49,7 @@ export default {
   computed: {
     imagePath() {
       if (this.image.length) {
-        return this.image.map(image => require(`@/assets/images/${ image }`)).join(', ') + ' 2px';
+        return this.image.map(image => require(`@/assets/images/${ image }`)).join(', ') + ' 2x';
       }
 
       return '';
