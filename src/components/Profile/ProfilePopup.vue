@@ -10,7 +10,7 @@
       <v-button type="transparent" size="small" to="/help-center"><v-icon name="handshake-angle" /><span>Help center</span></v-button>
     </div>
     <div class="profile-popup__common-buttons">
-      <v-button type="transparent" size="small" class="v-button--bleak" :loading="isLogoutInProcess" @click="handleLogOut"><v-icon name="right-from-bracket" />Log out</v-button>
+      <v-button type="transparent" size="small" class="v-button--bleak" :loading="isLogoutInProcess" @click="handleLogOut"><v-icon name="right-from-bracket" /><span>Log out</span></v-button>
     </div>
   </div>
 </template>

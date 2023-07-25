@@ -1,11 +1,11 @@
 <template>
   <div class="v-tooltip" @mouseenter="handleHover" @mouseleave="handleHoverOut">
-    <v-positioner :model-value="isHovered" position="center" :force-top="top">
+    <v-positioner v-model="isHovered" position="center" :force-top="top">
       <template #body>
         <slot name="trigger"></slot>
       </template>
       <template #dropdown>
-        <div class="v-tooltip__content" :class="{ 'v-tooltip__content--top': top }" :style="{ maxWidth: `${ width }px` }"><slot name="content"></slot></div>
+        <div class="v-tooltip__content" :class="{ 'v-tooltip__content--top': top }" :style="{ maxWidth: `${ width }px` }" @mouseenter="handleHover" @mouseleave="handleHoverOut"><slot name="content"></slot></div>
       </template>
     </v-positioner>
   </div>
@@ -39,7 +39,7 @@ export default {
       this.isHovered = true;
     },
     handleHoverOut() {
-      this.timeout = setTimeout(()=>this.isHovered=false, 500);
+      this.timeout = setTimeout(()=>this.isHovered=false, 200);
     },
   }
 }
