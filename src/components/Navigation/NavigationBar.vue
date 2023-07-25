@@ -41,7 +41,7 @@
             </v-popup>
           </template>
           <template v-else>
-            <v-button type="transparent-accent" size="small" @click="showLoginModal">Sign in.</v-button>
+            <v-button type="transparent-accent" size="small" @click="showLoginModal"><span>Sign in.</span></v-button>
             <v-button type="primary-accent" size="small"  to="/sign-up">Subscribe</v-button>
           </template>
           <hamburger-menu-button 

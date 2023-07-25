@@ -10,14 +10,15 @@
         </blog-post-preview>
       </template>
     </div>
-    <template v-else>
-      <p>Unfortunately, there are no posts to show.</p>
-    </template>
+    <empty-results-warning v-else>
+      Unfortunately, there are no posts to show.
+    </empty-results-warning>
   </v-section>
 </template>
 
 <script>
 import { apiRequestGet } from '@/lib/api';
+import EmptyResultsWarning from '@/components/modules/EmptyResultsWarning.vue';
 import BlogPostPreview from './BlogPostPreview';
 import BlogPostPreviewSkeleton from './BlogPostPreviewSkeleton';
 import loadingMixin from '@/components/mixins/loadingMixin.js';
@@ -27,6 +28,7 @@ export default {
   components: {
     BlogPostPreview,
     BlogPostPreviewSkeleton,
+    EmptyResultsWarning
   },
   mixins: [loadingMixin],
   async created() {

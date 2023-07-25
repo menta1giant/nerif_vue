@@ -2,9 +2,14 @@
   <sections-navigation v-model="selectedSection" :sections="sections" :sections-counts="articlesCounts" :loading="isGlobalLoading" />
   <v-section responsive>
     <div class="documentation-articles-wrapper">
-      <documentation-article-preview v-for="(article, idx) in articles" :key="`article_${ idx }`" :title="article.header" :id="article.id">
-        {{ article.content }}
-      </documentation-article-preview>
+      <template v-if="articles.length">
+        <documentation-article-preview v-for="(article, idx) in articles" :key="`article_${ idx }`" :title="article.header" :id="article.id">
+          {{ article.content }}
+        </documentation-article-preview>
+      </template>
+      <empty-results-warning v-else-if="!isGlobalLoading" style="margin-top: 2rem">
+        Unfortunately, there are no articles to show.
+      </empty-results-warning>
     </div>
   </v-section>
 </template>
@@ -12,6 +17,7 @@
 <script>
 import SectionsNavigation from '@/components/Navigation/SectionsNavigation.vue';
 import DocumentationArticlePreview from '@/components/Documentation/DocumentationArticlePreview.vue';
+import EmptyResultsWarning from '@/components/modules/EmptyResultsWarning.vue';
 import { apiRequestGet, apiRequestGetWithCache } from '@/lib/api';
 import loadingMixin from '@/components/mixins/loadingMixin.js';
 
@@ -20,6 +26,7 @@ export default {
   components: {
     SectionsNavigation,
     DocumentationArticlePreview,
+    EmptyResultsWarning,
   },
   mixins: [loadingMixin],
   async created() {

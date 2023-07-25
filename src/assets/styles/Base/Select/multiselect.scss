@@ -4,6 +4,10 @@
   &__selected-options {
     display: flex;
     gap: .25rem;
+    flex-wrap: wrap;
+    
+    max-height: 6rem;
+    overflow: auto;
 
     .v-icon {
       color: $primary-ds-300;

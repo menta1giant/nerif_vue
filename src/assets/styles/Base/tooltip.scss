@@ -11,12 +11,8 @@
     color: $black-10;
     font-weight: $fw-regular;
 
-    &::after {
-      content: '';
-      position: absolute;
-      left: calc(50% - 2px);
+    &+:deep(.v-positioner__tail) {
       top: -2px;
-      transform: rotate(45deg);
 
       width: 4px;
       height: 4px;

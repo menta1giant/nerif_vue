@@ -141,9 +141,11 @@
     }
 
     &:focus:not(:disabled) {
-      text-decoration: underline;
-      text-decoration-color: $primary-s-200;
-      text-underline-offset: 2px;
+      :deep(span) {
+        text-decoration: underline;
+        text-decoration-color: $primary-s-200;
+        text-underline-offset: 2px;
+      }
     }
 
     &:disabled, &:not(button):not(a[href]) {

@@ -7,11 +7,11 @@
       <section class="filters desktop">
         <v-popup v-model="isFiltersDropdownVisible">
           <template #trigger>
-            <div class="filters__toggle-button">
+            <v-button type="transparent" size="small" class="filters__toggle-button">
               <v-icon type="solid" name="filter"/>
               <span>Filters</span>
               <v-chevron :model-value="isFiltersDropdownVisible" />
-            </div>
+            </v-button>
           </template>
           <template #content>
             <matches-filters />
@@ -28,7 +28,7 @@
         </div>
         <label class="feed__cappers-select__label label">Select cappers</label>
         <div class="feed__cappers-select__wrapper">
-          <v-multiselect :options="cappers" placeholder="By default, all cappers are selected" @change="handleSelectCappers">Я мультиселект, меня можно кликать</v-multiselect>
+          <v-multiselect :options="cappers" placeholder="By default, all cappers are selected" @change="handleSelectCappers" />
         </div>
         <div class="feed__posts-list">
           <template v-if="!areEndorsementsLoading">
@@ -53,7 +53,7 @@
     </section>
     <section class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }" ref="container-right">
       <h2 class="visually-hidden">Matches list</h2>
-      <matches-list :matches="matches" :is-loading="areMatchesLoading" @change-scroll="changeScroll"/>
+      <matches-list ref="matches" :matches="matches" :is-loading="areMatchesLoading" @change-scroll="changeScroll"/>
       <div class="match-card-dummy"></div>
     </section>
   </v-section>
@@ -197,6 +197,7 @@ export default {
       this.areMatchesLoading = false;
     },
     replaceMatches: debounce(async function() {
+      this.$store.commit('setSelectedMatch', null);
       this.matchesRequestParams.offset = 0;
       this.matches = [];
 
@@ -235,9 +236,10 @@ export default {
     },
     changeScroll(openedCardId, behavior) {
       if (openedCardId === undefined) return;
-      const containerRight = this.$refs['container-right'];
-      const firstMatchTop = containerRight.firstElementChild?.firstElementChild?.offsetTop || 0;
-      const nthMatchTop = containerRight.firstElementChild?.children[openedCardId]?.offsetTop || 0;
+      
+      const matchesRef = this.$refs.matches;
+      const firstMatchTop = matchesRef?.$el?.nextElementSibling?.firstElementChild?.offsetTop || 0;
+      const nthMatchTop = matchesRef?.$el?.nextElementSibling?.children[openedCardId]?.offsetTop || 0;
       
       this.matchesScroll = nthMatchTop - firstMatchTop;
       this.scrollMatches(behavior);

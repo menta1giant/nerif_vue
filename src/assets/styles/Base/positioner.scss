@@ -24,6 +24,11 @@
       animation-fill-mode: forwards;
     }
   }
+  
+  &__tail {
+    position: absolute;
+    transform: rotate(45deg);
+  }
 }
 
 @keyframes fadeOut {

@@ -86,7 +86,7 @@
   }
 }
 
-@media screen and (max-width: $tablet-breakpoint) {
+@media screen and (max-width: $laptop-breakpoint) {
   .filters {
     &__wrapper {
       display: none;

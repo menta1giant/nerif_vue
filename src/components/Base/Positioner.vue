@@ -5,6 +5,7 @@
     </div>
     <div class="v-positioner__dropdown" :class="{ 'v-positioner__dropdown--visible': modelValue }" ref="dropdown" :style="dropdownStyles">
       <slot name="dropdown"></slot>
+      <div class="v-positioner__tail" :style="tailStyles"></div>
     </div>
   </div>
 </template>
@@ -63,6 +64,7 @@ export default {
         top: '-9999px',
         left: '-9999px',
       },
+      tailOffset: 0,
       maxDropdownHeight: 10000,
     };
   },
@@ -93,6 +95,11 @@ export default {
         maxHeight: `${this.maxDropdownHeight}px`,
       });
     },
+    tailStyles() {
+      return {
+        left: `calc(50% - 2px + ${ this.tailOffset }px`,
+      }
+    }
   },
   methods: {
     mountContent() {
@@ -154,8 +161,12 @@ export default {
     calculateSideCoordinate() {
       const dropdownWidth = Math.max(this.$refs.body.clientWidth, this.$refs.dropdown.scrollWidth);
       const spaceBesideBody = this.position !== 'right' ? this.bodyCoordinates.left : document.documentElement.clientWidth - this.bodyCoordinates.right;
-      let sideCoordinate = Math.max(16, spaceBesideBody - dropdownWidth + this.$refs.body.scrollWidth + this.getOffsetX());
+      const excessSpace = spaceBesideBody - dropdownWidth + this.$refs.body.scrollWidth + this.getOffsetX();
+
+      let sideCoordinate = Math.max(16, excessSpace);
       if (this.isPositionCenter) {
+        const correctedPosition = document.documentElement.clientWidth - dropdownWidth - VERTICAL_MARGIN*2;
+        this.tailOffset = Math.max(sideCoordinate - correctedPosition, 0);
         sideCoordinate = Math.min(sideCoordinate, document.documentElement.clientWidth - dropdownWidth - VERTICAL_MARGIN*2);
       }
 

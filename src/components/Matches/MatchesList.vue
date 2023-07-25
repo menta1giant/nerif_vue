@@ -4,7 +4,10 @@
       <match-card :key="`match_${ openedMatchCard.match.match_id }`" :match="openedMatchCard" is-selected @click="toggleMatchCard()" />
     </template>
     <template v-else>
-      <match-card v-for="(match, idx) in matches" :key="`match_${ idx }`" :match="match" :is-selected="isScrollingInProcess && idx == lastOpenedMatchCardId" @click="!isScrollingInProcess && toggleMatchCard(idx)" />
+      <template v-if="matches.length">
+        <match-card v-for="(match, idx) in matches" :key="`match_${ idx }`" :match="match" :is-selected="isScrollingInProcess && idx == lastOpenedMatchCardId" @click="!isScrollingInProcess && toggleMatchCard(idx)" />
+      </template>
+      <empty-results-warning v-else-if="!isLoading">Unfortunately, there are no matches to show for selected date. Try selecting another date.</empty-results-warning>
       <template v-if="isLoading">
         <match-card-skeleton v-for="(match, idx) in (new Array(hasMatches ? 1 : 8))" :key="`match-skeleton_${ idx }`" />
       </template>
@@ -42,6 +45,7 @@
 import { apiRequestGet } from '@/lib/api';
 import MatchCard from './MatchCard.vue';
 import MatchCardSkeleton from './MatchCardSkeleton.vue';
+import EmptyResultsWarning from '@/components/modules/EmptyResultsWarning.vue';
 import StatsBar from './StatsBar.vue';
 import { matchStatsTitlesMap } from './const';
 import LineChart from '@/components/charts/LineChart.vue';
@@ -55,6 +59,7 @@ export default {
     StatsBar,
     MatchCardSkeleton,
     LineChart,
+    EmptyResultsWarning
   },
   props: {
     matches: {
@@ -89,6 +94,14 @@ export default {
     },
   },
   watch: {
+    openedMatchCard: {
+      immediate: true,
+      handler(val) {
+        if (val !== null) return;
+
+        this.isMatchCardInfoOpened = false;
+      }
+    },
     isMatchCardInfoOpened: {
       immediate: true,
       handler(val) {
