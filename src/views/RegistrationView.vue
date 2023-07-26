@@ -26,7 +26,7 @@ export default {
   },
   mixins: [userInfoMixin],
   beforeRouteLeave(to) {
-    if (this.isFirstStep || this.isLeavingSignUpModalShown || to.path.includes('profile')) return true;
+    if (!this.isUserAuthenticated || this.isLeavingSignUpModalShown || to.path.includes('profile')) return true;
 
     this.leavingTo = to;
     this.isLeavingSignUpModalShown = true;
@@ -48,9 +48,11 @@ export default {
       isLeavingSignUpModalShown: false,
     };
   },
-  computed: {
-    isFirstStep() {
-      return this.activeStep === 0;
+  watch: {
+    isUserAuthenticated(val) {
+      if (!val && this.activeStep !== 0) {
+        this.$router.replace({ name: 'root', query: { 'log-in': 1 } });
+      }
     },
   },
   methods: {
