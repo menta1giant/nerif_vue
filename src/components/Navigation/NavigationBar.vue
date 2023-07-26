@@ -4,7 +4,7 @@
       <div class="navigation-bar__items">
         <router-link to="/">
           <div class="logo-wrapper">
-            <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" height="80"/>
+            <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" height="80" alt="Nerif logo"/>
             <span>Nerif</span>
           </div>
         </router-link>
@@ -32,7 +32,7 @@
             <v-popup v-model="isProfilePopupOpened" show-x>
               <template #trigger>
                 <div class="navbar-square-button profile-button">
-                  <img :srcset="profilePhotoUrl" />
+                  <img src="@/assets/images/logo-desat-small.webp" :srcset="profilePhotoUrl" alt="profile-photo" />
                 </div>
               </template>
               <template #content>
@@ -42,7 +42,7 @@
           </template>
           <template v-else>
             <v-button type="transparent-accent" size="small" @click="showLoginModal"><span>Sign in.</span></v-button>
-            <v-button type="primary-accent" size="small"  to="/sign-up">Subscribe</v-button>
+            <v-button type="primary-accent" size="small" to="/sign-up">Subscribe</v-button>
           </template>
           <hamburger-menu-button 
             class="navbar-square-button hamburger-menu-button mobile"

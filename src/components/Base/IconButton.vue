@@ -1,21 +1,21 @@
 <template>
   <v-tooltip v-if="hasTooltip" :is-trigger-focused="isTriggerFocused && !disableFocus">
     <template #trigger>
-      <button class="v-icon-button" :class="{ 'v-icon-button--active': disableFocus }" :aria-label="label" @focus="isTriggerFocused=true" @blur="isTriggerFocused=false"><v-icon :type="iconType" :name="name" /></button>
+      <button v-bind="$attrs" class="v-icon-button" :class="{ 'v-icon-button--active': disableFocus }" :aria-label="$attrs['aria-label'] || tooltipContent" @focus="isTriggerFocused=true" @blur="isTriggerFocused=false"><v-icon :type="iconType" :name="name" /></button>
     </template>
     <template #content>
       <span v-html="tooltipContent"></span>
     </template>
   </v-tooltip>
-  <button v-else class="v-icon-button" :aria-label="label"><v-icon :type="iconType" :name="name" /></button>
+  <button v-else v-bind="$attrs" class="v-icon-button"><v-icon :type="iconType" :name="name" /></button>
 </template>
 
 <script>
 export default {
   name: 'IconButton',
+  inheritAttrs: false,
   props: {
     name: String,
-    label: String,
     tooltipContent: String,
     disableFocus: Boolean,
     brands: Boolean,

@@ -21,6 +21,7 @@
 
 <script>
 import { apiRequestGet } from '@/lib/api';
+import { setMetaData } from '@/lib/meta';
 import { getImageUrl } from '@/lib/image';
 import SaveBookmarkButton from './SaveBookmarkButton.vue';
 
@@ -34,6 +35,11 @@ export default {
     next(vm => {
       ({ title: vm.title, content: vm.content, author: vm.author, date_published: vm.date_published, tags: vm.tags, cover: vm.cover } = post);
       vm.$store.commit('setBreadcrumbsTitle', `Blog post #${ to.params.id }`);
+      
+      setMetaData({
+        title: vm.title,
+        description: to.meta.description,
+      })
     });
   },
   data() {

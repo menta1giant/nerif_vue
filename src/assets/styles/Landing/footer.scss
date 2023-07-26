@@ -8,6 +8,10 @@
   gap: 2rem;
 
   &__header {
+    h3 {
+      padding-bottom: .5rem;
+    }
+
     span {
       @include text-large;
       font-weight: $fw-medium;
@@ -63,10 +67,8 @@
         display: flex;
         gap: .375rem;
 
-        transition: color 200ms ease;
-
         &:hover {
-          color: $primary-s-100;
+          color: $accent-500;
         }
       }
     }

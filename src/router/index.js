@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SearchInput from '@/components/SearchInput';
 import store from '../store';
+import { setMetaData } from '@/lib/meta';
 
 const routes = [
   {
@@ -8,7 +9,8 @@ const routes = [
     name: 'Home',
     meta: {
       isInMainNavigation: true,
-      icon: "home"
+      icon: "home",
+      description: 'Landing page for Nerif - the most advanced CS:GO predicting algorithm.'
     },
     children: [
       {
@@ -24,7 +26,8 @@ const routes = [
     name: 'Matches',
     meta: {
       isInMainNavigation: true,
-      icon: "gamepad"
+      icon: "gamepad",
+      description: 'Matches, predicted by Nerif, and Telegram feed with opinions from revered CS:GO cappers.',
     },
     children: [
       {
@@ -40,7 +43,8 @@ const routes = [
     name: 'Dashboards',
     meta: {
       isInMainNavigation: true,
-      icon: "chart-simple"
+      icon: "chart-simple",
+      description: 'Dashboards page, concise analysis of Nerif\'s algorithm performance.',
     },
     component: () => import(/* webpackChunkName: "dashboards" */ '../views/DashboardsView.vue')
   },
@@ -49,13 +53,16 @@ const routes = [
     name: 'Legal',
     meta: {
       hasBreadcrumbs: true,
+      description: 'Nerif legal documents.'
     },
     component: () => import(/* webpackChunkName: "landing" */ '../views/LegalView.vue')
   },
   {
     path: '/documentation',
     name: 'Documentation',
-    meta: {},
+    meta: {
+      description: 'Nerif documentation, written guide on how to use Nerif and profit from the platform.',
+    },
     children: [
       {
         path: '',
@@ -84,6 +91,7 @@ const routes = [
     meta: {
       hasBreadcrumbs: true,
       requiresAuth: true,
+      description: 'Nerif profile settings.'
     },
     children: [
       {
@@ -137,6 +145,7 @@ const routes = [
     name: 'Registration',
     meta: {
       requiresGuest: true,
+      description: 'Sign up to Nerif to get rich quickly!',
     },
     component: () => import(/* webpackChunkName: "registration" */ '../views/RegistrationView.vue')
   },
@@ -151,13 +160,16 @@ const routes = [
     name: 'Help Center',
     meta: {
       hasBreadcrumbs: true,
+      description: 'Nerif customer service page. We offer multiple ways of communication, so that you, our dear clients, could get the best assistance!',
     },
     component: () => import(/* webpackChunkName: "landing" */ '../views/HelpCenterView.vue')
   },
   {
     path: '/blog',
     name: 'Blog',
-    meta: {},
+    meta: {
+      description: 'Nerif blog with all the latest news and updates from the greatest CS:GO predictions algorithm.'
+    },
     children: [
       {
         path: '',
@@ -200,6 +212,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  setMetaData({
+    title: to.matched.find(route => route.name)?.name,
+    description: to.meta.description,
+  })
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.getIsUserAuthenticated) {
       next({ path: '/', query: { 'log-in': 1 } })

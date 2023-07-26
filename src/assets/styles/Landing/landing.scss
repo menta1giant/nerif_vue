@@ -74,6 +74,8 @@
 .cta-wrapper {
   position: relative;
   margin-top: 1.5rem;
+
+  z-index: 2001;
   
   &>span {
     @include text-xxs;

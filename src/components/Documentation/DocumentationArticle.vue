@@ -11,6 +11,7 @@
 
 <script>
 import { apiRequestGet } from '@/lib/api';
+import { setMetaData } from '@/lib/meta';
 
 export default {
   name: 'DocumentationArticle',
@@ -22,6 +23,11 @@ export default {
     next(vm => {
       vm.$store.commit('setBreadcrumbsTitle', `Article #${ to.params.id }`);
       vm.article = article;
+
+      setMetaData({
+        title: vm.article.header,
+        description: to.meta.description,
+      })
     });
   },
   data() {

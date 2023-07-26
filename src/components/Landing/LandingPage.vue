@@ -267,15 +267,15 @@
             </ul>
           </div>
           <div class="footer__navigation__column">
-            <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" loading="lazy" />
+            <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" height="216" loading="lazy" alt="Nerif logo" />
           </div>
         </div>
         <div class="footer__footer">
           <span>© 2023 Nerif will conquer us all</span>
           <div class="footer__socials">
-            <v-icon-button name="facebook" label="Facebook page" brands />
-            <v-icon-button name="telegram" label="Telegram channel" brands />
-            <v-icon-button name="discord" label="Discord server" brands />
+            <v-icon-button name="facebook" aria-label="Facebook page" brands />
+            <v-icon-button name="telegram" aria-label="Telegram channel" brands />
+            <v-icon-button name="discord" aria-label="Discord server" brands />
           </div>
         </div>
       </footer>
