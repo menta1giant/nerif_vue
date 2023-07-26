@@ -1,5 +1,5 @@
 <template>
-  <button class="social-sign-up-button" :class="[`social-sign-up-button--${ social }`]" type="button"><img height="20" width="20" :src="imagePath"/>Continue with <slot></slot></button>
+  <button class="social-sign-up-button" :class="[`social-sign-up-button--${ social }`]" type="button" disabled><img height="20" width="20" :src="imagePath"/>Continue with <slot></slot></button>
 </template>
 
 <script>
