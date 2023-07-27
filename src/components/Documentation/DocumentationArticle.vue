@@ -12,6 +12,7 @@
 <script>
 import { apiRequestGet } from '@/lib/api';
 import { setMetaData } from '@/lib/meta';
+import { showPageLoader, finishPageLoading } from '@/lib/loading';
 
 export default {
   name: 'DocumentationArticle',
@@ -19,6 +20,7 @@ export default {
     title: String,
   },
   async beforeRouteEnter(to, from, next) {
+    showPageLoader();
     const article = await apiRequestGet(`content/documentation/articles/${ to.params.id }`);
     next(vm => {
       vm.$store.commit('setBreadcrumbsTitle', `Article #${ to.params.id }`);
@@ -28,6 +30,8 @@ export default {
         title: vm.article.header,
         description: to.meta.description,
       })
+
+      finishPageLoading();
     });
   },
   data() {

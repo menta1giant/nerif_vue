@@ -1,5 +1,6 @@
 import axios from "axios";
 import { notify } from '@/lib/notify';
+import { finishPageLoading } from '@/lib/loading';
 import { getLocalStorageDataByKey, setLocalStorageData } from '@/lib/localStorage';
 import store from '../store';
 
@@ -22,6 +23,8 @@ async function apiRequest({
 
     return data;
   } catch(e) {
+    finishPageLoading();
+
     if (e.response.data.detail === 'Invalid token.') {
       store.commit('removeToken');
       
@@ -37,10 +40,14 @@ async function apiRequest({
       return data;
     }
 
-    if (e.response.data.message) notify.error(e.response.data.message);
+    if (e.response.data.message) {
+      notify.error(e.response.data.message);
+    } else if (e.response.status >= 500 && e.response.status < 600) {
+      notify.error('There was a server error.');
+    }
 
     if (errorCallback) {
-      errorCallback(e.response.data)
+      errorCallback(e.response.data);
     }
     throw e;
   }

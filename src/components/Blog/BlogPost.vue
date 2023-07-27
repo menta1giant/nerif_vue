@@ -23,6 +23,7 @@
 import { apiRequestGet } from '@/lib/api';
 import { setMetaData } from '@/lib/meta';
 import { getImageUrl } from '@/lib/image';
+import { showPageLoader, finishPageLoading } from '@/lib/loading';
 import SaveBookmarkButton from './SaveBookmarkButton.vue';
 
 export default {
@@ -31,6 +32,7 @@ export default {
     SaveBookmarkButton,
   },
   async beforeRouteEnter(to, from, next) {
+    showPageLoader();
     const post = await apiRequestGet(`content/blog/posts/${ to.params.id }`);
     next(vm => {
       ({ title: vm.title, content: vm.content, author: vm.author, date_published: vm.date_published, tags: vm.tags, cover: vm.cover } = post);
@@ -40,6 +42,8 @@ export default {
         title: vm.title,
         description: to.meta.description,
       })
+
+      finishPageLoading();
     });
   },
   data() {
