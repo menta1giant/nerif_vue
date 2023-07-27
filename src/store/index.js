@@ -66,6 +66,7 @@ export default createStore({
         async setUserInfo(state) {
           try {
             const [userInfo, subscriptionInfo] = await Promise.all([apiRequestGet('users/profile/personal-info'), apiRequestGet('users/profile/subscription-info')]);
+
             state.userInfo = Object.assign({}, userInfo, { subscription: subscriptionInfo });
           } catch(e) {
             this.commit('removeToken');

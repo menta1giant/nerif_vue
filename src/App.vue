@@ -30,9 +30,9 @@ export default {
   },
   mixins: [userInfoMixin],
   beforeCreate() {
-    this.$store.commit('initializeStore');
-
     axios.defaults.baseURL = process.env.VUE_APP_API;
+
+    this.$store.commit('initializeStore');
   },
   data() {
     return {

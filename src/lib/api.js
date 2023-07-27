@@ -60,8 +60,7 @@ export async function apiRequestGet(route, params='', { errorCallback = null } =
 
   const searchParams = new URLSearchParams(params);
 
-  const url =  `${ route }?${ searchParams }`;
-
+  const url = `${ route }?${ searchParams }`;
   const data = apiRequest({method: 'GET', url, errorCallback});
 
   return data;
