@@ -1,5 +1,3 @@
-import { BACKEND_URL } from '@/lib/config';
-
-export function getImageUrl(relativePath) {
-  return `${BACKEND_URL}${relativePath}`;
+export function getImageUrl(path) {
+  return path;
 }

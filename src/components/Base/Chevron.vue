@@ -1,6 +1,6 @@
 <template>
   <div class="v-chevron" :class="{ 'v-chevron--active': modelValue }" @click="toggleChevron">
-    <v-icon type="solid" name="chevron-up" />
+    <v-icon type="solid" name="chevron-down" />
   </div>
 </template>
 

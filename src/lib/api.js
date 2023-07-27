@@ -1,5 +1,4 @@
-import axios from "axios"
-import { BACKEND_URL_API } from './config';
+import axios from "axios";
 import { notify } from '@/lib/notify';
 import { getLocalStorageDataByKey, setLocalStorageData } from '@/lib/localStorage';
 import store from '../store';
@@ -14,7 +13,7 @@ async function apiRequest({
   try {
     const { data } = await axios({
       method,
-      url,
+      url: `${ '/api/v1/' }${ url }`,
       data: params,
       headers,
     })
@@ -61,7 +60,7 @@ export async function apiRequestGet(route, params='', { errorCallback = null } =
 
   const searchParams = new URLSearchParams(params);
 
-  const url =  `${ BACKEND_URL_API }${ route }?${ searchParams }`;
+  const url =  `${ route }?${ searchParams }`;
 
   const data = apiRequest({method: 'GET', url, errorCallback});
 
@@ -69,9 +68,7 @@ export async function apiRequestGet(route, params='', { errorCallback = null } =
 }
 
 export async function apiRequestPostForm(route, params={}, errorCallback = null) {
-  const url =  `${ BACKEND_URL_API }${ route }`;
-
-  const data = apiRequest({method: 'POST', url, params, errorCallback, headers: {
+  const data = apiRequest({method: 'POST', url: route, params, errorCallback, headers: {
     'Content-Type': 'multipart/form-data'
   }})
 
@@ -79,9 +76,7 @@ export async function apiRequestPostForm(route, params={}, errorCallback = null)
 }
 
 export async function apiRequestPost(route, params={}, errorCallback = null) {
-  const url =  `${ BACKEND_URL_API }${ route }`;
-
-  const data = apiRequest({method: 'POST', url, params, errorCallback})
+  const data = apiRequest({method: 'POST', url: route, params, errorCallback})
 
   return data;
 }

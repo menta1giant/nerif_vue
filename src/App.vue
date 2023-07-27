@@ -17,6 +17,8 @@ import GlobalNotifications from '@/components/GlobalNotifications/GlobalNotifica
 import userInfoMixin from '@/components/mixins/userInfoMixin.js';
 import HamburgerMenu from '@/components/Navigation/HamburgerMenu.vue';
 
+import axios from "axios"
+
 export default {
   name: 'app',
   components: {
@@ -29,6 +31,8 @@ export default {
   mixins: [userInfoMixin],
   beforeCreate() {
     this.$store.commit('initializeStore');
+
+    axios.defaults.baseURL = process.env.VUE_APP_API;
   },
   data() {
     return {
