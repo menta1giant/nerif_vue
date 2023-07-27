@@ -48,7 +48,7 @@ a, button {
 }
 
 a {
-  &:focus {
+  &:focus-visible {
     text-decoration: underline;
     text-underline-offset: 2px;
   }
@@ -62,6 +62,7 @@ time {
 img {
   display: block;
   align-self: center;
+  object-fit: cover;
 }
 
 // SCROLL BAR

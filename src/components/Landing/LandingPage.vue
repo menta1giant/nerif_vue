@@ -267,7 +267,7 @@
             </ul>
           </div>
           <div class="footer__navigation__column">
-            <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" height="216" loading="lazy" alt="Nerif logo" />
+            <img srcset="@/assets/images/logo-small.webp, @/assets/images/logo.webp 2x" height="216" width="216" loading="lazy" alt="Nerif logo" />
           </div>
         </div>
         <div class="footer__footer">
