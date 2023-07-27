@@ -10,7 +10,7 @@
 
       @form-submitted="handleFormSubmitted"
     >
-      <v-form-field name="email" type="text" placeholder="ab@gmail.com" label="E-mail"></v-form-field>
+      <v-form-field name="email" type="email" placeholder="ab@gmail.com" label="E-mail"></v-form-field>
       <v-form-field name="password" type="password" label="Password">
         <span class="link-text"><b>Forgot password?</b></span>
       </v-form-field>

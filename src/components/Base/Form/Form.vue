@@ -23,6 +23,7 @@
               :has-error="!!errorMessages[component.props.name]" 
   
               @toggle="handleSubmit"
+              @input="handleInput"
             >
             </component>
           </template>
