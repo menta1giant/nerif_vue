@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     fullName() {
-      return this.userInfo.first_name && this.userInfo.last_name ? `${ this.userInfo.first_name } ${ this.userInfo.last_name }` : ' Our dearest user';
+      return this.userInfo.first_name && this.userInfo.last_name ? `${ this.userInfo.first_name } ${ this.userInfo.last_name }` : 'Our dearest user';
     },
   },
   methods: {

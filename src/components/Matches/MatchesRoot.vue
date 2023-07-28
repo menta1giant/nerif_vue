@@ -21,35 +21,7 @@
           <matches-filters />
         </div>
       </section>
-      <section class="feed">
-        <div class="feed__title">
-          <h2 id="tfeed-header" class="h3 header-common">Telegram Feed</h2>
-          <v-icon-button name="circle-question" aria-describedby="tfeed-header" tooltip-content="This section contains Telegram post from revered CS:GO cappers"/>
-        </div>
-        <label class="feed__cappers-select__label label">Select cappers</label>
-        <div class="feed__cappers-select__wrapper">
-          <v-multiselect :options="cappers" placeholder="By default, all cappers are selected" @change="handleSelectCappers" />
-        </div>
-        <div class="feed__posts-list">
-          <template v-if="!areEndorsementsLoading">
-            <telegram-feed-post 
-              v-for="endorsement in endorsements" 
-              :key="`endorsement_${endorsement.id}`" 
-              :author="endorsement.author"
-              :content="endorsement.content"
-              :related-map="endorsement.related_map"
-              :link="endorsement.link"
-              :is-favorite="endorsement.is_favorite"
-            ></telegram-feed-post>
-          </template>
-          <template v-else>
-            <telegram-feed-post-skeleton 
-              v-for="(_, idx) in (new Array(4))"
-              :key="`endorsement_skeleton_${ idx }`"
-            />
-          </template>
-        </div>
-      </section>
+      <telegram-feed-root />
     </section>
     <section class="content-wrapper-right" :class="{ desktop: !isMatchesTabOpened }" ref="container-right">
       <h2 class="visually-hidden">Matches list</h2>
@@ -68,10 +40,9 @@
 import debounce from '@/lib/debounce';
 
 import MatchesList from './MatchesList.vue';
+import TelegramFeedRoot from './Feed/TelegramFeedRoot.vue';
 import DatePicker from './DatePicker/DatePicker.vue';
 import datePickerMixin from './DatePicker/datePickerMixin.js';
-import TelegramFeedPost from './Feed/TelegramFeedPost.vue';
-import TelegramFeedPostSkeleton from './Feed/TelegramFeedPostSkeleton.vue';
 import MatchesFilters from './Filters/MatchesFilters.vue';
 import MobileToolbar from './MobileToolbar.vue';
 import { apiRequestGet } from '@/lib/api';
@@ -83,17 +54,15 @@ export default {
   components: {
     MatchesList,
     DatePicker,
-    TelegramFeedPost,
-    TelegramFeedPostSkeleton,
     MatchesFilters,
     MobileToolbar,
+    TelegramFeedRoot,
   },
   mixins: [datePickerMixin],
   async created() {
     this.$router.replace(`/matches/${this.formattedDate}`);
     this.setUpIntersectionObserver();
-    await Promise.all([this.fetchMatches(), this.fetchCappers(), this.fetchEndorsements()]);
-
+    await this.fetchMatches();
   },
   data() {
     return {
@@ -116,14 +85,10 @@ export default {
         map3: 1,
       },
 
-      cappers: [],
-      endorsements: [],
-
       isMatchesTabOpened: true,
       isFiltersDropdownVisible: false,
       isLimitOfMatchesReached: false,
       areMatchesLoading: false,
-      areEndorsementsLoading: false,
     }
   },
   computed: {
@@ -163,22 +128,6 @@ export default {
     resetObserver() {
       const target = document.querySelector(".match-card-dummy");
       if (target instanceof HTMLElement) this.invokeObserver(target);
-    },
-    async fetchCappers() {
-      const cappers = await apiRequestGet('matches/cappers');
-
-      this.cappers = cappers;
-    },
-    async fetchEndorsements(selectedCappers) {
-      this.areEndorsementsLoading = true;
-      let query = {}
-      if (selectedCappers) {
-        query.cappers = selectedCappers;
-      }
-      const endorsements = await apiRequestGet('matches/endorsements', query);
-
-      this.endorsements = endorsements;
-      this.areEndorsementsLoading = false;
     },
     async fetchMatches() {
       this.areMatchesLoading = true;
