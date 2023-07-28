@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     showLoading() {
-      this.isActive = false;
+      this.isActive = this.isFinished = false;
 
       if (this.timer) {
         clearTimeout(this.timer);
