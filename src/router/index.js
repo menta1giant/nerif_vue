@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import SearchInput from '@/components/SearchInput';
 import store from '../store';
 import { setMetaData } from '@/lib/meta';
+import { finishPageLoading } from '@/lib/loading';
 
 const routes = [
   {
@@ -212,6 +213,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  finishPageLoading();
+
   setMetaData({
     title: to.matched.find(route => route.name)?.name,
     description: to.meta.description,
