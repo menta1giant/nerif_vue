@@ -239,7 +239,7 @@
           <span>Get a personal -20% off deal by entering your email</span>
         </div>
         <div class="footer__lead-input">
-          <v-input placeholder="Enter your e-mail" fluid/><v-button size="large" type="primary-accent" loading>Get special deal</v-button>
+          <v-input placeholder="Enter your e-mail" fluid/><v-button size="large" type="primary-accent">Get special deal</v-button>
         </div>
         <div class="footer__navigation">
           <div class="footer__navigation__column">
