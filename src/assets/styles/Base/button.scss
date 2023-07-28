@@ -23,7 +23,7 @@
     text-decoration: none;
   }
 
-  &--loading, &:not(button):not(a[href]) {
+  &--loading, &:is(a:not(a[href])) {
     &:deep(.v-icon) {
       display: none;
     }
@@ -67,7 +67,7 @@
       box-shadow: 0 0 0 2px $primary-s-500;
     }
 
-    &:disabled, &:not(button):not(a[href]) {
+    &:disabled, &:is(a:not(a[href])) {
       background: $primary-s-300;
       color: $primary-ds-200;
 
@@ -96,7 +96,7 @@
       box-shadow: 0 0 0 2px $accent-500;
     }
 
-    &:disabled, &:not(a[href]) {
+    &:disabled, &:is(a:not(a[href])) {
       background: $accent-300;
       color: $black-500;
 
@@ -121,7 +121,7 @@
       border-color: $primary-s-200;
     }
 
-    &:disabled, &:not(button):not(a[href]) {
+    &:disabled, &:is(a:not(a[href])) {
       background: $black-10;
       color: $primary-ds-200;
 
@@ -141,7 +141,7 @@
       background: $primary-s-50;
     }
 
-    &:focus:not(:disabled) {
+    &:focus-visible:not(:disabled) {
       :deep(span) {
         text-decoration: underline;
         text-decoration-color: $primary-s-200;
@@ -149,7 +149,7 @@
       }
     }
 
-    &:disabled, &:not(button):not(a[href]) {
+    &:disabled, &:is(a:not(a[href])) {
       color: $primary-ds-400;
 
       .v-loader {
@@ -164,7 +164,7 @@
 
     color: $accent-500;
 
-    &:disabled, &:not(button):not(a[href]) {
+    &:disabled, &:is(a:not(a[href])) {
       color: $accent-300;
 
       .v-loader {

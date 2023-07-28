@@ -75,7 +75,7 @@
             background-color: $primary-s-50;
           }
 
-          &:focus {
+          &:focus-visible {
             outline: 1px solid $primary-s-200;
           }
         }
