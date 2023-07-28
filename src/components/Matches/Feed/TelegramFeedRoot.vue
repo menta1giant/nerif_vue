@@ -68,6 +68,9 @@ export default {
       this.endorsements = endorsements;
       this.areEndorsementsLoading = false;
     },
+    handleSelectCappers(selectedCappers) {
+      this.fetchEndorsements(selectedCappers);
+    }
   }
 }
 </script>

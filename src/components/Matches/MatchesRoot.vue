@@ -197,9 +197,6 @@ export default {
       this.scrollContainerToYZero();
       this.isMatchesTabOpened = newValue;
     },
-    handleSelectCappers(selectedCappers) {
-      this.fetchEndorsements(selectedCappers);
-    }
   }
 }
 </script>
