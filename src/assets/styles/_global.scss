@@ -43,7 +43,7 @@ a, button {
   transition-duration: 200ms;
 
   &:not(:disabled) {
-    cursor: pointer !important;
+    cursor: pointer;
   }
 }
 

@@ -143,12 +143,12 @@
       line-height: 24px;
     }
 
-    &--favorite:after {
+    &--favorite::after {
       content: 'F';
       background: $green-100;
     }
 
-    &--opponent:after {
+    &--opponent::after {
       content: 'O';
       background: $red-100;
     }
