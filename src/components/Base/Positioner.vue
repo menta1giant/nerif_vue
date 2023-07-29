@@ -47,10 +47,6 @@ export default {
     triggersOnClick: Boolean,
   },
   mounted() {
-    if (this.triggersOnClick) {
-      window.addEventListener('click',this.handleOutsideClick);
-    }
-    
     this.bindScrollEvent();
     this.destroyContent();
   },
@@ -105,6 +101,7 @@ export default {
     mountContent() {
       document.querySelector('body').append(this.$refs.dropdown);
       this.bindScrollEvent();
+      this.bindOutsideClickEvent();
       this.setDropdownCoordinates();
     },
     destroyContent() {
@@ -113,6 +110,7 @@ export default {
         this.$refs.dropdown?.remove();
         this.resetDropdownCoordinates();
         this.removeScrollEvent();
+        this.removeOutsideClickEvent();
       }, 300);
     },
     resetDropdownCoordinates() {
@@ -214,6 +212,12 @@ export default {
       if (this.$refs.body?.contains(event.target) || this.$refs.dropdown?.contains(event.target) || containingFormField?.contains(this.$refs.body)) return;
 
       this.changeDropdownVisibilty(false);
+    },
+    bindOutsideClickEvent() {
+      document.body.addEventListener('click', this.handleOutsideClick);
+    },
+    removeOutsideClickEvent() {
+      document.body.removeEventListener('click', this.handleOutsideClick);
     },
     bindScrollEvent() {
       window.addEventListener('scroll', this.handleScroll);
