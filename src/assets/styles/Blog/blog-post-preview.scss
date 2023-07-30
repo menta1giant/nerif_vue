@@ -18,7 +18,7 @@
       height: 25vh;
     }
 
-    @media screen and (max-width: $tablet-breakpoint) {
+    @media screen and (max-width: $laptop-breakpoint) {
       grid-column: span 3;
 
       img, .blog-post-preview__image .animated-placeholder {
@@ -41,7 +41,7 @@
     }
   }
 
-  @media screen and (max-width: $tablet-breakpoint) {
+  @media screen and (max-width: $laptop-breakpoint) {
     &:not(:nth-child(n+3)) {
       grid-column: span 3;
 

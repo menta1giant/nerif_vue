@@ -19,7 +19,7 @@
   &__title {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
     &:deep(.v-icon) {
       @include text-h4;
