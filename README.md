@@ -19,3 +19,6 @@ Although the algorithm was not successful, I decided to imagine what would happe
 
 #### Deployment
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) 
+
+## Figma
+[Check out the design!](https://www.figma.com/file/HUCNSilnHUz7bEoqDvQCKh/Nerif?type=design&node-id=2854%3A9191&mode=design&t=NjVLnGUNAcsm4X1g-1)
