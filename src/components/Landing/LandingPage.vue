@@ -83,7 +83,7 @@
           </div>
           <div class="cta-wrapper">
             <div class="landing-page-section__cta">
-              <v-button size="medium" to="/sign-up" loading>Get on board with Nerif!</v-button>
+              <v-button size="medium" to="/sign-up">Get on board with Nerif!</v-button>
             </div>
           </div>
         </div>
