@@ -1,6 +1,6 @@
 <template>
   <div class="subscription-plan-options-wrapper">
-    <subscription-plan-option v-for="(plan, idx) in plans" :key="`plan_${ idx }`" title="Demo" price="$25" :features="['Tasty treats', 'Meow meow', 'Wasabi']" :is-active="activePlan === idx" @click="changeActivePlan(idx)"/>
+    <subscription-plan-option v-for="(plan, idx) in plans" :key="`plan_${ idx }`" title="Demo" price="$25" :features="['Feature 1', 'Feature 2', 'Feature 3']" :is-active="activePlan === idx" @click="changeActivePlan(idx)"/>
     <input ref="ghost-input" class="ghost-input" type="number" name="plan" :value="activePlan"/>
   </div>
 </template>
